@@ -1,0 +1,10 @@
+/* Critical hero CSS - will be inlined in <head> */
+.hero-critical {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                    url('https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}

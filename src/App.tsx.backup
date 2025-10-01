@@ -1,0 +1,38 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Header from '@/components/Header';
+import ServicesSection from '@/components/ServicesSection';
+import AboutSection from '@/components/AboutSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import { defaultSiteConfig } from '@/config/site';
+import { badgerTechAbout } from '@/config/about';
+import { badgerTechContact } from '@/config/contact';
+import { badgerTechFooter } from '@/config/footer';
+
+const HomePage = () => (
+  <div className="App min-h-screen" id="top">
+    <Header config={defaultSiteConfig} />
+    <main id="main-content" role="main">
+      {defaultSiteConfig.services && (
+        <ServicesSection config={defaultSiteConfig.services} />
+      )}
+      <AboutSection config={badgerTechAbout} />
+      <ContactSection config={badgerTechContact} />
+    </main>
+    <Footer config={badgerTechFooter} />
+  </div>
+);
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
