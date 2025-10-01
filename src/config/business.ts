@@ -61,7 +61,7 @@ export const badgrTechBusiness = {
       fallback: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp"
     },
     services: {
-      webDevelopment: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/fsdev_vlnfbl.webp",
+      webDevelopment: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759312090/fsdev_vlnfbl_zrvhhu.webp",
       branding: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/brand_fwkcqc.webp",
       content: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/editing_gv2wii.webp"
     },
