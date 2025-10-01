@@ -7,7 +7,7 @@ export const badgrTechBusiness = {
     naics: "541511",
     founded: "2024"
   },
-  
+
   contact: {
     email: {
       primary: "hello@badgrtech.com",
@@ -53,12 +53,11 @@ export const badgrTechBusiness = {
 
   assets: {
     logo: {
-      primary: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234586/emblem-badgrWHT_qfkmlj.svg",
-      black: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234585/emblem-badgrBLK_peihbp.svg",
+      primary: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759309443/logo_thr4uc.svg",
       favicon: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303879/favicon_ahsbt3.svg"
     },
     hero: {
-      background: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp",
+      background: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759306748/N_hero-home_vcbugo.webp",
       fallback: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp"
     },
     services: {
@@ -67,7 +66,7 @@ export const badgrTechBusiness = {
       content: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/editing_gv2wii.webp"
     },
     team: {
-      owner: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/owner_ahptp3.webp"
+      owner: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759310269/op-owner_ezlmtu.webp"
     },
     icons: {
       burger: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234559/alt_burgercon_zevjo9.svg",
@@ -99,10 +98,10 @@ export const badgrTechBusiness = {
       alternative: "Code. Create. Convert.",
       professional: "Where technical expertise meets business growth"
     },
-    
+
     colors: {
       primary: "#0066CC",
-      secondary: "#1f2937", 
+      secondary: "#1f2937",
       accent: "#10b981",
       white: "#FFFFFF",
       black: "#000000",

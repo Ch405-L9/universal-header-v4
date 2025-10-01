@@ -1,70 +1,35 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Critical resource hints -->
-    <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="BADGRTechnologies LLC - Full-stack web development and strategic digital solutions for ambitious small businesses. CTRL+ALT+Deliver."
-    />
-    <meta
-      name="keywords"
-      content="web development atlanta, full-stack developer, react typescript, small business websites, digital strategy, badgr technologies"
-    />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="BADGRTechnologies LLC - Full-stack web development and strategic digital solutions for ambitious small businesses. CTRL+ALT+Deliver." />
+    <meta name="keywords" content="web development atlanta, full-stack developer, react typescript, small business websites, digital strategy, badgr technologies" />
     <meta name="author" content="BADGRTechnologies LLC" />
     <meta name="robots" content="index, follow" />
-
-    <title>
-      BADGRTechnologies LLC - CTRL+ALT+Deliver | Atlanta Web Development
-    </title>
+    <title>BADGRTechnologies LLC - CTRL+ALT+Deliver | Atlanta Web Development</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta
-      property="og:title"
-      content="BADGRTechnologies LLC - Full-Stack Web Development"
-    />
-    <meta
-      property="og:description"
-      content="CTRL+ALT+Deliver - Full-stack solutions that transform small business potential into digital success."
-    />
+    <meta property="og:title" content="BADGRTechnologies LLC - Full-Stack Web Development" />
+    <meta property="og:description" content="CTRL+ALT+Deliver - Full-stack solutions that transform small business potential into digital success." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://badgrtech.com" />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234586/emblem-badgrWHT_qfkmlj.svg"
-    />
+    <meta property="og:image" content="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759309443/logo_thr4uc.svg" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="BADGRTechnologies LLC" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="BADGRTechnologies LLC - CTRL+ALT+Deliver"
-    />
-    <meta
-      name="twitter:description"
-      content="Full-stack solutions that transform small business potential into digital success."
-    />
-    <meta
-      name="twitter:image"
-      content="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp"
-    />
+    <meta name="twitter:title" content="BADGRTechnologies LLC - CTRL+ALT+Deliver" />
+    <meta name="twitter:description" content="Full-stack solutions that transform small business potential into digital success." />
+    <meta name="twitter:image" content="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759306748/N_hero-home_vcbugo.webp" />
     <meta name="twitter:creator" content="@Badgr1stOne" />
 
-    <!-- Favicon and Icons (Cloudinary) -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303879/favicon_ahsbt3.svg"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303878/apple-touch-icon_rlfp4f.png"
-    />
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303879/favicon_ahsbt3.svg" />
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303878/apple-touch-icon_rlfp4f.png" />
     <link rel="canonical" href="https://badgrtech.com" />
 
     <!-- Business Schema -->
@@ -73,7 +38,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "BADGRTechnologies LLC",
-        "image": "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234586/emblem-badgrWHT_qfkmlj.svg",
+        "image": "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759309443/logo_thr4uc.svg",
         "description": "Full-stack web development and strategic digital solutions for small businesses",
         "address": {
           "@type": "PostalAddress",
@@ -101,51 +66,35 @@
       }
     </script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
-    /></noscript>
-
-    <!-- Preload critical Cloudinary assets -->
-    <!-- Replace the existing hero preload line with: -->
-    <link
-      rel="preload"
-      href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp"
-      as="image"
-      type="image/webp"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759234586/emblem-badgrWHT_qfkmlj.svg"
-      as="image"
-      type="image/svg+xml"
-    />
-    <style>
-      .hero-critical{background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp);background-size:cover;background-position:center;min-height:100vh;display:flex;align-items:center}
-    </style>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/goldman/v20/pe0rMIWbN4C2AXNY6kMi3g.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v21/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
-    <style>
-      .hero-critical{background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/hero-home_adn16x.webp);background-size:cover;background-position:center;min-height:100vh;display:flex;align-items:center}
-    </style>
+    <!-- Critical Resource Hints -->
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- Critical Image Preloads -->
+    <link rel="preload" href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759306748/N_hero-home_vcbugo.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759309443/logo_thr4uc.svg" as="image" type="image/svg+xml">
+
+    <!-- Font Preloads -->
     <link rel="preload" href="https://fonts.gstatic.com/s/goldman/v20/pe0rMIWbN4C2AXNY6kMi3g.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v21/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- Critical CSS for Hero -->
+    <style>
+      .hero-critical{
+        background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759306748/N_hero-home_vcbugo.webp);
+        background-size:cover;
+        background-position:center;
+        min-height:100vh;
+        display:flex;
+        align-items:center
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
