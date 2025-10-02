@@ -21,14 +21,17 @@ export const badgerTechServices: ServicesConfig = {
         "6 months support & maintenance",
         "Google Lighthouse 90+ scores"
       ],
-      price: { starting: 3000, currency: "$", period: "project" },
+      price: {
+        starting: 3000,
+        currency: "$",
+        period: "project"
+      },
       cta: {
         text: "Get Development Quote",
         href: badgrTechBusiness.contact.email.primary,
         type: "email"
       },
-      // Optimized: 400x300 crop, auto format, good quality, progressive load
-      image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303867/fsdev_vlnfbl.webp",
+      image: badgrTechBusiness.assets.services.webDevelopment,
       popular: true
     },
     {
@@ -45,13 +48,17 @@ export const badgerTechServices: ServicesConfig = {
         "Business card & collateral design",
         "Brand consistency documentation"
       ],
-      price: { starting: 2500, currency: "$", period: "project" },
+      price: {
+        starting: 2500,
+        currency: "$",
+        period: "project"
+      },
       cta: {
         text: "Start Branding Project",
         href: badgrTechBusiness.contact.email.primary,
         type: "email"
       },
-      image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/brand_fwkcqc.webp"
+      image: badgrTechBusiness.assets.services.branding
     },
     {
       id: "visual-content",
@@ -67,13 +74,17 @@ export const badgerTechServices: ServicesConfig = {
         "Print & digital formats",
         "Content calendar support"
       ],
-      price: { starting: 1500, currency: "$", period: "project" },
+      price: {
+        starting: 1500,
+        currency: "$",
+        period: "project"
+      },
       cta: {
         text: "Discuss Visual Needs",
         href: badgrTechBusiness.contact.phone.primary,
         type: "phone"
       },
-      image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/editing_gv2wii.webp"
+      image: badgrTechBusiness.assets.services.contentEditing
     }
   ],
   
@@ -82,7 +93,7 @@ export const badgerTechServices: ServicesConfig = {
     description: "Join successful SMBs who've streamlined their growth with integrated digital solutions. Let's discuss how we can accelerate your business success.",
     primaryCta: {
       text: "Get Free Strategy Session",
-      href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=Free Strategy Session Request&body=I'm interested in discussing my digital growth strategy. Please contact me to schedule a free consultation.`
+      href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=Free Strategy Session Request`
     },
     secondaryCta: {
       text: "Call Direct",

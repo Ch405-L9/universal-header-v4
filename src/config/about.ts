@@ -25,8 +25,12 @@ export const badgerTechAbout = {
     title: "Our Commitment",
     description: "We're not just developers — we're strategic partners invested in your success. Every project receives personal attention from initial planning through launch and ongoing optimization."
   },
+  badge: {
+    image: badgrTechBusiness.assets.badges.shopLocal,
+    alt: "Shop Atlanta Local - Support Small Business"
+  },
   cta: {
     text: "Start Your Project Today",
-    href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=New Project Inquiry&body=I'd like to discuss my project requirements and get started with BADGRTechnologies.`
+    href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=New Project Inquiry`
   }
 };

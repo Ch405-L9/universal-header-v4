@@ -6,7 +6,7 @@ export const defaultSiteConfig: SiteConfig = {
   title: badgrTechBusiness.company.name,
   tagline: badgrTechBusiness.branding.taglines.primary,
   description: badgrTechBusiness.branding.taglines.extended,
-  logo: badgrTechBusiness.assets.logo.primary,
+  logo: badgrTechBusiness.assets.logo,
   
   navigation: [
     { label: "Home", href: "/" },
@@ -24,7 +24,7 @@ export const defaultSiteConfig: SiteConfig = {
     ctaButtons: [
       { 
         text: "Get My Custom Digital Audit", 
-        href: "/intake",  // Changed from mailto
+        href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=Custom Digital Audit Request`,
         variant: "primary" 
       },
       { 
@@ -32,7 +32,7 @@ export const defaultSiteConfig: SiteConfig = {
         href: "#services", 
         variant: "secondary" 
       }
-     ]
+    ]
   },
   
   contact: {
