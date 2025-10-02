@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React, { useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Menu, X } from 'lucide-react';
@@ -10,11 +9,9 @@ interface HeaderProps {
   className?: string;
 }
 
-// Cloudinary URL optimizer for inline backgrounds
-const cxUrl = (u?: string) =>
-  u && u.includes('/upload/')
-    ? u.replace('/upload/', '/upload/f_auto,q_auto,w_1280/')
-    : u;
+/** Cloudinary optimizer for inline backgrounds */
+const cxUrl = (u?: string, w = 1280) =>
+  u && u.includes('/upload/') ? u.replace('/upload/', `/upload/f_auto,q_auto,w_${w}/`) : u ?? '';
 
 const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,12 +21,10 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
 
   const renderHeroBanner = () => (
     <section
-      className="relative hero-critical"
+      className="hero-critical relative"
       style={{
         backgroundImage: hero.backgroundImage
-          ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${cxUrl(
-              hero.backgroundImage
-            )})`
+          ? `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${cxUrl(hero.backgroundImage)})`
           : 'linear-gradient(135deg, var(--color-primary) 0%, #1e40af 100%)',
       }}
       role="banner"
@@ -37,33 +32,21 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
     >
       <div className="container">
         <div className="max-w-4xl text-center text-white animate-fade-in">
-          <h1
-            id="hero-headline"
-            className="mb-6 text-5xl font-bold text-white md:text-6xl lg:text-7xl font-heading"
-          >
+          <h1 id="hero-headline" className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 text-white">
             {hero.headline}
           </h1>
-          <p className="mb-4 font-medium text-responsive-lg opacity-90">
-            {hero.subheadline}
-          </p>
-          <p className="max-w-3xl mx-auto mb-8 leading-relaxed text-responsive-base">
-            {hero.description}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          <p className="text-responsive-lg mb-4 opacity-90 font-medium">{hero.subheadline}</p>
+          <p className="text-responsive-base mb-8 max-w-3xl mx-auto leading-relaxed">{hero.description}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {hero.ctaButtons.map((button, index) => (
               <a
                 key={index}
                 href={button.href}
                 className={cn(
                   'btn text-lg px-8 py-4 font-semibold transition-all duration-200 transform hover:scale-105',
-                  button.variant === 'primary'
-                    ? 'btn-primary shadow-lg'
-                    : 'btn-secondary shadow-lg'
+                  button.variant === 'primary' ? 'btn-primary shadow-lg' : 'btn-secondary shadow-lg'
                 )}
-                {...(button.external && {
-                  target: '_blank',
-                  rel: 'noopener noreferrer',
-                })}
+                {...(button.external && { target: '_blank', rel: 'noopener noreferrer' })}
               >
                 {button.text}
               </a>
@@ -75,21 +58,16 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
   );
 
   const renderHeroMinimal = () => (
-    <section className="py-20 bg-gradient-to-r from-primary to-blue-600 lg:py-32">
+    <section className="bg-gradient-to-r from-primary to-blue-600 py-20 lg:py-32">
       <div className="container text-center text-white">
-        <h1 className="mb-6 font-bold text-responsive-2xl">{hero.headline}</h1>
-        <p className="max-w-2xl mx-auto mb-8 text-responsive-lg">
-          {hero.subheadline}
-        </p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        <h1 className="text-responsive-2xl font-bold mb-6">{hero.headline}</h1>
+        <p className="text-responsive-lg mb-8 max-w-2xl mx-auto">{hero.subheadline}</p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           {hero.ctaButtons.map((button, index) => (
             <a
               key={index}
               href={button.href}
-              className={cn(
-                'btn',
-                button.variant === 'primary' ? 'btn-primary' : 'btn-secondary'
-              )}
+              className={cn('btn', button.variant === 'primary' ? 'btn-primary' : 'btn-secondary')}
             >
               {button.text}
             </a>
@@ -101,14 +79,9 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
 
   const renderHeroSplit = () => (
     <section className="bg-white">
-      <div className="container grid items-center gap-8 lg:grid-cols-2">
-        <div
-          className={cn(
-            'py-16 lg:py-24',
-            hero.variant === 'split-left' ? 'order-2 lg:order-1' : 'order-1'
-          )}
-        >
-          <h1 className="mb-6 font-bold text-responsive-xl">{hero.headline}</h1>
+      <div className="container grid lg:grid-cols-2 gap-8 items-center">
+        <div className={cn('py-16 lg:py-24', hero.variant === 'split-left' ? 'order-2 lg:order-1' : 'order-1')}>
+          <h1 className="text-responsive-xl font-bold mb-6">{hero.headline}</h1>
 
           {config.logo && (
             <img
@@ -116,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
               alt={`${title} Logo`}
               width={160}
               height={40}
-              className="w-auto h-10"
+              className="h-10 w-auto"
               decoding="async"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = 'none';
@@ -124,9 +97,7 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
             />
           )}
 
-          <p className="mb-8 leading-relaxed text-responsive-base">
-            {hero.subheadline}
-          </p>
+          <p className="text-responsive-base mb-8 leading-relaxed">{hero.subheadline}</p>
           <div className="space-y-4">
             {hero.ctaButtons.map((button, index) => (
               <a
@@ -134,9 +105,7 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
                 href={button.href}
                 className={cn(
                   'btn w-full justify-center',
-                  hero.variant === 'split-left'
-                    ? 'btn-secondary'
-                    : 'btn-primary'
+                  hero.variant === 'split-left' ? 'btn-secondary' : 'btn-primary'
                 )}
               >
                 {button.text}
@@ -162,40 +131,26 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
 
   return (
     <header className={className}>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
 
       {/* Navigation */}
-      <nav
-        className="relative z-50 text-white shadow-lg bg-primary"
-        role="navigation"
-      >
+      <nav className="bg-primary text-white shadow-lg relative z-50" role="navigation">
         <div className="container flex items-center justify-between py-4">
-          {/* Brand */}
           <div className="flex items-center gap-3">
             <a href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold tracking-tight">{title}</span>
             </a>
-            {tagline && (
-              <span className="hidden text-sm italic md:block opacity-80">
-                {tagline}
-              </span>
-            )}
+            {tagline && <span className="hidden md:block text-sm opacity-80 italic">{tagline}</span>}
           </div>
 
-          {/* Desktop Navigation */}
           <NavigationMenu.Root className="hidden md:flex">
             <NavigationMenu.List className="flex items-center gap-4">
               {navigation.map((item) => (
                 <NavigationMenu.Item key={item.label}>
                   <NavigationMenu.Link
                     href={item.href}
-                    className="px-4 py-2 transition-colors rounded-md hover:bg-blue-700/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    {...(item.external && {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
-                    })}
+                    className="px-4 py-2 rounded-md hover:bg-blue-700/70 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+                    {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
                   >
                     {item.label}
                   </NavigationMenu.Link>
@@ -203,21 +158,15 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
               ))}
               {contact?.email && (
                 <NavigationMenu.Item>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="ml-4 btn btn-secondary"
-                  >
-                    Contact Us
-                  </a>
+                  <a href={`mailto:${contact.email}`} className="btn btn-secondary ml-4">Contact Us</a>
                 </NavigationMenu.Item>
               )}
             </NavigationMenu.List>
           </NavigationMenu.Root>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="p-2 transition-colors rounded-md md:hidden hover:bg-blue-700"
+            className="md:hidden p-2 rounded-md hover:bg-blue-700 transition-colors"
             aria-label="Toggle navigation menu"
             aria-expanded={isMobileMenuOpen ? 'true' : 'false'}
             aria-controls="mobile-nav"
@@ -226,23 +175,16 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div
-            id="mobile-nav"
-            className="py-4 border-t border-blue-600 md:hidden animate-slide-in"
-          >
+          <div id="mobile-nav" className="md:hidden border-t border-blue-600 py-4 animate-slide-in">
             <ul className="flex flex-col gap-2 px-4">
               {navigation.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="block px-3 py-2 transition-colors rounded hover:bg-blue-700/70"
+                    className="block py-2 px-3 rounded hover:bg-blue-700/70 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    {...(item.external && {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
-                    })}
+                    {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
                   >
                     {item.label}
                   </a>
@@ -252,7 +194,7 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
                 <li className="pt-2">
                   <a
                     href={`mailto:${contact.email}`}
-                    className="justify-center w-full btn btn-secondary"
+                    className="btn btn-secondary w-full justify-center"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Contact Us
@@ -264,12 +206,9 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
         )}
       </nav>
 
-      {/* Hero Section */}
       {hero.variant === 'banner' && renderHeroBanner()}
-      {hero.variant === 'hero' && renderHeroMinimal()}
-      {hero.variant === 'minimal' && renderHeroMinimal()}
-      {(hero.variant === 'split-left' || hero.variant === 'split-right') &&
-        renderHeroSplit()}
+      {(hero.variant === 'hero' || hero.variant === 'minimal') && renderHeroMinimal()}
+      {(hero.variant === 'split-left' || hero.variant === 'split-right') && renderHeroSplit()}
     </header>
   );
 };
