@@ -25,6 +25,8 @@ export interface ContactInfo {
   email: string;
   phone?: string;
   address?: string;
+  ctaHref?: string;
+  ctaText?: string;
   social?: {
     twitter?: string;
     linkedin?: string;
@@ -33,7 +35,6 @@ export interface ContactInfo {
   };
 }
 
-// Import ServicesConfig type
 import { ServicesConfig } from './services';
 
 export interface SiteConfig {
@@ -49,5 +50,5 @@ export interface SiteConfig {
     secondaryColor?: string;
     accentColor?: string;
   };
-  services?: ServicesConfig; // Add services property
+  services?: ServicesConfig;
 }

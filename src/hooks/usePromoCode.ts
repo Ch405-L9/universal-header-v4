@@ -18,7 +18,7 @@ export const usePromoCode = (newBusiness: boolean) => {
       return result;
     }
 
-    if (promoConfig.requiresNewBusiness && !newBusiness) {
+    if ('requiresNewBusiness' in promoConfig && promoConfig.requiresNewBusiness && !newBusiness) {
       const result = { valid: false, message: 'This promo code is only for new businesses (<1 year)' };
       setValidation(result);
       return result;

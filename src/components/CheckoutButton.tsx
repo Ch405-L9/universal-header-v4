@@ -29,9 +29,9 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
       formData: {
         businessName: formData.businessName,
         contactEmail: formData.contactEmail,
-        contactPhone: formData.contactPhone,
-        websiteUrl: formData.websiteUrl,
-        yearsActive: formData.yearsActive,
+        contactPhone: formData.contactPhone || '',
+        websiteUrl: formData.websiteUrl || '',
+        yearsActive: String(formData.yearsActive || '0'),
         newBusiness: formData.newBusiness,
         readyToSign: formData.readyToSign,
         localMarketHigh: formData.localMarketHigh
