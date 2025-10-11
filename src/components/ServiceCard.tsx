@@ -7,11 +7,9 @@ interface ServiceCardProps {
   className?: string;
 }
 
-/** tiny inline placeholder to keep layout if an image is missing */
 const PLACEHOLDER_400x300 =
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="%23e5e7eb"/></svg>';
 
-/** add Cloudinary transforms at a given width */
 const cxW = (u: string, w: number) =>
   u.includes('/upload/') ? u.replace('/upload/', `/upload/f_auto,q_auto,w_${w}/`) : u;
 
@@ -32,7 +30,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '' }) =>
     }
   };
 
-  // guard the image URL once
   const img = service.image;
 
   return (
@@ -63,7 +60,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '' }) =>
             }
           : {})}
         alt={service.title ?? 'Service'}
-        className="rounded-lg shadow-md object-cover w-full h-auto"
+        className="rounded-lg shadow-md object-cover w-full h-auto mb-6"
         onError={(e) => {
           (e.currentTarget as HTMLImageElement).src = PLACEHOLDER_400x300;
           (e.currentTarget as HTMLImageElement).removeAttribute('srcset');
@@ -78,10 +75,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '' }) =>
 
         <div className="text-center mb-6">
           <span className="text-3xl font-bold text-blue-600">
-            {service.price.currency}
-            {service.price.starting.toLocaleString()}
+            {service.price?.currency || '$'}
+            {(service.price?.starting || 0).toLocaleString()}
           </span>
-          {service.price.period && <span className="text-gray-500 text-lg">/{service.price.period}</span>}
+          {service.price?.period && <span className="text-gray-500 text-lg">/{service.price.period}</span>}
           <p className="text-sm text-gray-500 mt-1">Starting price</p>
         </div>
       </div>

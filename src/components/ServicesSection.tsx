@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ServiceCard from './ServiceCard';
+import PaymentCalculator from './PaymentCalculator';
 import { ServicesConfig } from '@/types/services';
 import { cn } from '@/utils/cn';
 
@@ -9,10 +10,11 @@ interface ServicesSectionProps {
 }
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '' }) => {
+  const [showCalculator, setShowCalculator] = useState(false);
+
   return (
     <section className={cn('py-20 bg-gray-50', className)} id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-wide">
             {config.title}
@@ -27,19 +29,40 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
           </div>
         </div>
 
-        {/* Services Grid - Enhanced sizing for professional appearance */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
-          {config.services.map((service) => (
-            <ServiceCard 
-              key={service.id}
-              service={service}
-              className="transform hover:scale-105 transition-transform duration-300"
-            />
-          ))}
-        </div>
+        {!showCalculator ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
+              {config.services.map((service) => (
+                <ServiceCard 
+                  key={service.id}
+                  service={service}
+                  className="transform hover:scale-105 transition-transform duration-300"
+                />
+              ))}
+            </div>
 
-        {/* Call to Action Section */}
-        {config.ctaSection && (
+            <div className="text-center mb-12">
+              <button
+                onClick={() => setShowCalculator(true)}
+                className="bg-blue-600 text-white font-semibold py-4 px-12 rounded-sm hover:bg-blue-700 transition-colors text-lg"
+              >
+                Get Custom Quote
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="max-w-4xl mx-auto">
+            <button
+              onClick={() => setShowCalculator(false)}
+              className="mb-6 text-blue-600 hover:text-blue-700 font-semibold"
+            >
+              ← Back to Services
+            </button>
+            <PaymentCalculator />
+          </div>
+        )}
+
+        {!showCalculator && config.ctaSection && (
           <div className="text-center bg-white rounded-sm border-2 border-blue-600 p-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-6">
               {config.ctaSection.title}

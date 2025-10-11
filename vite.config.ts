@@ -6,14 +6,15 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
-    port: 3000,
-    host: true
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
   },
-  build: {
-    copyPublicDir: false  // Disable copying public/ - use Cloudinary only
-  }
 })

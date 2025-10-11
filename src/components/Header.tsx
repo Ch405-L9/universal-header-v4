@@ -10,7 +10,6 @@ interface HeaderProps {
   className?: string;
 }
 
-// Cloudinary URL optimizer for inline backgrounds
 const cxUrl = (u?: string) =>
   u && u.includes('/upload/')
     ? u.replace('/upload/', '/upload/f_auto,q_auto,w_1280/')
@@ -18,7 +17,7 @@ const cxUrl = (u?: string) =>
 
 const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { hero, navigation, title, tagline, contact } = config;
+  const { hero, navigation = [], title, contact, logo } = config;
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -26,8 +25,8 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
     <section
       className="relative hero-critical"
       style={{
-        backgroundImage: hero.backgroundImage
-          ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${cxUrl(
+        backgroundImage: hero?.backgroundImage
+          ? `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${cxUrl(
               hero.backgroundImage
             )})`
           : 'linear-gradient(135deg, var(--color-primary) 0%, #1e40af 100%)',
@@ -41,16 +40,16 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
             id="hero-headline"
             className="mb-6 text-5xl font-bold text-white md:text-6xl lg:text-7xl font-heading"
           >
-            {hero.headline}
+            {hero?.headline}
           </h1>
           <p className="mb-4 font-medium text-responsive-lg opacity-90">
-            {hero.subheadline}
+            {hero?.subheadline}
           </p>
           <p className="max-w-3xl mx-auto mb-8 leading-relaxed text-responsive-base">
-            {hero.description}
+            {hero?.description}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            {hero.ctaButtons.map((button, index) => (
+            {hero?.ctaButtons?.map((button, index) => (
               <a
                 key={index}
                 href={button.href}
@@ -77,19 +76,23 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
   const renderHeroMinimal = () => (
     <section className="py-20 bg-gradient-to-r from-primary to-blue-600 lg:py-32">
       <div className="container text-center text-white">
-        <h1 className="mb-6 font-bold text-responsive-2xl">{hero.headline}</h1>
+        <h1 className="mb-6 font-bold text-responsive-2xl">{hero?.headline}</h1>
         <p className="max-w-2xl mx-auto mb-8 text-responsive-lg">
-          {hero.subheadline}
+          {hero?.subheadline}
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          {hero.ctaButtons.map((button, index) => (
+          {hero?.ctaButtons?.map((button, index) => (
             <a
               key={index}
               href={button.href}
               className={cn(
-                'btn',
+                'btn text-lg px-6 py-3 font-semibold',
                 button.variant === 'primary' ? 'btn-primary' : 'btn-secondary'
               )}
+              {...(button.external && {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+              })}
             >
               {button.text}
             </a>
@@ -105,14 +108,14 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
         <div
           className={cn(
             'py-16 lg:py-24',
-            hero.variant === 'split-left' ? 'order-2 lg:order-1' : 'order-1'
+            hero?.variant === 'split-left' ? 'order-2 lg:order-1' : 'order-1'
           )}
         >
-          <h1 className="mb-6 font-bold text-responsive-xl">{hero.headline}</h1>
+          <h1 className="mb-6 font-bold text-responsive-xl">{hero?.headline}</h1>
 
-          {config.logo && (
+          {logo && (
             <img
-              src={config.logo}
+              src={logo}
               alt={`${title} Logo`}
               width={160}
               height={40}
@@ -125,19 +128,21 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
           )}
 
           <p className="mb-8 leading-relaxed text-responsive-base">
-            {hero.subheadline}
+            {hero?.subheadline}
           </p>
           <div className="space-y-4">
-            {hero.ctaButtons.map((button, index) => (
+            {hero?.ctaButtons?.map((button, index) => (
               <a
                 key={index}
                 href={button.href}
                 className={cn(
-                  'btn w-full justify-center',
-                  hero.variant === 'split-left'
-                    ? 'btn-secondary'
-                    : 'btn-primary'
+                  'btn w-full justify-center text-lg px-6 py-3 font-semibold',
+                  hero?.variant === 'split-left' ? 'btn-secondary' : 'btn-primary'
                 )}
+                {...(button.external && {
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                })}
               >
                 {button.text}
               </a>
@@ -147,11 +152,11 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
 
         <div
           className={cn(
-            'bg-cover bg-center min-h-[400px] lg:min-h-full',
-            hero.variant === 'split-left' ? 'order-1 lg:order-2' : 'order-2'
+            'bg-cover bg-center min-h-[400px] lg:min-h-full rounded',
+            hero?.variant === 'split-left' ? 'order-1 lg:order-2' : 'order-2'
           )}
           style={{
-            backgroundImage: hero.backgroundImage
+            backgroundImage: hero?.backgroundImage
               ? `url(${cxUrl(hero.backgroundImage)})`
               : 'linear-gradient(45deg, #f3f4f6, #e5e7eb)',
           }}
@@ -170,57 +175,66 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
       <nav
         className="relative z-50 text-white shadow-lg bg-primary"
         role="navigation"
+        aria-label="Main Navigation"
       >
-        <div className="container flex items-center justify-between py-4">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            <a href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight">{title}</span>
+        <div className="container flex items-center justify-between py-4 relative">
+
+          {/* Center: Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <a href="/" aria-label={`${title} home`}>
+              <img
+                src={
+                  logo ||
+                  'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760156354/logo-badgrBLK_wcgwaf.svg'
+                }
+                alt="Logo"
+                className="h-12 w-auto"
+                style={{ transform: 'scale(1.08)', transformOrigin: 'center' }}
+              />
             </a>
-            {tagline && (
-              <span className="hidden text-sm italic md:block opacity-80">
-                {tagline}
-              </span>
-            )}
           </div>
 
-          {/* Desktop Navigation */}
-          <NavigationMenu.Root className="hidden md:flex">
-            <NavigationMenu.List className="flex items-center gap-4">
-              {navigation.map((item) => (
-                <NavigationMenu.Item key={item.label}>
-                  <NavigationMenu.Link
+          {/* Right: Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-4">
+            <ul className="flex items-center gap-2">
+              {(navigation.length
+                ? navigation
+                : [
+                    { label: 'Home', href: '/' },
+                    { label: 'Services', href: '/#services' },
+                    { label: 'About', href: '/about' },
+                    { label: 'Contact', href: '/#contact' },
+                  ]
+              ).map((item) => (
+                <li key={item.label}>
+                  <a
                     href={item.href}
-                    className="px-4 py-2 transition-colors rounded-md hover:bg-blue-700/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    {...(item.external && {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
-                    })}
+                    className="px-4 py-2 text-sm font-heading font-normal text-white transition-colors rounded-md hover:bg-blue-700/70"
                   >
                     {item.label}
-                  </NavigationMenu.Link>
-                </NavigationMenu.Item>
-              ))}
-              {contact?.email && (
-                <NavigationMenu.Item>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="ml-4 btn btn-secondary"
-                  >
-                    Contact Us
                   </a>
-                </NavigationMenu.Item>
-              )}
-            </NavigationMenu.List>
-          </NavigationMenu.Root>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA button on right */}
+            <div>
+              <a
+                href={contact?.ctaHref || '/contact'}
+                className="ml-4 btn btn-primary px-4 py-2 font-semibold"
+                aria-label="Get Started"
+              >
+                {contact?.ctaText || 'Get Started'}
+              </a>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
             className="p-2 transition-colors rounded-md md:hidden hover:bg-blue-700"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMobileMenuOpen ? 'true' : 'false'}
-            aria-controls="mobile-nav"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -228,47 +242,47 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div
-            id="mobile-nav"
-            className="py-4 border-t border-blue-600 md:hidden animate-slide-in"
-          >
+          <div className="py-4 border-t border-blue-600 md:hidden">
             <ul className="flex flex-col gap-2 px-4">
-              {navigation.map((item) => (
+              {(navigation.length
+                ? navigation
+                : [
+                    { label: 'Home', href: '/' },
+                    { label: 'Services', href: '/#services' },
+                    { label: 'About', href: '/about' },
+                    { label: 'Contact', href: '/#contact' },
+                  ]
+              ).map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="block px-3 py-2 transition-colors rounded hover:bg-blue-700/70"
+                    className="block px-3 py-2 transition-colors rounded hover:bg-blue-700/70 text-white"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    {...(item.external && {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
-                    })}
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
-              {contact?.email && (
-                <li className="pt-2">
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="justify-center w-full btn btn-secondary"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Contact Us
-                  </a>
-                </li>
-              )}
+
+              <li>
+                <a
+                  href={contact?.ctaHref || '/contact'}
+                  className="block px-3 py-2 mt-2 font-semibold rounded btn btn-primary text-center"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {contact?.ctaText || 'Get Started'}
+                </a>
+              </li>
             </ul>
           </div>
         )}
       </nav>
 
       {/* Hero Section */}
-      {hero.variant === 'banner' && renderHeroBanner()}
-      {hero.variant === 'hero' && renderHeroMinimal()}
-      {hero.variant === 'minimal' && renderHeroMinimal()}
-      {(hero.variant === 'split-left' || hero.variant === 'split-right') &&
+      {hero?.variant === 'banner' && renderHeroBanner()}
+      {hero?.variant === 'hero' && renderHeroMinimal()}
+      {hero?.variant === 'minimal' && renderHeroMinimal()}
+      {(hero?.variant === 'split-left' || hero?.variant === 'split-right') &&
         renderHeroSplit()}
     </header>
   );

@@ -31,11 +31,27 @@ const HomePage = () => (
   </div>
 );
 
+const SuccessPage = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="max-w-md w-full bg-white p-8 rounded-sm border-2 border-green-600 text-center">
+      <div className="text-green-600 text-6xl mb-4">✓</div>
+      <h1 className="text-3xl font-bold text-gray-900 mb-4">Payment Successful!</h1>
+      <p className="text-gray-600 mb-6">
+        Thank you for your deposit. We'll reach out within 2 hours to begin your project.
+      </p>
+      <a href="/" className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-sm hover:bg-blue-700 inline-block">
+        Return Home
+      </a>
+    </div>
+  </div>
+);
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/success" element={<SuccessPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
