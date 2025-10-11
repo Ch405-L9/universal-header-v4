@@ -22,3 +22,7 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+deploy-stripe-payment-FIXED.sh
+.env
+.env.local
+.env.production
