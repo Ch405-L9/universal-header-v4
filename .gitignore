@@ -26,3 +26,4 @@ deploy-stripe-payment-FIXED.sh
 .env
 .env.local
 .env.production
+.vercel

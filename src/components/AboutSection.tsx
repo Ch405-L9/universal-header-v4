@@ -40,8 +40,15 @@ const AboutSection: React.FC<AboutSectionProps> = ({ config, className = '' }) =
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Main Description */}
-            <div>
+            {/* Left Column: Profile Image + Description */}
+            <div className="space-y-8">
+              {/* Profile Image - Complete 544x306 image with centered photo */}
+              <img
+                src="https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760220152/contained-about_nsijzk.webp"
+                alt="A.D. Grant - Founder of BADGRTechnologies"
+              />
+
+              {/* Main Description */}
               <div className="space-y-6">
                 {config.description.map((paragraph, index) => (
                   <p key={index} className="text-lg text-gray-600 leading-relaxed">
@@ -69,7 +76,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ config, className = '' }) =
               )}
             </div>
 
-            {/* Highlights & Team Info */}
+            {/* Right Column: Highlights & Team Info */}
             <div className="space-y-12">
               {/* Highlights Box */}
               <div className="bg-gray-50 p-8 rounded-sm border-2 border-blue-200">
