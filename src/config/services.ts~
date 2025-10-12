@@ -22,17 +22,16 @@ export const badgerTechServices: ServicesConfig = {
         "Google Lighthouse 90+ scores"
       ],
       price: {
-        starting: 3000,
+        starting: 1200,
         currency: "$",
         period: "project"
       },
       cta: {
         text: "Get Development Quote",
-        href: badgrTechBusiness.contact.email.primary,
-        type: "email"
+        href: "/#contact",
+        type: "link"
       },
       image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759398449/fsdev_vlnfbl_zrvhhu_1_md7fxq.webp",
-
       popular: true
     },
     {
@@ -50,17 +49,16 @@ export const badgerTechServices: ServicesConfig = {
         "Brand consistency documentation"
       ],
       price: {
-        starting: 2500,
+        starting: 600,
         currency: "$",
         period: "project"
       },
       cta: {
         text: "Start Branding Project",
-        href: badgrTechBusiness.contact.email.primary,
-        type: "email"
+        href: "/#contact",
+        type: "link"
       },
       image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759398450/brand_fwkcqc_1_lygeye.webp",
-
     },
     {
       id: "visual-content",
@@ -77,25 +75,27 @@ export const badgerTechServices: ServicesConfig = {
         "Content calendar support"
       ],
       price: {
-        starting: 1500,
+        starting: 250,
         currency: "$",
         period: "project"
       },
       cta: {
         text: "Discuss Visual Needs",
-        href: badgrTechBusiness.contact.phone.primary,
-        type: "phone"
+        href: "/#contact",
+        type: "link"
       },
       image: "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303868/editing_gv2wii.webp",
     }
   ],
+
+  disclaimer: "Prices subject to change based on project complexity and additional requirements requested by client.",
 
   ctaSection: {
     title: "Ready to Transform Your Digital Presence?",
     description: "Join successful SMBs who've streamlined their growth with integrated digital solutions. Let's discuss how we can accelerate your business success.",
     primaryCta: {
       text: "Get Free Strategy Session",
-      href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=Free Strategy Session Request`
+      href: "/#contact"
     },
     secondaryCta: {
       text: "Call Direct",
