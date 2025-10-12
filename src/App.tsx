@@ -7,6 +7,10 @@ import { badgerTechAbout } from '@/config/about';
 import { badgerTechContact } from '@/config/contact';
 import { badgerTechFooter } from '@/config/footer';
 
+// Import Privacy and Terms components
+import PrivacyPolicy from '@/components/PrivacyPolicy';
+import TermsAndConditions from '@/components/TermsAndConditions';
+
 const ServicesSection = lazy(() => import('@/components/ServicesSection'));
 const AboutSection = lazy(() => import('@/components/AboutSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
@@ -52,6 +56,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/success" element={<SuccessPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
