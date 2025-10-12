@@ -88,8 +88,6 @@ export const badgerTechServices: ServicesConfig = {
     }
   ],
 
-  disclaimer: "Prices subject to change based on project complexity and additional requirements requested by client.",
-
   ctaSection: {
     title: "Ready to Transform Your Digital Presence?",
     description: "Join successful SMBs who've streamlined their growth with integrated digital solutions. Let's discuss how we can accelerate your business success.",
