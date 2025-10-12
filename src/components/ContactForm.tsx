@@ -17,32 +17,32 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    
+
     // Create mailto link with form data
     const subject = encodeURIComponent(`Contact Form: Message from ${formData.name}`);
     const body = encodeURIComponent(
@@ -51,17 +51,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
       `Company: ${formData.company || 'Not provided'}\n\n` +
       `Message:\n${formData.message}`
     );
-    
-    const mailtoLink = `mailto:hello@badgetechnologies.com?subject=${subject}&body=${body}`;
-    
+
+    const mailtoLink = `mailto:hello@badgrtech.com?subject=${subject}&body=${body}`;
+
     // Open email client
     window.location.href = mailtoLink;
-    
+
     // Reset form after a brief delay
     setTimeout(() => {
       setFormData({ name: '', email: '', company: '', message: '' });
       setIsSubmitting(false);
-      // Show success message (you could add a toast notification here)
       alert('Thank you! Your default email client should now open with your message pre-filled.');
     }, 1000);
   };
@@ -69,7 +68,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
