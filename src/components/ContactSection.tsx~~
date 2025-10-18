@@ -35,8 +35,8 @@ interface ContactSectionProps {
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ config, className = '' }) => {
-  const formattedPhone = '+1 (470) 223-6127';
-  const phoneLink = 'tel:+14702236127';
+  const formattedPhone = '+1 (470) 223-6217';
+  const phoneLink = 'tel:+14702236217';
 
   return (
     <section className={cn('py-20 bg-gray-50', className)} id="contact">

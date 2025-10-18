@@ -7,7 +7,9 @@ const app = express();
 const PORT = 3001;
 
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-11-20.acacia',
+});
 
 app.use(cors());
 app.use(express.json());
