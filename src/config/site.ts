@@ -7,14 +7,14 @@ export const defaultSiteConfig: SiteConfig = {
   tagline: badgrTechBusiness.branding.taglines.primary,
   description: badgrTechBusiness.branding.taglines.extended,
   logo: badgrTechBusiness.assets.logo,
-  
+
   navigation: [
     { label: "Home", href: "/" },
     { label: "Services", href: "#services" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
-  
+
   hero: {
     headline: "Transform Your Digital Presence",
     subheadline: badgrTechBusiness.branding.taglines.extended,
@@ -22,23 +22,25 @@ export const defaultSiteConfig: SiteConfig = {
     variant: "banner",
     backgroundImage: badgrTechBusiness.assets.hero.background,
     ctaButtons: [
-      { 
-        text: "Get My Custom Digital Audit", 
+      {
+        text: "Get My Custom Digital Audit",
         href: `mailto:${badgrTechBusiness.contact.email.primary}?subject=Custom Digital Audit Request`,
-        variant: "primary" 
+        variant: "primary"
       },
-      { 
-        text: "View Our Services", 
-        href: "#services", 
-        variant: "secondary" 
+      {
+        text: "View Our Services",
+        href: "#services",
+        variant: "secondary"
       }
     ]
   },
-  
+
   contact: {
     email: badgrTechBusiness.contact.email.primary,
     phone: badgrTechBusiness.contact.phone.primary,
     address: badgrTechBusiness.contact.address.full,
+    ctaHref: "#services",
+    ctaText: "Get Started",
     social: {
       twitter: badgrTechBusiness.social.twitter.url,
       linkedin: badgrTechBusiness.social.linkedin.url,
@@ -46,7 +48,7 @@ export const defaultSiteConfig: SiteConfig = {
       instagram: badgrTechBusiness.social.instagram.url
     }
   },
-  
+
   theme: {
     primaryColor: badgrTechBusiness.branding.colors.primary,
     secondaryColor: badgrTechBusiness.branding.colors.secondary,

@@ -8,7 +8,7 @@ A complete, production-ready React website template built with modern technologi
 # If running the complete automation:
 ./header_v4_hotfix.sh              # Fix any configuration issues
 ./header_v4C_services.sh           # Add services section
-./header_v4C2_about_contact.sh     # Add about and contact sections  
+./header_v4C2_about_contact.sh     # Add about and contact sections
 ./header_v4C3_footer_integration.sh # Add footer and final integration
 
 # Or if you have the complete project:
@@ -167,7 +167,7 @@ npx tsc --noEmit
 ## 📞 Support
 
 For technical support or customization assistance:
-- **Email**: hello@badgetechnologies.com
+- **Email**: hello@badgrtech.com
 - **Documentation**: This README and inline code comments
 - **Issues**: Check console for any errors
 
