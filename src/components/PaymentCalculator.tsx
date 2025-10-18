@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/utils/cn';
 import { ServiceSelection, IntakeFormData } from '@/types/payment';
 import { usePaymentCalculator } from '@/hooks/usePaymentCalculator';
@@ -8,15 +8,33 @@ import CheckoutButton from './CheckoutButton';
 
 interface PaymentCalculatorProps {
   className?: string;
+  preselectedService?: string | null;
 }
 
-const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className }) => {
+const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className, preselectedService }) => {
   const [selectedServices, setSelectedServices] = useState<ServiceSelection[]>([]);
   const [showIntake, setShowIntake] = useState(false);
   const [formData, setFormData] = useState<IntakeFormData | null>(null);
   const [promoFactor, setPromoFactor] = useState<number>();
 
   const pricing = usePaymentCalculator(selectedServices, formData || {}, promoFactor);
+
+  useEffect(() => {
+    if (preselectedService) {
+      Object.entries(PAYMENT_CONFIG.services).forEach(([category, services]) => {
+        Object.entries(services).forEach(([key, service]) => {
+          if (`${category}-${key}` === preselectedService) {
+            setSelectedServices([{
+              id: preselectedService,
+              name: service.name,
+              basePrice: service.basePrice,
+              category
+            }]);
+          }
+        });
+      });
+    }
+  }, [preselectedService]);
 
   const toggleService = (category: string, serviceKey: string, serviceName: string, basePrice: number) => {
     const serviceId = `${category}-${serviceKey}`;
@@ -38,7 +56,7 @@ const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className }) => {
     <div className={cn('space-y-8', className)}>
       <div className="bg-white p-8 rounded-sm border-2 border-blue-600">
         <h3 className="text-2xl font-bold mb-6">Select Services</h3>
-        
+
         {Object.entries(PAYMENT_CONFIG.services).map(([category, services]) => (
           <div key={category} className="mb-6">
             <h4 className="text-lg font-semibold mb-3 capitalize">{category}</h4>

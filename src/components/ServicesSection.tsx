@@ -11,6 +11,18 @@ interface ServicesSectionProps {
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '' }) => {
   const [showCalculator, setShowCalculator] = useState(false);
+  const [preselectedService, setPreselectedService] = useState<string | null>(null);
+
+  const handleServiceSelect = (serviceId: string) => {
+    setPreselectedService(serviceId);
+    setShowCalculator(true);
+    setTimeout(() => {
+      document.getElementById('calculator-section')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
+  };
 
   return (
     <section className={cn('py-20 bg-gray-50', className)} id="services">
@@ -33,9 +45,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
               {config.services.map((service) => (
-                <ServiceCard 
+                <ServiceCard
                   key={service.id}
                   service={service}
+                  onSelectService={handleServiceSelect}
                   className="transform hover:scale-105 transition-transform duration-300"
                 />
               ))}
@@ -51,14 +64,17 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
             </div>
           </>
         ) : (
-          <div className="max-w-4xl mx-auto">
+          <div id="calculator-section" className="max-w-4xl mx-auto">
             <button
-              onClick={() => setShowCalculator(false)}
+              onClick={() => {
+                setShowCalculator(false);
+                setPreselectedService(null);
+              }}
               className="mb-6 text-blue-600 hover:text-blue-700 font-semibold"
             >
               ← Back to Services
             </button>
-            <PaymentCalculator />
+            <PaymentCalculator preselectedService={preselectedService} />
           </div>
         )}
 
@@ -81,6 +97,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
               >
                 {config.ctaSection.primaryCta.text}
               </a>
+
               {config.ctaSection.secondaryCta && (
                 <a
                   href={config.ctaSection.secondaryCta.href}

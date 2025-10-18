@@ -4,17 +4,26 @@ import { cn } from '@/utils/cn';
 
 interface ServiceCardProps {
   service: Service;
+  onSelectService?: (serviceId: string) => void;
   className?: string;
 }
-
 const PLACEHOLDER_400x300 =
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="%23e5e7eb"/></svg>';
 
 const cxW = (u: string, w: number) =>
   u.includes('/upload/') ? u.replace('/upload/', `/upload/f_auto,q_auto,w_${w}/`) : u;
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '' }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  service,
+  onSelectService,
+  className = ''
+}) => {
   const handleCtaClick = () => {
+    if (onSelectService) {
+      onSelectService(service.id);
+      return;
+    } // <-- missing brace fixed
+
     switch (service.cta.type) {
       case 'email':
         window.location.href = `mailto:${service.cta.href}?subject=Inquiry about ${service.title}`;
