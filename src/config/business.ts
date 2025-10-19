@@ -54,7 +54,7 @@ export const badgrTechBusiness = {
     logo: 'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759309443/logo_thr4uc.svg',
     hero: {
       background:
-        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_1920,f_auto,q_auto:eco,fl_progressive:steep/v1759306748/N_hero-home_vcbugo.webp',
+        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_1920,f_auto,q_auto:eco,fl_progressive:steep/v1760152162/hero-new_khqhpz.webp',
     },
     services: {
       webDevelopment:
