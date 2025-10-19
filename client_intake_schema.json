@@ -41,7 +41,15 @@
         },
         "industry": {
           "type": "string",
-          "enum": ["technology", "consulting", "retail", "healthcare", "legal", "real-estate", "other"]
+          "enum": [
+            "technology",
+            "consulting",
+            "retail",
+            "healthcare",
+            "legal",
+            "real-estate",
+            "other"
+          ]
         },
         "founded": {
           "type": "string",

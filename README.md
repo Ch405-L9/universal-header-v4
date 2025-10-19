@@ -19,6 +19,7 @@ npm run dev
 ## 📋 What's Included
 
 ### ✅ Complete Sections
+
 - **Header**: Professional navigation with mobile menu
 - **Hero**: Configurable hero section with multiple variants
 - **Services**: Professional service cards with pricing and CTAs
@@ -27,6 +28,7 @@ npm run dev
 - **Footer**: Comprehensive footer with legal links and newsletter signup
 
 ### 🎨 Design System
+
 - **Colors**: Professional blue (#0066CC) and white theme
 - **Typography**: Goldman Bold for headings, system fonts for body
 - **Borders**: Maximum 2px radius throughout
@@ -34,6 +36,7 @@ npm run dev
 - **Shadows**: Professional blue-tinted shadows
 
 ### 🛠 Technical Features
+
 - **React 18+** with TypeScript
 - **Vite** for fast development and builds
 - **Tailwind CSS v3.4.x** for styling
@@ -45,6 +48,7 @@ npm run dev
 ## 🔧 Customization
 
 ### Update Site Content
+
 Edit the configuration files to customize your content:
 
 ```typescript
@@ -56,12 +60,16 @@ Edit the configuration files to customize your content:
 ```
 
 ### Modify Styling
+
 The design system is centralized in:
+
 - `src/styles/index.css` - Global styles and CSS variables
 - `tailwind.config.js` - Tailwind configuration
 
 ### Add New Sections
+
 Follow the established pattern:
+
 1. Create component in `src/components/`
 2. Create configuration in `src/config/`
 3. Add to `src/App.tsx`
@@ -93,6 +101,7 @@ src/
 ## 🎯 Key Features
 
 ### Services Section
+
 - **Double-sized cards** for professional appearance
 - **Blue borders** with hover effects
 - **Pricing display** with starting prices
@@ -101,6 +110,7 @@ src/
 - **Popular service highlighting**
 
 ### Contact System
+
 - **Interactive form** with validation
 - **Email integration** (opens default mail client)
 - **Business information** display
@@ -108,6 +118,7 @@ src/
 - **Office hours** and contact methods
 
 ### Footer
+
 - **Company information** and description
 - **Quick navigation** links
 - **Legal pages** (Privacy, Terms)
@@ -118,25 +129,30 @@ src/
 ## 🚀 Deployment
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
 
 ### Deploy to Netlify
+
 1. Run `npm run build`
 2. Drag the `dist/` folder to Netlify
 
 ### Deploy to Vercel
+
 1. Connect your GitHub repository
 2. Vercel will auto-deploy on push
 
 ### Traditional Hosting
+
 1. Run `npm run build`
 2. Upload `dist/` folder contents to your web server
 
 ## 🔍 SEO & Performance
 
 ### Included Optimizations
+
 - **Meta tags** for social media sharing
 - **Semantic HTML** structure
 - **Image optimization** with lazy loading
@@ -145,6 +161,7 @@ npm run build
 - **Mobile-first** responsive design
 
 ### Lighthouse Targets
+
 - **Performance**: 90+
 - **Accessibility**: 95+
 - **Best Practices**: 95+
@@ -167,6 +184,7 @@ npx tsc --noEmit
 ## 📞 Support
 
 For technical support or customization assistance:
+
 - **Email**: hello@badgrtech.com
 - **Documentation**: This README and inline code comments
 - **Issues**: Check console for any errors

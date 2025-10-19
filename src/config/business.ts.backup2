@@ -58,17 +58,16 @@ export const badgrTechBusiness = {
     },
     services: {
       webDevelopment:
-        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_800,q_auto:eco,f_auto/v1760826970/branding-prcing_dt1ygp.webp',
+        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_1920,f_auto,q_auto:eco,fl_progressive:steep/v1759306748/N_hero-home_vcbugo.webp',
       branding:
-        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_800,q_auto:eco,f_auto/v1760826922/brand-talent-showcase_nzme5u.webp',
+        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_1920,f_auto,q_auto:eco,fl_progressive:steep/v1759306748/N_hero-home_vcbugo.webp',
       contentEditing:
-        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_800,q_auto:eco,f_auto/v1760826970/web-dev-prcng_uw5tlz.webp',
+        'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_1920,f_auto,q_auto:eco,fl_progressive:steep/v1759306748/N_hero-home_vcbugo.webp',
     },
     badges: {
       shopLocal:
         'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303873/shop-atl-local_yisbcq.svg',
     },
-
     icons: {
       favicon: 'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759303879/favicon_ahsbt3.svg',
       apple:
@@ -91,12 +90,11 @@ export const badgrTechBusiness = {
   },
 
   branding: {
-    image:
-      'https://res.cloudinary.com/dsxpcwjwb/image/upload/c_scale,w_800,q_auto:eco,f_auto/v1760826922/brand-talent-showcase_nzme5u.webp',
     taglines: {
       primary: 'CTRL+ALT+Deliver',
       extended: 'Full-stack solutions that transform small business potential into digital success',
     },
+
     colors: {
       primary: '#0066CC',
       secondary: '#1f2937',

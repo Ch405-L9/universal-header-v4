@@ -1,17 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     port: 3000,
-    host: true
+    host: true,
   },
   build: {
     minify: 'esbuild',
@@ -21,12 +21,12 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-vendor': ['lucide-react', '@radix-ui/react-navigation-menu'],
-        }
-      }
+        },
+      },
     },
     target: 'es2015',
     chunkSizeWarningLimit: 600,
     reportCompressedSize: true,
-    sourcemap: false
-  }
-})
+    sourcemap: false,
+  },
+});

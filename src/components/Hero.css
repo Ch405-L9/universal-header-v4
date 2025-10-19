@@ -1,7 +1,8 @@
 /* Critical hero CSS - inlined or imported */
 .hero-critical {
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                    url('https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760152162/hero-new_khqhpz.webp');
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760152162/hero-new_khqhpz.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

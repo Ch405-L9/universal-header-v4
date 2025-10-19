@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3001;
 
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-11-20.acacia',
 });
 
@@ -20,7 +20,7 @@ app.post('/api/stripe/create-checkout-session', async (req, res) => {
     const { services, formData, pricing } = req.body;
 
     // Create line items
-    const lineItems = services.map(service => ({
+    const lineItems = services.map((service) => ({
       price_data: {
         currency: 'usd',
         product_data: {
