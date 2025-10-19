@@ -23,12 +23,12 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -43,9 +43,10 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
     const newErrors: Record<string, string> = {};
     if (!formData.businessName.trim()) newErrors.businessName = 'Business name required';
     if (!formData.contactEmail.trim()) newErrors.contactEmail = 'Email required';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contactEmail)) newErrors.contactEmail = 'Invalid email';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contactEmail))
+      newErrors.contactEmail = 'Invalid email';
     if (!formData.contactPhone.trim()) newErrors.contactPhone = 'Phone required';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -58,9 +59,12 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn('space-y-6 bg-white p-8 rounded-sm border-2 border-blue-600', className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn('space-y-6 bg-white p-8 rounded-sm border-2 border-blue-600', className)}
+    >
       <h3 className="text-2xl font-bold text-gray-900 mb-6">Project Information</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold mb-2">Business Name *</label>
@@ -69,9 +73,14 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
             name="businessName"
             value={formData.businessName}
             onChange={handleChange}
-            className={cn('w-full px-4 py-3 border-2 rounded-sm', errors.businessName ? 'border-red-500' : 'border-gray-300')}
+            className={cn(
+              'w-full px-4 py-3 border-2 rounded-sm',
+              errors.businessName ? 'border-red-500' : 'border-gray-300'
+            )}
           />
-          {errors.businessName && <p className="text-red-600 text-sm mt-1">{errors.businessName}</p>}
+          {errors.businessName && (
+            <p className="text-red-600 text-sm mt-1">{errors.businessName}</p>
+          )}
         </div>
 
         <div>
@@ -92,9 +101,14 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
             name="contactEmail"
             value={formData.contactEmail}
             onChange={handleChange}
-            className={cn('w-full px-4 py-3 border-2 rounded-sm', errors.contactEmail ? 'border-red-500' : 'border-gray-300')}
+            className={cn(
+              'w-full px-4 py-3 border-2 rounded-sm',
+              errors.contactEmail ? 'border-red-500' : 'border-gray-300'
+            )}
           />
-          {errors.contactEmail && <p className="text-red-600 text-sm mt-1">{errors.contactEmail}</p>}
+          {errors.contactEmail && (
+            <p className="text-red-600 text-sm mt-1">{errors.contactEmail}</p>
+          )}
         </div>
 
         <div>
@@ -104,9 +118,14 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onSubmit, className }) => {
             name="contactPhone"
             value={formData.contactPhone}
             onChange={handleChange}
-            className={cn('w-full px-4 py-3 border-2 rounded-sm', errors.contactPhone ? 'border-red-500' : 'border-gray-300')}
+            className={cn(
+              'w-full px-4 py-3 border-2 rounded-sm',
+              errors.contactPhone ? 'border-red-500' : 'border-gray-300'
+            )}
           />
-          {errors.contactPhone && <p className="text-red-600 text-sm mt-1">{errors.contactPhone}</p>}
+          {errors.contactPhone && (
+            <p className="text-red-600 text-sm mt-1">{errors.contactPhone}</p>
+          )}
         </div>
 
         <div>

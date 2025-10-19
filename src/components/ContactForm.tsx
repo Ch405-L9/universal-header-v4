@@ -10,7 +10,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
     name: '',
     email: '',
     company: '',
-    message: ''
+    message: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,9 +47,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
     const subject = encodeURIComponent(`Contact Form: Message from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Company: ${formData.company || 'Not provided'}\n\n` +
-      `Message:\n${formData.message}`
+        `Email: ${formData.email}\n` +
+        `Company: ${formData.company || 'Not provided'}\n\n` +
+        `Message:\n${formData.message}`
     );
 
     const mailtoLink = `mailto:hello@badgrtech.com?subject=${subject}&body=${body}`;
@@ -67,11 +67,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 

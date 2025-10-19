@@ -172,7 +172,7 @@ const Header: React.FC<HeaderProps> = ({ config, className = '' }) => {
               <img
                 src={
                   logo ||
-                  'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760849078/logo_ekz0rs.svg'
+                  'https://res.cloudinary.com/dsxpcwjwb/image/upload/v1760156354/logo-badgrBLK_wcgwaf.svg'
                 }
                 alt="Logo"
                 className="h-12 w-auto"

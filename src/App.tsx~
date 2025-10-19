@@ -10,27 +10,17 @@ import { badgerTechFooter } from '@/config/footer';
 // Import Privacy and Terms components
 import PrivacyPolicy from '@/components/PrivacyPolicy';
 import TermsAndConditions from '@/components/TermsAndConditions';
-import PricingSections from './components/PricingSections';
-import QuoteForm from './components/QuoteForm';
+import PricingSections from './components/PricingTiers';
+import QuoteForm from "./components/QuoteForm";
+
 
 const ServicesSection = lazy(() => import('@/components/ServicesSection'));
 const AboutSection = lazy(() => import('@/components/AboutSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
 
 const LoadingFallback = () => (
-  <div
-    style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-  >
-    <div
-      style={{
-        width: '40px',
-        height: '40px',
-        border: '4px solid #0066CC',
-        borderTop: '4px solid transparent',
-        borderRadius: '50%',
-        animation: 'spin 1s linear infinite',
-      }}
-    />
+  <div style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ width: '40px', height: '40px', border: '4px solid #0066CC', borderTop: '4px solid transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
   </div>
 );
 
@@ -56,10 +46,7 @@ const SuccessPage = () => (
       <p className="text-gray-600 mb-6">
         Thank you for your deposit. We'll reach out within 2 hours to begin your project.
       </p>
-      <a
-        href="/"
-        className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-sm hover:bg-blue-700 inline-block"
-      >
+      <a href="/" className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-sm hover:bg-blue-700 inline-block">
         Return Home
       </a>
     </div>

@@ -638,3 +638,14 @@ nav {
   contain: layout;
   min-height: 72px;
 }
+
+/* Lighthouse contrast fix - Footer headings */
+.bg-gray-900 h3,
+.bg-gray-900 h4,
+.bg-gray-900 h5 {
+  color: #ffffff !important;
+}
+
+.bg-gray-900 .text-gray-100 {
+  color: #f3f4f6 !important;
+}

@@ -20,11 +20,11 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
 
   const handleCheckout = () => {
     createCheckoutSession({
-      services: services.map(s => ({
+      services: services.map((s) => ({
         id: s.id,
         name: s.name,
         basePrice: s.basePrice,
-        category: s.category
+        category: s.category,
       })),
       formData: {
         businessName: formData.businessName,
@@ -34,14 +34,14 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
         yearsActive: String(formData.yearsActive || '0'),
         newBusiness: formData.newBusiness,
         readyToSign: formData.readyToSign,
-        localMarketHigh: formData.localMarketHigh
+        localMarketHigh: formData.localMarketHigh,
       },
       pricing: {
         subtotal: pricing.subtotal,
         discounts: pricing.discounts,
         total: pricing.total,
-        deposit: pricing.deposit
-      }
+        deposit: pricing.deposit,
+      },
     });
   };
 
@@ -49,15 +49,16 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
     <div className={cn('bg-white p-8 rounded-sm border-2 border-blue-600', className)}>
       <h3 className="text-2xl font-bold mb-4">Ready to Start?</h3>
       <p className="text-gray-600 mb-6">
-        Click below to securely pay your 50% deposit (${pricing.deposit.toFixed(2)}) and begin your project.
+        Click below to securely pay your 50% deposit (${pricing.deposit.toFixed(2)}) and begin your
+        project.
       </p>
-      
+
       {error && (
         <div className="bg-red-50 border-2 border-red-500 text-red-700 p-4 rounded-sm mb-4">
           {error}
         </div>
       )}
-      
+
       <button
         onClick={handleCheckout}
         disabled={loading}

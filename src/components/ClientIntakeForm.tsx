@@ -23,14 +23,14 @@ const ClientIntakeForm = () => {
       tagline: '',
       description: '',
       industry: 'technology',
-      founded: new Date().getFullYear().toString()
+      founded: new Date().getFullYear().toString(),
     },
     contact: {
       email: '',
       phone: '',
       address: { street: '', city: '', state: '', zip: '' },
       hours: { weekdays: 'Monday - Friday, 9:00 AM - 5:00 PM', weekends: 'By appointment only' },
-      social: { linkedin: '', twitter: '', instagram: '', github: '' }
+      social: { linkedin: '', twitter: '', instagram: '', github: '' },
     },
     services: [] as Service[],
     hero: {
@@ -40,24 +40,24 @@ const ClientIntakeForm = () => {
       variant: 'banner',
       cta_buttons: [
         { text: 'Get Started', href: '#contact', variant: 'primary' },
-        { text: 'Learn More', href: '#services', variant: 'secondary' }
-      ]
+        { text: 'Learn More', href: '#services', variant: 'secondary' },
+      ],
     },
     branding: {
-      colors: { primary: '#0066CC', secondary: '#1f2937', accent: '#10b981' }
-    }
+      colors: { primary: '#0066CC', secondary: '#1f2937', accent: '#10b981' },
+    },
   });
 
-  const [validation, setValidation] = useState<{[key: string]: string}>({});
+  const [validation, setValidation] = useState<{ [key: string]: string }>({});
 
   const totalSteps = 5;
 
   const validateStep = (step: number): boolean => {
-    const errors: {[key: string]: string} = {};
+    const errors: { [key: string]: string } = {};
 
     if (step === 1) {
       if (!formData.client_id) errors.client_id = 'Required';
-      else if (!/^[a-z0-9-]+$/.test(formData.client_id)) 
+      else if (!/^[a-z0-9-]+$/.test(formData.client_id))
         errors.client_id = 'Lowercase letters, numbers, hyphens only';
       if (!formData.business_info.company_name) errors.company_name = 'Required';
       if (!formData.business_info.tagline) errors.tagline = 'Required';
@@ -94,11 +94,11 @@ const ClientIntakeForm = () => {
 
   const nextStep = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+      setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
     }
   };
 
-  const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
+  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
 
   const addService = () => {
     const newService: Service = {
@@ -107,18 +107,18 @@ const ClientIntakeForm = () => {
       description: '',
       features: [''],
       price: { starting: 0, currency: '$', period: 'project' },
-      popular: false
+      popular: false,
     };
     setFormData({
       ...formData,
-      services: [...formData.services, newService]
+      services: [...formData.services, newService],
     });
   };
 
   const removeService = (index: number) => {
     setFormData({
       ...formData,
-      services: formData.services.filter((_, i) => i !== index)
+      services: formData.services.filter((_, i) => i !== index),
     });
   };
 
@@ -142,7 +142,9 @@ const ClientIntakeForm = () => {
 
   const removeFeature = (serviceIndex: number, featureIndex: number) => {
     const newServices = [...formData.services];
-    newServices[serviceIndex].features = newServices[serviceIndex].features.filter((_, i) => i !== featureIndex);
+    newServices[serviceIndex].features = newServices[serviceIndex].features.filter(
+      (_, i) => i !== featureIndex
+    );
     setFormData({ ...formData, services: newServices });
   };
 
@@ -161,17 +163,24 @@ const ClientIntakeForm = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Business Information</h2>
-            
+
             <div>
               <label className="block text-sm font-semibold mb-2">Client ID *</label>
               <input
                 type="text"
                 value={formData.client_id}
-                onChange={e => setFormData({...formData, client_id: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '')})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    client_id: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''),
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="company-name"
               />
-              {validation.client_id && <p className="text-red-600 text-sm mt-1">{validation.client_id}</p>}
+              {validation.client_id && (
+                <p className="text-red-600 text-sm mt-1">{validation.client_id}</p>
+              )}
               <p className="text-gray-500 text-xs mt-1">URL-safe identifier (e.g., acme-corp)</p>
             </div>
 
@@ -180,11 +189,18 @@ const ClientIntakeForm = () => {
               <input
                 type="text"
                 value={formData.business_info.company_name}
-                onChange={e => setFormData({...formData, business_info: {...formData.business_info, company_name: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    business_info: { ...formData.business_info, company_name: e.target.value },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="Acme Corporation"
               />
-              {validation.company_name && <p className="text-red-600 text-sm mt-1">{validation.company_name}</p>}
+              {validation.company_name && (
+                <p className="text-red-600 text-sm mt-1">{validation.company_name}</p>
+              )}
             </div>
 
             <div>
@@ -192,23 +208,37 @@ const ClientIntakeForm = () => {
               <input
                 type="text"
                 value={formData.business_info.tagline}
-                onChange={e => setFormData({...formData, business_info: {...formData.business_info, tagline: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    business_info: { ...formData.business_info, tagline: e.target.value },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="Innovation at its finest"
               />
-              {validation.tagline && <p className="text-red-600 text-sm mt-1">{validation.tagline}</p>}
+              {validation.tagline && (
+                <p className="text-red-600 text-sm mt-1">{validation.tagline}</p>
+              )}
             </div>
 
             <div>
               <label className="block text-sm font-semibold mb-2">Description *</label>
               <textarea
                 value={formData.business_info.description}
-                onChange={e => setFormData({...formData, business_info: {...formData.business_info, description: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    business_info: { ...formData.business_info, description: e.target.value },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 rows={4}
                 placeholder="Full business description..."
               />
-              {validation.description && <p className="text-red-600 text-sm mt-1">{validation.description}</p>}
+              {validation.description && (
+                <p className="text-red-600 text-sm mt-1">{validation.description}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -216,7 +246,12 @@ const ClientIntakeForm = () => {
                 <label className="block text-sm font-semibold mb-2">Industry</label>
                 <select
                   value={formData.business_info.industry}
-                  onChange={e => setFormData({...formData, business_info: {...formData.business_info, industry: e.target.value}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      business_info: { ...formData.business_info, industry: e.target.value },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                 >
                   <option value="technology">Technology</option>
@@ -234,7 +269,12 @@ const ClientIntakeForm = () => {
                 <input
                   type="number"
                   value={formData.business_info.founded}
-                  onChange={e => setFormData({...formData, business_info: {...formData.business_info, founded: e.target.value}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      business_info: { ...formData.business_info, founded: e.target.value },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   min="1900"
                   max={new Date().getFullYear()}
@@ -248,18 +288,25 @@ const ClientIntakeForm = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold mb-2">Email *</label>
                 <input
                   type="email"
                   value={formData.contact.email}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, email: e.target.value}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: { ...formData.contact, email: e.target.value },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="hello@company.com"
                 />
-                {validation.email && <p className="text-red-600 text-sm mt-1">{validation.email}</p>}
+                {validation.email && (
+                  <p className="text-red-600 text-sm mt-1">{validation.email}</p>
+                )}
               </div>
 
               <div>
@@ -267,11 +314,18 @@ const ClientIntakeForm = () => {
                 <input
                   type="tel"
                   value={formData.contact.phone}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, phone: e.target.value}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: { ...formData.contact, phone: e.target.value },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="+1 (555) 123-4567"
                 />
-                {validation.phone && <p className="text-red-600 text-sm mt-1">{validation.phone}</p>}
+                {validation.phone && (
+                  <p className="text-red-600 text-sm mt-1">{validation.phone}</p>
+                )}
               </div>
             </div>
 
@@ -280,11 +334,21 @@ const ClientIntakeForm = () => {
               <input
                 type="text"
                 value={formData.contact.address.street}
-                onChange={e => setFormData({...formData, contact: {...formData.contact, address: {...formData.contact.address, street: e.target.value}}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    contact: {
+                      ...formData.contact,
+                      address: { ...formData.contact.address, street: e.target.value },
+                    },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="123 Main St, Suite 100"
               />
-              {validation.street && <p className="text-red-600 text-sm mt-1">{validation.street}</p>}
+              {validation.street && (
+                <p className="text-red-600 text-sm mt-1">{validation.street}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-3 gap-4">
@@ -293,7 +357,15 @@ const ClientIntakeForm = () => {
                 <input
                   type="text"
                   value={formData.contact.address.city}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, address: {...formData.contact.address, city: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        address: { ...formData.contact.address, city: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                 />
                 {validation.city && <p className="text-red-600 text-sm mt-1">{validation.city}</p>}
@@ -304,12 +376,25 @@ const ClientIntakeForm = () => {
                 <input
                   type="text"
                   value={formData.contact.address.state}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, address: {...formData.contact.address, state: e.target.value.toUpperCase()}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        address: {
+                          ...formData.contact.address,
+                          state: e.target.value.toUpperCase(),
+                        },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   maxLength={2}
                   placeholder="GA"
                 />
-                {validation.state && <p className="text-red-600 text-sm mt-1">{validation.state}</p>}
+                {validation.state && (
+                  <p className="text-red-600 text-sm mt-1">{validation.state}</p>
+                )}
               </div>
 
               <div>
@@ -317,7 +402,15 @@ const ClientIntakeForm = () => {
                 <input
                   type="text"
                   value={formData.contact.address.zip}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, address: {...formData.contact.address, zip: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        address: { ...formData.contact.address, zip: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="30303"
                 />
@@ -331,28 +424,60 @@ const ClientIntakeForm = () => {
                 <input
                   type="url"
                   value={formData.contact.social.linkedin}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, social: {...formData.contact.social, linkedin: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        social: { ...formData.contact.social, linkedin: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="LinkedIn URL"
                 />
                 <input
                   type="url"
                   value={formData.contact.social.twitter}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, social: {...formData.contact.social, twitter: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        social: { ...formData.contact.social, twitter: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="Twitter/X URL"
                 />
                 <input
                   type="url"
                   value={formData.contact.social.instagram}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, social: {...formData.contact.social, instagram: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        social: { ...formData.contact.social, instagram: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="Instagram URL"
                 />
                 <input
                   type="url"
                   value={formData.contact.social.github}
-                  onChange={e => setFormData({...formData, contact: {...formData.contact, social: {...formData.contact.social, github: e.target.value}}})}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      contact: {
+                        ...formData.contact,
+                        social: { ...formData.contact.social, github: e.target.value },
+                      },
+                    })
+                  }
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="GitHub URL"
                 />
@@ -388,14 +513,14 @@ const ClientIntakeForm = () => {
                 <input
                   type="text"
                   value={service.title}
-                  onChange={e => updateService(idx, { title: e.target.value })}
+                  onChange={(e) => updateService(idx, { title: e.target.value })}
                   className="w-full px-4 py-2 border-2 rounded"
                   placeholder="Service Title"
                 />
 
                 <textarea
                   value={service.description}
-                  onChange={e => updateService(idx, { description: e.target.value })}
+                  onChange={(e) => updateService(idx, { description: e.target.value })}
                   className="w-full px-4 py-2 border-2 rounded"
                   rows={3}
                   placeholder="Service Description"
@@ -405,13 +530,19 @@ const ClientIntakeForm = () => {
                   <input
                     type="number"
                     value={service.price.starting}
-                    onChange={e => updateService(idx, { price: { ...service.price, starting: Number(e.target.value) } })}
+                    onChange={(e) =>
+                      updateService(idx, {
+                        price: { ...service.price, starting: Number(e.target.value) },
+                      })
+                    }
                     className="w-full px-4 py-2 border-2 rounded"
                     placeholder="Price"
                   />
                   <select
                     value={service.price.period}
-                    onChange={e => updateService(idx, { price: { ...service.price, period: e.target.value } })}
+                    onChange={(e) =>
+                      updateService(idx, { price: { ...service.price, period: e.target.value } })
+                    }
                     className="w-full px-4 py-2 border-2 rounded"
                   >
                     <option value="project">Per Project</option>
@@ -423,7 +554,7 @@ const ClientIntakeForm = () => {
                     <input
                       type="checkbox"
                       checked={service.popular}
-                      onChange={e => updateService(idx, { popular: e.target.checked })}
+                      onChange={(e) => updateService(idx, { popular: e.target.checked })}
                     />
                     Popular
                   </label>
@@ -444,14 +575,11 @@ const ClientIntakeForm = () => {
                       <input
                         type="text"
                         value={feature}
-                        onChange={e => updateFeature(idx, fIdx, e.target.value)}
+                        onChange={(e) => updateFeature(idx, fIdx, e.target.value)}
                         className="flex-1 px-4 py-2 border-2 rounded"
                         placeholder="Feature description"
                       />
-                      <button
-                        onClick={() => removeFeature(idx, fIdx)}
-                        className="text-red-600"
-                      >
+                      <button onClick={() => removeFeature(idx, fIdx)} className="text-red-600">
                         <Trash2 size={20} />
                       </button>
                     </div>
@@ -466,17 +594,21 @@ const ClientIntakeForm = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Hero Section</h2>
-            
+
             <div>
               <label className="block text-sm font-semibold mb-2">Headline *</label>
               <input
                 type="text"
                 value={formData.hero.headline}
-                onChange={e => setFormData({...formData, hero: {...formData.hero, headline: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({ ...formData, hero: { ...formData.hero, headline: e.target.value } })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="Transform Your Business"
               />
-              {validation.headline && <p className="text-red-600 text-sm mt-1">{validation.headline}</p>}
+              {validation.headline && (
+                <p className="text-red-600 text-sm mt-1">{validation.headline}</p>
+              )}
             </div>
 
             <div>
@@ -484,18 +616,30 @@ const ClientIntakeForm = () => {
               <input
                 type="text"
                 value={formData.hero.subheadline}
-                onChange={e => setFormData({...formData, hero: {...formData.hero, subheadline: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    hero: { ...formData.hero, subheadline: e.target.value },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 placeholder="Professional solutions that drive results"
               />
-              {validation.subheadline && <p className="text-red-600 text-sm mt-1">{validation.subheadline}</p>}
+              {validation.subheadline && (
+                <p className="text-red-600 text-sm mt-1">{validation.subheadline}</p>
+              )}
             </div>
 
             <div>
               <label className="block text-sm font-semibold mb-2">Description</label>
               <textarea
                 value={formData.hero.description}
-                onChange={e => setFormData({...formData, hero: {...formData.hero, description: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    hero: { ...formData.hero, description: e.target.value },
+                  })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
                 rows={4}
                 placeholder="Detailed hero section description..."
@@ -506,7 +650,9 @@ const ClientIntakeForm = () => {
               <label className="block text-sm font-semibold mb-2">Variant</label>
               <select
                 value={formData.hero.variant}
-                onChange={e => setFormData({...formData, hero: {...formData.hero, variant: e.target.value}})}
+                onChange={(e) =>
+                  setFormData({ ...formData, hero: { ...formData.hero, variant: e.target.value } })
+                }
                 className="w-full px-4 py-2 border-2 rounded"
               >
                 <option value="banner">Banner (Full Width)</option>
@@ -523,7 +669,7 @@ const ClientIntakeForm = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Branding & Review</h2>
-            
+
             <div>
               <h3 className="font-semibold mb-3">Brand Colors</h3>
               <div className="grid grid-cols-3 gap-4">
@@ -532,7 +678,15 @@ const ClientIntakeForm = () => {
                   <input
                     type="color"
                     value={formData.branding.colors.primary}
-                    onChange={e => setFormData({...formData, branding: {...formData.branding, colors: {...formData.branding.colors, primary: e.target.value}}})}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        branding: {
+                          ...formData.branding,
+                          colors: { ...formData.branding.colors, primary: e.target.value },
+                        },
+                      })
+                    }
                     className="w-full h-12 rounded"
                   />
                   <p className="text-xs mt-1">{formData.branding.colors.primary}</p>
@@ -542,7 +696,15 @@ const ClientIntakeForm = () => {
                   <input
                     type="color"
                     value={formData.branding.colors.secondary}
-                    onChange={e => setFormData({...formData, branding: {...formData.branding, colors: {...formData.branding.colors, secondary: e.target.value}}})}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        branding: {
+                          ...formData.branding,
+                          colors: { ...formData.branding.colors, secondary: e.target.value },
+                        },
+                      })
+                    }
                     className="w-full h-12 rounded"
                   />
                   <p className="text-xs mt-1">{formData.branding.colors.secondary}</p>
@@ -552,7 +714,15 @@ const ClientIntakeForm = () => {
                   <input
                     type="color"
                     value={formData.branding.colors.accent}
-                    onChange={e => setFormData({...formData, branding: {...formData.branding, colors: {...formData.branding.colors, accent: e.target.value}}})}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        branding: {
+                          ...formData.branding,
+                          colors: { ...formData.branding.colors, accent: e.target.value },
+                        },
+                      })
+                    }
                     className="w-full h-12 rounded"
                   />
                   <p className="text-xs mt-1">{formData.branding.colors.accent}</p>
@@ -563,12 +733,25 @@ const ClientIntakeForm = () => {
             <div className="border-t pt-4">
               <h3 className="font-semibold mb-3">Summary</h3>
               <div className="space-y-2 text-sm">
-                <p><strong>Company:</strong> {formData.business_info.company_name}</p>
-                <p><strong>Client ID:</strong> {formData.client_id}</p>
-                <p><strong>Email:</strong> {formData.contact.email}</p>
-                <p><strong>Phone:</strong> {formData.contact.phone}</p>
-                <p><strong>Services:</strong> {formData.services.length}</p>
-                <p><strong>Location:</strong> {formData.contact.address.city}, {formData.contact.address.state}</p>
+                <p>
+                  <strong>Company:</strong> {formData.business_info.company_name}
+                </p>
+                <p>
+                  <strong>Client ID:</strong> {formData.client_id}
+                </p>
+                <p>
+                  <strong>Email:</strong> {formData.contact.email}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {formData.contact.phone}
+                </p>
+                <p>
+                  <strong>Services:</strong> {formData.services.length}
+                </p>
+                <p>
+                  <strong>Location:</strong> {formData.contact.address.city},{' '}
+                  {formData.contact.address.state}
+                </p>
               </div>
             </div>
 
@@ -592,21 +775,31 @@ const ClientIntakeForm = () => {
     <div className="max-w-4xl mx-auto p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">BADGRTech Client Intake Form</h1>
-        <p className="text-gray-600">Complete all steps to generate production-ready website configuration</p>
+        <p className="text-gray-600">
+          Complete all steps to generate production-ready website configuration
+        </p>
       </div>
 
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
-          {[1, 2, 3, 4, 5].map(step => (
+          {[1, 2, 3, 4, 5].map((step) => (
             <div key={step} className="flex items-center">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step === currentStep ? 'bg-blue-600 text-white' :
-                step < currentStep ? 'bg-green-600 text-white' :
-                'bg-gray-300 text-gray-600'
-              }`}>
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                  step === currentStep
+                    ? 'bg-blue-600 text-white'
+                    : step < currentStep
+                      ? 'bg-green-600 text-white'
+                      : 'bg-gray-300 text-gray-600'
+                }`}
+              >
                 {step < currentStep ? <Check size={20} /> : step}
               </div>
-              {step < 5 && <div className={`h-1 w-16 ${step < currentStep ? 'bg-green-600' : 'bg-gray-300'}`} />}
+              {step < 5 && (
+                <div
+                  className={`h-1 w-16 ${step < currentStep ? 'bg-green-600' : 'bg-gray-300'}`}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -619,9 +812,7 @@ const ClientIntakeForm = () => {
         </div>
       </div>
 
-      <div className="bg-white p-8 rounded-lg shadow-lg mb-6">
-        {renderStep()}
-      </div>
+      <div className="bg-white p-8 rounded-lg shadow-lg mb-6">{renderStep()}</div>
 
       <div className="flex justify-between">
         <button

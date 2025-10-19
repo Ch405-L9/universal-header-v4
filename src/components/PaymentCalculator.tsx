@@ -24,24 +24,31 @@ const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className, presel
       Object.entries(PAYMENT_CONFIG.services).forEach(([category, services]) => {
         Object.entries(services).forEach(([key, service]) => {
           if (`${category}-${key}` === preselectedService) {
-            setSelectedServices([{
-              id: preselectedService,
-              name: service.name,
-              basePrice: service.basePrice,
-              category
-            }]);
+            setSelectedServices([
+              {
+                id: preselectedService,
+                name: service.name,
+                basePrice: service.basePrice,
+                category,
+              },
+            ]);
           }
         });
       });
     }
   }, [preselectedService]);
 
-  const toggleService = (category: string, serviceKey: string, serviceName: string, basePrice: number) => {
+  const toggleService = (
+    category: string,
+    serviceKey: string,
+    serviceName: string,
+    basePrice: number
+  ) => {
     const serviceId = `${category}-${serviceKey}`;
-    setSelectedServices(prev => {
-      const exists = prev.find(s => s.id === serviceId);
+    setSelectedServices((prev) => {
+      const exists = prev.find((s) => s.id === serviceId);
       if (exists) {
-        return prev.filter(s => s.id !== serviceId);
+        return prev.filter((s) => s.id !== serviceId);
       }
       return [...prev, { id: serviceId, name: serviceName, basePrice, category }];
     });
@@ -63,7 +70,7 @@ const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className, presel
             <div className="space-y-2">
               {Object.entries(services).map(([key, service]) => {
                 const serviceId = `${category}-${key}`;
-                const isSelected = selectedServices.some(s => s.id === serviceId);
+                const isSelected = selectedServices.some((s) => s.id === serviceId);
                 return (
                   <label key={key} className="flex items-center space-x-3 cursor-pointer">
                     <input
@@ -120,11 +127,7 @@ const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({ className, presel
         <>
           <IntakeForm onSubmit={handleIntakeSubmit} />
           {formData && (
-            <CheckoutButton
-              services={selectedServices}
-              formData={formData}
-              pricing={pricing}
-            />
+            <CheckoutButton services={selectedServices} formData={formData} pricing={pricing} />
           )}
         </>
       )}

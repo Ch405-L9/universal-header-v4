@@ -7,7 +7,7 @@ export const calculatePricing = (
   promoCodeFactor?: number
 ): PricingCalculation => {
   const subtotal = services.reduce((sum, service) => sum + service.basePrice, 0);
-  
+
   const discounts = {
     marketAdjustment: 0,
     contractSigner: 0,

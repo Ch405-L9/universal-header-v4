@@ -16,7 +16,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   className = '',
   sizes = '100vw',
   priority = false,
-  webpSrc
+  webpSrc,
 }) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -31,10 +31,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
 
   if (imageError) {
     return (
-      <div className={cn(
-        'bg-gray-200 flex items-center justify-center text-gray-500',
-        className
-      )}>
+      <div className={cn('bg-gray-200 flex items-center justify-center text-gray-500', className)}>
         <span>Image not available</span>
       </div>
     );
@@ -42,13 +39,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
 
   return (
     <picture className="block">
-      {webpSrc && (
-        <source
-          srcSet={webpSrc}
-          sizes={sizes}
-          type="image/webp"
-        />
-      )}
+      {webpSrc && <source srcSet={webpSrc} sizes={sizes} type="image/webp" />}
       <img
         src={src}
         alt={alt}

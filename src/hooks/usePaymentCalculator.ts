@@ -9,7 +9,14 @@ export const usePaymentCalculator = (
 ) => {
   const [pricing, setPricing] = useState<PricingCalculation>({
     subtotal: 0,
-    discounts: { marketAdjustment: 0, contractSigner: 0, newSba: 0, bundleSavings: 0, first25: 0, total: 0 },
+    discounts: {
+      marketAdjustment: 0,
+      contractSigner: 0,
+      newSba: 0,
+      bundleSavings: 0,
+      first25: 0,
+      total: 0,
+    },
     total: 0,
     deposit: 0,
   });

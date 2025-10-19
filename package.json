@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 3001",
-    "format": "prettier --write src/",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
     "type-check": "tsc --noEmit",
     "dev:api": "node server/index.cjs",
     "dev:full": "npm run dev:api & npm run dev"

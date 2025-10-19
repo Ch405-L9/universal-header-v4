@@ -23,7 +23,16 @@ const PrivacyPolicy: React.FC = () => {
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8 md:p-12">
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            BADGR Technologies LLC ("BADGRTech," "we," "our," or "us") values your privacy. This Privacy Policy explains how we collect, use, and protect information when you visit our website, <a href="https://www.badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">www.badgrtech.com</a>, or engage our services.
+            BADGR Technologies LLC ("BADGRTech," "we," "our," or "us") values your privacy. This
+            Privacy Policy explains how we collect, use, and protect information when you visit our
+            website,{' '}
+            <a
+              href="https://www.badgrtech.com"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              www.badgrtech.com
+            </a>
+            , or engage our services.
           </p>
 
           {/* Section 1 */}
@@ -77,7 +86,8 @@ const PrivacyPolicy: React.FC = () => {
               4. Data Security and Retention
             </h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              We use SSL encryption, firewalls, and access controls to protect your data. However, no online method is 100% secure, and you acknowledge that risk by using our services.
+              We use SSL encryption, firewalls, and access controls to protect your data. However,
+              no online method is 100% secure, and you acknowledge that risk by using our services.
             </p>
             <p className="text-gray-700 leading-relaxed">
               We retain data as long as reasonably necessary for business, legal, or tax reasons.
@@ -98,7 +108,14 @@ const PrivacyPolicy: React.FC = () => {
               <li>Access and correct your information</li>
             </ul>
             <p className="text-gray-700 mt-4 leading-relaxed">
-              Contact <a href="mailto:privacy@badgrtech.com" className="text-blue-600 hover:text-blue-800 underline font-medium">privacy@badgrtech.com</a> for all privacy inquiries.
+              Contact{' '}
+              <a
+                href="mailto:privacy@badgrtech.com"
+                className="text-blue-600 hover:text-blue-800 underline font-medium"
+              >
+                privacy@badgrtech.com
+              </a>{' '}
+              for all privacy inquiries.
             </p>
           </section>
 
@@ -108,7 +125,8 @@ const PrivacyPolicy: React.FC = () => {
               6. Children's Privacy
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Our site is not directed to children under 13. We do not knowingly collect information from children.
+              Our site is not directed to children under 13. We do not knowingly collect information
+              from children.
             </p>
           </section>
 
@@ -118,7 +136,8 @@ const PrivacyPolicy: React.FC = () => {
               7. International Data Transfers
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Data may be processed in the United States or by providers internationally under appropriate safeguards.
+              Data may be processed in the United States or by providers internationally under
+              appropriate safeguards.
             </p>
           </section>
 
@@ -128,7 +147,8 @@ const PrivacyPolicy: React.FC = () => {
               8. Updates to This Policy
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              We may update this policy occasionally. The effective date will reflect changes. Continued use of our site means you accept those changes.
+              We may update this policy occasionally. The effective date will reflect changes.
+              Continued use of our site means you accept those changes.
             </p>
           </section>
 
@@ -136,17 +156,27 @@ const PrivacyPolicy: React.FC = () => {
           <section className="bg-blue-50 p-8 rounded-lg border-2 border-blue-200">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
             <div className="space-y-2 text-gray-700">
-              <p><span className="font-semibold">Company:</span> BADGR Technologies LLC</p>
-              <p><span className="font-semibold">NAICS Code:</span> 541511</p>
+              <p>
+                <span className="font-semibold">Company:</span> BADGR Technologies LLC
+              </p>
+              <p>
+                <span className="font-semibold">NAICS Code:</span> 541511
+              </p>
               <p>
                 <span className="font-semibold">Privacy Email:</span>{' '}
-                <a href="mailto:privacy@badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">
+                <a
+                  href="mailto:privacy@badgrtech.com"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
                   privacy@badgrtech.com
                 </a>
               </p>
               <p>
                 <span className="font-semibold">General Email:</span>{' '}
-                <a href="mailto:hello@badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">
+                <a
+                  href="mailto:hello@badgrtech.com"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
                   hello@badgrtech.com
                 </a>
               </p>
@@ -160,7 +190,11 @@ const PrivacyPolicy: React.FC = () => {
               className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
               Back to Home
             </a>

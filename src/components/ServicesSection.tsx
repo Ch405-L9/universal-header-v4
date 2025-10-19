@@ -19,7 +19,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
     setTimeout(() => {
       document.getElementById('calculator-section')?.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }, 100);
   };
@@ -35,9 +35,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
             {config.subtitle}
           </p>
           <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-gray-600 leading-relaxed">
-              {config.description}
-            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">{config.description}</p>
           </div>
         </div>
 
@@ -80,9 +78,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ config, className = '
 
         {!showCalculator && config.ctaSection && (
           <div className="text-center bg-white rounded-sm border-2 border-blue-600 p-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              {config.ctaSection.title}
-            </h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">{config.ctaSection.title}</h3>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
               {config.ctaSection.description}
             </p>

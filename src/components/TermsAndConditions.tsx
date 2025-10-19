@@ -23,7 +23,15 @@ const TermsAndConditions: React.FC = () => {
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8 md:p-12">
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            These Terms govern use of <a href="https://www.badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">www.badgrtech.com</a> and services by BADGR Technologies LLC ("BADGRTech," "we," "us," or "our"). By using the site you accept these Terms.
+            These Terms govern use of{' '}
+            <a
+              href="https://www.badgrtech.com"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              www.badgrtech.com
+            </a>{' '}
+            and services by BADGR Technologies LLC ("BADGRTech," "we," "us," or "our"). By using the
+            site you accept these Terms.
           </p>
 
           {/* Section 1 */}
@@ -32,7 +40,8 @@ const TermsAndConditions: React.FC = () => {
               1. Acceptance
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Use of site or ordering services constitutes agreement to these Terms. If you do not agree, do not use our website or services.
+              Use of site or ordering services constitutes agreement to these Terms. If you do not
+              agree, do not use our website or services.
             </p>
           </section>
 
@@ -42,8 +51,13 @@ const TermsAndConditions: React.FC = () => {
               2. Services and Agreements
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-              <li>Services are delivered under separate Statements of Work, proposals, or invoices</li>
-              <li>Estimates and timelines are best-effort and may change based on project scope and complexity</li>
+              <li>
+                Services are delivered under separate Statements of Work, proposals, or invoices
+              </li>
+              <li>
+                Estimates and timelines are best-effort and may change based on project scope and
+                complexity
+              </li>
             </ul>
           </section>
 
@@ -79,7 +93,10 @@ const TermsAndConditions: React.FC = () => {
               5. Intellectual Property
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-              <li>BADGRTech retains intellectual property rights for tools, templates, and pre-existing code</li>
+              <li>
+                BADGRTech retains intellectual property rights for tools, templates, and
+                pre-existing code
+              </li>
               <li>Deliverables may be licensed to you upon full payment per project agreement</li>
               <li>Custom work product ownership is specified in individual service agreements</li>
             </ul>
@@ -91,7 +108,9 @@ const TermsAndConditions: React.FC = () => {
               6. Confidentiality
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Both parties will protect confidential information shared during the course of business. Standard exceptions apply for information that is publicly available, independently developed, or required to be disclosed by law.
+              Both parties will protect confidential information shared during the course of
+              business. Standard exceptions apply for information that is publicly available,
+              independently developed, or required to be disclosed by law.
             </p>
           </section>
 
@@ -101,7 +120,9 @@ const TermsAndConditions: React.FC = () => {
               7. Warranties and Disclaimers
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Services are provided "as-is" with commercially reasonable care. We make no other warranties, express or implied, including warranties of merchantability or fitness for a particular purpose.
+              Services are provided "as-is" with commercially reasonable care. We make no other
+              warranties, express or implied, including warranties of merchantability or fitness for
+              a particular purpose.
             </p>
           </section>
 
@@ -112,8 +133,14 @@ const TermsAndConditions: React.FC = () => {
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
               <li>We are not liable for indirect, special, incidental, or consequential damages</li>
-              <li>Aggregate liability is limited to the amount paid in the prior 12 months or $1,000 if no payments made</li>
-              <li>Some jurisdictions do not allow limitation of liability; in such cases, minimum legally required liability applies</li>
+              <li>
+                Aggregate liability is limited to the amount paid in the prior 12 months or $1,000
+                if no payments made
+              </li>
+              <li>
+                Some jurisdictions do not allow limitation of liability; in such cases, minimum
+                legally required liability applies
+              </li>
             </ul>
           </section>
 
@@ -123,7 +150,9 @@ const TermsAndConditions: React.FC = () => {
               9. Third-Party Services
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Third-party tools and services (such as Stripe for payments or analytics platforms) are governed by their respective terms of service. We are not responsible for third-party service performance or policies.
+              Third-party tools and services (such as Stripe for payments or analytics platforms)
+              are governed by their respective terms of service. We are not responsible for
+              third-party service performance or policies.
             </p>
           </section>
 
@@ -135,7 +164,10 @@ const TermsAndConditions: React.FC = () => {
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
               <li>We may suspend or terminate access for breach of these Terms</li>
               <li>Termination does not relieve payment obligations for services rendered</li>
-              <li>Upon termination, certain provisions (confidentiality, liability, governing law) survive</li>
+              <li>
+                Upon termination, certain provisions (confidentiality, liability, governing law)
+                survive
+              </li>
             </ul>
           </section>
 
@@ -145,7 +177,8 @@ const TermsAndConditions: React.FC = () => {
               11. Governing Law
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              These Terms are governed by the laws of the State of Georgia, USA. Exclusive venue for disputes is in Georgia courts. Both parties waive right to jury trial.
+              These Terms are governed by the laws of the State of Georgia, USA. Exclusive venue for
+              disputes is in Georgia courts. Both parties waive right to jury trial.
             </p>
           </section>
 
@@ -153,17 +186,27 @@ const TermsAndConditions: React.FC = () => {
           <section className="bg-blue-50 p-8 rounded-lg border-2 border-blue-200">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
             <div className="space-y-2 text-gray-700">
-              <p><span className="font-semibold">Company:</span> BADGR Technologies LLC</p>
-              <p><span className="font-semibold">NAICS Code:</span> 541511</p>
+              <p>
+                <span className="font-semibold">Company:</span> BADGR Technologies LLC
+              </p>
+              <p>
+                <span className="font-semibold">NAICS Code:</span> 541511
+              </p>
               <p>
                 <span className="font-semibold">Legal Email:</span>{' '}
-                <a href="mailto:legal@badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">
+                <a
+                  href="mailto:legal@badgrtech.com"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
                   legal@badgrtech.com
                 </a>
               </p>
               <p>
                 <span className="font-semibold">General Email:</span>{' '}
-                <a href="mailto:hello@badgrtech.com" className="text-blue-600 hover:text-blue-800 underline">
+                <a
+                  href="mailto:hello@badgrtech.com"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
                   hello@badgrtech.com
                 </a>
               </p>
@@ -177,7 +220,11 @@ const TermsAndConditions: React.FC = () => {
               className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
               Back to Home
             </a>

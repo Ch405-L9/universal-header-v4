@@ -10,7 +10,8 @@ export const usePromoCode = (newBusiness: boolean) => {
 
   const validatePromoCode = (code: string): PromoCodeValidation => {
     const normalizedCode = code.toLowerCase().trim();
-    const promoConfig = PAYMENT_CONFIG.promoCodes[normalizedCode as keyof typeof PAYMENT_CONFIG.promoCodes];
+    const promoConfig =
+      PAYMENT_CONFIG.promoCodes[normalizedCode as keyof typeof PAYMENT_CONFIG.promoCodes];
 
     if (!promoConfig) {
       const result = { valid: false, message: 'Invalid promo code' };
@@ -19,7 +20,10 @@ export const usePromoCode = (newBusiness: boolean) => {
     }
 
     if ('requiresNewBusiness' in promoConfig && promoConfig.requiresNewBusiness && !newBusiness) {
-      const result = { valid: false, message: 'This promo code is only for new businesses (<1 year)' };
+      const result = {
+        valid: false,
+        message: 'This promo code is only for new businesses (<1 year)',
+      };
       setValidation(result);
       return result;
     }
