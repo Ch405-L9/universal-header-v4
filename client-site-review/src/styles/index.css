@@ -1,0 +1,21 @@
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/600.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #D4784A;
+    --color-secondary: #8B4513;
+    --color-accent: #F4A460;
+    --color-neutral: #FFF8DC;
+  }
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-heading;
+  }
+}
