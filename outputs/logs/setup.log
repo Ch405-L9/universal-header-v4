@@ -1,0 +1,366 @@
+Reset branch 'badgr-bot'
+M	badgr_bot/requirements.txt
+M	badgr_bot/scripts/precheck.py
+M	badgr_bot/scripts/run.sh
+M	setup_branch_safe.sh
+[2025-10-29T01:59:32Z] keep badgr_bot/.gitignore
+[2025-10-29T01:59:32Z] keep badgr_bot/README.md
+[2025-10-29T01:59:32Z] keep badgr_bot/requirements.txt
+[2025-10-29T01:59:32Z] keep badgr_bot/package.json
+[2025-10-29T01:59:32Z] keep badgr_bot/configs/bot.config.yaml
+[2025-10-29T01:59:32Z] Installing deps…
+Collecting pydantic==2.7.4 (from -r requirements.txt (line 1))
+  Using cached pydantic-2.7.4-py3-none-any.whl.metadata (109 kB)
+Collecting httpx==0.27.0 (from -r requirements.txt (line 2))
+  Using cached httpx-0.27.0-py3-none-any.whl.metadata (7.2 kB)
+Collecting playwright==1.48.0 (from -r requirements.txt (line 3))
+  Using cached playwright-1.48.0-py3-none-manylinux1_x86_64.whl.metadata (3.5 kB)
+Collecting rich==13.9.2 (from -r requirements.txt (line 4))
+  Using cached rich-13.9.2-py3-none-any.whl.metadata (18 kB)
+Collecting ujson==5.10.0 (from -r requirements.txt (line 5))
+  Using cached ujson-5.10.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.3 kB)
+Collecting python-json-logger==2.0.7 (from -r requirements.txt (line 6))
+  Using cached python_json_logger-2.0.7-py3-none-any.whl.metadata (6.5 kB)
+Collecting pyyaml==6.0.2 (from -r requirements.txt (line 7))
+  Using cached PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting annotated-types>=0.4.0 (from pydantic==2.7.4->-r requirements.txt (line 1))
+  Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.18.4 (from pydantic==2.7.4->-r requirements.txt (line 1))
+  Using cached pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.5 kB)
+Collecting typing-extensions>=4.6.1 (from pydantic==2.7.4->-r requirements.txt (line 1))
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting anyio (from httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached anyio-4.11.0-py3-none-any.whl.metadata (4.1 kB)
+Collecting certifi (from httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached certifi-2025.10.5-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting sniffio (from httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting greenlet==3.1.1 (from playwright==1.48.0->-r requirements.txt (line 3))
+  Using cached greenlet-3.1.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Collecting pyee==12.0.0 (from playwright==1.48.0->-r requirements.txt (line 3))
+  Using cached pyee-12.0.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting markdown-it-py>=2.2.0 (from rich==13.9.2->-r requirements.txt (line 4))
+  Using cached markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich==13.9.2->-r requirements.txt (line 4))
+  Using cached pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx==0.27.0->-r requirements.txt (line 2))
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich==13.9.2->-r requirements.txt (line 4))
+  Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading pydantic-2.7.4-py3-none-any.whl (409 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 409.0/409.0 kB 2.6 MB/s eta 0:00:00
+Downloading httpx-0.27.0-py3-none-any.whl (75 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.6/75.6 kB 3.5 MB/s eta 0:00:00
+Downloading playwright-1.48.0-py3-none-manylinux1_x86_64.whl (38.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.2/38.2 MB 4.0 MB/s eta 0:00:00
+Downloading rich-13.9.2-py3-none-any.whl (242 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.1/242.1 kB 3.1 MB/s eta 0:00:00
+Downloading ujson-5.10.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (53 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.7/53.7 kB 5.8 MB/s eta 0:00:00
+Downloading python_json_logger-2.0.7-py3-none-any.whl (8.1 kB)
+Using cached PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (767 kB)
+Downloading greenlet-3.1.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (613 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 613.1/613.1 kB 4.5 MB/s eta 0:00:00
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 4.0 MB/s eta 0:00:00
+Downloading pyee-12.0.0-py3-none-any.whl (14 kB)
+Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.3/87.3 kB 5.2 MB/s eta 0:00:00
+Using cached pygments-2.19.2-py3-none-any.whl (1.2 MB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached anyio-4.11.0-py3-none-any.whl (109 kB)
+Using cached idna-3.11-py3-none-any.whl (71 kB)
+Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)
+Using cached certifi-2025.10.5-py3-none-any.whl (163 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: ujson, typing-extensions, sniffio, pyyaml, python-json-logger, pygments, mdurl, idna, h11, greenlet, certifi, annotated-types, pyee, pydantic-core, markdown-it-py, httpcore, anyio, rich, pydantic, playwright, httpx
+Successfully installed annotated-types-0.7.0 anyio-4.11.0 certifi-2025.10.5 greenlet-3.1.1 h11-0.16.0 httpcore-1.0.9 httpx-0.27.0 idna-3.11 markdown-it-py-4.0.0 mdurl-0.1.2 playwright-1.48.0 pydantic-2.7.4 pydantic-core-2.18.4 pyee-12.0.0 pygments-2.19.2 python-json-logger-2.0.7 pyyaml-6.0.2 rich-13.9.2 sniffio-1.3.1 typing-extensions-4.15.0 ujson-5.10.0
+
+> badgr_bot@0.1.0 prepare
+> playwright install --with-deps || true
+
+Installing dependencies...
+Switching to root user to install dependencies...
+Get:1 https://dl.google.com/linux/chrome/deb stable InRelease [1,825 B]
+Get:2 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1,205 B]
+Hit:3 https://packages.microsoft.com/repos/code stable InRelease
+Hit:4 https://repo.protonvpn.com/debian stable InRelease
+Ign:5 http://packages.linuxmint.com zara InRelease
+Hit:6 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:7 http://packages.linuxmint.com zara Release
+Hit:8 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:10 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:11 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:12 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:13 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:14 https://ppa.launchpadcontent.net/inkscape.dev/stable/ubuntu noble InRelease
+Hit:15 https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu noble InRelease
+Fetched 3,030 B in 10s (318 B/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libasound2t64 is already the newest version (1.2.11-1ubuntu0.1).
+libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+libcairo2 is already the newest version (1.18.0-3build1).
+libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.4).
+libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+libdrm2 is already the newest version (2.4.122-1~ubuntu0.24.04.1).
+libgbm1 is already the newest version (25.0.7-0ubuntu0.24.04.2).
+libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.4).
+libnspr4 is already the newest version (2:4.35-1.1build1).
+libnss3 is already the newest version (2:3.98-1build1).
+libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+libx11-6 is already the newest version (2:1.8.7-1build1).
+libxcb1 is already the newest version (1.15-1ubuntu2).
+libxcomposite1 is already the newest version (1:0.4.5-1build3).
+libxdamage1 is already the newest version (1:1.1.6-1build1).
+libxext6 is already the newest version (2:1.3.4-1build2).
+libxfixes3 is already the newest version (1:6.0.0-2build1).
+libxkbcommon0 is already the newest version (1.6.0-1build1).
+libxrandr2 is already the newest version (2:1.5.2-2build1).
+xvfb is already the newest version (2:21.1.12-1ubuntu1.4).
+fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+fonts-unifont is already the newest version (1:15.1.01-1build1).
+libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+libfreetype6 is already the newest version (2.13.2+dfsg-1build3).
+xfonts-cyrillic is already the newest version (1:1.0.5+nmu1).
+xfonts-scalable is already the newest version (1:1.0.3-1.3).
+fonts-liberation is already the newest version (1:2.1.5-3).
+fonts-ipafont-gothic is already the newest version (00303-21ubuntu1).
+fonts-wqy-zenhei is already the newest version (0.9.45-8).
+fonts-tlwg-loma-otf is already the newest version (1:0.7.3-1).
+fonts-freefont-ttf is already the newest version (20211204+svn4273-2).
+libcairo-gobject2 is already the newest version (1.18.0-3build1).
+libgdk-pixbuf-2.0-0 is already the newest version (2.42.10+dfsg-3ubuntu3.2).
+libgtk-3-0t64 is already the newest version (3.24.41-4ubuntu1.3).
+libpangocairo-1.0-0 is already the newest version (1.52.1+ds-1build1).
+libx11-xcb1 is already the newest version (2:1.8.7-1build1).
+libxcb-shm0 is already the newest version (1.15-1ubuntu2).
+libxcursor1 is already the newest version (1:1.2.1-1build1).
+libxi6 is already the newest version (2:1.8.1-1build1).
+libxrender1 is already the newest version (1:0.9.10-1.1build1).
+gstreamer1.0-libav is already the newest version (1.24.1-1build1).
+gstreamer1.0-plugins-bad is already the newest version (1.24.2-1ubuntu4).
+gstreamer1.0-plugins-base is already the newest version (1.24.2-1ubuntu0.3).
+gstreamer1.0-plugins-good is already the newest version (1.24.2-1ubuntu1.2).
+libicu74 is already the newest version (74.2-1ubuntu3.1).
+libatomic1 is already the newest version (14.2.0-4ubuntu2~24.04).
+libenchant-2-2 is already the newest version (2.3.3-2build2).
+libepoxy0 is already the newest version (1.5.10-1build1).
+libevent-2.1-7t64 is already the newest version (2.1.12-stable-9ubuntu2).
+libflite1 is already the newest version (2.2-6build3).
+libgles2 is already the newest version (1.7.0-1build1).
+libgstreamer-gl1.0-0 is already the newest version (1.24.2-1ubuntu0.3).
+libgstreamer-plugins-bad1.0-0 is already the newest version (1.24.2-1ubuntu4).
+libgstreamer-plugins-base1.0-0 is already the newest version (1.24.2-1ubuntu0.3).
+libgstreamer1.0-0 is already the newest version (1.24.2-1ubuntu0.1).
+libharfbuzz-icu0 is already the newest version (8.3.0-2build2).
+libharfbuzz0b is already the newest version (8.3.0-2build2).
+libhyphen0 is already the newest version (2.8.8-7build3).
+libjpeg-turbo8 is already the newest version (2.1.5-2ubuntu2).
+liblcms2-2 is already the newest version (2.14-2build1).
+libmanette-0.2-0 is already the newest version (0.2.7-1build2).
+libopus0 is already the newest version (1.4-1build1).
+libpng16-16t64 is already the newest version (1.6.43-5build1).
+libsecret-1-0 is already the newest version (0.21.4-1build3).
+libvpx9 is already the newest version (1.14.0-1ubuntu2.2).
+libwayland-client0 is already the newest version (1.22.0-2.1build1).
+libwayland-egl1 is already the newest version (1.22.0-2.1build1).
+libwayland-server0 is already the newest version (1.22.0-2.1build1).
+libwebp7 is already the newest version (1.3.2-0.4build3).
+libwebpdemux2 is already the newest version (1.3.2-0.4build3).
+libwoff1 is already the newest version (1.0.2-2build1).
+libxml2 is already the newest version (2.9.14+dfsg-1.3ubuntu3.5).
+libxslt1.1 is already the newest version (1.1.39-0exp1ubuntu0.24.04.2).
+libx264-164 is already the newest version (2:0.164.3108+git31e19f9-1).
+The following packages were automatically installed and are no longer required:
+  linux-headers-6.8.0-84 linux-headers-6.8.0-84-generic
+  linux-image-6.8.0-84-generic linux-modules-6.8.0-84-generic
+  linux-modules-extra-6.8.0-84-generic linux-tools-6.8.0-84
+  linux-tools-6.8.0-84-generic python3-proton-vpn-lib
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/chromium-1091
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/chromium-1187
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/ffmpeg-1009
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/ffmpeg-1011
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/firefox-1429
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/firefox-1490
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/webkit-1944
+Removing unused browser at /home/t0n34781/.cache/ms-playwright/webkit-2203
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Chromium 130.0.6723.31 (playwright build v1140)[2m from https://playwright.azureedge.net/builds/chromium/1140/chromium-linux.zip[22m
+|                                                                                |   0% of 164.5 MiB
+|■■■■■■■■                                                                        |  10% of 164.5 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 164.5 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 164.5 MiB
+Chromium 130.0.6723.31 (playwright build v1140) downloaded to /home/t0n34781/.cache/ms-playwright/chromium-1140
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading FFMPEG playwright build v1010[2m from https://playwright.azureedge.net/builds/ffmpeg/1010/ffmpeg-linux.zip[22m
+|                                                                                |   0% of 2.3 MiB
+|■■■■■■■■                                                                        |  10% of 2.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+FFMPEG playwright build v1010 downloaded to /home/t0n34781/.cache/ms-playwright/ffmpeg-1010
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Firefox 131.0 (playwright build v1465)[2m from https://playwright.azureedge.net/builds/firefox/1465/firefox-ubuntu-24.04.zip[22m
+|                                                                                |   0% of 86.7 MiB
+|■■■■■■■■                                                                        |  10% of 86.7 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 86.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 86.7 MiB
+Firefox 131.0 (playwright build v1465) downloaded to /home/t0n34781/.cache/ms-playwright/firefox-1465
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Webkit 18.0 (playwright build v2083)[2m from https://playwright.azureedge.net/builds/webkit/2083/webkit-ubuntu-24.04.zip[22m
+|                                                                                |   0% of 90.3 MiB
+|■■■■■■■■                                                                        |  10% of 90.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 90.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 90.3 MiB
+Webkit 18.0 (playwright build v2083) downloaded to /home/t0n34781/.cache/ms-playwright/webkit-2083
+
+added 199 packages in 2m
+Installing dependencies...
+Switching to root user to install dependencies...
+Ign:1 http://packages.linuxmint.com zara InRelease
+Hit:2 https://dl.google.com/linux/chrome/deb stable InRelease
+Hit:3 http://packages.linuxmint.com zara Release
+Hit:4 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:6 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:7 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:8 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:9 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:11 https://packages.microsoft.com/repos/code stable InRelease
+Hit:12 https://repo.protonvpn.com/debian stable InRelease
+Hit:13 https://ppa.launchpadcontent.net/inkscape.dev/stable/ubuntu noble InRelease
+Hit:14 https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu noble InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libasound2t64 is already the newest version (1.2.11-1ubuntu0.1).
+libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+libcairo2 is already the newest version (1.18.0-3build1).
+libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.4).
+libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+libdrm2 is already the newest version (2.4.122-1~ubuntu0.24.04.1).
+libgbm1 is already the newest version (25.0.7-0ubuntu0.24.04.2).
+libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.4).
+libnspr4 is already the newest version (2:4.35-1.1build1).
+libnss3 is already the newest version (2:3.98-1build1).
+libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+libx11-6 is already the newest version (2:1.8.7-1build1).
+libxcb1 is already the newest version (1.15-1ubuntu2).
+libxcomposite1 is already the newest version (1:0.4.5-1build3).
+libxdamage1 is already the newest version (1:1.1.6-1build1).
+libxext6 is already the newest version (2:1.3.4-1build2).
+libxfixes3 is already the newest version (1:6.0.0-2build1).
+libxkbcommon0 is already the newest version (1.6.0-1build1).
+libxrandr2 is already the newest version (2:1.5.2-2build1).
+xvfb is already the newest version (2:21.1.12-1ubuntu1.4).
+fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+fonts-unifont is already the newest version (1:15.1.01-1build1).
+libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+libfreetype6 is already the newest version (2.13.2+dfsg-1build3).
+xfonts-cyrillic is already the newest version (1:1.0.5+nmu1).
+xfonts-scalable is already the newest version (1:1.0.3-1.3).
+fonts-liberation is already the newest version (1:2.1.5-3).
+fonts-ipafont-gothic is already the newest version (00303-21ubuntu1).
+fonts-wqy-zenhei is already the newest version (0.9.45-8).
+fonts-tlwg-loma-otf is already the newest version (1:0.7.3-1).
+fonts-freefont-ttf is already the newest version (20211204+svn4273-2).
+libcairo-gobject2 is already the newest version (1.18.0-3build1).
+libgdk-pixbuf-2.0-0 is already the newest version (2.42.10+dfsg-3ubuntu3.2).
+libgtk-3-0t64 is already the newest version (3.24.41-4ubuntu1.3).
+libpangocairo-1.0-0 is already the newest version (1.52.1+ds-1build1).
+libx11-xcb1 is already the newest version (2:1.8.7-1build1).
+libxcb-shm0 is already the newest version (1.15-1ubuntu2).
+libxcursor1 is already the newest version (1:1.2.1-1build1).
+libxi6 is already the newest version (2:1.8.1-1build1).
+libxrender1 is already the newest version (1:0.9.10-1.1build1).
+gstreamer1.0-libav is already the newest version (1.24.1-1build1).
+gstreamer1.0-plugins-bad is already the newest version (1.24.2-1ubuntu4).
+gstreamer1.0-plugins-base is already the newest version (1.24.2-1ubuntu0.3).
+gstreamer1.0-plugins-good is already the newest version (1.24.2-1ubuntu1.2).
+libicu74 is already the newest version (74.2-1ubuntu3.1).
+libatomic1 is already the newest version (14.2.0-4ubuntu2~24.04).
+libenchant-2-2 is already the newest version (2.3.3-2build2).
+libepoxy0 is already the newest version (1.5.10-1build1).
+libevent-2.1-7t64 is already the newest version (2.1.12-stable-9ubuntu2).
+libflite1 is already the newest version (2.2-6build3).
+libgles2 is already the newest version (1.7.0-1build1).
+libgstreamer-gl1.0-0 is already the newest version (1.24.2-1ubuntu0.3).
+libgstreamer-plugins-bad1.0-0 is already the newest version (1.24.2-1ubuntu4).
+libgstreamer-plugins-base1.0-0 is already the newest version (1.24.2-1ubuntu0.3).
+libgstreamer1.0-0 is already the newest version (1.24.2-1ubuntu0.1).
+libharfbuzz-icu0 is already the newest version (8.3.0-2build2).
+libharfbuzz0b is already the newest version (8.3.0-2build2).
+libhyphen0 is already the newest version (2.8.8-7build3).
+libjpeg-turbo8 is already the newest version (2.1.5-2ubuntu2).
+liblcms2-2 is already the newest version (2.14-2build1).
+libmanette-0.2-0 is already the newest version (0.2.7-1build2).
+libopus0 is already the newest version (1.4-1build1).
+libpng16-16t64 is already the newest version (1.6.43-5build1).
+libsecret-1-0 is already the newest version (0.21.4-1build3).
+libvpx9 is already the newest version (1.14.0-1ubuntu2.2).
+libwayland-client0 is already the newest version (1.22.0-2.1build1).
+libwayland-egl1 is already the newest version (1.22.0-2.1build1).
+libwayland-server0 is already the newest version (1.22.0-2.1build1).
+libwebp7 is already the newest version (1.3.2-0.4build3).
+libwebpdemux2 is already the newest version (1.3.2-0.4build3).
+libwoff1 is already the newest version (1.0.2-2build1).
+libxml2 is already the newest version (2.9.14+dfsg-1.3ubuntu3.5).
+libxslt1.1 is already the newest version (1.1.39-0exp1ubuntu0.24.04.2).
+libx264-164 is already the newest version (2:0.164.3108+git31e19f9-1).
+The following packages were automatically installed and are no longer required:
+  linux-headers-6.8.0-84 linux-headers-6.8.0-84-generic
+  linux-image-6.8.0-84-generic linux-modules-6.8.0-84-generic
+  linux-modules-extra-6.8.0-84-generic linux-tools-6.8.0-84
+  linux-tools-6.8.0-84-generic python3-proton-vpn-lib
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Setup complete.
+[2025-10-29T02:01:44Z] Local setup done → badgr_bot (no GitHub push performed)

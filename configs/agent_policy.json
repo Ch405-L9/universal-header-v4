@@ -1,0 +1,12 @@
+{
+  "respect_robots": true,
+  "disallow_private_data": true,
+  "rate_limit_rps": 1.0,
+  "gdpr_ccpa_compliant": true,
+  "mobile_first_thresholds": {
+    "lcp_ms": 2500,
+    "cls": 0.1
+  },
+  "self_eval_enabled": true
+}
+

@@ -1,0 +1,31 @@
+keywords_source:
+  type: github
+  repo: "Ch405-L9/for-git"
+  path: "data/keywords.txt"
+  ref: "main"
+targets:
+  domains_file: ./configs/domains.txt
+outputs:
+  dir: ./outputs
+  csv: ./outputs/csv/results.csv
+  logs: ./outputs/logs/run.jsonl
+  lh_dir: ./outputs/lighthouse
+engine:
+  model: llama3:8b-instruct-q4_K_M
+  temperature: 0.1
+  max_tokens: 2048
+crawl:
+  respect_robots: true
+  max_depth: 2
+  timeout_ms: 20000
+lighthouse:
+  throttling: "desktopDense4G"
+  runs_per_url: 1
+  categories: ["performance","seo","best-practices","accessibility"]
+quota:
+  scans_per_day: 20
+  concurrency: 2
+retry_backoff:
+  initial_ms: 1000
+  max_ms: 15000
+  factor: 2

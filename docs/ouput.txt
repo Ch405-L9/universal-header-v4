@@ -1,0 +1,7 @@
+Output:
+{"ok": true, "checks": [{"cmds_missing": []}], "cfg_ok": true}
+robots blocked, skipping: wikipedia.org
+ok: https://example.com
+CSV written → ./outputs/csv/results.csv
+domain,page_url,performance,seo,best_practices,accessibility,lcp_ms,cls,inp_ms
+example.com,https://example.com,100.0,100.0,100.0,100.0,724.0,0,N/A

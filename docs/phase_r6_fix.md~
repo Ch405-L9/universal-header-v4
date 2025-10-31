@@ -1,0 +1,33 @@
+# BADGR_BOT Phase R6: INP Missing Metric Resilience Patch  
+**Author:** Ch405_L9 (Chaos)  
+**Date:** 2025-10-28  
+**Branch:** badgr-bot-r6-inp-fix  
+**Status:** Verified Stable  
+
+## Overview
+This patch resolves a fatal interruption in the Lighthouse audit pipeline when the `interaction-to-next-paint` (INP) metric is missing or unavailable. Previously, `to_row()` raised an exception that prevented CSV generation.  
+
+The R6 patch ensures graceful handling of missing metrics while preserving valid data across all other categories.
+
+---
+
+## Root Cause
+The original `to_row()` implementation called `safe_num()` without providing a default fallback for INP.  
+When Lighthouse skipped the metric, the resulting `NoneType` caused a failure during CSV row construction.
+
+---
+
+## Resolution
+- Added robust default handling for missing metrics in `src/main.py`
+- Updated `to_row()` to always emit a complete record even if one or more metrics are unavailable  
+- Ensured `"N/A"` is written to CSV/Markdown outputs for missing values  
+- Verified that `robots_guard` skip logic continues unaffected  
+
+---
+
+## Verification
+**Test Command**
+```bash
+cd ~/for-git/badgr_bot
+./scripts/run.sh
+tail -n +1 outputs/csv/results.csv

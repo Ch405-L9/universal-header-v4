@@ -1,0 +1,53 @@
+name: LeadGen-Audit Pipeline
+description: One-shot agentic pipeline for discovery → scrape → enrich → audit → outreach
+policy:
+  respect_robots: true
+  rate_limit_rps: 1.0
+  gdpr_ccpa_compliant: true
+  mobile_first_threshold_lcp_ms: 2500
+  mobile_first_threshold_cls: 0.1
+  self_eval_enabled: true
+  discovery_google_rps: 0.7
+  discovery_ddg_rps: 0.7
+  clearbit_rps: 0.5
+  opensanctions_rps: 0.7
+  enrichment_upgini_rps: 0.5
+discovery:
+  keywords:
+    - "slow website mobile performance"
+    - "seo issues site audit"
+  query_variants:
+    - "improve LCP CLS INP web vitals"
+    - "fix lighthouse performance seo accessibility"
+  max_results: 25
+  include_news: false
+  provider: auto
+  safe_search: true
+  lang: en
+  country: US
+  google_cx: null
+scrape:
+  fetch_contacts: true
+  max_pages_per_domain: 3
+  user_agent: "Mozilla/5.0"
+enrichment:
+  enable_upgini: false
+  enable_opensanctions: false
+  enable_clearbit: false
+  enable_crunchbase: false
+audit:
+  use_lighthouse: true
+  preset: desktop
+  categories: ["performance", "accessibility", "seo", "best-practices"]
+outreach:
+  enabled: false
+  dry_run: true
+  from_email: null
+io:
+  project_root: "/home/t0n34781/Chat Analysis"
+  configs_dir: "/home/t0n34781/Chat Analysis/configs"
+  outputs_dir: "/home/t0n34781/Chat Analysis/outputs"
+  domains_file: "/home/t0n34781/Chat Analysis/configs/domains.txt"
+  csv_results: "/home/t0n34781/Chat Analysis/outputs/csv/results.csv"
+  contacts_csv: "/home/t0n34781/Chat Analysis/outputs/csv/contacts.csv"
+  sqlite_db: "/home/t0n34781/Chat Analysis/outputs/leadgen.db"

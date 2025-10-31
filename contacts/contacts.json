@@ -1,0 +1,31 @@
+[
+  {
+    "url": "https://badgrtech.com",
+    "domain": "badgrtech.com",
+    "emails": [
+      "hello@badgrtech.com"
+    ],
+    "phones": [
+      "+14044235493"
+    ],
+    "names": [],
+    "organizations": [
+      "BADGRTechnologies LLC"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "8735 Dunwoody Place, Suite N",
+      "addressLocality": "Atlanta",
+      "addressRegion": "GA",
+      "postalCode": "30350",
+      "addressCountry": "US"
+    },
+    "socials": {
+      "x.com": "https://x.com/Badgr1stOne",
+      "instagram.com": "https://instagram.com/Badgr1stOne",
+      "www.linkedin.com": "https://www.linkedin.com/in/anthony-g-5b2b1a273",
+      "github.com": "https://github.com/Ch405-L9"
+    },
+    "timestamp": 1761800707
+  }
+]
