@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  # ============================================================================
+  # BADGR Funnel Site Application
+  # ============================================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: badgr-funnel
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      FRONTEND_URL: http://localhost:3000
+      LOG_LEVEL: info
+      # Add other environment variables as needed
+      # STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      # DATABASE_URL: ${DATABASE_URL}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - badgr-network
+
+  # ============================================================================
+  # PostgreSQL Database (Optional - uncomment if needed)
+  # ============================================================================
+  # db:
+  #   image: postgres:16-alpine
+  #   container_name: badgr-db
+  #   environment:
+  #     POSTGRES_USER: badgr
+  #     POSTGRES_PASSWORD: badgr_password
+  #     POSTGRES_DB: badgr_funnel
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U badgr"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - badgr-network
+
+networks:
+  badgr-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
+
+
+
