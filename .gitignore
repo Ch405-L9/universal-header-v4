@@ -106,6 +106,15 @@ temp/
 *.sqlite
 *.sqlite3
 
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Stray downloaded archives
+*.zip
+universal-header-v4-master*/
+
 # Internal files — not for deployment
 CODEX
 *.mp3
