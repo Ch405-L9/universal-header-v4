@@ -1,0 +1,214 @@
+You are an expert full-stack web developer and conversion copywriter working inside an existing React site repository.
+
+Goal:
+Reposition the current BADGRTechnologies LLC site into a funnel-first web optimization offer without changing the site's established styling, layout language, component structure, visual identity, or overall UX/UI patterns.
+
+Primary business direction:
+- Primary service: web optimization.
+- Primary offer: a tightly scoped, conversion-focused website optimization engagement.
+- SEO and social support may appear only as optional follow-on support after the core web optimization offer is established.
+- Do not present SEO and social as equal-weight primary services.
+
+Implementation rules:
+- Work inside the existing React app, routes, pages, and components already present in this repository.
+- Update copy, section purpose, route intent, CTA language, and offer framing as needed.
+- Do not switch the project to static HTML output.
+- Do not redesign the site.
+- Do not replace the site's visual system unless a tiny copy-driven content adjustment requires a matching UI label update.
+- Do not invent results, testimonials, client logos, compliance claims, or case-study outcomes.
+- If proof is needed, use process transparency, deliverables, audit/report previews, and clear explanations of what gets measured and fixed.
+
+Scope guardrails:
+- Keep the site funnel-first and conversion-oriented.
+- Prioritize a simple path from landing page to pricing to contact/triage.
+- Keep the message centered on fixing lead leaks, site friction, conversion blockers, trust gaps, and performance/compliance-adjacent issues on an existing website.
+- If SEO or social are mentioned, frame them as later-stage support for clients who already completed the core engagement.
+
+Recommended page structure:
+1. Landing page
+2. Pricing page
+3. Contact / triage page
+4. Optional services detail page
+
+Replace the old case-stories requirement:
+- Do not create placeholder case studies with fabricated metrics or testimonial language.
+- Replace any case-stories page or case-study preview with a safer proof asset.
+- Preferred replacement: "Sample Report" page or section.
+- Acceptable alternates:
+  - "What We Fix in 14 Days"
+  - "Lead Leak Checklist"
+  - "Before / After Audit Framework"
+
+Core positioning:
+- Company: BADGRTechnologies LLC (BADGRTech).
+- Core outcome: identify and fix website issues that reduce calls, form submissions, trust, and usability.
+- Primary audience: small service businesses that depend on inbound leads and need a clearer, faster, more trustworthy website experience.
+- The message may mention law firms and medical/dental practices where useful, but the site should still read as a focused web optimization business first.
+
+=====================
+1. LANDING PAGE
+=====================
+
+Purpose:
+Serve as the primary funnel entry for the web optimization offer.
+
+Required direction:
+- Keep the existing design and section flow wherever possible.
+- Update the copy so the page clearly sells web optimization first.
+- Hero messaging should focus on lost leads caused by a slow, confusing, outdated, or trust-reducing website.
+- Primary CTA should drive visitors toward a short triage call or contact step.
+- Secondary CTA should point to the proof asset, preferably a sample report.
+
+Suggested landing-page content blocks:
+
+A) Hero
+- One clear headline focused on stopping lead loss from website issues.
+- One supporting subheadline explaining the practical outcome and short engagement model.
+- Primary CTA tied to triage/contact.
+- Secondary CTA tied to the sample report or proof asset.
+
+B) Problem
+- Explain the common issues:
+  - slow pages
+  - confusing structure
+  - weak calls to action
+  - broken or underperforming forms
+  - trust and policy gaps
+  - mobile friction
+
+C) How it works
+- Present a simple process such as:
+  - Scan
+  - Fix
+  - Proof
+- Keep the explanation concrete and operational, not hype-heavy.
+
+D) What you get
+- Describe deliverables such as:
+  - site audit
+  - prioritized fixes
+  - before/after observations
+  - report with next-step recommendations
+
+E) Pricing preview
+- Briefly preview the core offer and any closely related one-time options.
+- Keep pricing straightforward and scoped.
+
+F) Proof asset preview
+- Replace case-study language with a sample report, checklist, or audit framework preview.
+
+G) FAQ
+- Answer practical concerns about fit, scope, timing, ownership, and what happens if a full rebuild is needed.
+
+H) Final CTA
+- End with a direct conversion step toward contact/triage.
+
+=====================
+2. PRICING PAGE
+=====================
+
+Purpose:
+Help qualified visitors understand the one-time web optimization offers clearly and move toward contact.
+
+Required direction:
+- Prioritize one-time web optimization packages.
+- If follow-on support is mentioned, place it after the core offers and present it as optional.
+- Avoid making retainers the visual or strategic center of the page.
+
+Suggested pricing-page structure:
+
+A) Intro
+- Emphasize straightforward scope and clarity.
+
+B) Core packages
+- Focus on web optimization offers such as:
+  - diagnostic scan
+  - flagship optimization/fix package
+  - optional rebuild-lite or conversion refresh package
+
+C) Optional follow-on support
+- If included at all, describe SEO/social support briefly and as post-engagement support, not the main sale.
+
+D) FAQ
+- Cover contracts, payment expectations, timeline, scope boundaries, and when a larger rebuild is the better fit.
+
+=====================
+3. CONTACT / TRIAGE PAGE
+=====================
+
+Purpose:
+Capture qualified leads with as little friction as possible.
+
+Required direction:
+- Keep this page simple.
+- Center it on booking a short triage call or requesting review of an existing site.
+- Ask only for information that helps qualify the lead and understand the website problem.
+
+Suggested fields:
+- Name
+- Email
+- Business name
+- Website URL
+- Business type
+- Main goal or main website issue
+- Preferred timing
+
+=====================
+4. OPTIONAL SERVICES DETAIL PAGE
+=====================
+
+Purpose:
+Support visitors who want more detail without distracting from the main funnel.
+
+Required direction:
+- Keep web optimization as the primary category.
+- If additional services are mentioned, they should clearly read as secondary or follow-on support.
+
+Suggested categories:
+
+A) Website optimization
+- performance
+- mobile usability
+- CTA and form flow improvements
+- trust/policy clarity
+- technical cleanup
+
+B) Optional follow-on support
+- local SEO support
+- content support
+- light social support
+
+Do not position these secondary services as the core business on this page.
+
+=====================
+5. PROOF ASSET PAGE OR SECTION
+=====================
+
+Purpose:
+Replace fabricated case studies with a trustworthy proof mechanism.
+
+Preferred option:
+- Sample Report
+
+What it should do:
+- show what the audit/report includes
+- explain what gets checked
+- demonstrate the before/after thinking without claiming real client outcomes
+- build trust through specificity and clarity
+
+Acceptable alternates:
+- What We Fix in 14 Days
+- Lead Leak Checklist
+- Before / After Audit Framework
+
+Content guidance:
+- Use realistic categories of issues and example observations.
+- Do not imply they came from real named clients unless they actually did.
+- Do not create testimonials or numeric wins unless verified and approved.
+
+FINAL CONSTRAINTS
+
+- Do not change the styling, imagery system, layout language, visual identity, or overall UX/UI direction of the current site.
+- Only change the context, copy, service framing, route purpose, and section content needed to reposition the site toward web optimization.
+- Treat this document as an internal implementation brief for the existing repo, not as a request to output standalone HTML.
+- Keep the funnel simple, credible, and production-ready.

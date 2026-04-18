@@ -1,27 +1,37 @@
-import { Link, useLocation } from "wouter";
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "wouter";
+
 import { Button } from "@/components/ui/button";
-import { Menu, X, MapPin, Phone, Mail, Twitter, Linkedin, Github } from "lucide-react";
-import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
     { name: "Services", href: "#services" },
     { name: "Pricing", href: "#pricing" },
-    { name: "AI Solutions", href: "#ai-solutions" },
-    { name: "Results", href: "#results" },
+    { name: "Sample Report", href: "#proof" },
+    { name: "FAQ", href: "#faq" },
   ];
 
   const scrollToSection = (id: string) => {
@@ -33,145 +43,285 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
-      {/* Sticky Navigation */}
+    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary selection:text-primary-foreground">
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-          scrolled ? "bg-background/95 backdrop-blur-md border-b border-primary/30 py-1" : "bg-transparent py-2"
+          "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300",
+          scrolled
+            ? "border-b border-primary/30 bg-background/95 py-1 backdrop-blur-md"
+            : "bg-transparent py-2"
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between h-8"> {/* Constrained height */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-6 h-6 overflow-hidden border border-primary/50 group-hover:border-primary transition-colors">
-              <img src="/images/logo.png" alt="BADGR Logo" className="object-contain w-full h-full" />
+        <div className="container mx-auto flex h-10 items-center justify-between px-4">
+          <Link href="/" className="group flex min-w-0 items-center gap-2">
+            <div className="relative h-6 w-6 shrink-0 overflow-hidden border border-primary/50 transition-colors group-hover:border-primary">
+              <img
+                src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_200,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png"
+                alt="BADGRTechnologies LLC logo"
+                className="h-full w-full object-contain"
+              />
             </div>
-            <span className="font-mono font-bold text-sm tracking-widest">BADGR<span className="text-primary">TECH</span></span>
+            <div className="min-w-0 leading-none">
+              <span className="block truncate font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-white">
+                BADGR<span className="text-primary">TECH</span>
+              </span>
+              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-500 lg:block">
+                BADGRTechnologies LLC
+              </span>
+            </div>
           </Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            {navItems.map((item) => (
+          <div className="hidden items-center gap-6 md:flex">
+            {navItems.map(item => (
               <button
                 key={item.name}
+                type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold hover:text-primary transition-colors uppercase tracking-[0.15em] text-muted-foreground/80"
+                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary"
               >
                 {item.name}
               </button>
             ))}
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
-              className="h-6 text-[10px] px-3 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-mono uppercase tracking-wider rounded-none"
+              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary hover:bg-primary/10 hover:text-primary"
               onClick={() => scrollToSection("#audit")}
             >
-              Free Audit
+              Book Triage
             </Button>
           </div>
-
-          {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="p-2 text-foreground md:hidden"
+            type="button"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-primary p-4 flex flex-col gap-4 animate-in slide-in-from-top-5">
-            {navItems.map((item) => (
+          <div
+            id="mobile-nav"
+            className="animate-in slide-in-from-top-5 absolute top-full left-0 right-0 flex flex-col gap-4 border-b border-primary bg-background p-4 md:hidden"
+          >
+            {navItems.map(item => (
               <button
                 key={item.name}
+                type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="text-left text-lg font-medium hover:text-primary py-2 border-l-2 border-transparent hover:border-primary pl-4 transition-all"
+                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary"
               >
                 {item.name}
               </button>
             ))}
-            <Button 
-              className="w-full mt-4 bg-primary text-primary-foreground font-mono uppercase"
+            <Button
+              className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
               onClick={() => scrollToSection("#audit")}
             >
-              Get Free Audit
+              Book Triage
             </Button>
           </div>
         )}
       </nav>
 
-      {/* Main Content */}
-      <main className="pt-20">
-        {children}
-      </main>
+      <main className="pt-20">{children}</main>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-primary/30 mt-20 py-12">
+      <footer className="mt-20 border-t border-primary/30 bg-card py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 border border-primary/50 p-1">
-                  <img src="/images/logo.png" alt="BADGR Logo" className="w-full h-full object-contain" />
+                <div className="h-8 w-8 border border-primary/50 p-1">
+                  <img
+                    src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_200,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png"
+                    alt="BADGRTechnologies LLC logo"
+                    className="h-full w-full object-contain"
+                  />
                 </div>
-                <span className="font-mono font-bold text-lg">BADGR<span className="text-primary">TECH</span></span>
+                <div className="leading-none">
+                  <span className="block font-mono text-lg font-bold">
+                    BADGR<span className="text-primary">TECH</span>
+                  </span>
+                  <span className="block text-[10px] uppercase tracking-[0.16em] text-zinc-500">
+                    BADGRTechnologies LLC
+                  </span>
+                </div>
               </div>
-              <p className="text-muted-foreground text-sm max-w-xs">
-                Optimizing Atlanta's digital infrastructure with AI-driven solutions and high-performance web engineering.
+              <p className="max-w-xs text-sm text-muted-foreground">
+                Atlanta-based web optimization for small businesses that need a
+                clearer, faster, more trustworthy path from website visit to
+                booked conversation.
               </p>
               <div className="flex gap-4 pt-2">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter size={20} /></a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin size={20} /></a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github size={20} /></a>
+                <a
+                  href="https://instagram.com/Badgr1stOne"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/anthony-g-5b2b1a273"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a
+                  href="https://github.com/Ch405-L9"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on GitHub"
+                >
+                  <Github size={20} />
+                </a>
               </div>
             </div>
 
             <div>
-              <h3 className="font-mono font-bold text-lg mb-4 text-primary">Services</h3>
+              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+                Focus
+              </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Web Optimization</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">AI Implementation</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Lead Generation</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Custom CRM</a></li>
+                <li>
+                  <a
+                    href="#services"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Website Optimization
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#pricing"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    One-Time Packages
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#proof"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Sample Report
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/additional-services"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Follow-On Services
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-mono font-bold text-lg mb-4 text-primary">Company</h3>
+              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+                Navigation
+              </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Case Studies</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
+                <li>
+                  <a
+                    href="#audit"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Free Lead Leak Preview
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#results"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    What We Fix
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <Link
+                    href="/sample-report"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Open Sample Report
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-mono font-bold text-lg mb-4 text-primary">Contact</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <MapPin size={16} className="text-primary mt-1" />
-                  <span>Atlanta, GA<br/>Serving Metro Area</span>
+              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+                More
+              </h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a
+                    href="/privacy"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Privacy Policy
+                  </a>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Phone size={16} className="text-primary" />
-                  <a href="tel:4045552234" className="hover:text-foreground">(404) 555-BADGR</a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail size={16} className="text-primary" />
-                  <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">hello@badgrtech.com</a>
+                <li>
+                  <a
+                    href="/terms"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    Terms & Conditions
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-primary/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} BADGR Technologies LLC. All rights reserved.</p>
+          <div className="mt-10 grid grid-cols-1 gap-3 border-t border-primary/10 pt-8 text-sm text-muted-foreground md:grid-cols-3">
+            <div className="flex items-start gap-3">
+              <MapPin size={16} className="mt-1 text-primary" />
+              <span>
+                8735 Dunwoody Place, Suite N
+                <br />
+                Atlanta, GA 30350
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone size={16} className="text-primary" />
+              <a href="tel:+14702236127" className="hover:text-foreground">
+                (470) 223-6127
+              </a>
+            </div>
+            <div className="flex items-center gap-3">
+              <Mail size={16} className="text-primary" />
+              <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">
+                hello@badgrtech.com
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary/10 pt-8 text-xs text-muted-foreground md:flex-row">
+            <p>
+              &copy; {new Date().getFullYear()} BADGR Technologies LLC. All
+              rights reserved.
+            </p>
             <div className="flex gap-6">
-              <span>GA/ADA Compliant</span>
-              <span>Core Web Vitals Optimized</span>
-              <span>100% Secure</span>
+              <span>Transparent Scopes</span>
+              <span>Trust-First Messaging</span>
+              <span>Web Performance Focused</span>
             </div>
           </div>
         </div>

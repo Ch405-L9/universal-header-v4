@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-01-22",
+  "source": "radix-18-badgr migration",
+  "assets": {
+    "logos": {
+      "primary": "/images/logo/logo-blk-wht2.svg",
+      "alternative": "/images/logo/logo-black-chrm-(U).svg",
+      "favicon": "/images/icons/favicon.svg",
+      "appleTouchIcon": "/images/icons/apple-touch-icon.png"
+    },
+    "hero": {
+      "background": "https://res.cloudinary.com/dsxpcwjwb/image/upload/v1759247007/hero-atlsky00_dx2vcn_f5jp6i.webp"
+    },
+    "services": {
+      "webDevelopment": "/images/services/service-web-devdes.webp",
+      "branding": "/images/services/service-brand.webp",
+      "content": "/images/services/service-content-edit.webp"
+    },
+    "team": {
+      "owner": "/images/team/about-owner.webp"
+    },
+    "fonts": {
+      "goldmanBold": "/fonts/Goldman-Bold.ttf",
+      "goldmanRegular": "/fonts/Goldman-Regular.ttf"
+    },
+    "icons": {
+      "burger": "/images/icons/alt_burgercon.svg",
+      "calendar": "/images/icons/calendar-black.svg",
+      "mail": "/images/icons/mail-black.svg",
+      "phone": "/images/icons/phone-black.svg",
+      "github": "/images/icons/github.svg",
+      "linkedin": "/images/icons/linkedin.svg",
+      "instagram": "/images/icons/instagram.svg",
+      "x": "/images/icons/x.svg",
+      "facebook": "/images/icons/facebook.svg",
+      "npm": "/images/icons/npm.svg",
+      "react": "/images/icons/react.svg",
+      "tailwindcss": "/images/icons/tailwindcss.svg",
+      "copyright": "/images/icons/copyright.svg",
+      "registered": "/images/icons/registered.svg",
+      "shopAtlLocal": "/images/icons/shop-atl-local.svg",
+      "undrConstruct": "/images/icons/undr-cnstrct.svg",
+      "badgeAchievements": "/images/icons/badge-achievements.svg",
+      "devIcon": "/images/icons/dev-icon(pt).svg"
+    }
+  }
+}

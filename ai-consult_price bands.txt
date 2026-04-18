@@ -1,0 +1,40 @@
+2. Price bands (separate) – implementation + 6‑month retainer
+Assuming:
+
+Effective project rate ≈ 102 USD/hour (120 minus 15% discount; no stacked 25% for simplicity).
+
+Project hours for answering + micro‑CRM + auto‑ticketing ≈ 75–95 hours (range).
+
+Web‑optimization retainer: 6 months, 4–8 hours/month.
+
+Numbers below don’t include precise local taxes; you can add sales tax as appropriate.
+
+2.1 AI answering + micro‑CRM + auto‑ticket implementation (one‑time)
+Low (lean build, ~60 hours)
+
+60 × 102 ≈ 6,120 USD
+
+Mid (recommended, ~75 hours)
+
+75 × 102 ≈ 7,650 USD
+
+High (heavier integration, ~95 hours)
+
+95 × 102 ≈ 9,690 USD
+
+You can structure payments as, for example, 50% at signing, 40% at go‑live, 10% at final sign‑off.
+
+2.2 Web‑optimization + AI tuning retainer (6 months, separate)
+Low retainer: 4 hours/month × 6 months
+
+4 × 102 × 6 ≈ 2,448 USD total (≈ 408 USD/month)
+
+Mid retainer: 6 hours/month × 6
+
+6 × 102 × 6 ≈ 3,672 USD total (≈ 612 USD/month)
+
+High retainer: 8 hours/month × 6
+
+8 × 102 × 6 ≈ 4,896 USD total (≈ 816 USD/month)
+
+You can show these as separate line items so clients can choose a retainer tier independently of the one‑time implementation.

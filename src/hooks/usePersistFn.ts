@@ -1,11 +1,11 @@
 import { useRef } from "react";
 
-type noop = (...args: any[]) => any;
+type PersistFn = (...args: unknown[]) => unknown;
 
 /**
  * usePersistFn instead of useCallback to reduce cognitive load
  */
-export function usePersistFn<T extends noop>(fn: T) {
+export function usePersistFn<T extends PersistFn>(fn: T) {
   const fnRef = useRef<T>(fn);
   fnRef.current = fn;
 

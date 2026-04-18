@@ -1,0 +1,326 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BADGRTech Client Intake Schema",
+  "description": "Structured data collection for automated website generation",
+  "type": "object",
+  "required": ["client_id", "business_info", "contact", "services", "branding"],
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL-safe client identifier (lowercase, hyphens only)"
+    },
+    "project_name": {
+      "type": "string",
+      "description": "Human-readable project name"
+    },
+    "business_info": {
+      "type": "object",
+      "required": ["company_name", "tagline", "description"],
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "legal_name": {
+          "type": "string",
+          "description": "Full legal business name (if different)"
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 100,
+          "description": "Short memorable phrase (e.g., 'CTRL+ALT+Deliver')"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 500,
+          "description": "Full business description for hero section"
+        },
+        "industry": {
+          "type": "string",
+          "enum": ["technology", "consulting", "retail", "healthcare", "legal", "real-estate", "other"]
+        },
+        "founded": {
+          "type": "string",
+          "pattern": "^[0-9]{4}$"
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["email", "phone", "address"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Primary business email"
+        },
+        "support_email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\+?[0-9\\s\\(\\)\\-]{10,20}$"
+        },
+        "address": {
+          "type": "object",
+          "required": ["street", "city", "state", "zip"],
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string", "minLength": 2, "maxLength": 2 },
+            "zip": { "type": "string", "pattern": "^[0-9]{5}(-[0-9]{4})?$" },
+            "country": { "type": "string", "default": "USA" }
+          }
+        },
+        "hours": {
+          "type": "object",
+          "properties": {
+            "weekdays": { "type": "string", "default": "Monday - Friday, 9:00 AM - 5:00 PM" },
+            "weekends": { "type": "string", "default": "By appointment only" }
+          }
+        },
+        "social": {
+          "type": "object",
+          "properties": {
+            "linkedin": { "type": "string", "format": "uri" },
+            "twitter": { "type": "string", "format": "uri" },
+            "facebook": { "type": "string", "format": "uri" },
+            "instagram": { "type": "string", "format": "uri" },
+            "github": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "features", "price"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 300
+          },
+          "features": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 12,
+            "items": { "type": "string" }
+          },
+          "price": {
+            "type": "object",
+            "required": ["starting", "currency"],
+            "properties": {
+              "starting": { "type": "number", "minimum": 0 },
+              "currency": { "type": "string", "default": "$" },
+              "period": { "type": "string", "enum": ["project", "hour", "month", "year"] }
+            }
+          },
+          "cta": {
+            "type": "object",
+            "required": ["text", "type"],
+            "properties": {
+              "text": { "type": "string" },
+              "type": { "type": "string", "enum": ["email", "phone", "link"] }
+            }
+          },
+          "popular": { "type": "boolean", "default": false },
+          "image": { "type": "string", "description": "Filename of service image" }
+        }
+      }
+    },
+    "about": {
+      "type": "object",
+      "required": ["title", "subtitle", "description"],
+      "properties": {
+        "title": { "type": "string", "default": "About Us" },
+        "subtitle": { "type": "string" },
+        "description": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": { "type": "string", "minLength": 50 }
+        },
+        "highlights": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string", "default": "Why Choose Us?" },
+            "items": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 10,
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "team": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "photo": { "type": "string", "description": "Filename of team photo" }
+          }
+        }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "required": ["headline", "subheadline", "variant"],
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 100
+        },
+        "subheadline": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 30,
+          "maxLength": 300
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["banner", "hero", "minimal", "split-left", "split-right"],
+          "default": "banner"
+        },
+        "background_image": {
+          "type": "string",
+          "description": "Filename of hero background image"
+        },
+        "cta_buttons": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["text", "href", "variant"],
+            "properties": {
+              "text": { "type": "string" },
+              "href": { "type": "string" },
+              "variant": { "type": "string", "enum": ["primary", "secondary", "accent"] },
+              "external": { "type": "boolean", "default": false }
+            }
+          }
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "required": ["colors"],
+      "properties": {
+        "colors": {
+          "type": "object",
+          "required": ["primary"],
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "default": "#0066CC"
+            },
+            "secondary": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "default": "#1f2937"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "default": "#10b981"
+            }
+          }
+        },
+        "fonts": {
+          "type": "object",
+          "properties": {
+            "heading": { "type": "string", "default": "Goldman" },
+            "body": { "type": "string", "default": "Inter" }
+          }
+        },
+        "logo_files": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string", "description": "Main logo filename (SVG)" },
+            "favicon": { "type": "string", "description": "Favicon source (PNG)" },
+            "icon_only": { "type": "string", "description": "Logo without text (SVG)" }
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "description": "Client-provided asset filenames",
+      "properties": {
+        "hero_images": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "service_images": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "team_photos": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "logos": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "optimization_level": {
+          "type": "string",
+          "enum": ["development", "production", "aggressive"],
+          "default": "production"
+        },
+        "include_blog": { "type": "boolean", "default": false },
+        "include_portfolio": { "type": "boolean", "default": false },
+        "include_ecommerce": { "type": "boolean", "default": false },
+        "analytics": {
+          "type": "object",
+          "properties": {
+            "google_analytics": { "type": "string" },
+            "facebook_pixel": { "type": "string" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created": { "type": "string", "format": "date-time" },
+        "updated": { "type": "string", "format": "date-time" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "ready", "in-progress", "completed"],
+          "default": "draft"
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

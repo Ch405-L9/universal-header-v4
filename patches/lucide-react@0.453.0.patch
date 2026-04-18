@@ -1,0 +1,13 @@
+diff --git a/dist/esm/icons/briefcase-conveyor-belt.js b/dist/esm/icons/briefcase-conveyor-belt.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..50e8eceab0f1f66729e0a102751c936a5cc822db
+--- /dev/null
++++ b/dist/esm/icons/briefcase-conveyor-belt.js
+@@ -0,0 +1,7 @@
++/**
++ * Compatibility shim for a missing lucide-react 0.453.0 published file.
++ * The package references this icon from dist/esm/lucide-react.js, but the
++ * corresponding built module is absent from the installed tarball.
++ */
++
++export { default } from './briefcase-business.js';
