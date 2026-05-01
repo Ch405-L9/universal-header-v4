@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft, Construction } from "lucide-react";
 import { Link } from "wouter";
 
@@ -10,6 +11,21 @@ export default function FutureRoutePage({
   title,
   routePath,
 }: FutureRoutePageProps) {
+  useEffect(() => {
+    let meta = document.head.querySelector(
+      'meta[name="robots"]'
+    ) as HTMLMetaElement | null;
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "robots");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", "noindex, nofollow");
+    return () => {
+      meta?.setAttribute("content", "index, follow");
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#05070d] text-white">
       <div className="border-b border-primary/20 bg-[#020816]">

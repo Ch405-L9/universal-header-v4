@@ -62,6 +62,8 @@ export function usePageMeta({ canonical, description, title }: PageMeta) {
     ensureMeta("twitter:title").setAttribute("content", title);
 
     const path = canonical ?? window.location.pathname;
-    ensureCanonical().setAttribute("href", `${BASE_URL}${path}`);
+    const canonicalHref = `${BASE_URL}${path}`;
+    ensureCanonical().setAttribute("href", canonicalHref);
+    ensurePropertyMeta("og:url").setAttribute("content", canonicalHref);
   }, [canonical, description, title]);
 }
