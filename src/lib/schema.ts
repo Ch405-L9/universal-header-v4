@@ -36,17 +36,21 @@ export const orgEntity = {
     { "@type": "City", name: "Atlanta", "@id": "https://www.wikidata.org/wiki/Q23556" },
     { "@type": "State", name: "Georgia" },
   ],
-  sameAs: [
-    "https://instagram.com/Badgr1stOne",
-    "https://www.linkedin.com/in/anthony-g-5b2b1a273",
-    "https://github.com/Ch405-L9",
-  ],
   knowsAbout: [
     "Web Optimization",
     "AI Consultation",
     "Lead Generation",
     "Small Business Marketing",
     "Website Performance",
+  ],
+  sameAs: [
+    "https://www.instagram.com/badgrtech/",
+    "https://www.linkedin.com/company/109228065/",
+    "https://www.youtube.com/channel/UCAbCRiyUh3JTUIrj8l9ADow",
+    "https://www.tiktok.com/@badgrtech2.5",
+    "https://x.com/40n33Ba6R",
+    "https://www.facebook.com/profile.php?id=61581099610296",
+    "https://github.com/Ch405-L9",
   ],
 };
 

@@ -1,4 +1,5 @@
 import {
+  Facebook,
   Github,
   Instagram,
   Linkedin,
@@ -6,8 +7,24 @@ import {
   MapPin,
   Menu,
   Phone,
-  X,
+  Twitter,
+  X as XClose,
+  Youtube,
 } from "lucide-react";
+
+function TikTokIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z" />
+    </svg>
+  );
+}
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 
@@ -97,7 +114,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <XClose /> : <Menu />}
           </button>
         </div>
 
@@ -154,9 +171,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 clearer, faster, more trustworthy path from website visit to
                 booked conversation.
               </p>
-              <div className="flex gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-2">
                 <a
-                  href="https://instagram.com/Badgr1stOne"
+                  href="https://www.instagram.com/badgrtech/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
@@ -165,13 +182,49 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Instagram size={20} />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/anthony-g-5b2b1a273"
+                  href="https://www.linkedin.com/company/109228065/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
                   aria-label="BADGRTechnologies on LinkedIn"
                 >
                   <Linkedin size={20} />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCAbCRiyUh3JTUIrj8l9ADow"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on YouTube"
+                >
+                  <Youtube size={20} />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@badgrtech2.5"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on TikTok"
+                >
+                  <TikTokIcon size={20} />
+                </a>
+                <a
+                  href="https://x.com/40n33Ba6R"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on X"
+                >
+                  <Twitter size={20} />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61581099610296"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on Facebook"
+                >
+                  <Facebook size={20} />
                 </a>
                 <a
                   href="https://github.com/Ch405-L9"
