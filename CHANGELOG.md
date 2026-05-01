@@ -6,6 +6,22 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-01T00:03:00] — Funnel engine layer
+
+### Added
+- `src/lib/funnel.ts`: Conversion path definitions, `recommendPackage()` (score → specific tier + reason + urgency), flywheel loop map, scroll milestones
+- `src/hooks/useScrollDepth.ts`: IntersectionObserver hook — fires once per milestone, analytics-ready
+- `Layout.tsx`: Sticky bottom CTA bar — slides in after 480px scroll, two actions (Free Preview → #audit, Book Triage → #contact)
+- `Home.tsx`: Audit post-score now routes to specific package recommendation with reason, urgency, and dual CTA (triage call + package details)
+
+### Conversion architecture
+- Aware → Evaluating: Hero CTA + audit URL submission
+- Evaluating → Deciding: Score + recommended package card
+- Deciding → Converting: Sticky CTA + triage form
+- Retention loop: before-and-after report → client shares with peers
+
+---
+
 ## [2026-05-01T00:02:00] — Content graph layer
 
 ### Added
