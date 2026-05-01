@@ -1,6 +1,7 @@
 import { ArrowLeft, LockKeyhole } from "lucide-react";
 import { Link } from "wouter";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 function PolicySection({
   title,
@@ -25,6 +26,25 @@ export default function PrivacyPolicy() {
     description:
       "Read the BADGRTechnologies privacy policy covering website inquiries, project information, and service-related data handling.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/privacy#page",
+        name: "Privacy Policy | BADGRTechnologies",
+        description:
+          "Read the BADGRTechnologies privacy policy covering website inquiries, project information, and service-related data handling.",
+        url: "https://badgrtech.com/privacy",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Privacy Policy", url: "https://badgrtech.com/privacy" },
+        ],
+      }),
+    ),
+    "privacy-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">

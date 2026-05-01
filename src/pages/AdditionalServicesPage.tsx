@@ -4,7 +4,8 @@ import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 const primaryItems = [
   "Performance tuning and page-speed cleanup",
@@ -40,6 +41,25 @@ export default function AdditionalServicesPage() {
     description:
       "See BADGR's follow-on services for local SEO, content, and light social support after core web optimization work is complete.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/additional-services#page",
+        name: "Additional Services | BADGRTechnologies",
+        description:
+          "See BADGR's follow-on services for local SEO, content, and light social support after core web optimization work is complete.",
+        url: "https://badgrtech.com/additional-services",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Additional Services", url: "https://badgrtech.com/additional-services" },
+        ],
+      }),
+    ),
+    "additional-services-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">

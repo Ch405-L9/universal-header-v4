@@ -11,7 +11,8 @@ import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 const reportAreas = [
   {
@@ -48,6 +49,25 @@ export default function SampleReportPage() {
     description:
       "Preview how BADGR structures a lead leak report without relying on fabricated case studies or invented client metrics.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/sample-report#page",
+        name: "Sample Report | BADGRTechnologies",
+        description:
+          "Preview how BADGR structures a lead leak report without relying on fabricated case studies or invented client metrics.",
+        url: "https://badgrtech.com/sample-report",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Sample Report", url: "https://badgrtech.com/sample-report" },
+        ],
+      }),
+    ),
+    "sample-report-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">

@@ -41,40 +41,49 @@
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://api.fontshare.com" />
-    <script type="application/ld+json">
+    <script type="application/ld+json" data-schema-id="base-graph">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "BADGRTechnologies LLC",
-      "description": "Atlanta-based web optimization for small businesses that need a faster, cleaner, more trustworthy path from website visit to booked conversation.",
-      "url": "https://badgrtech.com",
-      "telephone": "+14702236127",
-      "email": "hello@badgrtech.com",
-      "priceRange": "$$",
-      "image": "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_800,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png",
-      "logo": "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_400,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "8735 Dunwoody Place, Suite N",
-        "addressLocality": "Atlanta",
-        "addressRegion": "GA",
-        "postalCode": "30350",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 33.9701,
-        "longitude": -84.3307
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Atlanta"
-      },
-      "serviceType": "Web Optimization",
-      "sameAs": [
-        "https://instagram.com/Badgr1stOne",
-        "https://www.linkedin.com/in/anthony-g-5b2b1a273",
-        "https://github.com/Ch405-L9"
+      "@graph": [
+        {
+          "@type": ["Organization", "LocalBusiness"],
+          "@id": "https://badgrtech.com/#org",
+          "name": "BADGRTechnologies LLC",
+          "legalName": "BADGRTechnologies LLC",
+          "url": "https://badgrtech.com",
+          "logo": { "@type": "ImageObject", "url": "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_400,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png", "width": 400, "height": 400 },
+          "image": "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_800,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png",
+          "telephone": "+14702236127",
+          "email": "hello@badgrtech.com",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8735 Dunwoody Place, Suite N",
+            "addressLocality": "Atlanta",
+            "addressRegion": "GA",
+            "postalCode": "30350",
+            "addressCountry": "US"
+          },
+          "geo": { "@type": "GeoCoordinates", "latitude": 33.9701, "longitude": -84.3307 },
+          "areaServed": [
+            { "@type": "City", "name": "Atlanta", "@id": "https://www.wikidata.org/wiki/Q23556" },
+            { "@type": "State", "name": "Georgia" }
+          ],
+          "sameAs": [
+            "https://instagram.com/Badgr1stOne",
+            "https://www.linkedin.com/in/anthony-g-5b2b1a273",
+            "https://github.com/Ch405-L9"
+          ],
+          "knowsAbout": ["Web Optimization", "AI Consultation", "Lead Generation", "Website Performance"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://badgrtech.com/#website",
+          "url": "https://badgrtech.com",
+          "name": "BADGRTechnologies",
+          "publisher": { "@id": "https://badgrtech.com/#org" },
+          "inLanguage": "en-US"
+        }
       ]
     }
     </script>

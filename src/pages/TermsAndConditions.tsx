@@ -1,6 +1,7 @@
 import { ArrowLeft, Scale } from "lucide-react";
 import { Link } from "wouter";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 function TermsSection({
   title,
@@ -25,6 +26,25 @@ export default function TermsAndConditions() {
     description:
       "Review the BADGRTechnologies terms covering website use, service scope, project agreements, and liability boundaries.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/terms#page",
+        name: "Terms & Conditions | BADGRTechnologies",
+        description:
+          "Review the BADGRTechnologies terms covering website use, service scope, project agreements, and liability boundaries.",
+        url: "https://badgrtech.com/terms",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Terms & Conditions", url: "https://badgrtech.com/terms" },
+        ],
+      }),
+    ),
+    "terms-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">

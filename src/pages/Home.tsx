@@ -28,7 +28,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import {
+  aiConsultationService,
+  buildFAQSchema,
+  buildGraph,
+  buildWebPageSchema,
+  orgEntity,
+  webOptimizationService,
+  websiteEntity,
+} from "@/lib/schema";
 import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
@@ -185,6 +194,24 @@ export default function Home() {
     description:
       "BADGRTechnologies helps small businesses fix website friction that quietly kills calls, form fills, and trust.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      webOptimizationService,
+      aiConsultationService,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/#homepage",
+        name: "BADGRTechnologies | Web Optimization That Fixes Lead Leaks",
+        description:
+          "BADGRTechnologies helps small businesses fix website friction that quietly kills calls, form fills, and trust.",
+        url: "https://badgrtech.com/",
+      }),
+      buildFAQSchema(faqs),
+    ),
+    "home-graph",
+  );
 
   const handleAudit = (e: React.FormEvent) => {
     e.preventDefault();
