@@ -77,7 +77,7 @@ export const webOptimizationService = {
   description:
     "Fix website friction killing calls, form fills, and trust for small service businesses. Covers performance, CTA flow, mobile UX, and trust signals.",
   provider: { "@id": ORG_ID },
-  serviceType: "Web Optimization",
+  category: "Web Optimization",
   areaServed: { "@type": "City", name: "Atlanta" },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -127,7 +127,7 @@ export const aiConsultationService = {
   description:
     "AI strategy, workflow automation, and integration consulting for small and mid-size businesses ready to operationalize AI tools.",
   provider: { "@id": ORG_ID },
-  serviceType: "AI Consulting",
+  category: "AI Consulting",
   areaServed: { "@type": "Country", name: "United States" },
   url: `${BASE_URL}/#ai-solutions`,
 };

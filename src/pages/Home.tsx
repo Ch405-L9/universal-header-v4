@@ -29,6 +29,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { CheckoutButton } from "@/components/CheckoutButton";
+import type { ServiceId } from "@/lib/payment";
 import {
   aiConsultationService,
   buildFAQSchema,
@@ -38,6 +40,9 @@ import {
   webOptimizationService,
   websiteEntity,
 } from "@/lib/schema";
+import { fullFaqs, optimizationHowTo } from "@/lib/content-graph";
+import { recommendPackage } from "@/lib/funnel";
+import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
@@ -63,6 +68,7 @@ const serviceHighlights = [
 
 const projectPackages = [
   {
+    serviceId: "diagnostic-scan" as ServiceId,
     tier: "Quick Start",
     title: "DIAGNOSTIC SCAN",
     price: "From $1,500",
@@ -79,6 +85,7 @@ const projectPackages = [
     featured: false,
   },
   {
+    serviceId: "lead-leak-fix" as ServiceId,
     tier: "Most Popular",
     title: "14-DAY LEAD LEAK FIX",
     price: "From $3,000",
@@ -95,6 +102,7 @@ const projectPackages = [
     featured: true,
   },
   {
+    serviceId: "rebuild-lite" as ServiceId,
     tier: "Expansion",
     title: "REBUILD LITE",
     price: "From $4,500",
@@ -130,33 +138,7 @@ const supportPlans = [
   },
 ];
 
-const faqs = [
-  {
-    question: "What do you usually fix first?",
-    answer:
-      "We start with the issues most likely to block calls, form submissions, and trust: speed, mobile friction, weak calls to action, broken form flow, and missing clarity on the most important pages.",
-  },
-  {
-    question: "What if the site really needs a rebuild?",
-    answer:
-      "We will say that directly. If the right move is a lighter rebuild instead of piecemeal fixes, the report will spell that out so you are not paying to over-patch a site that cannot carry the load.",
-  },
-  {
-    question: "Do you also handle SEO or social?",
-    answer:
-      "Yes, but only as follow-on support after the website itself is in a stronger place. The core offer here is web optimization first.",
-  },
-  {
-    question: "Do you work only with law and medical businesses?",
-    answer:
-      "Those are strong fits, but the offer is designed for small service businesses that rely on inbound leads and need a clearer, faster, more trustworthy website.",
-  },
-  {
-    question: "How quickly can a project start?",
-    answer:
-      "Most projects begin with a short triage call. From there we confirm fit, scope, and timing before the scan or 14-day engagement begins.",
-  },
-];
+const faqs = fullFaqs;
 
 const GOOGLE_FORM_BASE = "https://docs.google.com/forms/d/e/1FAIpQLSd07X_1GqfruNFDC1zoWJ7JGK9G9JBuMCVlTFLOHIAIy-FIIA/viewform";
 
@@ -209,6 +191,19 @@ export default function Home() {
         url: "https://badgrtech.com/",
       }),
       buildFAQSchema(faqs),
+      {
+        "@type": "HowTo",
+        "@id": "https://badgrtech.com/#howto-optimize",
+        name: optimizationHowTo.name,
+        description: optimizationHowTo.description,
+        step: optimizationHowTo.steps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+          url: s.url,
+        })),
+      },
     ),
     "home-graph",
   );
@@ -227,6 +222,10 @@ export default function Home() {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useScrollDepth((_id) => {
+    // milestone reached — future: send to analytics
+  });
+
 
   return (
     <Layout>
@@ -234,6 +233,9 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img
             src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png"
+            srcSet="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_640,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 640w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1024,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1024w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1600w"
+            sizes="100vw"
+            fetchPriority="high"
             alt="Atlanta skyline hero background"
             className="h-full w-full object-cover opacity-90 saturate-[1.22] contrast-[1.12] brightness-[1.18]"
           />
@@ -349,56 +351,61 @@ export default function Home() {
                       )}
                     </Button>
                   </form>
-                ) : (
-                  <div className="animate-in zoom-in-95 space-y-6 text-center duration-300">
-                    <div className="flex justify-center gap-8">
-                      <div className="text-center">
-                        <div className="mb-1 text-4xl font-bold text-red-500">
-                          {auditScore}
+                ) : (() => {
+                  const rec = recommendPackage(auditScore!);
+                  return (
+                    <div className="animate-in zoom-in-95 space-y-5 duration-300">
+                      <div className="flex justify-center gap-8 text-center">
+                        <div>
+                          <div className="mb-1 text-4xl font-bold text-red-500">{auditScore}</div>
+                          <div className="text-xs uppercase tracking-wider text-muted-foreground">Site Score</div>
                         </div>
-                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                          Current Site Score
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div className="mb-1 text-4xl font-bold text-green-500">
-                          92
-                        </div>
-                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                          Fix Potential
+                        <div>
+                          <div className="mb-1 text-4xl font-bold text-green-500">92</div>
+                          <div className="text-xs uppercase tracking-wider text-muted-foreground">Fix Potential</div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-left">
-                      <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
-                        <Shield className="h-4 w-4" />
-                        Priority Areas To Review
-                      </h4>
-                      <ul className="space-y-1 text-sm text-muted-foreground">
-                        <li>• Mobile page speed and homepage load friction</li>
-                        <li>• CTA clarity and contact-form conversion gaps</li>
-                        <li>• Missing trust, policy, and service-page signals</li>
-                      </ul>
-                    </div>
+                      <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4">
+                        <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
+                          <Shield className="h-4 w-4" />
+                          Priority Areas To Review
+                        </h4>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Mobile page speed and homepage load friction</li>
+                          <li>• CTA clarity and contact-form conversion gaps</li>
+                          <li>• Missing trust, policy, and service-page signals</li>
+                        </ul>
+                      </div>
 
-                    <div className="pt-2">
-                      <p className="mb-4 text-sm">
-                        Next step:{" "}
-                        <span className="font-bold text-primary">
-                          a short triage call with the highest-impact fixes
-                        </span>
-                      </p>
-                      <Button
-                        type="button"
-                        onClick={() => scrollToSection("#pricing")}
-                        className="h-12 w-full rounded-none border border-green-500/50 bg-black font-bold uppercase tracking-widest text-green-400 shadow-[0_0_20px_rgba(0,255,136,0.1)] hover:bg-green-500/10 hover:text-green-300"
-                      >
-                        VIEW SERVICE OPTIONS
-                      </Button>
+                      <div className="rounded-lg border border-primary/40 bg-primary/5 p-4 space-y-1">
+                        <div className="text-[10px] uppercase tracking-widest text-primary">Recommended for your score</div>
+                        <div className="font-mono text-lg font-bold text-white">{rec.packageName}</div>
+                        <div className="text-xs text-zinc-500">{rec.tier} · {rec.price}</div>
+                        <p className="text-sm text-zinc-300 leading-relaxed pt-1">{rec.reason}</p>
+                        <p className="text-xs text-primary pt-1">{rec.urgency}</p>
+                      </div>
+
+                      <div className="flex flex-col gap-2 pt-1">
+                        <Button
+                          type="button"
+                          onClick={() => scrollToSection("#contact")}
+                          className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
+                        >
+                          Book Triage Call
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          onClick={() => scrollToSection(rec.anchor)}
+                          className="h-9 w-full rounded-none text-xs uppercase tracking-widest text-zinc-500 hover:text-white"
+                        >
+                          See Package Details
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </CardContent>
             </Card>
           </div>
@@ -500,7 +507,7 @@ export default function Home() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-3">
                   <Button
                     type="button"
                     onClick={() => scrollToSection("#contact")}
@@ -514,6 +521,14 @@ export default function Home() {
                   >
                     {card.cta}
                   </Button>
+                  {card.serviceId ? (
+                    <CheckoutButton
+                      serviceId={card.serviceId}
+                      label={`Reserve with ${card.title === "DIAGNOSTIC SCAN" ? "$500" : card.title === "14-DAY LEAD LEAK FIX" ? "$1,000" : "$1,500"} deposit`}
+                      variant="outline"
+                      className="w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest"
+                    />
+                  ) : null}
                 </CardFooter>
               </Card>
               </ScrollReveal>
@@ -550,6 +565,7 @@ export default function Home() {
                   src="https://res.cloudinary.com/dsxpcwjwb/video/upload/v1776478771/BADGRTechnologies_-_Web_Optimization_for_Contractors_720p_wwuvet_iu1nfj.mp4"
                   type="video/mp4"
                 />
+                <track kind="captions" src="" srcLang="en" label="No captions available" default />
               </video>
             </div>
           </div>
