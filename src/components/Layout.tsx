@@ -113,6 +113,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <button
             className="p-2 text-foreground md:hidden"
             type="button"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

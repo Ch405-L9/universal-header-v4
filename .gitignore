@@ -131,3 +131,20 @@ SHN.json
 SHN-minimal.json
 INFO\ \&\ Reference\ ONLY/
 Erin_Full_partition-1-18/
+
+# Non-app files — research, scripts, media
+*.txt
+*.py
+pyttsx3
+pyttsx3/
+client/
+intro_glitch.mp4
+intro_metallic.mp4
+ExampleVExampleV.png
+SMB_ai-productivity+.md
+web_ops_README_EXAMPLE.md
+STRIPE_INTEGRATION_INTERNAL.md
+prep_dev_env.sh
+prep_dev_tooling.sh
+.gitkeep
+public/videos/

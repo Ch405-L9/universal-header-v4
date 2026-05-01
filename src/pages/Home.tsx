@@ -29,6 +29,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { CheckoutButton } from "@/components/CheckoutButton";
+import type { ServiceId } from "@/lib/payment";
 import {
   aiConsultationService,
   buildFAQSchema,
@@ -66,6 +68,7 @@ const serviceHighlights = [
 
 const projectPackages = [
   {
+    serviceId: "diagnostic-scan" as ServiceId,
     tier: "Quick Start",
     title: "DIAGNOSTIC SCAN",
     price: "From $1,500",
@@ -82,6 +85,7 @@ const projectPackages = [
     featured: false,
   },
   {
+    serviceId: "lead-leak-fix" as ServiceId,
     tier: "Most Popular",
     title: "14-DAY LEAD LEAK FIX",
     price: "From $3,000",
@@ -98,6 +102,7 @@ const projectPackages = [
     featured: true,
   },
   {
+    serviceId: "rebuild-lite" as ServiceId,
     tier: "Expansion",
     title: "REBUILD LITE",
     price: "From $4,500",
@@ -228,6 +233,9 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img
             src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png"
+            srcSet="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_640,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 640w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1024,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1024w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1600w"
+            sizes="100vw"
+            fetchPriority="high"
             alt="Atlanta skyline hero background"
             className="h-full w-full object-cover opacity-90 saturate-[1.22] contrast-[1.12] brightness-[1.18]"
           />
@@ -499,7 +507,7 @@ export default function Home() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-3">
                   <Button
                     type="button"
                     onClick={() => scrollToSection("#contact")}
@@ -513,6 +521,14 @@ export default function Home() {
                   >
                     {card.cta}
                   </Button>
+                  {card.serviceId ? (
+                    <CheckoutButton
+                      serviceId={card.serviceId}
+                      label={`Reserve with ${card.title === "DIAGNOSTIC SCAN" ? "$500" : card.title === "14-DAY LEAD LEAK FIX" ? "$1,000" : "$1,500"} deposit`}
+                      variant="outline"
+                      className="w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest"
+                    />
+                  ) : null}
                 </CardFooter>
               </Card>
               </ScrollReveal>
@@ -549,6 +565,7 @@ export default function Home() {
                   src="https://res.cloudinary.com/dsxpcwjwb/video/upload/v1776478771/BADGRTechnologies_-_Web_Optimization_for_Contractors_720p_wwuvet_iu1nfj.mp4"
                   type="video/mp4"
                 />
+                <track kind="captions" src="" srcLang="en" label="No captions available" default />
               </video>
             </div>
           </div>

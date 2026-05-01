@@ -14,6 +14,8 @@ const AdditionalServicesPage = lazy(() => import("@/pages/AdditionalServicesPage
 const SampleReportPage = lazy(() => import("@/pages/SampleReportPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const GraphInspector = lazy(() => import("@/pages/GraphInspector"));
+const PaymentSuccess = lazy(() => import("@/pages/PaymentSuccess"));
+const PaymentCancel = lazy(() => import("@/pages/PaymentCancel"));
 
 function Router() {
   return (
@@ -34,6 +36,8 @@ function Router() {
           component={AdditionalServicesPage}
         />
         <Route path={"/graph"} component={GraphInspector} />
+        <Route path={"/success"} component={PaymentSuccess} />
+        <Route path={"/cancel"} component={PaymentCancel} />
         <Route path={"/404"} component={NotFound} />
         {/* Future route pattern guide:
             <Route path={"/partners"} component={PartnersPage} />
