@@ -1,0 +1,91 @@
+import { useEffect } from "react";
+
+const BASE_URL = "https://badgrtech.com";
+
+type PageMeta = {
+  canonical?: string;
+  description?: string;
+  title: string;
+};
+
+const ensureMeta = (name: string) => {
+  let meta = document.head.querySelector(
+    `meta[name="${name}"]`
+  ) as HTMLMetaElement | null;
+
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", name);
+    document.head.appendChild(meta);
+  }
+
+  return meta;
+};
+
+const ensurePropertyMeta = (property: string) => {
+  let meta = document.head.querySelector(
+    `meta[property="${property}"]`
+  ) as HTMLMetaElement | null;
+
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("property", property);
+    document.head.appendChild(meta);
+  }
+
+  return meta;
+};
+
+const ensureCanonical = () => {
+  let link = document.head.querySelector(
+    'link[rel="canonical"]'
+  ) as HTMLLinkElement | null;
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  return link;
+};
+
+export function useJsonLd(schema: Record<string, unknown>, id: string) {
+  useEffect(() => {
+    const existing = document.head.querySelector(
+      `script[type="application/ld+json"][data-schema-id="${id}"]`
+    );
+    if (existing) {
+      existing.textContent = JSON.stringify(schema);
+      return;
+    }
+    const script = document.createElement("script");
+    script.setAttribute("type", "application/ld+json");
+    script.setAttribute("data-schema-id", id);
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+    return () => {
+      document.head.querySelector(
+        `script[type="application/ld+json"][data-schema-id="${id}"]`
+      )?.remove();
+    };
+  }, [id, JSON.stringify(schema)]);
+}
+
+export function usePageMeta({ canonical, description, title }: PageMeta) {
+  useEffect(() => {
+    document.title = title;
+
+    if (description) {
+      ensureMeta("description").setAttribute("content", description);
+      ensurePropertyMeta("og:description").setAttribute("content", description);
+      ensureMeta("twitter:description").setAttribute("content", description);
+    }
+
+    ensurePropertyMeta("og:title").setAttribute("content", title);
+    ensureMeta("twitter:title").setAttribute("content", title);
+
+    const path = canonical ?? window.location.pathname;
+    const canonicalHref = `${BASE_URL}${path}`;
+    ensureCanonical().setAttribute("href", canonicalHref);
+    ensurePropertyMeta("og:url").setAttribute("content", canonicalHref);
+  }, [canonical, description, title]);
+}
