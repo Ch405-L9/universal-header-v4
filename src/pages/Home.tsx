@@ -38,6 +38,7 @@ import {
   webOptimizationService,
   websiteEntity,
 } from "@/lib/schema";
+import { fullFaqs, optimizationHowTo } from "@/lib/content-graph";
 import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
@@ -130,33 +131,7 @@ const supportPlans = [
   },
 ];
 
-const faqs = [
-  {
-    question: "What do you usually fix first?",
-    answer:
-      "We start with the issues most likely to block calls, form submissions, and trust: speed, mobile friction, weak calls to action, broken form flow, and missing clarity on the most important pages.",
-  },
-  {
-    question: "What if the site really needs a rebuild?",
-    answer:
-      "We will say that directly. If the right move is a lighter rebuild instead of piecemeal fixes, the report will spell that out so you are not paying to over-patch a site that cannot carry the load.",
-  },
-  {
-    question: "Do you also handle SEO or social?",
-    answer:
-      "Yes, but only as follow-on support after the website itself is in a stronger place. The core offer here is web optimization first.",
-  },
-  {
-    question: "Do you work only with law and medical businesses?",
-    answer:
-      "Those are strong fits, but the offer is designed for small service businesses that rely on inbound leads and need a clearer, faster, more trustworthy website.",
-  },
-  {
-    question: "How quickly can a project start?",
-    answer:
-      "Most projects begin with a short triage call. From there we confirm fit, scope, and timing before the scan or 14-day engagement begins.",
-  },
-];
+const faqs = fullFaqs;
 
 const GOOGLE_FORM_BASE = "https://docs.google.com/forms/d/e/1FAIpQLSd07X_1GqfruNFDC1zoWJ7JGK9G9JBuMCVlTFLOHIAIy-FIIA/viewform";
 
@@ -209,6 +184,19 @@ export default function Home() {
         url: "https://badgrtech.com/",
       }),
       buildFAQSchema(faqs),
+      {
+        "@type": "HowTo",
+        "@id": "https://badgrtech.com/#howto-optimize",
+        name: optimizationHowTo.name,
+        description: optimizationHowTo.description,
+        step: optimizationHowTo.steps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+          url: s.url,
+        })),
+      },
     ),
     "home-graph",
   );
