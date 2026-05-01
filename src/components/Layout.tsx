@@ -11,6 +11,11 @@ import {
   X as XClose,
   Youtube,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "wouter";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function TikTokIcon({ size = 20 }: { size?: number }) {
   return (
@@ -25,11 +30,6 @@ function TikTokIcon({ size = 20 }: { size?: number }) {
     </svg>
   );
 }
-import { useEffect, useState } from "react";
-import { Link } from "wouter";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
