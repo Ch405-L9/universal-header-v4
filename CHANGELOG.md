@@ -6,6 +6,16 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-01T00:01:00] — Code splitting (Web Vitals foundation gap)
+
+### Changed
+- `src/App.tsx`: All page imports converted to `React.lazy()`. Wrapped `Router` in `Suspense fallback={null}`. Each route is now its own JS chunk — Home.tsx (40.6K) no longer blocks initial parse.
+
+### Why
+- Foundation layer audit found eager imports on all routes. Home.tsx is the largest file; loading it synchronously on every route hurt LCP/FID scores.
+
+---
+
 ## [2026-05-01T00:00:00] — Phase 2 schema fix + git init
 
 ### Fixed
