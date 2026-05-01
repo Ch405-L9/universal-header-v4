@@ -6,6 +6,19 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-01T00:02:00] — Content graph layer
+
+### Added
+- `src/lib/content-graph.ts`: Full knowledge graph — 2 pillars, 7 cluster nodes, each with BLUF copy, intent stage, entity refs, internal link map
+- `fullFaqs`: 12 FAQs covering informational → commercial → transactional intent (up from 5)
+- `optimizationHowTo`: 4-step HowTo entity with per-step URLs
+- `HowTo` schema injected into home-graph — readable by Google and AI answer engines (Perplexity, SGE, ChatGPT browsing)
+
+### Changed
+- `Home.tsx`: FAQ array now sourced from `content-graph.ts` instead of inline. Single source of truth.
+
+---
+
 ## [2026-05-01T00:01:00] — Code splitting (Web Vitals foundation gap)
 
 ### Changed
