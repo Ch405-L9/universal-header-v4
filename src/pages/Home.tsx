@@ -39,6 +39,8 @@ import {
   websiteEntity,
 } from "@/lib/schema";
 import { fullFaqs, optimizationHowTo } from "@/lib/content-graph";
+import { recommendPackage } from "@/lib/funnel";
+import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
@@ -215,6 +217,10 @@ export default function Home() {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useScrollDepth((_id) => {
+    // milestone reached — future: send to analytics
+  });
+
 
   return (
     <Layout>
@@ -337,56 +343,61 @@ export default function Home() {
                       )}
                     </Button>
                   </form>
-                ) : (
-                  <div className="animate-in zoom-in-95 space-y-6 text-center duration-300">
-                    <div className="flex justify-center gap-8">
-                      <div className="text-center">
-                        <div className="mb-1 text-4xl font-bold text-red-500">
-                          {auditScore}
+                ) : (() => {
+                  const rec = recommendPackage(auditScore!);
+                  return (
+                    <div className="animate-in zoom-in-95 space-y-5 duration-300">
+                      <div className="flex justify-center gap-8 text-center">
+                        <div>
+                          <div className="mb-1 text-4xl font-bold text-red-500">{auditScore}</div>
+                          <div className="text-xs uppercase tracking-wider text-muted-foreground">Site Score</div>
                         </div>
-                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                          Current Site Score
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div className="mb-1 text-4xl font-bold text-green-500">
-                          92
-                        </div>
-                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                          Fix Potential
+                        <div>
+                          <div className="mb-1 text-4xl font-bold text-green-500">92</div>
+                          <div className="text-xs uppercase tracking-wider text-muted-foreground">Fix Potential</div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-left">
-                      <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
-                        <Shield className="h-4 w-4" />
-                        Priority Areas To Review
-                      </h4>
-                      <ul className="space-y-1 text-sm text-muted-foreground">
-                        <li>• Mobile page speed and homepage load friction</li>
-                        <li>• CTA clarity and contact-form conversion gaps</li>
-                        <li>• Missing trust, policy, and service-page signals</li>
-                      </ul>
-                    </div>
+                      <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4">
+                        <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
+                          <Shield className="h-4 w-4" />
+                          Priority Areas To Review
+                        </h4>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Mobile page speed and homepage load friction</li>
+                          <li>• CTA clarity and contact-form conversion gaps</li>
+                          <li>• Missing trust, policy, and service-page signals</li>
+                        </ul>
+                      </div>
 
-                    <div className="pt-2">
-                      <p className="mb-4 text-sm">
-                        Next step:{" "}
-                        <span className="font-bold text-primary">
-                          a short triage call with the highest-impact fixes
-                        </span>
-                      </p>
-                      <Button
-                        type="button"
-                        onClick={() => scrollToSection("#pricing")}
-                        className="h-12 w-full rounded-none border border-green-500/50 bg-black font-bold uppercase tracking-widest text-green-400 shadow-[0_0_20px_rgba(0,255,136,0.1)] hover:bg-green-500/10 hover:text-green-300"
-                      >
-                        VIEW SERVICE OPTIONS
-                      </Button>
+                      <div className="rounded-lg border border-primary/40 bg-primary/5 p-4 space-y-1">
+                        <div className="text-[10px] uppercase tracking-widest text-primary">Recommended for your score</div>
+                        <div className="font-mono text-lg font-bold text-white">{rec.packageName}</div>
+                        <div className="text-xs text-zinc-500">{rec.tier} · {rec.price}</div>
+                        <p className="text-sm text-zinc-300 leading-relaxed pt-1">{rec.reason}</p>
+                        <p className="text-xs text-primary pt-1">{rec.urgency}</p>
+                      </div>
+
+                      <div className="flex flex-col gap-2 pt-1">
+                        <Button
+                          type="button"
+                          onClick={() => scrollToSection("#contact")}
+                          className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
+                        >
+                          Book Triage Call
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          onClick={() => scrollToSection(rec.anchor)}
+                          className="h-9 w-full rounded-none text-xs uppercase tracking-widest text-zinc-500 hover:text-white"
+                        >
+                          See Package Details
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </CardContent>
             </Card>
           </div>
