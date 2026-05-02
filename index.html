@@ -43,8 +43,9 @@
       content="https://badgrtech.com/images/badgrtech-logo-og.webp"
     />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-700.woff2" crossorigin />
     <script type="application/ld+json" data-schema-id="base-graph">
     {
       "@context": "https://schema.org",
@@ -97,29 +98,41 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/images/badgrtech-logo-og.webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-bg-1024.webp"
+      imagesrcset="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg-1600.webp 1600w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" /></noscript>
-    <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" />
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" /></noscript>
 
-    <!-- Inline critical CSS (above‑the‑fold) -->
+
+    <!-- Inline critical CSS (above-the-fold) -->
     <style>
-      /* Critical styles – replace with your actual critical CSS */
-      body {
-        margin: 0;
-        font-family: 'Goldman', 'Satoshi', system-ui, sans-serif;
-      }
-      #root {
-        display: block;
-      }
-      /* Add more critical rules here */
+      *,::before,::after{box-sizing:border-box}
+      html{line-height:1.5;-webkit-text-size-adjust:100%}
+      body{margin:0;font-family:'Goldman','Satoshi',system-ui,sans-serif;background:#020816;color:#fff}
+      #root{display:block;min-height:100vh}
+      img{display:block;max-width:100%}
+      .min-h-screen{min-height:100vh}
+      .relative{position:relative}
+      .absolute{position:absolute}
+      .inset-0{inset:0}
+      .z-0{z-index:0}
+      .h-full{height:100%}
+      .w-full{width:100%}
+      .object-cover{object-fit:cover}
+      .overflow-hidden{overflow:hidden}
+      .flex{display:flex}
+      .items-center{align-items:center}
+      .container{width:100%;max-width:1280px;margin-left:auto;margin-right:auto}
+      .pt-10{padding-top:2.5rem}
     </style>
 
-    <!-- Defer non‑critical CSS -->
-    <link rel="preload" href="/assets/index-AG2Vx9hu.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/assets/index-AG2Vx9hu.css" /></noscript>
   </head>
 
   <body>

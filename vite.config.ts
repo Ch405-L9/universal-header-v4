@@ -1,10 +1,27 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
+
+function deferNonCriticalCss(): Plugin {
+  return {
+    name: "defer-non-critical-css",
+    transformIndexHtml: {
+      order: "post",
+      handler(html) {
+        return html.replace(
+          /<link rel="stylesheet"([^>]*?)href="(\/assets\/[^"]+\.css)"([^>]*?)>/g,
+          (_, pre, href, post) =>
+            `<link rel="preload"${pre}href="${href}"${post} as="style" onload="this.onload=null;this.rel='stylesheet'">` +
+            `<noscript><link rel="stylesheet" href="${href}"></noscript>`,
+        );
+      },
+    },
+  };
+}
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), deferNonCriticalCss()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),
@@ -25,35 +42,45 @@ export default defineConfig({
       output: {
         manualChunks: {
           "vendor-react": ["react", "react-dom"],
-          "vendor-radix": [
+          "vendor-radix-core": [
+            "@radix-ui/react-slot",
+            "@radix-ui/react-tooltip",
+          ],
+          "vendor-radix-overlay": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu",
+            "@radix-ui/react-popover",
+            "@radix-ui/react-select",
+            "@radix-ui/react-navigation-menu",
+            "@radix-ui/react-hover-card",
+            "@radix-ui/react-context-menu",
+            "@radix-ui/react-menubar",
+          ],
+          "vendor-radix-form": [
+            "@radix-ui/react-checkbox",
+            "@radix-ui/react-label",
+            "@radix-ui/react-radio-group",
+            "@radix-ui/react-slider",
+            "@radix-ui/react-switch",
+            "@radix-ui/react-toggle",
+            "@radix-ui/react-toggle-group",
+          ],
+          "vendor-radix-layout": [
             "@radix-ui/react-accordion",
             "@radix-ui/react-alert-dialog",
             "@radix-ui/react-avatar",
-            "@radix-ui/react-checkbox",
             "@radix-ui/react-collapsible",
-            "@radix-ui/react-context-menu",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-hover-card",
-            "@radix-ui/react-label",
-            "@radix-ui/react-menubar",
-            "@radix-ui/react-navigation-menu",
-            "@radix-ui/react-popover",
             "@radix-ui/react-progress",
-            "@radix-ui/react-radio-group",
             "@radix-ui/react-scroll-area",
-            "@radix-ui/react-select",
             "@radix-ui/react-separator",
-            "@radix-ui/react-slider",
-            "@radix-ui/react-slot",
-            "@radix-ui/react-switch",
             "@radix-ui/react-tabs",
-            "@radix-ui/react-toggle",
-            "@radix-ui/react-toggle-group",
-            "@radix-ui/react-tooltip",
           ],
+          "vendor-router": ["react-router", "react-router-dom"],
+          "vendor-icons": ["lucide-react"],
           "vendor-motion": ["framer-motion"],
           "vendor-charts": ["recharts"],
+          "vendor-toast": ["sonner", "next-themes"],
+          "vendor-wouter": ["wouter"],
         },
       },
     },

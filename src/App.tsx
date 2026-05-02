@@ -1,10 +1,13 @@
 import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 
-import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+
+const Toaster = lazy(() =>
+  import("@/components/ui/sonner").then((m) => ({ default: m.Toaster }))
+);
 
 const Home = lazy(() => import("./pages/Home"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
