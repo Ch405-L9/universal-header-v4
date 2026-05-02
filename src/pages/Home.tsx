@@ -232,8 +232,8 @@ export default function Home() {
       <section className="relative flex min-h-screen items-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png"
-            srcSet="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_640,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 640w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1024,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1024w, https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1600,f_auto,q_80/v1773681245/hero-atlanta-cyber_hi8dnx.png 1600w"
+            src="/images/hero-bg-1600.webp"
+            srcSet="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg-1600.webp 1600w"
             sizes="100vw"
             fetchPriority="high"
             alt="Atlanta skyline hero background"
@@ -559,12 +559,10 @@ export default function Home() {
                 className="relative w-full rounded-xl"
                 controls
                 preload="none"
-                poster="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_1200,f_auto,q_80/v1776452115/hero-atlanta-cyber_c0cfqz.png"
+                poster="/images/video-poster.webp"
               >
-                <source
-                  src="https://res.cloudinary.com/dsxpcwjwb/video/upload/v1776478771/BADGRTechnologies_-_Web_Optimization_for_Contractors_720p_wwuvet_iu1nfj.mp4"
-                  type="video/mp4"
-                />
+                <source src="/videos/badgrtech-intro.webm" type="video/webm" />
+                <source src="/videos/badgrtech-intro.mp4" type="video/mp4" />
                 <track kind="captions" src="" srcLang="en" label="No captions available" default />
               </video>
             </div>
@@ -583,7 +581,7 @@ export default function Home() {
               <div className="relative rounded-[1.15rem] border border-zinc-800 bg-zinc-950/50 p-3">
                 <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl"></div>
                 <img
-                  src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_900,f_auto,q_80/v1776452113/ai-dashboard-holo_h8jfz2.png"
+                  src="/images/ai-dashboard.webp"
                   alt="Preview of a sample optimization report"
                   className="relative w-full rounded-xl border border-zinc-800 shadow-2xl brightness-[1.12]"
                 />

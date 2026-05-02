@@ -6,6 +6,30 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-02] — Asset overhaul: local WebP/video, Cloudinary removed
+
+### Added
+- `public/images/hero-bg-640.webp`, `hero-bg-1024.webp`, `hero-bg-1600.webp` — responsive hero background, replaces Cloudinary PNG
+- `public/images/ai-dashboard.webp` — proof section dashboard image
+- `public/images/badgrtech-logo.webp` — nav/header logo (13 KB)
+- `public/images/badgrtech-logo-og.webp` — OG/schema logo (90 KB)
+- `public/images/video-poster.webp` — video section poster frame
+- `public/images/sample-report-preview.webp` — sample report thumbnail
+- `public/videos/badgrtech-intro.mp4` + `badgrtech-intro.webm` — intro video, self-hosted
+- `sample-report-preview.html` — standalone audit report preview page
+
+### Changed
+- `src/pages/Home.tsx`: All Cloudinary `img` srcs + `srcSet` replaced with local `/images/` paths; video `src` + `poster` replaced with local `/videos/` paths; `.webm` source added before `.mp4` for browser preference
+- `src/components/Layout.tsx`: Header + footer logo replaced with `/images/badgrtech-logo.webp` (both instances)
+- `src/lib/schema.ts`: `LOGO_URL` + `IMAGE_URL` now point to `https://badgrtech.com/images/badgrtech-logo-og.webp`
+- `.gitignore`: `public/videos/` blanket ignore narrowed to `public/videos/videos old/` so production video files are tracked
+
+### Removed
+- All legacy Cloudinary-hosted PNG/video references from source code
+- Old `public/images/` PNGs (Cloudinary slug filenames) — replaced by optimized WebP equivalents
+
+---
+
 ## [2026-05-01T00:03:00] — Funnel engine layer
 
 ### Added

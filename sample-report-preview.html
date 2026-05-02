@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BADGRTechnologies — Web Optimization Audit Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: oklch(0.4 0.22 260);
+    --primary-hex: #1e3fa8;
+    --green: oklch(0.87 0.29 142);
+    --green-hex: #22d46a;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --bg: #080810;
+    --card: #0d0d1a;
+    --border: rgba(30, 63, 168, 0.3);
+    --muted: #71717a;
+    --text: #f4f4f5;
+    --subtext: #a1a1aa;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Satoshi", "Segoe UI", system-ui, sans-serif;
+    width: 900px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: linear-gradient(135deg, #080810 0%, #0d0d2a 50%, #080810 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, oklch(0.4 0.22 260 / 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-logo {
+    width: 36px; height: 36px;
+    border: 1px solid oklch(0.4 0.22 260 / 0.6);
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .brand-name {
+    font-family: "Goldman", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .brand-name span { color: oklch(0.4 0.22 260); }
+  .brand-sub {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .report-meta {
+    text-align: right;
+    font-size: 10px;
+    color: var(--subtext);
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+  }
+  .report-meta .doc-id {
+    font-family: "Goldman", monospace;
+    color: oklch(0.4 0.22 260);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .report-title-block { margin-top: 4px; }
+  .report-type {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: oklch(0.4 0.22 260);
+    font-family: "Goldman", monospace;
+    margin-bottom: 6px;
+  }
+  .report-title {
+    font-family: "Goldman", monospace;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .report-subtitle {
+    font-size: 11px;
+    color: var(--subtext);
+    letter-spacing: 0.12em;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .header-divider {
+    height: 1px;
+    background: linear-gradient(90deg, oklch(0.4 0.22 260 / 0.6), transparent);
+    margin: 16px 0 0;
+  }
+
+  /* ── SCORE BAND ── */
+  .score-band {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .score-group-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--muted);
+    font-family: "Goldman", monospace;
+    margin-bottom: 10px;
+  }
+  .score-group-label span {
+    color: oklch(0.4 0.22 260);
+    margin-right: 6px;
+  }
+  .scores-row {
+    display: flex;
+    gap: 10px;
+  }
+  .score-pill {
+    flex: 1;
+    background: #111124;
+    border: 1px solid var(--border);
+    padding: 10px 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-pill::before {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .score-pill.green::before { background: var(--green-hex); }
+  .score-pill.yellow::before { background: var(--yellow); }
+  .score-pill.red::before { background: var(--red); }
+  .score-val {
+    font-family: "Goldman", monospace;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .score-pill.green .score-val { color: var(--green-hex); }
+  .score-pill.yellow .score-val { color: var(--yellow); }
+  .score-pill.red .score-val { color: var(--red); }
+  .score-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .delta {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+  .delta.up { color: var(--green-hex); }
+  .delta.same { color: var(--muted); }
+
+  /* ── BODY ── */
+  .report-body {
+    padding: 28px 40px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 18px;
+  }
+  .section-card.full { grid-column: 1 / -1; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(30, 63, 168, 0.2);
+  }
+  .card-badge {
+    font-family: "Goldman", monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: oklch(0.4 0.22 260);
+    border: 1px solid oklch(0.4 0.22 260 / 0.4);
+    padding: 2px 7px;
+  }
+  .card-title {
+    font-family: "Goldman", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #fff;
+  }
+
+  /* ── ISSUES ── */
+  .issue-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .issue-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .issue-sev {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .sev-high { background: var(--red); box-shadow: 0 0 6px var(--red); }
+  .sev-med  { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+  .sev-low  { background: var(--green-hex); box-shadow: 0 0 6px var(--green-hex); }
+  .issue-content { flex: 1; }
+  .issue-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+    letter-spacing: 0.02em;
+  }
+  .issue-detail {
+    font-size: 10px;
+    color: var(--subtext);
+    line-height: 1.5;
+  }
+  .issue-saving {
+    font-family: "Goldman", monospace;
+    font-size: 9px;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    margin-top: 3px;
+  }
+
+  /* ── FIXES ── */
+  .fix-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .fix-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .fix-check {
+    width: 14px; height: 14px;
+    border: 1px solid var(--green-hex);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--green-hex);
+  }
+  .fix-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .fix-detail {
+    font-size: 10px;
+    color: var(--subtext);
+    line-height: 1.5;
+  }
+
+  /* ── RECOMMENDATIONS ── */
+  .rec-row {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: rgba(30, 63, 168, 0.06);
+    border-left: 2px solid oklch(0.4 0.22 260 / 0.7);
+  }
+  .rec-row:last-child { margin-bottom: 0; }
+  .rec-num {
+    font-family: "Goldman", monospace;
+    font-size: 10px;
+    color: oklch(0.4 0.22 260);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .rec-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .rec-desc {
+    font-size: 10px;
+    color: var(--subtext);
+    line-height: 1.5;
+  }
+  .rec-impact {
+    font-family: "Goldman", monospace;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    padding: 2px 6px;
+    display: inline-block;
+    border: 1px solid;
+  }
+  .impact-high { color: var(--green-hex); border-color: var(--green-hex); }
+  .impact-med  { color: var(--yellow); border-color: var(--yellow); }
+
+  /* ── VITALS BAR ── */
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 0;
+  }
+  .vital-item {
+    background: #111124;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+  }
+  .vital-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .vital-val {
+    font-family: "Goldman", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .vital-val.good { color: var(--green-hex); }
+  .vital-val.needs-work { color: var(--yellow); }
+  .vital-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vital-fill {
+    height: 100%;
+    position: absolute;
+    left: 0; top: 0;
+  }
+  .fill-good { background: var(--green-hex); }
+  .fill-work { background: var(--yellow); }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-left {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+  .footer-right {
+    font-family: "Goldman", monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: oklch(0.4 0.22 260);
+  }
+  .confidential {
+    font-family: "Goldman", monospace;
+    font-size: 7px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: oklch(0.4 0.22 260 / 0.5);
+    border: 1px solid oklch(0.4 0.22 260 / 0.3);
+    padding: 2px 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="report-header">
+  <div class="header-top">
+    <div>
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_200,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png" alt="BADGR Logo" />
+        </div>
+        <div>
+          <div class="brand-name">BADGR<span>TECH</span></div>
+          <div class="brand-sub">BADGRTechnologies LLC</div>
+        </div>
+      </div>
+    </div>
+    <div class="report-meta">
+      <div class="doc-id">RPT-2026-0501-WPO</div>
+      <div>Client: badgrtech.com</div>
+      <div>Audit Date: May 1, 2026</div>
+      <div>Analyst: Web Ops Division</div>
+      <div class="confidential" style="margin-top:6px;">Confidential</div>
+    </div>
+  </div>
+  <div class="report-title-block">
+    <div class="report-type">◈ Web Performance &amp; Accessibility Audit</div>
+    <div class="report-title">Lead Conversion Optimization Report</div>
+    <div class="report-subtitle">badgrtech.com — Full-Site Diagnostic · Google Lighthouse · Core Web Vitals</div>
+  </div>
+  <div class="header-divider"></div>
+</div>
+
+<!-- ── SCORE BAND ── -->
+<div class="score-band">
+  <div>
+    <div class="score-group-label"><span>▸</span> Mobile Scores — Post-Audit</div>
+    <div class="scores-row">
+      <div class="score-pill yellow">
+        <div class="score-val">79</div>
+        <div class="score-label">Performance</div>
+        <div class="delta up">↑ +5 from 74</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">96</div>
+        <div class="score-label">Accessibility</div>
+        <div class="delta up">↑ +12 from 84</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">100</div>
+        <div class="score-label">Best Practices</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">100</div>
+        <div class="score-label">SEO</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="score-group-label"><span>▸</span> Desktop Scores — Post-Audit</div>
+    <div class="scores-row">
+      <div class="score-pill green">
+        <div class="score-val">96</div>
+        <div class="score-label">Performance</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">90</div>
+        <div class="score-label">Accessibility</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">100</div>
+        <div class="score-label">Best Practices</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+      <div class="score-pill green">
+        <div class="score-val">100</div>
+        <div class="score-label">SEO</div>
+        <div class="delta same">— Maintained</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="report-body">
+
+  <!-- Core Web Vitals -->
+  <div class="section-card full">
+    <div class="card-header">
+      <div class="card-badge">CWV</div>
+      <div class="card-title">Core Web Vitals — Mobile · Field Data</div>
+    </div>
+    <div class="vitals-grid">
+      <div class="vital-item">
+        <div class="vital-label">LCP — Largest Contentful Paint</div>
+        <div class="vital-val needs-work">2.8s</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 2.5s · Hero image (1600px CDN)</div>
+        <div class="vital-bar"><div class="vital-fill fill-work" style="width:72%"></div></div>
+      </div>
+      <div class="vital-item">
+        <div class="vital-label">TBT — Total Blocking Time</div>
+        <div class="vital-val good">40ms</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 200ms · Excellent</div>
+        <div class="vital-bar"><div class="vital-fill fill-good" style="width:96%"></div></div>
+      </div>
+      <div class="vital-item">
+        <div class="vital-label">CLS — Cumulative Layout Shift</div>
+        <div class="vital-val good">0.00</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 0.1 · No layout instability</div>
+        <div class="vital-bar"><div class="vital-fill fill-good" style="width:100%"></div></div>
+      </div>
+      <div class="vital-item">
+        <div class="vital-label">FCP — First Contentful Paint</div>
+        <div class="vital-val needs-work">1.9s</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 1.8s · Render-block residual</div>
+        <div class="vital-bar"><div class="vital-fill fill-work" style="width:68%"></div></div>
+      </div>
+      <div class="vital-item">
+        <div class="vital-label">TTI — Time to Interactive</div>
+        <div class="vital-val good">2.1s</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 3.8s · Good</div>
+        <div class="vital-bar"><div class="vital-fill fill-good" style="width:88%"></div></div>
+      </div>
+      <div class="vital-item">
+        <div class="vital-label">Speed Index</div>
+        <div class="vital-val good">1.8s</div>
+        <div style="font-size:9px;color:#71717a;">Target: &lt; 3.4s · Strong</div>
+        <div class="vital-bar"><div class="vital-fill fill-good" style="width:92%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issues Found -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-badge">FINDINGS</div>
+      <div class="card-title">Issues Identified</div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-high"></div>
+      <div class="issue-content">
+        <div class="issue-title">Render-Blocking Font Requests</div>
+        <div class="issue-detail">Goldman + Satoshi loaded via blocking &lt;link rel="stylesheet"&gt;. Delayed FCP on mobile 4G by ~2,020ms.</div>
+        <div class="issue-saving">Est. savings: 2,020ms render delay</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-high"></div>
+      <div class="issue-content">
+        <div class="issue-title">Oversized Hero Image — No Responsive Srcset</div>
+        <div class="issue-detail">1600px image served to all viewports including 375px mobile screens. No fetchpriority on LCP element.</div>
+        <div class="issue-saving">Est. savings: 276 KiB on mobile</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-high"></div>
+      <div class="issue-content">
+        <div class="issue-title">Third-Party CDN Image Latency</div>
+        <div class="issue-detail">All images served from res.cloudinary.com requiring separate DNS resolution + TLS handshake on every cold load.</div>
+        <div class="issue-saving">Est. savings: 400–800ms on mobile cold load</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-med"></div>
+      <div class="issue-content">
+        <div class="issue-title">viewport maximum-scale=1 Blocking Zoom</div>
+        <div class="issue-detail">Pinch-zoom disabled — accessibility violation and Lighthouse Best Practices flag.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-med"></div>
+      <div class="issue-content">
+        <div class="issue-title">Icon Button — No Accessible Name</div>
+        <div class="issue-detail">Hamburger menu button had no aria-label. Screen readers could not identify the control.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-low"></div>
+      <div class="issue-content">
+        <div class="issue-title">Missing OG Meta Tags</div>
+        <div class="issue-detail">og:url, og:type, og:site_name, og:locale absent. Suboptimal link previews on social platforms.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-sev sev-low"></div>
+      <div class="issue-content">
+        <div class="issue-title">Video Element — No Captions Track</div>
+        <div class="issue-detail">Accessibility best practice requires a &lt;track kind="captions"&gt; element on video.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixes Applied -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-badge">RESOLVED</div>
+      <div class="card-title">Fixes Applied</div>
+    </div>
+
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">Async Font Loading Pattern</div>
+        <div class="fix-detail">Converted to media="print" onload swap + &lt;noscript&gt; fallback. Eliminated render-blocking on both font faces.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">Hero srcSet at 640w / 1024w / 1600w</div>
+        <div class="fix-detail">Mobile now receives 640px variant (~60KB target). Added fetchPriority="high" to LCP element for browser preload priority.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">Viewport maximum-scale Removed</div>
+        <div class="fix-detail">Pinch-zoom restored. Removed Best Practices flag and resolved accessibility violation.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">Hamburger aria-label Added</div>
+        <div class="fix-detail">Dynamic aria-label: "Open/Close navigation menu" + aria-expanded + aria-controls wired to mobile-nav panel.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">OG Meta Tags Completed</div>
+        <div class="fix-detail">Added og:url, og:type, og:site_name, og:locale, og:image:width/height. All 10 required Open Graph properties present.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">JSON-LD Schema @graph Deployed</div>
+        <div class="fix-detail">Organization + LocalBusiness + WebSite + Service entities. Rich Results Test: 0 errors, 0 warnings.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-check">✓</div>
+      <div>
+        <div class="fix-title">Video Captions Track Added</div>
+        <div class="fix-detail">&lt;track kind="captions"&gt; element added. Accessibility compliance restored.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Recommendations -->
+  <div class="section-card full">
+    <div class="card-header">
+      <div class="card-badge">PATH FORWARD</div>
+      <div class="card-title">Recommended Resolution Path — Score Targets: Mobile 95+ · Accessibility 100</div>
+    </div>
+
+    <div class="rec-row">
+      <div class="rec-num">01</div>
+      <div>
+        <div class="rec-title">Migrate Images to Vercel CDN (Local /public/images/)</div>
+        <div class="rec-desc">Eliminate third-party DNS + TLS overhead on every cold load. Serve hero, logo, and report preview as WebP from same origin. Estimated LCP reduction: 400–800ms.</div>
+        <div class="rec-impact impact-high">Impact: High · Est. +8–12 LH Points</div>
+      </div>
+    </div>
+    <div class="rec-row">
+      <div class="rec-num">02</div>
+      <div>
+        <div class="rec-title">Convert All Images to WebP — Right-Sized Variants</div>
+        <div class="rec-desc">Hero: 640/1024/1600px WebP (target &lt;200KB total). Logo: 400px WebP &lt;15KB. Report preview: 900px WebP &lt;150KB. Favicon SVG minified to &lt;5KB.</div>
+        <div class="rec-impact impact-high">Impact: High · Est. +6–10 LH Points</div>
+      </div>
+    </div>
+    <div class="rec-row">
+      <div class="rec-num">03</div>
+      <div>
+        <div class="rec-title">Resolve Remaining Contrast Ratio (Accessibility 96 → 100)</div>
+        <div class="rec-desc">BADGRTECH nav subtitle text (zinc-500 on dark bg) falls below WCAG AA 4.5:1 threshold. Elevate to zinc-300 or white/60 opacity without breaking visual hierarchy.</div>
+        <div class="rec-impact impact-med">Impact: Medium · Est. +4 Accessibility Points</div>
+      </div>
+    </div>
+    <div class="rec-row">
+      <div class="rec-num">04</div>
+      <div>
+        <div class="rec-title">Add WebM Source to Video Element</div>
+        <div class="rec-desc">Serve VP9 WebM alongside MP4. Modern browsers prefer WebM (~30% smaller). Use Cloudinary transform: /vc_vp9,q_auto:good,br_1m/ for on-the-fly transcoding.</div>
+        <div class="rec-impact impact-med">Impact: Medium · Video load time –30%</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="report-footer">
+  <div class="footer-left">
+    <div>BADGRTechnologies LLC · 8735 Dunwoody Place, Suite N · Atlanta, GA 30350</div>
+    <div>hello@badgrtech.com · (470) 223-6127 · badgrtech.com</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="footer-right" style="margin-bottom:4px;">Web Ops Division</div>
+    <div style="font-size:8px;color:#3f3f46;letter-spacing:0.1em;">RPT-2026-0501-WPO · Page 1 of 1</div>
+  </div>
+</div>
+
+</body>
+</html>

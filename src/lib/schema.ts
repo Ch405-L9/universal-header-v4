@@ -1,10 +1,8 @@
 const BASE_URL = "https://badgrtech.com";
 const ORG_ID = `${BASE_URL}/#org`;
 const WEBSITE_ID = `${BASE_URL}/#website`;
-const LOGO_URL =
-  "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_400,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png";
-const IMAGE_URL =
-  "https://res.cloudinary.com/dsxpcwjwb/image/upload/w_800,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png";
+const LOGO_URL = `${BASE_URL}/images/badgrtech-logo-og.webp`;
+const IMAGE_URL = `${BASE_URL}/images/badgrtech-logo-og.webp`;
 
 // ─── Base entities (shared across all pages) ────────────────────────────────
 
