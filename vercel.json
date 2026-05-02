@@ -1,7 +1,7 @@
 {
   "buildCommand": "npx vite build",
   "outputDirectory": "dist/public",
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/(.*)",
