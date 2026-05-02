@@ -103,6 +103,23 @@
     <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" /></noscript>
+
+    <!-- Inline critical CSS (above‑the‑fold) -->
+    <style>
+      /* Critical styles – replace with your actual critical CSS */
+      body {
+        margin: 0;
+        font-family: 'Goldman', 'Satoshi', system-ui, sans-serif;
+      }
+      #root {
+        display: block;
+      }
+      /* Add more critical rules here */
+    </style>
+
+    <!-- Defer non‑critical CSS -->
+    <link rel="preload" href="/assets/index-AG2Vx9hu.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/index-AG2Vx9hu.css" /></noscript>
   </head>
 
   <body>
