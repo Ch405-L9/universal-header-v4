@@ -76,7 +76,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="group flex min-w-0 items-center gap-2">
             <div className="relative h-6 w-6 shrink-0 overflow-hidden border border-primary/50 transition-colors group-hover:border-primary">
               <img
-                src="/images/badgrtech-logo.webp"
+                src="/images/badgrtech-logo-sm.webp"
                 alt="BADGRTechnologies LLC logo"
                 width="400"
                 height="400"
@@ -188,7 +188,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 border border-primary/50 p-1">
                   <img
-                    src="/images/badgrtech-logo.webp"
+                    src="/images/badgrtech-logo-sm.webp"
                     alt="BADGRTechnologies LLC logo"
                     className="h-full w-full object-contain"
                   />

@@ -239,7 +239,7 @@ export default function Home() {
             height="900"
             fetchPriority="high"
             alt="Atlanta skyline hero background"
-            className="h-full w-full object-cover opacity-90 saturate-[1.22] contrast-[1.12] brightness-[1.18]"
+            className="h-full w-full object-cover opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/52 to-background/18"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-background/18 via-transparent to-background/78"></div>
@@ -249,7 +249,7 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          <div className="animate-in slide-in-from-left-10 space-y-8 pl-4 duration-700 md:pl-12 lg:col-span-7">
+          <div className="animate-in slide-in-from-left-10 will-change-transform space-y-8 pl-4 duration-700 md:pl-12 lg:col-span-7">
             <Badge
               variant="outline"
               className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary backdrop-blur-sm"
@@ -311,7 +311,7 @@ export default function Home() {
 
           <div
             id="audit"
-            className="relative animate-in slide-in-from-right-10 duration-700 delay-200 lg:col-span-5"
+            className="relative animate-in slide-in-from-right-10 will-change-transform duration-700 delay-200 lg:col-span-5"
           >
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary to-cyan-500 blur opacity-30"></div>
             <Card className="relative border-primary/50 bg-card/80 shadow-2xl backdrop-blur-xl">
@@ -584,10 +584,12 @@ export default function Home() {
                 <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl"></div>
                 <img
                   src="/images/ai-dashboard.webp"
+                  srcSet="/images/ai-dashboard-sm.webp 560w, /images/ai-dashboard.webp 900w"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   alt="Preview of a sample optimization report"
                   width="900"
                   height="600"
-                  className="relative w-full rounded-xl border border-zinc-800 shadow-2xl brightness-[1.12]"
+                  className="relative w-full rounded-xl border border-zinc-800 shadow-2xl"
                 />
               </div>
             </div>
