@@ -75,7 +75,6 @@ export default defineConfig({
             "@radix-ui/react-separator",
             "@radix-ui/react-tabs",
           ],
-          "vendor-router": ["react-router", "react-router-dom"],
           "vendor-icons": ["lucide-react"],
           "vendor-motion": ["framer-motion"],
           "vendor-charts": ["recharts"],
