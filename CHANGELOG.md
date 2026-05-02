@@ -6,6 +6,14 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-02] — Fix non-composited hero animations
+
+### Fixed
+- `src/pages/Home.tsx`: Replaced `animate-in slide-in-from-left-10 will-change-transform` and `animate-in slide-in-from-right-10 will-change-transform` on hero section divs with GPU-composited equivalents (`fadeSlideLeft` / `fadeSlideRight` keyframes via `motion-safe:animate-[...]`). Lighthouse flagged `slide-in-from-*` (tw-animate-css) as non-composited — it animates a CSS custom property (`--tw-enter-translate-x`) that some browsers treat as a paint-affecting filter, causing CLS risk and jank.
+- `src/index.css`: Added `@keyframes fadeSlideLeft` and `@keyframes fadeSlideRight` — animate only `opacity` and `transform: translateX()`, both GPU-composited properties. No layout reflow. No CLS.
+
+---
+
 ## [2026-05-02] — Asset overhaul: local WebP/video, Cloudinary removed
 
 ### Added

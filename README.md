@@ -61,6 +61,7 @@ All production images are self-hosted WebP in `public/images/`. No Cloudinary de
 4. **Content graph** — 2 pillars, 7 cluster nodes, 12 FAQs, HowTo entity
 5. **Funnel engine** — Score → package recommendation → sticky CTA → triage form
 6. **Commerce** — Stripe checkout session, webhook handler, package tiers
+7. **Perf / CLS** — Hero animations use GPU-composited `opacity`+`translateX` keyframes; no layout-triggering properties
 
 ---
 

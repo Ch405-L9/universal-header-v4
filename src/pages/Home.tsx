@@ -249,7 +249,7 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          <div className="animate-in slide-in-from-left-10 will-change-transform space-y-8 pl-4 duration-700 md:pl-12 lg:col-span-7">
+          <div className="motion-safe:animate-[fadeSlideLeft_0.7s_ease_both] space-y-8 pl-4 md:pl-12 lg:col-span-7">
             <Badge
               variant="outline"
               className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary backdrop-blur-sm"
@@ -311,7 +311,7 @@ export default function Home() {
 
           <div
             id="audit"
-            className="relative animate-in slide-in-from-right-10 will-change-transform duration-700 delay-200 lg:col-span-5"
+            className="relative motion-safe:animate-[fadeSlideRight_0.7s_ease_0.2s_both] lg:col-span-5"
           >
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary to-cyan-500 blur opacity-30"></div>
             <Card className="relative border-primary/50 bg-card/80 shadow-2xl backdrop-blur-xl">
