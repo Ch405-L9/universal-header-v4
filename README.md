@@ -78,3 +78,4 @@ Vercel builds on push. Environment variables (`STRIPE_SECRET_KEY`, `VITE_STRIPE_
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md).
+# email test
