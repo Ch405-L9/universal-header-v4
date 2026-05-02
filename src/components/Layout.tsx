@@ -78,14 +78,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <img
                 src="/images/badgrtech-logo.webp"
                 alt="BADGRTechnologies LLC logo"
+                width="400"
+                height="400"
                 className="h-full w-full object-contain"
               />
             </div>
             <div className="min-w-0 leading-none">
               <span className="block truncate font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-white">
-                BADGR<span className="text-primary">TECH</span>
+                BADGR<span className="text-indigo-400">TECH</span>
               </span>
-              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-500 lg:block">
+              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-300 lg:block">
                 BADGRTechnologies LLC
               </span>
             </div>
@@ -193,9 +195,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="leading-none">
                   <span className="block font-mono text-lg font-bold">
-                    BADGR<span className="text-primary">TECH</span>
+                    BADGR<span className="text-indigo-400">TECH</span>
                   </span>
-                  <span className="block text-[10px] uppercase tracking-[0.16em] text-zinc-500">
+                  <span className="block text-[10px] uppercase tracking-[0.16em] text-zinc-300">
                     BADGRTechnologies LLC
                   </span>
                 </div>
@@ -273,14 +275,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Focus
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
                     href="#services"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Website Optimization
                   </a>
@@ -288,7 +290,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="#pricing"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     One-Time Packages
                   </a>
@@ -296,7 +298,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="#proof"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Sample Report
                   </a>
@@ -304,7 +306,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="/additional-services"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Follow-On Services
                   </a>
@@ -313,14 +315,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Navigation
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
                     href="#audit"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Free Lead Leak Preview
                   </a>
@@ -328,7 +330,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="#results"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     What We Fix
                   </a>
@@ -336,7 +338,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="#contact"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Contact
                   </a>
@@ -344,7 +346,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <Link
                     href="/sample-report"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Open Sample Report
                   </Link>
@@ -353,14 +355,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 More
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
                     href="/privacy"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Privacy Policy
                   </a>
@@ -368,7 +370,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="/terms"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Terms & Conditions
                   </a>

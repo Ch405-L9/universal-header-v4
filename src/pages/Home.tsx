@@ -235,6 +235,8 @@ export default function Home() {
             src="/images/hero-bg-1600.webp"
             srcSet="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg-1600.webp 1600w"
             sizes="100vw"
+            width="1600"
+            height="900"
             fetchPriority="high"
             alt="Atlanta skyline hero background"
             className="h-full w-full object-cover opacity-90 saturate-[1.22] contrast-[1.12] brightness-[1.18]"
@@ -379,11 +381,11 @@ export default function Home() {
                       </div>
 
                       <div className="rounded-lg border border-primary/40 bg-primary/5 p-4 space-y-1">
-                        <div className="text-[10px] uppercase tracking-widest text-primary">Recommended for your score</div>
+                        <div className="text-[10px] uppercase tracking-widest text-indigo-400">Recommended for your score</div>
                         <div className="font-mono text-lg font-bold text-white">{rec.packageName}</div>
-                        <div className="text-xs text-zinc-500">{rec.tier} · {rec.price}</div>
+                        <div className="text-xs text-zinc-300">{rec.tier} · {rec.price}</div>
                         <p className="text-sm text-zinc-300 leading-relaxed pt-1">{rec.reason}</p>
-                        <p className="text-xs text-primary pt-1">{rec.urgency}</p>
+                        <p className="text-xs text-indigo-400 pt-1">{rec.urgency}</p>
                       </div>
 
                       <div className="flex flex-col gap-2 pt-1">
@@ -398,7 +400,7 @@ export default function Home() {
                           type="button"
                           variant="ghost"
                           onClick={() => scrollToSection(rec.anchor)}
-                          className="h-9 w-full rounded-none text-xs uppercase tracking-widest text-zinc-500 hover:text-white"
+                          className="h-9 w-full rounded-none text-xs uppercase tracking-widest text-zinc-300 hover:text-white"
                         >
                           See Package Details
                         </Button>
@@ -423,7 +425,7 @@ export default function Home() {
               Clear scopes for businesses that need a faster, cleaner, more
               trustworthy website before they pile on more marketing.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-500">
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-300">
               The core offer is one-time optimization work first. Ongoing
               support comes later, only if it is useful after the site is in a
               stronger place.
@@ -441,7 +443,7 @@ export default function Home() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-primary/40 bg-primary/10 text-primary">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-300">
                         0{index + 1}
                       </span>
                     </div>
@@ -485,7 +487,7 @@ export default function Home() {
                     {card.title}
                   </CardTitle>
                   <div className="mt-4">
-                    <p className="mb-1 text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    <p className="mb-1 text-[10px] uppercase tracking-[0.18em] text-zinc-300">
                       Starting at
                     </p>
                     <span className="text-4xl font-bold">{card.price.replace("From ", "")}</span>
@@ -583,6 +585,8 @@ export default function Home() {
                 <img
                   src="/images/ai-dashboard.webp"
                   alt="Preview of a sample optimization report"
+                  width="900"
+                  height="600"
                   className="relative w-full rounded-xl border border-zinc-800 shadow-2xl brightness-[1.12]"
                 />
               </div>
@@ -597,7 +601,7 @@ export default function Home() {
               <h2 className="font-sans text-4xl font-bold uppercase leading-tight tracking-[0.05em] md:text-6xl">
                 SHOW THE WORK.
                 <br />
-                <span className="text-primary">DO NOT FAKE THE RESULTS.</span>
+                <span className="text-indigo-400">DO NOT FAKE THE RESULTS.</span>
               </h2>
               <p className="max-w-xl text-xl text-muted-foreground">
                 Instead of placeholder case studies, the funnel points to a
@@ -770,7 +774,7 @@ export default function Home() {
               </div>
 
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-5">
-                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-primary">
+                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-indigo-400">
                   Optional Follow-On Support
                 </h4>
                 <div className="mt-4 space-y-4 text-sm leading-7 text-zinc-300">
@@ -815,7 +819,7 @@ export default function Home() {
               </p>
 
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 text-sm leading-7 text-zinc-300">
-                <p className="font-bold uppercase tracking-[0.16em] text-primary">
+                <p className="font-bold uppercase tracking-[0.16em] text-indigo-400">
                   What To Send
                 </p>
                 <p className="mt-3">
