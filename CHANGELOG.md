@@ -6,6 +6,25 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-03] — Production Stripe checkout: full debug and verification
+
+### Fixed
+- `api/stripe/create-checkout-session.ts`: Updated Stripe `apiVersion` from `"2025-09-30.clover"` to `"2026-04-22.dahlia"`. The installed `stripe@22.1.0` SDK requires the newer API date — the mismatch caused a TypeScript build error (`TS2322`) that blocked the Vercel function from compiling.
+- `api/stripe/create-checkout-session.ts`: Added `.js` file extension to the `payment` import (`../../src/lib/payment.js`). The project uses `"type": "module"` in `package.json`, which puts Node.js in strict ESM mode. ESM resolution requires explicit file extensions at runtime. Vercel transpiles TypeScript function files but does not bundle them — the Node.js ESM resolver runs live and cannot resolve extensionless imports across directory boundaries.
+
+### Diagnosed (Vercel infrastructure)
+- Vercel project `.vercel/project.json` was pointing to project `webops` (preview-only, `webops-pi.vercel.app`), not `badgrtech-live` (production, `badgrtech.com`). Relinked locally via `vercel link --project badgrtech-live`. `.vercel/` is gitignored and does not affect the repo — Vercel's dashboard project settings control which GitHub repo and branch trigger production deploys.
+- Confirmed `badgrtech-live` production branch is `Web-Ops`. All pushes to `Web-Ops` auto-deploy to `badgrtech.com`.
+
+### Diagnosed (Stripe configuration)
+- Stripe secret key had an IP restriction set to `8.8.8.8` (Google DNS — not a real server address). Vercel Functions run from dynamic AWS/Vercel infrastructure IPs. The restriction caused Stripe to return `StripeAuthenticationError: The API key provided does not allow requests from your IP address` (HTTP 401) on every checkout attempt. Resolved by removing the IP restriction in the Stripe dashboard (Developers → API keys → edit secret key → remove IP restriction). No code change required.
+- Verified live checkout session creation returns HTTP 200 with a valid `cs_live_...` Stripe checkout URL. Payments are operational in live mode.
+
+### Why
+Three separate layers caused the checkout failure: a TypeScript type mismatch blocking the build, an ESM module resolution error at runtime, and a Stripe IP allowlist blocking all requests from serverless infrastructure. Each required independent diagnosis from Vercel function logs.
+
+---
+
 ## [2026-05-03] — Proof of Work page ("eat your own food")
 
 ### Added

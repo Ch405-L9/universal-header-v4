@@ -15,7 +15,7 @@ Production site for BADGRTechnologies LLC. Built with React + Vite + Tailwind. D
 | Frontend | React 19, TypeScript, Vite 7 |
 | Styling | Tailwind CSS 4, Radix UI |
 | Routing | Wouter 3 |
-| Commerce | Stripe (checkout + webhooks) |
+| Commerce | Stripe (checkout sessions) |
 | Deploy | Vercel (auto-deploy on push to `Web-Ops`) |
 
 ---
@@ -24,12 +24,13 @@ Production site for BADGRTechnologies LLC. Built with React + Vite + Tailwind. D
 
 All secrets set in Vercel project settings — never committed. Required vars:
 
-| Var | Where |
-|---|---|
-| `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables |
-| `STRIPE_WEBHOOK_SECRET` | Vercel → Settings → Environment Variables |
-| `VITE_STRIPE_PUBLISHABLE_KEY` | Vercel → Settings → Environment Variables |
-| `VITE_APP_URL` | `https://badgrtech.com` (Production) |
+| Var | Where | Notes |
+|---|---|---|
+| `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables | Must have no IP restrictions — Vercel Functions run from dynamic IPs |
+| `VITE_STRIPE_PUBLISHABLE_KEY` | Vercel → Settings → Environment Variables | `pk_live_...` for production |
+| `VITE_APP_URL` | Optional — defaults to `https://badgrtech.com` | Used for Stripe success/cancel redirect URLs |
+
+`STRIPE_WEBHOOK_SECRET` is optional. The webhook handler at `api/stripe/webhook.ts` returns 503 gracefully if the secret is absent — checkout and payment flow are unaffected without it.
 
 ---
 
