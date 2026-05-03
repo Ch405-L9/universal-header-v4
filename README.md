@@ -2,8 +2,8 @@
 
 Production site for BADGRTechnologies LLC. Built with React + Vite + Tailwind. Deployed via Vercel.
 
-**Branch:** `Web-Ops` (main working branch)  
-**Repo:** https://github.com/Ch405-L9/universal-header-v4  
+**Branch:** `Web-Ops` (production branch — auto-deploys to Vercel on push)
+**Repo:** https://github.com/Ch405-L9/universal-header-v4
 **Live:** https://badgrtech.com
 
 ---
@@ -13,7 +13,7 @@ Production site for BADGRTechnologies LLC. Built with React + Vite + Tailwind. D
 | Layer | Tech |
 |---|---|
 | Frontend | React 19, TypeScript, Vite 7 |
-| Styling | Tailwind CSS 3, Radix UI |
+| Styling | Tailwind CSS 4, Radix UI |
 | Routing | Wouter 3 |
 | Commerce | Stripe (checkout + webhooks) |
 | Deploy | Vercel (auto-deploy on push to `Web-Ops`) |
@@ -27,10 +27,9 @@ All secrets set in Vercel project settings — never committed. Required vars:
 | Var | Where |
 |---|---|
 | `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables |
+| `STRIPE_WEBHOOK_SECRET` | Vercel → Settings → Environment Variables |
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Vercel → Settings → Environment Variables |
 | `VITE_APP_URL` | `https://badgrtech.com` (Production) |
-
-Root-level `create-checkout-session.ts` and `webhook.ts` are reference examples only — not used by the app.
 
 ---
 
@@ -39,14 +38,19 @@ Root-level `create-checkout-session.ts` and `webhook.ts` are reference examples 
 ```
 src/
   components/    Layout, nav, footer, UI primitives
-  pages/         Home, SampleReportPage (lazy-loaded)
+  pages/         Home, CaseStudy (/proof), SampleReportPage — all lazy-loaded
   hooks/         useScrollDepth, usePageMeta
-  lib/           schema.ts, content-graph.ts, funnel.ts
+  lib/           schema.ts, content-graph.ts, funnel.ts, payment.ts
+api/
+  stripe/
+    create-checkout-session.ts   Vercel serverless — Stripe Checkout Session
+    webhook.ts                   Vercel serverless — Stripe webhook handler
 public/
   images/        All production WebP assets (self-hosted)
   videos/        badgrtech-intro.mp4 / .webm
   grid-pattern.svg
 sample-report-preview.html   Standalone audit report preview
+dev-api-server.ts            Local dev only — Express shim for /api routes (port 3002)
 ```
 
 ---
@@ -75,7 +79,20 @@ All production images are self-hosted WebP in `public/images/`. No Cloudinary de
 4. **Content graph** — 2 pillars, 7 cluster nodes, 12 FAQs, HowTo entity
 5. **Funnel engine** — Score → package recommendation → sticky CTA → triage form
 6. **Commerce** — Stripe checkout session, webhook handler, package tiers
-7. **Perf / CLS** — Hero animations use GPU-composited `opacity`+`translateX` keyframes; no layout-triggering properties
+7. **Perf / CLS** — Hero animations use GPU-composited `opacity`+`translateX` keyframes only
+
+---
+
+## Routes
+
+| Path | Component | Description |
+|---|---|---|
+| `/` | `Home` | Main landing page with audit tool |
+| `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
+| `/sample-report` | `SampleReportPage` | Interactive sample audit report |
+| `/payment-success` | `PaymentSuccess` | Post-checkout confirmation |
+| `/terms` | `TermsAndConditions` | Legal |
+| `/graph` | `GraphInspector` | JSON-LD schema inspector (dev tool) |
 
 ---
 
@@ -83,15 +100,27 @@ All production images are self-hosted WebP in `public/images/`. No Cloudinary de
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev          # Vite (port 3000) + Express API shim (port 3002) — concurrently
+pnpm dev:client   # Vite only
+pnpm dev:api      # Express API shim only (tsx dev-api-server.ts)
+pnpm vercel:dev   # Full Vercel dev environment (requires Vercel CLI)
 ```
 
-Vercel builds on push. Environment variables (`STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLISHABLE_KEY`, etc.) are set in Vercel project settings — never committed.
+Requires `.env.local` with `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `VITE_STRIPE_PUBLISHABLE_KEY`.
+
+---
+
+## Lighthouse scores (post-optimization)
+
+| Device | Performance | Accessibility | Best Practices | SEO |
+|---|---|---|---|---|
+| Mobile | 79 → targeting 90+ | 96 | 100 | 100 |
+| Desktop | 96 | 90 | 100 | 100 |
+
+Live current score visible at [badgrtech.com/proof](https://badgrtech.com/proof) — pulled from Google PageSpeed Insights on page load.
 
 ---
 
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md).
-# email test
-# email test

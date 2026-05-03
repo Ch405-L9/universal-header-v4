@@ -3,25 +3,26 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig, type Plugin } from "vite";
 
+/**
+ * Safely defers non-critical CSS without breaking Vite HTML parsing
+ */
 function deferNonCriticalCss(): Plugin {
   return {
     name: "defer-non-critical-css",
-    transformIndexHtml: {
-      order: "post",
-      handler(html) {
-        return html.replace(
-          /<link rel="stylesheet"([^>]*?)href="(\/assets\/[^"]+\.css)"([^>]*?)>/g,
-          (_, pre, href, post) =>
-            `<link rel="preload"${pre}href="${href}"${post} as="style" onload="this.onload=null;this.rel='stylesheet'">` +
-            `<noscript><link rel="stylesheet" href="${href}"></noscript>`,
-        );
-      },
+    transformIndexHtml(html: string) {
+      return html.replace(
+        /<link rel="stylesheet"([^>]*?)href="(\/assets\/[^"]+\.css)"([^>]*?)>/g,
+        (_, pre, href, post) =>
+          `<link rel="preload"${pre}href="${href}"${post} as="style" onload="this.onload=null;this.rel='stylesheet'">` +
+          `<noscript><link rel="stylesheet" href="${href}"></noscript>`
+      );
     },
   };
 }
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), deferNonCriticalCss()],
+
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),
@@ -33,11 +34,16 @@ export default defineConfig({
       ),
     },
   },
+
   envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname),
+
+  // IMPORTANT: removed explicit root override (caused Vite HTML misclassification)
+  // root: path.resolve(import.meta.dirname),
+
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+
     rollupOptions: {
       output: {
         manualChunks: {
@@ -84,19 +90,23 @@ export default defineConfig({
       },
     },
   },
+
   server: {
     port: 3000,
     strictPort: false,
     host: true,
     allowedHosts: ["localhost", "127.0.0.1"],
+
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
+
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: "http://localhost:3002",
         changeOrigin: true,
+        secure: false,
       },
     },
   },

@@ -1,3 +1,5 @@
+// DEV ONLY — not used in production. Production API is handled by Vercel Serverless Functions in /api/.
+// Run with: pnpm dev:server (alongside `vercel dev` or `pnpm dev`)
 import compression from "compression";
 import express from "express";
 import { createServer } from "http";
@@ -102,27 +104,11 @@ async function startServer() {
     next();
   });
 
-  // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
+  // NOTE: This server is DEV-ONLY. It does NOT serve the SPA or static files.
+  // Production frontend + /api routes are served by Vercel (serverless functions in /api/).
+  // For local dev, prefer `vercel dev` which serves both Vite and /api/ together.
 
-  app.use(
-    express.static(staticPath, {
-      maxAge: "1y",
-      immutable: true,
-      index: false,
-    })
-  );
-
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.setHeader("Cache-Control", "no-cache");
-    res.sendFile(path.join(staticPath, "index.html"));
-  });
-
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3001;
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);

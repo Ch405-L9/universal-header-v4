@@ -1,8 +1,62 @@
 # CHANGELOG
 
 All changes to this repo are logged here with timestamps.
-Branch: `webops` (main/default)
+Branch: `Web-Ops` (production branch)
 Repo: https://github.com/Ch405-L9/universal-header-v4
+
+---
+
+## [2026-05-03] — Proof of Work page ("eat your own food")
+
+### Added
+- `src/pages/CaseStudy.tsx`: Live before/after Lighthouse case study page at `/proof`. Pulls current Google PageSpeed Insights score on load via public API (no key required). Displays mobile performance score, LCP, FCP, CLS, TBT with red/green threshold coloring. Baseline hardcoded: 41/100, LCP 7.8s, FCP 3.4s, CLS 0.22, TBT 1,180ms (pre-optimization audit). Shows full optimization timeline with dated entries.
+- `src/App.tsx`: Added `CaseStudy` lazy route at `/proof`.
+- `src/components/Layout.tsx`: Added "Proof of Work" nav link pointing to `/proof`.
+
+### Why
+badgrtech.com is its own specimen. Every optimization we sell was applied here first. The /proof page surfaces live PSI data as a real-time credibility signal — no screenshots, no static numbers, no fake clients.
+
+---
+
+## [2026-05-03] — Phase 6: Dev scripts overhaul
+
+### Changed
+- `package.json`: Rewrote scripts block. `pnpm dev` now runs Vite + Express API concurrently via `concurrently` (`-n vite,api -c cyan,magenta`). Added `dev:client` (Vite only) and `dev:api` (tsx Express only) split scripts. Removed old `dev:server`, `dev:all`, `start` scripts (were Express-centric, not Vercel-compatible). Added `vercel:dev` script.
+- `devDependencies`: Added `concurrently@^9.2.1`, `@vercel/node@^3.0.0`.
+
+### Added
+- `dev-api-server.ts`: Thin Express shim that adapts `VercelRequest/VercelResponse` to standard `express.Request/Response`. Mounts both `/api/stripe/create-checkout-session` and `/api/stripe/webhook` on port 3002. Enables local dev without `vercel dev` overhead. Run via `pnpm dev:api`.
+
+---
+
+## [2026-05-03] — Stripe full wiring
+
+### Added
+- `api/stripe/webhook.ts`: Vercel serverless webhook handler. Verifies `stripe-signature` header via `stripe.webhooks.constructEvent`. Raw body buffered manually (bodyParser disabled). Handles `checkout.session.completed` — logs customer email and metadata. Returns 503 if env vars missing, 400 on signature failure, 200 on success.
+
+### Changed
+- `api/stripe/create-checkout-session.ts`: Stripe client initialized once at module load (not per-request). Missing `STRIPE_SECRET_KEY` logs a non-sensitive warning at cold start and returns 503. `serviceId` validation moved inside try/catch. `appUrl` scoped inside try block. URL query param extension fixed (`.js` → no extension). Response uses `res.status(200).json(...)` explicitly.
+- `server/index.ts`: Stripped production static-file serving and SPA fallback (Express was never the production server — Vercel handles that). Marked clearly as dev-only. Port changed to 3001 to avoid conflict with Vite on 3000.
+
+### Removed
+- Root-level `create-checkout-session.ts`, `webhook.ts`: Were reference/example files, not used by the app. Replaced by `api/stripe/` equivalents.
+
+---
+
+## [2026-05-03] — Home.tsx audit handler: async + URL normalization
+
+### Changed
+- `src/pages/Home.tsx`: `handleAudit` converted to `async`. Added URL normalization — prepends `https://` if protocol missing. Added `auditData` and `auditError` state. Prevents form submission with empty URL.
+
+---
+
+## [2026-05-03] — Repo hygiene / non-essentials cleanup
+
+### Moved to `non-essentials/`
+- `lighthouse_mobile.json`, `lighthouse_pc.json`, `mobile_lighthouse.pdf` — raw audit data, not app code
+- `Fix Errors and Update Readme According to Provided File - Manus.pdf` / `Manus2.pdf` — external doc
+- `README1.md` (empty), `pnpm-workspace.yaml.yml` (duplicate workspace file)
+- `(REVIEWME_Stripe_Example_Build)universal-header-v4-master/` — Stripe reference example dir
 
 ---
 

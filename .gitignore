@@ -151,3 +151,5 @@ public/videos/videos old/
 non-essentials/
 public/icons/
 .aider*
+.vercel
+.env*.local

@@ -163,6 +163,8 @@ export default function Home() {
   const [siteUrl, setSiteUrl] = useState("");
   const [auditLoading, setAuditLoading] = useState(false);
   const [auditScore, setAuditScore] = useState<number | null>(null);
+  const [auditData, setAuditData] = useState<{ lcp?: string; fcp?: string; cls?: string; tbt?: string } | null>(null);
+  const [auditError, setAuditError] = useState<string | null>(null);
   const [triageForm, setTriageForm] = useState({
     businessName: "",
     email: "",
@@ -208,14 +210,35 @@ export default function Home() {
     "home-graph",
   );
 
-  const handleAudit = (e: React.FormEvent) => {
+  const handleAudit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!siteUrl) return;
+    let url = siteUrl.trim();
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = "https://" + url;
+    }
     setAuditLoading(true);
-    setTimeout(() => {
+    setAuditError(null);
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance`,
+      );
+      if (!res.ok) throw new Error("psi");
+      const data = await res.json();
+      const lhr = data.lighthouseResult;
+      const score = Math.round((lhr?.categories?.performance?.score ?? 0) * 100);
+      setAuditScore(score);
+      setAuditData({
+        lcp: lhr?.audits?.["largest-contentful-paint"]?.displayValue,
+        fcp: lhr?.audits?.["first-contentful-paint"]?.displayValue,
+        cls: lhr?.audits?.["cumulative-layout-shift"]?.displayValue,
+        tbt: lhr?.audits?.["total-blocking-time"]?.displayValue,
+      });
+    } catch {
+      setAuditError("Couldn't analyze that URL. Check the address and try again.");
+    } finally {
       setAuditLoading(false);
-      setAuditScore(62);
-    }, 2000);
+    }
   };
 
   const scrollToSection = (id: string) => {
@@ -332,11 +355,14 @@ export default function Home() {
                       <Input
                         id="url"
                         placeholder="yourbusiness.com"
-                        className="h-12 border-primary/30 bg-background/50 font-mono focus:border-primary"
+                        className={cn("h-12 border-primary/30 bg-background/50 font-mono focus:border-primary", auditError && "border-red-500 focus:border-red-500")}
                         value={siteUrl}
-                        onChange={e => setSiteUrl(e.target.value)}
+                        onChange={e => { setSiteUrl(e.target.value); setAuditError(null); }}
                         required
                       />
+                      {auditError && (
+                        <p className="text-xs text-red-400">{auditError}</p>
+                      )}
                     </div>
                     <Button
                       type="submit"
@@ -355,18 +381,33 @@ export default function Home() {
                   </form>
                 ) : (() => {
                   const rec = recommendPackage(auditScore!);
+                  const scoreColor = auditScore! >= 90 ? "text-green-500" : auditScore! >= 50 ? "text-yellow-500" : "text-red-500";
                   return (
                     <div className="animate-in zoom-in-95 space-y-5 duration-300">
                       <div className="flex justify-center gap-8 text-center">
                         <div>
-                          <div className="mb-1 text-4xl font-bold text-red-500">{auditScore}</div>
+                          <div className={`mb-1 text-4xl font-bold ${scoreColor}`}>{auditScore}</div>
                           <div className="text-xs uppercase tracking-wider text-muted-foreground">Site Score</div>
                         </div>
                         <div>
-                          <div className="mb-1 text-4xl font-bold text-green-500">92</div>
+                          <div className="mb-1 text-4xl font-bold text-green-500">90+</div>
                           <div className="text-xs uppercase tracking-wider text-muted-foreground">Fix Potential</div>
                         </div>
                       </div>
+                      {auditData && (
+                        <div className="grid grid-cols-3 gap-2 text-center">
+                          {[
+                            { label: "LCP", val: auditData.lcp },
+                            { label: "FCP", val: auditData.fcp },
+                            { label: "CLS", val: auditData.cls },
+                          ].map(m => (
+                            <div key={m.label} className="rounded border border-zinc-700 bg-zinc-900 p-2">
+                              <div className="font-mono text-sm font-bold text-white">{m.val ?? "—"}</div>
+                              <div className="text-[10px] uppercase tracking-wider text-zinc-500">{m.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
                       <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4">
                         <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">

@@ -351,6 +351,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     Open Sample Report
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/proof"
+                    className="block py-2 transition-colors hover:text-foreground"
+                  >
+                    Proof of Work
+                  </Link>
+                </li>
               </ul>
             </div>
 
