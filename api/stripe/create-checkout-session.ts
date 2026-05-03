@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Stripe from "stripe";
-import { getService } from "../../src/lib/payment";
+import { getService } from "../../src/lib/payment.js";
 
 // Initialize Stripe once at module load. If the secret is missing, leave the
 // client null so the handler can return a clean 503 — never throw at module
