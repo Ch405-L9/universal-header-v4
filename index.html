@@ -43,7 +43,8 @@
       content="https://badgrtech.com/images/badgrtech-logo-og.webp"
     />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/goldman-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/goldman-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-400.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-700.woff2" crossorigin />
     <script type="application/ld+json" data-schema-id="base-graph">
@@ -106,11 +107,6 @@
       imagesizes="100vw"
       fetchpriority="high"
     />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" /></noscript>
-
-
     <!-- Inline critical CSS (above-the-fold) -->
     <style>
       *,::before,::after{box-sizing:border-box}
