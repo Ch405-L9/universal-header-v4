@@ -7,7 +7,7 @@ import { getService } from "../../src/lib/payment";
 // level (Vercel functions can't recover from module-level throws).
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe: Stripe | null = stripeSecretKey
-  ? new Stripe(stripeSecretKey, { apiVersion: "2025-09-30.clover" })
+  ? new Stripe(stripeSecretKey, { apiVersion: "2026-04-22.dahlia" })
   : null;
 
 if (!stripe) {
