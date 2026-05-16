@@ -275,7 +275,7 @@ export default function Home() {
           <div className="motion-safe:animate-[fadeSlideLeft_0.7s_ease_both] space-y-8 pl-4 md:pl-12 lg:col-span-7">
             <Badge
               variant="outline"
-              className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary backdrop-blur-sm"
+              className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-blue-300 backdrop-blur-sm"
             >
               Web Optimization For Lead-Driven Small Businesses
             </Badge>
@@ -285,7 +285,7 @@ export default function Home() {
               <br />
               Leads To A
               <br />
-              <span className="bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-sky-300 bg-clip-text text-transparent drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                 Slow, Confusing Site
               </span>
             </h1>
@@ -403,7 +403,7 @@ export default function Home() {
                           ].map(m => (
                             <div key={m.label} className="rounded border border-zinc-700 bg-zinc-900 p-2">
                               <div className="font-mono text-sm font-bold text-white">{m.val ?? "—"}</div>
-                              <div className="text-[10px] uppercase tracking-wider text-zinc-500">{m.label}</div>
+                              <div className="text-[10px] uppercase tracking-wider text-zinc-400">{m.label}</div>
                             </div>
                           ))}
                         </div>
