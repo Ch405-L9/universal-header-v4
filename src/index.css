@@ -110,6 +110,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-bright: var(--primary-bright);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -143,6 +144,10 @@
   /* Darker, Unique Cobalt Blue - oklch(0.4 0.22 260) */
   --primary: oklch(0.4 0.22 260);
   --primary-foreground: oklch(0.985 0 0);
+  /* Lighter cobalt used ONLY for text/icons/borders on near-black
+     backgrounds — WCAG AA (>=4.5:1) compliant. Keep --primary dark
+     so white text on bg-primary still passes. */
+  --primary-bright: oklch(0.72 0.16 260);
 
   --sidebar-primary: oklch(0.4 0.22 260);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -194,6 +199,7 @@
   /* Same as root since we are forcing dark mode aesthetic */
   --primary: oklch(0.4 0.22 260);
   --primary-foreground: oklch(0.985 0 0);
+  --primary-bright: oklch(0.72 0.16 260);
 
   --sidebar-primary: oklch(0.4 0.22 260);
   --sidebar-primary-foreground: oklch(0.985 0 0);

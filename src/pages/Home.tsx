@@ -518,8 +518,8 @@ export default function Home() {
                 <CardHeader>
                   <Badge
                     className={cn(
-                      "mb-4 w-fit border-zinc-700 bg-zinc-800 text-zinc-400",
-                      card.featured && "border-primary/50 bg-primary/20 text-primary"
+                      "mb-4 w-fit border-zinc-700 bg-zinc-800 text-zinc-300",
+                      card.featured && "border-primary-bright/60 bg-primary/20 text-primary-bright"
                     )}
                   >
                     {card.tier}
@@ -558,7 +558,7 @@ export default function Home() {
                     className={cn(
                       "w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest",
                       card.featured
-                        ? "border border-primary bg-black text-primary shadow-[0_0_20px_rgba(0,0,255,0.2)] hover:bg-primary/20 hover:text-white"
+                        ? "border border-primary-bright bg-black text-primary-bright shadow-[0_0_20px_rgba(0,0,255,0.2)] hover:bg-primary/20 hover:text-white"
                         : "hover:bg-zinc-800"
                     )}
                   >
@@ -585,7 +585,7 @@ export default function Home() {
           <div className="mx-auto max-w-4xl text-center">
             <Badge
               variant="outline"
-              className="mb-6 rounded-none border-primary/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary"
+              className="mb-6 rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
             >
               See It In Action
             </Badge>
@@ -624,12 +624,14 @@ export default function Home() {
               <div className="relative rounded-[1.15rem] border border-zinc-800 bg-zinc-950/50 p-3">
                 <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl"></div>
                 <img
-                  src="/images/ai-dashboard.webp"
+                  src="/images/ai-dashboard-sm.webp"
                   srcSet="/images/ai-dashboard-sm.webp 560w, /images/ai-dashboard.webp 900w"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                   alt="Preview of a sample optimization report"
                   width="900"
                   height="600"
+                  loading="lazy"
+                  decoding="async"
                   className="relative w-full rounded-xl border border-zinc-800 shadow-2xl"
                 />
               </div>
@@ -637,7 +639,7 @@ export default function Home() {
             <div className="order-1 space-y-8 lg:order-2">
               <Badge
                 variant="outline"
-                className="rounded-none border-primary/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary"
+                className="rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
               >
                 Proof Asset
               </Badge>
@@ -697,7 +699,7 @@ export default function Home() {
             <div className="mb-12 max-w-3xl">
               <Badge
                 variant="outline"
-                className="rounded-none border-primary/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary"
+                className="rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
               >
                 Practical Questions
               </Badge>
