@@ -6,6 +6,22 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-16] — Phase 1: Contrast + accessibility hardening
+
+### Accessibility
+- `src/index.css`: Darkened `--background` from `oklch(0.15)` → `oklch(0.12)` — deeper base, increases contrast headroom for all text layers
+- `src/index.css`: Brightened all foreground tokens from `oklch(0.92)` → `oklch(0.97)` — near-white body text across cards, popovers, sidebars
+- `src/index.css`: Raised `--muted-foreground` from `oklch(0.6)` → `oklch(0.72)` — fixes WCAG AA (≥4.5:1) for muted/description text on dark bg; previously borderline
+- `src/index.css`: Proportionally adjusted `--card`, `--secondary`, `--muted`, `--accent`, `--input` tokens to maintain visual depth ratios relative to darkened background
+- `src/pages/Home.tsx`: Badge label `text-primary` → `text-blue-300` — primary oklch(0.4 0.22 260) was dark navy on near-black (~1.2:1 contrast); blue-300 (#93c5fd) passes WCAG AA
+- `src/pages/Home.tsx`: h1 gradient span `from-primary via-blue-400 to-primary` → `from-blue-300 via-cyan-200 to-sky-300` — brighter gradient, no dark primary anchor; added `drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]` for legibility on image backgrounds
+- `src/pages/Home.tsx`: Audit card metric labels `text-zinc-500` → `text-zinc-400` — zinc-500 on dark bg was below threshold on small 10px text
+
+### No performance regression
+- All changes are CSS token and class-level only — zero JS bundle size impact, no layout reflow, no new compositing layers
+
+---
+
 ## [2026-05-16] — Dependency vulnerability triage and remediation
 
 ### Security
