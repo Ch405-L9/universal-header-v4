@@ -6,6 +6,25 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-16] — Dependency vulnerability triage and remediation
+
+### Security
+- `package.json`: Removed `streamdown` (unused — eliminated ~17 advisories: mermaid, dompurify×8, lodash-es×3, uuid, mdast-util-to-hast chain)
+- `package.json`: Removed `axios` (unused — eliminated follow-redirects advisory)
+- `package.json`: Updated `pnpm` to `10.33.4` (patched command injection CVE GHSA-2phv-j68v-wwqx, lockfile integrity bypass, lifecycle scripts bypass; patched threshold was >=10.27.0)
+- `package.json`: Added `pnpm.overrides` for `rollup@^4.60.4`, `lodash@^4.18.1`, `lodash-es@^4.18.1`
+- `.github/workflows/security.yml`: Pinned pnpm to `10.33.4` (matches packageManager field)
+- `pnpm-lock.yaml`: Regenerated — dead deps purged, overrides applied
+
+### Audit result: 77 vulnerabilities → 31
+Remaining 31 are all in one of two non-actionable categories:
+- `@vercel/node` transitive chain (`tar`, `undici`) — Vercel-managed, no override path; monitor for `@vercel/node` releases
+- Dev tooling false positives (`vite`, `picomatch`, `esbuild`) — dev server vulns, no production exposure
+
+### Verdict: No production-exploitable risks remain under current threat model
+
+---
+
 ## [2026-05-16] — Security hardening baseline
 
 ### Security
