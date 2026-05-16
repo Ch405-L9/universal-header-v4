@@ -29,7 +29,7 @@ export function CheckoutButton({
         className={cn(
           "rounded-none font-mono text-xs uppercase tracking-[0.18em]",
           variant === "default" && "bg-primary text-white hover:bg-primary/80",
-          variant === "outline" && "border-primary/50 text-primary hover:bg-primary/10",
+          variant === "outline" && "border-primary-bright/60 text-primary-bright hover:bg-primary/10 hover:text-white",
           className
         )}
       >
