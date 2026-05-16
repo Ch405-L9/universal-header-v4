@@ -6,6 +6,42 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-16] — Dependency vulnerability triage and remediation
+
+### Security
+- `package.json`: Removed `streamdown` (unused — eliminated ~17 advisories: mermaid, dompurify×8, lodash-es×3, uuid, mdast-util-to-hast chain)
+- `package.json`: Removed `axios` (unused — eliminated follow-redirects advisory)
+- `package.json`: Updated `pnpm` to `10.33.4` (patched command injection CVE GHSA-2phv-j68v-wwqx, lockfile integrity bypass, lifecycle scripts bypass; patched threshold was >=10.27.0)
+- `package.json`: Added `pnpm.overrides` for `rollup@^4.60.4`, `lodash@^4.18.1`, `lodash-es@^4.18.1`
+- `.github/workflows/security.yml`: Pinned pnpm to `10.33.4` (matches packageManager field)
+- `pnpm-lock.yaml`: Regenerated — dead deps purged, overrides applied
+
+### Audit result: 77 vulnerabilities → 31
+Remaining 31 are all in one of two non-actionable categories:
+- `@vercel/node` transitive chain (`tar`, `undici`) — Vercel-managed, no override path; monitor for `@vercel/node` releases
+- Dev tooling false positives (`vite`, `picomatch`, `esbuild`) — dev server vulns, no production exposure
+
+### Verdict: No production-exploitable risks remain under current threat model
+
+---
+
+## [2026-05-16] — Security hardening baseline
+
+### Security
+- `vercel.json`: Added `Strict-Transport-Security` header (`max-age=63072000; includeSubDomains; preload`) — enforces HTTPS at edge, enables HSTS preload list eligibility.
+- `vercel.json`: Added `Content-Security-Policy-Report-Only` header — observe-only CSP enforcing `default-src 'self'` with explicit allowlist for Stripe JS (`https://js.stripe.com`), Stripe API (`https://api.stripe.com`), self-hosted fonts, and CDN images. Report-Only mode means zero production breakage risk during observation window. After 1 week of zero console violations, promote to enforced `Content-Security-Policy`.
+- `.github/workflows/security.yml`: New CI security pipeline runs on every push and PR. Steps: `pnpm install --frozen-lockfile` (blocks installs if lockfile is out of sync), `pnpm audit --audit-level=high` (blocks merge on high/critical CVEs), `pnpm run build` (build gate). Triggers first CodeQL baseline scan on push.
+- `.github/dependabot.yml`: Automated weekly dependency updates for npm packages and GitHub Actions. Max 5 open PRs at a time. Auto-PRs run through the security pipeline before merge.
+
+### Architecture confirmed (no additional action required)
+- Stripe integration uses Hosted Checkout redirect — no custom server-side payment API. Rate limiting not required at this stage.
+- GitHub Advanced Security already active: branch protection, required PR reviews, push protection, secret scanning, Dependabot alerts, CodeQL (pending first scan run).
+
+### Next step
+Promote `Content-Security-Policy-Report-Only` → `Content-Security-Policy` in `vercel.json` after confirming zero violations in browser console on live site.
+
+---
+
 ## [2026-05-03] — Production Stripe checkout: full debug and verification
 
 ### Fixed
