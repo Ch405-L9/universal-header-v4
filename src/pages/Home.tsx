@@ -481,7 +481,7 @@ export default function Home() {
                 <ScrollReveal key={item.title} delay={index * 100} direction="up">
                   <div className="rounded-xl border border-zinc-800 bg-black/30 p-6">
                     <div className="mb-4 flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-primary/40 bg-primary/10 text-primary">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-primary/40 bg-primary/10 text-primary-bright">
                         <Icon className="h-5 w-5" />
                       </div>
                       <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-300">
@@ -544,7 +544,7 @@ export default function Home() {
                   <ul className="space-y-3 text-sm">
                     {card.features.map(feature => (
                       <li key={feature} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-primary" />
+                        <Check className="h-4 w-4 text-primary-bright" />
                         {feature}
                       </li>
                     ))}
@@ -656,20 +656,20 @@ export default function Home() {
 
               <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
                 <h3 className="mb-4 flex items-center gap-2 font-bold">
-                  <FileSearch className="text-primary" />
+                  <FileSearch className="text-primary-bright" />
                   What The Sample Report Shows
                 </h3>
                 <div className="space-y-4 text-sm leading-7 text-zinc-300">
                   <div className="flex gap-3">
-                    <ListChecks className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                    <ListChecks className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
                     <p>Which pages lose attention, trust, or action first.</p>
                   </div>
                   <div className="flex gap-3">
-                    <Smartphone className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                    <Smartphone className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
                     <p>How mobile friction affects calls and form completion.</p>
                   </div>
                   <div className="flex gap-3">
-                    <TriangleAlert className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                    <TriangleAlert className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
                     <p>Which issues should be fixed immediately versus later.</p>
                   </div>
                 </div>
@@ -741,7 +741,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="rounded-sm bg-primary/10 p-3">
-                    <Gauge className="h-6 w-6 text-primary" />
+                    <Gauge className="h-6 w-6 text-primary-bright" />
                   </div>
                   <div>
                     <h3 className="mb-1 text-xl font-bold">
@@ -755,7 +755,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="rounded-sm bg-primary/10 p-3">
-                    <Shield className="h-6 w-6 text-primary" />
+                    <Shield className="h-6 w-6 text-primary-bright" />
                   </div>
                   <div>
                     <h3 className="mb-1 text-xl font-bold">
@@ -776,12 +776,12 @@ export default function Home() {
                 className="group h-auto p-0 text-lg font-bold text-white"
               >
                 BOOK A 15-MINUTE TRIAGE CALL
-                <ArrowRight className="ml-2 h-5 w-5 text-primary brightness-[1.4] transition-transform group-hover:translate-x-1 group-hover:text-white" />
+                <ArrowRight className="ml-2 h-5 w-5 text-primary-bright transition-transform group-hover:translate-x-1 group-hover:text-white" />
               </Button>
             </div>
             <div className="space-y-4">
               <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 shadow-2xl">
-                <div className="mb-6 flex items-center gap-3 text-primary">
+                <div className="mb-6 flex items-center gap-3 text-primary-bright">
                   <Clock className="h-5 w-5" />
                   <span className="text-xs uppercase tracking-[0.18em] text-zinc-400">
                     Scan → Fix → Proof

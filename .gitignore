@@ -132,6 +132,18 @@ SHN-minimal.json
 INFO\ \&\ Reference\ ONLY/
 Erin_Full_partition-1-18/
 
+# Hero source/working files — large PNG intermediates, not deployed
+public/images/hero-bg-*-clean.png
+public/images/hero-bg-*-grade.png
+public/images/hero-bg-*-tmp.png
+public/images/hero-bg-*.jpg
+# AVIF experimental — WebP variants are smaller and in use
+public/images/hero-bg-*.avif
+
+# Lighthouse output files
+lighthouse-*.json
+lighthouse-*.html
+
 # Non-app files — research, scripts, media
 *.txt
 *.py

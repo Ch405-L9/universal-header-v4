@@ -98,7 +98,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary"
+                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
               >
                 {item.name}
               </button>
@@ -106,7 +106,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button
               variant="outline"
               size="sm"
-              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary hover:bg-primary/10 hover:text-primary"
+              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               onClick={() => scrollToSection("#audit")}
             >
               Book Triage
@@ -134,7 +134,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary"
+                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
               >
                 {item.name}
               </button>
@@ -164,7 +164,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a
               href="#audit"
               onClick={e => { e.preventDefault(); document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary/10 sm:flex-none"
+              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
             >
               Free Preview
             </a>
@@ -389,7 +389,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="mt-10 grid grid-cols-1 gap-3 border-t border-primary/10 pt-8 text-sm text-muted-foreground md:grid-cols-3">
             <div className="flex items-start gap-3">
-              <MapPin size={16} className="mt-1 text-primary" />
+              <MapPin size={16} className="mt-1 text-primary-bright" />
               <span>
                 8735 Dunwoody Place, Suite N
                 <br />
@@ -397,13 +397,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <Phone size={16} className="text-primary" />
+              <Phone size={16} className="text-primary-bright" />
               <a href="tel:+14702236127" className="hover:text-foreground">
                 (470) 223-6127
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <Mail size={16} className="text-primary" />
+              <Mail size={16} className="text-primary-bright" />
               <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">
                 hello@badgrtech.com
               </a>
