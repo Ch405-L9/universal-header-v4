@@ -6,6 +6,13 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-16] — Fix CI startup_failure in Security Pipeline
+
+### CI
+- `.github/workflows/security.yml`: Replaced manual corepack steps with `pnpm/action-setup@v4` as the first step. Root cause: `actions/setup-node@v4` with `cache: "pnpm"` ran before pnpm was installed — GitHub runner has no pnpm by default, so the cache setup failed to find the pnpm store path → `startup_failure` on every run. `pnpm/action-setup@v4` installs pnpm first; `setup-node` then finds it and configures cache correctly.
+
+---
+
 ## [2026-05-16] — Phase 1: Contrast + accessibility hardening
 
 ### Accessibility
