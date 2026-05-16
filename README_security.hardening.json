@@ -1,0 +1,146 @@
+
+{
+"project": "universal-header-v4",
+"stack": {
+"frontend": "React + TypeScript + Vite",
+"hosting": "Vercel",
+"dns": "Namecheap → Vercel",
+"repo": "GitHub public"
+},
+
+"security_layers": [
+{
+"layer": "security_headers",
+"priority": "critical",
+"implementation": "vercel.json",
+"controls": [
+"HSTS",
+"CSP",
+"X-Frame-Options",
+"Permissions-Policy",
+"Referrer-Policy",
+"X-Content-Type-Options"
+],
+"notes": "Must be applied at edge level via Vercel headers config"
+},
+
+```
+{
+  "layer": "content_security_policy",
+  "priority": "critical",
+  "mode": ["report-only", "enforced"],
+  "rules": {
+    "default-src": "'self'",
+    "script-src": "'self'",
+    "style-src": "'self' 'unsafe-inline' (dev only)",
+    "img-src": "'self' data: https:",
+    "object-src": "'none'",
+    "base-uri": "'self'",
+    "frame-ancestors": "'none'"
+  },
+  "migration_path": [
+    "Start CSP-Report-Only",
+    "Fix violations",
+    "Remove unsafe-inline",
+    "Introduce nonces/hashes"
+  ]
+},
+
+{
+  "layer": "supply_chain_security",
+  "priority": "critical",
+  "controls": [
+    "npm audit CI enforcement",
+    "dependency lock enforcement",
+    "Socket.dev scanning",
+    "Dependabot or Renovate",
+    "Snyk optional enterprise scan"
+  ],
+  "risk": "malicious npm packages, compromised transitive dependencies"
+},
+
+{
+  "layer": "environment_variables",
+  "priority": "critical",
+  "rules": [
+    "VITE_* is public",
+    "no secrets in frontend env",
+    "all secrets stored in Vercel dashboard only"
+  ]
+},
+
+{
+  "layer": "rate_limiting",
+  "priority": "high",
+  "tools": [
+    "Arcjet",
+    "Upstash Redis",
+    "Vercel Firewall"
+  ],
+  "targets": [
+    "API routes",
+    "auth endpoints",
+    "forms"
+  ]
+},
+
+{
+  "layer": "runtime_monitoring",
+  "priority": "high",
+  "tools": [
+    "Sentry",
+    "LogRocket"
+  ],
+  "coverage": [
+    "frontend errors",
+    "CSP violations",
+    "API failures"
+  ]
+},
+
+{
+  "layer": "ci_cd_security",
+  "priority": "high",
+  "controls": [
+    "GitHub branch protection",
+    "secret scanning",
+    "dependabot enabled",
+    "PR review enforcement"
+  ]
+},
+
+{
+  "layer": "advanced_security",
+  "priority": "medium",
+  "features": [
+    "Trusted Types",
+    "Subresource Integrity (SRI)",
+    "Cross-Origin Isolation",
+    "CSP nonces"
+  ]
+}
+```
+
+],
+
+"deployment_checklist": [
+"headers configured in vercel.json",
+"CSP in report-only mode tested",
+"dependency scan passed",
+"no secrets in VITE_* variables",
+"rate limiting active",
+"monitoring enabled",
+"CI/CD protections enabled"
+],
+
+"threat_model_2026": {
+"primary_risks": [
+"npm supply chain compromise",
+"XSS via unsafe DOM rendering",
+"misconfigured CSP",
+"frontend secret leakage",
+"API abuse without rate limiting"
+]
+}
+}
+

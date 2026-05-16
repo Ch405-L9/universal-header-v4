@@ -6,6 +6,23 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-16] — Security hardening baseline
+
+### Security
+- `vercel.json`: Added `Strict-Transport-Security` header (`max-age=63072000; includeSubDomains; preload`) — enforces HTTPS at edge, enables HSTS preload list eligibility.
+- `vercel.json`: Added `Content-Security-Policy-Report-Only` header — observe-only CSP enforcing `default-src 'self'` with explicit allowlist for Stripe JS (`https://js.stripe.com`), Stripe API (`https://api.stripe.com`), self-hosted fonts, and CDN images. Report-Only mode means zero production breakage risk during observation window. After 1 week of zero console violations, promote to enforced `Content-Security-Policy`.
+- `.github/workflows/security.yml`: New CI security pipeline runs on every push and PR. Steps: `pnpm install --frozen-lockfile` (blocks installs if lockfile is out of sync), `pnpm audit --audit-level=high` (blocks merge on high/critical CVEs), `pnpm run build` (build gate). Triggers first CodeQL baseline scan on push.
+- `.github/dependabot.yml`: Automated weekly dependency updates for npm packages and GitHub Actions. Max 5 open PRs at a time. Auto-PRs run through the security pipeline before merge.
+
+### Architecture confirmed (no additional action required)
+- Stripe integration uses Hosted Checkout redirect — no custom server-side payment API. Rate limiting not required at this stage.
+- GitHub Advanced Security already active: branch protection, required PR reviews, push protection, secret scanning, Dependabot alerts, CodeQL (pending first scan run).
+
+### Next step
+Promote `Content-Security-Policy-Report-Only` → `Content-Security-Policy` in `vercel.json` after confirming zero violations in browser console on live site.
+
+---
+
 ## [2026-05-03] — Production Stripe checkout: full debug and verification
 
 ### Fixed
