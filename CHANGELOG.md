@@ -6,6 +6,25 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-21] — Free Lighthouse scan page phase 1
+
+### Added
+- `src/pages/FreeLighthouseScan.tsx`: New `/free-lighthouse-scan` lead-generation page with BADGRTech styling, proof score grid, accessible three-field form, honeypot field, page meta, and JSON-LD.
+- `api/lighthouse-scan-request.ts`: Vercel serverless endpoint with POST-only handling, Zod validation, HTTPS URL enforcement, consent acknowledgement, honeypot handling, lightweight IP rate limiting, Resend email delivery, and SMTP fallback.
+- `public/images/lighthouse-hero-bg.{avif,webp}` and `public/images/lighthouse-scan-{desktop-100,mobile-91}.{avif,webp}`: Optimized subpage assets sized for Lighthouse/Core Web Vitals.
+- `.env.example`: Resend and local Proton Bridge SMTP template for scan-request email notifications.
+
+### Changed
+- `src/App.tsx`: Added lazy Wouter route for `/free-lighthouse-scan`.
+- `api/lighthouse-scan-request.ts`: Sends scan request details by Resend when `RESEND_API_KEY` is configured; falls back to SMTP when `SMTP_HOST` is configured.
+- `dev-api-server.ts`: Replaced the local Express shim with a native Node HTTP shim and added `.env.local` loading for local SMTP testing.
+- `public/sitemap.xml`: Added `/free-lighthouse-scan`.
+- `src/pages/FreeLighthouseScan.tsx`: Serves AVIF/WebP proof screenshots, reserves image dimensions to avoid CLS, delays the decorative hero image so hero text remains the likely LCP candidate, and adds no-PHI/limited-scope consent language.
+- `src/pages/PrivacyPolicy.tsx`, `src/pages/TermsAndConditions.tsx`: Added free-audit privacy, data-use, no-PHI, limited-scope, and no-compliance-guarantee language.
+- `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/lib/schema.ts`, `index.html`: Updated image references from removed WebP assets to available AVIF assets.
+
+---
+
 ## [2026-05-16] — Phase 3: Automation suite + security report + contrast pass 2
 
 ### Automation (Phase 5)

@@ -16,6 +16,7 @@ const FutureRoutePage = lazy(() => import("@/pages/FutureRoutePage"));
 const AdditionalServicesPage = lazy(() => import("@/pages/AdditionalServicesPage"));
 const SampleReportPage = lazy(() => import("@/pages/SampleReportPage"));
 const CaseStudy = lazy(() => import("@/pages/CaseStudy"));
+const FreeLighthouseScan = lazy(() => import("@/pages/FreeLighthouseScan"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const GraphInspector = lazy(() => import("@/pages/GraphInspector"));
 const PaymentSuccess = lazy(() => import("@/pages/PaymentSuccess"));
@@ -30,6 +31,7 @@ function Router() {
         <Route path={"/terms"} component={TermsAndConditions} />
         <Route path={"/sample-report"} component={SampleReportPage} />
         <Route path={"/proof"} component={CaseStudy} />
+        <Route path={"/free-lighthouse-scan"} component={FreeLighthouseScan} />
         <Route path={"/partners"}>
           {() => <FutureRoutePage title="Partners" routePath="/partners" />}
         </Route>

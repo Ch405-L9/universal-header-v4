@@ -59,7 +59,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      return;
     }
+    window.location.href = `/${id}`;
   };
 
   return (
@@ -76,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="group flex min-w-0 items-center gap-2">
             <div className="relative h-6 w-6 shrink-0 overflow-hidden border border-primary/50 transition-colors group-hover:border-primary">
               <img
-                src="/images/badgrtech-logo-sm.webp"
+                src="/images/badgrtech-logo-sm.avif"
                 alt="BADGRTechnologies LLC logo"
                 width="400"
                 height="400"
@@ -163,14 +165,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex w-full items-center gap-3 sm:w-auto">
             <a
               href="#audit"
-              onClick={e => { e.preventDefault(); document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={e => { e.preventDefault(); scrollToSection("#audit"); }}
               className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
             >
               Free Preview
             </a>
             <a
               href="#contact"
-              onClick={e => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={e => { e.preventDefault(); scrollToSection("#contact"); }}
               className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
             >
               Book Triage
@@ -188,7 +190,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 border border-primary/50 p-1">
                   <img
-                    src="/images/badgrtech-logo-sm.webp"
+                    src="/images/badgrtech-logo-sm.avif"
                     alt="BADGRTechnologies LLC logo"
                     className="h-full w-full object-contain"
                   />

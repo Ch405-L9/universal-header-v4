@@ -255,8 +255,8 @@ export default function Home() {
       <section className="relative flex min-h-screen items-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero-bg-1600.webp"
-            srcSet="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg-1600.webp 1600w"
+            src="/images/hero-bg-1600.avif"
+            srcSet="/images/hero-bg-640.avif 640w, /images/hero-bg-1024.avif 1024w, /images/hero-bg-1600.avif 1600w"
             sizes="100vw"
             width="1600"
             height="900"
@@ -602,7 +602,7 @@ export default function Home() {
                 className="relative w-full rounded-xl"
                 controls
                 preload="none"
-                poster="/images/video-poster.webp"
+                poster="/images/video-poster-386.avif"
               >
                 <source src="/videos/badgrtech-intro.webm" type="video/webm" />
                 <source src="/videos/badgrtech-intro.mp4" type="video/mp4" />
@@ -624,8 +624,8 @@ export default function Home() {
               <div className="relative rounded-[1.15rem] border border-zinc-800 bg-zinc-950/50 p-3">
                 <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl"></div>
                 <img
-                  src="/images/ai-dashboard-sm.webp"
-                  srcSet="/images/ai-dashboard-sm.webp 560w, /images/ai-dashboard.webp 900w"
+                  src="/images/ai-dashboard-sm.avif"
+                  srcSet="/images/ai-dashboard-sm.avif 560w, /images/ai-dashboard.avif 900w"
                   sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                   alt="Preview of a sample optimization report"
                   width="900"
