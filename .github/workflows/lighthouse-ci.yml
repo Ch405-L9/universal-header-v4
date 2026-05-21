@@ -1,0 +1,81 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [Web-Ops]
+  push:
+    branches: [Web-Ops]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        id: lhci
+        with:
+          urls: |
+            https://badgrtech.com
+            https://badgrtech.com/pricing
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: .lighthouserc.json
+
+      - name: Comment PR with scores
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = ${{ steps.lhci.outputs.manifest }};
+            if (!results) return;
+
+            const rows = results.map(r => {
+              const s = r.summary;
+              const perf = Math.round(s.performance * 100);
+              const a11y = Math.round(s.accessibility * 100);
+              const bp = Math.round(s['best-practices'] * 100);
+              const seo = Math.round(s.seo * 100);
+              const perfIcon = perf >= 90 ? '✅' : perf >= 50 ? '⚠️' : '❌';
+              const seoIcon  = seo  >= 90 ? '✅' : seo  >= 50 ? '⚠️' : '❌';
+              const a11yIcon = a11y >= 90 ? '✅' : a11y >= 50 ? '⚠️' : '❌';
+              const bpIcon   = bp   >= 90 ? '✅' : bp   >= 50 ? '⚠️' : '❌';
+              return `| ${r.url} | ${perfIcon} ${perf} | ${a11yIcon} ${a11y} | ${bpIcon} ${bp} | ${seoIcon} ${seo} |`;
+            }).join('\n');
+
+            const body = [
+              '## Lighthouse Results',
+              '',
+              '| URL | Performance | Accessibility | Best Practices | SEO |',
+              '|-----|:-----------:|:-------------:|:--------------:|:---:|',
+              rows,
+              '',
+              '> Thresholds: Performance ≥ 90, Accessibility ≥ 96, Best Practices ≥ 92, SEO ≥ 90',
+            ].join('\n');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body,
+            });

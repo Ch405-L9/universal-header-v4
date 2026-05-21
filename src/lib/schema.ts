@@ -1,8 +1,8 @@
 const BASE_URL = "https://badgrtech.com";
 const ORG_ID = `${BASE_URL}/#org`;
 const WEBSITE_ID = `${BASE_URL}/#website`;
-const LOGO_URL = `${BASE_URL}/images/badgrtech-logo-og.webp`;
-const IMAGE_URL = `${BASE_URL}/images/badgrtech-logo-og.webp`;
+const LOGO_URL = `${BASE_URL}/images/badgrtech-logo.avif`;
+const IMAGE_URL = `${BASE_URL}/images/badgrtech-logo.avif`;
 
 // ─── Base entities (shared across all pages) ────────────────────────────────
 

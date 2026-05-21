@@ -59,7 +59,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      return;
     }
+    window.location.href = `/${id}`;
   };
 
   return (
@@ -76,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="group flex min-w-0 items-center gap-2">
             <div className="relative h-6 w-6 shrink-0 overflow-hidden border border-primary/50 transition-colors group-hover:border-primary">
               <img
-                src="/images/badgrtech-logo-sm.webp"
+                src="/images/badgrtech-logo-sm.avif"
                 alt="BADGRTechnologies LLC logo"
                 width="400"
                 height="400"
@@ -98,7 +100,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary"
+                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
               >
                 {item.name}
               </button>
@@ -106,7 +108,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button
               variant="outline"
               size="sm"
-              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary hover:bg-primary/10 hover:text-primary"
+              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               onClick={() => scrollToSection("#audit")}
             >
               Book Triage
@@ -134,7 +136,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary"
+                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
               >
                 {item.name}
               </button>
@@ -163,14 +165,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex w-full items-center gap-3 sm:w-auto">
             <a
               href="#audit"
-              onClick={e => { e.preventDefault(); document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary/10 sm:flex-none"
+              onClick={e => { e.preventDefault(); scrollToSection("#audit"); }}
+              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
             >
               Free Preview
             </a>
             <a
               href="#contact"
-              onClick={e => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={e => { e.preventDefault(); scrollToSection("#contact"); }}
               className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
             >
               Book Triage
@@ -188,7 +190,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 border border-primary/50 p-1">
                   <img
-                    src="/images/badgrtech-logo-sm.webp"
+                    src="/images/badgrtech-logo-sm.avif"
                     alt="BADGRTechnologies LLC logo"
                     className="h-full w-full object-contain"
                   />
@@ -389,7 +391,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="mt-10 grid grid-cols-1 gap-3 border-t border-primary/10 pt-8 text-sm text-muted-foreground md:grid-cols-3">
             <div className="flex items-start gap-3">
-              <MapPin size={16} className="mt-1 text-primary" />
+              <MapPin size={16} className="mt-1 text-primary-bright" />
               <span>
                 8735 Dunwoody Place, Suite N
                 <br />
@@ -397,13 +399,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <Phone size={16} className="text-primary" />
+              <Phone size={16} className="text-primary-bright" />
               <a href="tel:+14702236127" className="hover:text-foreground">
                 (470) 223-6127
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <Mail size={16} className="text-primary" />
+              <Mail size={16} className="text-primary-bright" />
               <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">
                 hello@badgrtech.com
               </a>
