@@ -60,7 +60,7 @@ export const webOptimizationCluster: ContentCluster = {
     {
       id: "which-package",
       title: "Which Web Optimization Package Is Right for You",
-      bluf: "Diagnostic Scan for owners who need clarity first. 14-Day Lead Leak Fix for owners ready to act. Rebuild Lite for sites too broken to patch.",
+      bluf: "Cash-Medical Diagnostic Scan for owners who need clarity first. 14-Day Cash-Medical Lead Leak Fix for owners ready to act. Conversion Rebuild Lite for sites too broken to patch.",
       anchor: "#pricing",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -124,7 +124,7 @@ export const optimizationHowTo = {
       url: "https://badgrtech.com/free-lighthouse-scan#scan-form",
     },
     {
-      name: "Receive Your Diagnostic Scan",
+      name: "Receive Your Cash-Medical Diagnostic Scan",
       text: "We scan your site for the friction points most likely to block calls and conversions: load speed, mobile flow, CTA clarity, trust signals, and form health.",
       url: "https://badgrtech.com/#proof",
     },
@@ -135,7 +135,7 @@ export const optimizationHowTo = {
     },
     {
       name: "Implement Fixes Within the Agreed Scope",
-      text: "For the 14-Day Lead Leak Fix and Rebuild Lite packages, we implement the prioritized fixes within the agreed timeline — not an open-ended retainer.",
+      text: "For the 14-Day Cash-Medical Lead Leak Fix and Conversion Rebuild Lite packages, we implement the prioritized fixes within the agreed timeline — not an open-ended retainer.",
       url: "https://badgrtech.com/#pricing",
     },
   ],

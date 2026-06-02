@@ -240,6 +240,16 @@ export default function FreeLighthouseScan() {
     return () => window.clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    const requestedUrl = new URLSearchParams(window.location.search).get("url");
+    if (!requestedUrl) return;
+
+    setFormData(current => ({
+      ...current,
+      websiteUrl: requestedUrl,
+    }));
+  }, []);
+
   const updateField = (field: keyof FormData, value: string | boolean) => {
     const nextFormData = { ...formData, [field]: value };
     setFormData(nextFormData);

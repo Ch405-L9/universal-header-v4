@@ -29,6 +29,7 @@ All secrets set in Vercel project settings — never committed. Required vars:
 | `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables | Must be a secret key beginning with `sk_`; do not use a publishable `pk_` key. Must have no IP restrictions because Vercel Functions run from dynamic IPs |
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Vercel → Settings → Environment Variables | `pk_live_...` for production |
 | `VITE_APP_URL` | Optional — defaults to `https://badgrtech.com` | Used for Stripe success/cancel redirect URLs |
+| `PAGESPEED_API_KEY` | Optional — Vercel → Settings → Environment Variables | Recommended for reliable hero PageSpeed preview scoring; without it Google public quota can return 429 |
 
 `STRIPE_WEBHOOK_SECRET` is optional. The webhook handler at `api/stripe/webhook.ts` returns 503 gracefully if the secret is absent — checkout and payment flow are unaffected without it.
 
@@ -64,6 +65,7 @@ src/
   hooks/         useScrollDepth, usePageMeta
   lib/           schema.ts, content-graph.ts, funnel.ts, payment.ts
 api/
+  pagespeed-preview.ts            Vercel serverless — Google PageSpeed preview proxy
   lighthouse-scan-request.ts      Vercel serverless — Resend/SMTP lead notification endpoint
   stripe/
     create-checkout-session.ts   Vercel serverless — Stripe Checkout Session
@@ -91,6 +93,7 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 | `lighthouse-hero-bg.avif` | Decorative `/free-lighthouse-scan` hero image |
 | `lighthouse-scan-desktop-100.avif` / `lighthouse-scan-mobile-91.avif` | Optimized Lighthouse proof screenshots |
 | `badgrtech-intro.mp4 / .webm` | Intro video (self-hosted) |
+| `reports/cash-medical-lead-leak-sample.pdf` | Downloadable anonymized cash-medical sample report |
 
 ---
 
@@ -113,7 +116,7 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 | `/` | `Home` | Main landing page with audit tool |
 | `/free-lighthouse-scan` | `FreeLighthouseScan` | Free Lighthouse audit lead-generation page |
 | `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
-| `/sample-report` | `SampleReportPage` | Interactive sample audit report |
+| `/sample-report` | `SampleReportPage` | Cash-medical sample audit report with plain-English email draft |
 | `/success` | `PaymentSuccess` | Post-checkout confirmation |
 | `/cancel` | `PaymentCancel` | Canceled checkout return page |
 | `/terms` | `TermsAndConditions` | Legal |

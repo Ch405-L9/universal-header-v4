@@ -83,10 +83,10 @@ export const webOptimizationService = {
     itemListElement: [
       {
         "@type": "Offer",
-        name: "Diagnostic Scan",
+        name: "Cash-Medical Diagnostic Scan",
         description:
-          "A focused review for owners who need a clear outside view before committing to implementation work. Report delivered by end of week.",
-        price: "1500",
+          "A focused review for cash-pay medical owners who need a clear outside view before committing to implementation work. Report delivered by end of week.",
+        price: "750",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
         url: `${BASE_URL}/#services`,
@@ -94,10 +94,10 @@ export const webOptimizationService = {
       },
       {
         "@type": "Offer",
-        name: "14-Day Lead Leak Fix",
+        name: "14-Day Cash-Medical Lead Leak Fix",
         description:
           "Scan, fix, and prove the highest-impact issues killing calls, forms, and trust. Report by end of week — full fix window completes within 14 days.",
-        price: "3000",
+        price: "2500",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
         url: `${BASE_URL}/#services`,
@@ -105,10 +105,10 @@ export const webOptimizationService = {
       },
       {
         "@type": "Offer",
-        name: "Rebuild Lite",
+        name: "Conversion Rebuild Lite",
         description:
-          "A conversion-first refresh for businesses whose current site needs more than patchwork fixes but not a full custom rebuild.",
-        price: "4500",
+          "A conversion-first refresh for cash-medical businesses whose current site needs more than patchwork fixes but not a large agency rebuild.",
+        price: "6500",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
         url: `${BASE_URL}/#services`,

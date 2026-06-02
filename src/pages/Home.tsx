@@ -69,17 +69,17 @@ const serviceHighlights = [
 const projectPackages = [
   {
     serviceId: "diagnostic-scan" as ServiceId,
-    tier: "Quick Start",
-    title: "DIAGNOSTIC SCAN",
-    price: "From $1,500",
+    tier: "Entry Scan",
+    title: "CASH-MEDICAL DIAGNOSTIC SCAN",
+    price: "From $750",
     suffix: "/one-time",
     description:
-      "A focused review for owners who need a clear outside view before committing to implementation work. Report delivered by end of week.",
+      "A focused review for med-spas, dental, chiropractic, PT, and other cash-pay practices that need clear priorities before spending more on ads or a rebuild.",
     features: [
-      "Website performance and UX review",
-      "Lead path and CTA friction notes",
-      "Trust and policy gap check",
-      "Plain-English walkthrough with next steps",
+      "Mobile speed and lead-path review",
+      "CTA, call, and booking friction notes",
+      "Trust, policy, and no-PHI form gap check",
+      "Plain-English owner summary and fix order",
     ],
     cta: "REQUEST SCAN",
     featured: false,
@@ -87,16 +87,16 @@ const projectPackages = [
   {
     serviceId: "lead-leak-fix" as ServiceId,
     tier: "Most Popular",
-    title: "14-DAY LEAD LEAK FIX",
-    price: "From $3,000",
+    title: "14-DAY CASH-MEDICAL LEAD LEAK FIX",
+    price: "From $2,500",
     suffix: "/one-time",
     description:
-      "Scan, fix, and prove the highest-impact issues killing calls, forms, and trust. Report by end of week — full fix window completes within 14 days once automation is set up.",
+      "Scan, fix, and prove the highest-impact issues that make high-value patients hesitate before calling, booking, or submitting a consult request.",
     features: [
-      "Prioritized fix list across your highest-traffic pages",
+      "Priority fixes across your highest-intent pages",
       "Performance, CTA, mobile, and form-flow improvements",
-      "Before/after observations and issue log",
-      "Sample-ready report with next-step recommendations",
+      "Before/after observations and owner-ready report",
+      "Retainer recommendation only if it clearly helps",
     ],
     cta: "BOOK TRIAGE CALL",
     featured: true,
@@ -104,16 +104,16 @@ const projectPackages = [
   {
     serviceId: "rebuild-lite" as ServiceId,
     tier: "Expansion",
-    title: "REBUILD LITE",
-    price: "From $4,500",
+    title: "CONVERSION REBUILD LITE",
+    price: "From $6,500",
     suffix: "/project",
     description:
-      "A conversion-first refresh for businesses whose current site needs more than patchwork fixes but not a full custom rebuild.",
+      "A conversion-first refresh for practices whose current site needs more than patchwork fixes but not a full custom agency build.",
     features: [
-      "Best for compact sites and core lead pages",
+      "Best for compact sites and core service pages",
       "Updated page structure and conversion flow",
-      "Retained brand feel with clearer messaging",
-      "Built from the audit findings, not guesswork",
+      "Cash-medical messaging and trust hierarchy",
+      "Built from audit findings, not guesswork",
     ],
     cta: "ASK ABOUT REBUILD",
     featured: false,
@@ -124,17 +124,17 @@ const supportPlans = [
   {
     name: "Local Presence Guard",
     description:
-      "Quarterly technical checks and lightweight visibility support after the core optimization work is complete.",
+      "Starting at $300/month for quarterly technical checks and lightweight visibility support after the core optimization work is complete.",
   },
   {
     name: "Content + Visibility Support",
     description:
-      "Ongoing website, local SEO, and content help for teams that want someone keeping momentum after the initial fixes.",
+      "Starting at $750/month for ongoing website, local SEO, and content help for teams that want momentum after the initial fixes.",
   },
   {
     name: "Growth Support",
     description:
-      "A broader post-engagement option for businesses ready to layer content, visibility, and light campaign support onto a stronger site.",
+      "Starting at $1,500/month for practices ready to layer content, visibility, and light campaign support onto a stronger site.",
   },
 ];
 
@@ -154,6 +154,7 @@ export default function Home() {
   const [auditScore, setAuditScore] = useState<number | null>(null);
   const [auditData, setAuditData] = useState<{ lcp?: string; fcp?: string; cls?: string; tbt?: string } | null>(null);
   const [auditError, setAuditError] = useState<string | null>(null);
+  const [auditFallbackUrl, setAuditFallbackUrl] = useState<string | null>(null);
   const [triageForm, setTriageForm] = useState({
     contactName: "",
     businessName: "",
@@ -213,23 +214,22 @@ export default function Home() {
     }
     setAuditLoading(true);
     setAuditError(null);
+    setAuditFallbackUrl(null);
     try {
-      const res = await fetch(
-        `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance`,
-      );
-      if (!res.ok) throw new Error("psi");
+      const res = await fetch(`/api/pagespeed-preview?url=${encodeURIComponent(url)}`);
       const data = await res.json();
-      const lhr = data.lighthouseResult;
-      const score = Math.round((lhr?.categories?.performance?.score ?? 0) * 100);
-      setAuditScore(score);
-      setAuditData({
-        lcp: lhr?.audits?.["largest-contentful-paint"]?.displayValue,
-        fcp: lhr?.audits?.["first-contentful-paint"]?.displayValue,
-        cls: lhr?.audits?.["cumulative-layout-shift"]?.displayValue,
-        tbt: lhr?.audits?.["total-blocking-time"]?.displayValue,
-      });
-    } catch {
-      setAuditError("Couldn't analyze that URL. Check the address and try again.");
+      if (!res.ok) {
+        throw new Error(data?.message ?? "Google could not read that score right now.");
+      }
+      setAuditScore(data.score);
+      setAuditData(data.metrics);
+    } catch (error) {
+      setAuditFallbackUrl(url);
+      setAuditError(
+        error instanceof Error
+          ? error.message
+          : "Google could not read that score right now. You can still request the free manual audit.",
+      );
     } finally {
       setAuditLoading(false);
     }
@@ -331,7 +331,7 @@ export default function Home() {
             </h1>
 
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-zinc-300 md:text-2xl">
-              BADGRTechnologies helps small businesses tighten the parts of
+              BADGRTechnologies helps cash-pay medical and service businesses tighten the parts of
               their website that quietly kill calls, form fills, and trust, then
               shows exactly what changed in a clear before-and-after report.
             </p>
@@ -359,9 +359,9 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-3 border-t border-white/5 pt-4 pr-12 text-sm text-zinc-400">
               {[
-                "Funnel-first web optimization",
+                "Cash-medical lead path focus",
                 "Transparent pricing ranges",
-                "Clear proof, not fake case studies",
+                "Plain-English proof, not tech fog",
               ].map(item => (
                 <span
                   key={item}
@@ -402,7 +402,7 @@ export default function Home() {
                         required
                       />
                       {auditError && (
-                        <p className="text-xs text-red-400">{auditError}</p>
+                        <p className="text-xs leading-5 text-red-300">{auditError}</p>
                       )}
                     </div>
                     <Button
@@ -419,6 +419,18 @@ export default function Home() {
                         "PREVIEW MY LEAD LEAKS"
                       )}
                     </Button>
+                    {auditError && auditFallbackUrl ? (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-11 w-full rounded-none border-primary/50 text-xs font-bold uppercase tracking-widest text-primary-bright hover:bg-primary/10"
+                        onClick={() => {
+                          window.location.href = `/free-lighthouse-scan?url=${encodeURIComponent(auditFallbackUrl)}#scan-form`;
+                        }}
+                      >
+                        Request Manual Free Audit
+                      </Button>
+                    ) : null}
                   </form>
                 ) : (() => {
                   const rec = recommendPackage(auditScore!);
@@ -610,7 +622,7 @@ export default function Home() {
                   {card.serviceId ? (
                     <CheckoutButton
                       serviceId={card.serviceId}
-                      label={`Reserve with ${card.title === "DIAGNOSTIC SCAN" ? "$500" : card.title === "14-DAY LEAD LEAK FIX" ? "$1,000" : "$1,500"} deposit`}
+                      label={`Reserve with ${card.serviceId === "diagnostic-scan" ? "$250" : card.serviceId === "lead-leak-fix" ? "$750" : "$2,000"} deposit`}
                       variant="outline"
                       className="w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest"
                     />

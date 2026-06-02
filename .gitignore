@@ -143,6 +143,7 @@ public/images/hero-bg-*.avif
 # Lighthouse output files
 lighthouse-*.json
 lighthouse-*.html
+sample-report-preview.pdf
 
 # Non-app files — research, scripts, media
 *.txt

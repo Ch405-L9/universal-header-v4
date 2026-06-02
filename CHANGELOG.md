@@ -8,14 +8,22 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ## [2026-06-02] — Live funnel polish and production hygiene
 
+### Added
+- `api/pagespeed-preview.ts`: Serverless Google PageSpeed preview proxy for the homepage URL analyzer, with optional `PAGESPEED_API_KEY` support and customer-safe fallback messaging when Google public scoring is rate-limited or blocked.
+- `public/reports/cash-medical-lead-leak-sample.pdf`: Downloadable anonymized cash-medical sample report generated from the updated sample report route.
+
 ### Changed
 - `src/pages/Home.tsx`: Replaced the Google Forms triage handoff with an on-site form that submits directly to `/api/lighthouse-scan-request`.
+- `src/pages/Home.tsx`: Hero URL analyzer now calls `/api/pagespeed-preview` instead of Google's public endpoint directly and routes failed public scores to the manual free-audit flow.
+- `src/pages/Home.tsx`, `src/lib/payment.ts`, `src/lib/funnel.ts`, `src/lib/schema.ts`, `src/lib/content-graph.ts`: Repositioned packages and schema around a cash-medical pricing ladder: Diagnostic Scan from $750, 14-Day Cash-Medical Lead Leak Fix from $2,500, and Conversion Rebuild Lite from $6,500.
 - `src/pages/Home.tsx`: Added contact name, phone, business type, and consent fields so the homepage triage flow captures enough information without requesting PHI or confidential details.
 - `src/pages/Home.tsx`: Changed the hero proof CTA to anchor to the proof section and changed sample-report CTAs to normal browser navigations to reduce post-deploy cached chunk errors.
+- `src/pages/FreeLighthouseScan.tsx`: Prefills the website URL when the hero analyzer routes a visitor into the manual free-audit flow.
+- `src/pages/SampleReportPage.tsx`: Rebuilt the sample report as an anonymized cash-medical specimen with score snapshot, priority notes, owner-facing plain-English email draft, and download CTA.
 - `api/lighthouse-scan-request.ts`: Added optional business type to email notifications and returns a clear 503 when no email provider is configured instead of returning a false success.
 - `api/stripe/create-checkout-session.ts`: Validates that `STRIPE_SECRET_KEY` is a real secret key shape before initializing Stripe and returns a customer-safe fallback message when checkout is unavailable.
 - `src/hooks/useStripeCheckout.ts`: Replaced raw checkout failure copy with a safer customer-facing unavailable message.
-- `.env.example` and `README.md`: Documented Resend production sender requirements, Stripe secret-key shape, local secret hygiene, and the current verification commands.
+- `.env.example` and `README.md`: Documented PageSpeed preview key support, Resend production sender requirements, Stripe secret-key shape, local secret hygiene, and the current verification commands.
 - `eslint.config.mjs`: Ignores `NON-ESSENTIALS_DO_NOT_DEPLOY/` so archived local-only files do not block source linting.
 
 ### Removed
