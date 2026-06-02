@@ -26,7 +26,7 @@ All secrets set in Vercel project settings — never committed. Required vars:
 
 | Var | Where | Notes |
 |---|---|---|
-| `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables | Must have no IP restrictions — Vercel Functions run from dynamic IPs |
+| `STRIPE_SECRET_KEY` | Vercel → Settings → Environment Variables | Must be a secret key beginning with `sk_`; do not use a publishable `pk_` key. Must have no IP restrictions because Vercel Functions run from dynamic IPs |
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Vercel → Settings → Environment Variables | `pk_live_...` for production |
 | `VITE_APP_URL` | Optional — defaults to `https://badgrtech.com` | Used for Stripe success/cancel redirect URLs |
 
@@ -37,7 +37,7 @@ Optional email vars for `/free-lighthouse-scan` form notifications:
 | Var | Notes |
 |---|---|
 | `RESEND_API_KEY` | Preferred production sender for Vercel serverless email notifications |
-| `RESEND_FROM` | Sender identity. Use a verified domain in production; `onboarding@resend.dev` is suitable for initial testing |
+| `RESEND_FROM` | Sender identity. Use a verified Resend sender/domain in production |
 | `SCAN_REQUEST_TO` | Notification recipient, defaults to `antgrant4781@proton.me` |
 | `SMTP_HOST` | Optional local Proton Bridge fallback host, e.g. `127.0.0.1` |
 | `SMTP_PORT` | Optional local Proton Bridge fallback SMTP port, e.g. `1025` |
@@ -46,6 +46,13 @@ Optional email vars for `/free-lighthouse-scan` form notifications:
 
 Copy `.env.example` to `.env.local` for local testing. Proton Bridge on `127.0.0.1` works only where Bridge is running; Vercel production should use `RESEND_API_KEY` or another public email API.
 
+Local secret hygiene:
+
+- Keep `.env`, `.env.local`, and `.env*.local` ignored and out of Git.
+- Do not store GitHub personal access tokens in app env files.
+- Do not keep duplicate secret notes such as `.env.local.txt`; use the provider dashboard or a password manager instead.
+- If a token is pasted into a local note by mistake, rotate it in the provider dashboard before relying on it.
+
 ---
 
 ## Project structure
@@ -53,10 +60,11 @@ Copy `.env.example` to `.env.local` for local testing. Proton Bridge on `127.0.0
 ```
 src/
   components/    Layout, nav, footer, UI primitives
-  pages/         Home, CaseStudy (/proof), SampleReportPage — all lazy-loaded
+  pages/         Home, FreeLighthouseScan, CaseStudy (/proof), SampleReportPage — all lazy-loaded
   hooks/         useScrollDepth, usePageMeta
   lib/           schema.ts, content-graph.ts, funnel.ts, payment.ts
 api/
+  lighthouse-scan-request.ts      Vercel serverless — Resend/SMTP lead notification endpoint
   stripe/
     create-checkout-session.ts   Vercel serverless — Stripe Checkout Session
     webhook.ts                   Vercel serverless — Stripe webhook handler
@@ -123,7 +131,17 @@ pnpm dev:api      # Express API shim only (tsx dev-api-server.ts)
 pnpm vercel:dev   # Full Vercel dev environment (requires Vercel CLI)
 ```
 
-Requires `.env.local` with `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `VITE_STRIPE_PUBLISHABLE_KEY`.
+Requires `.env.local` with `STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLISHABLE_KEY`, and Resend or SMTP variables for local form-delivery testing. `STRIPE_WEBHOOK_SECRET` is optional unless webhook verification is being tested.
+
+Useful local checks:
+
+```bash
+pnpm check
+pnpm build
+pnpm audit --prod
+pnpm lint
+git diff --check
+```
 
 ---
 

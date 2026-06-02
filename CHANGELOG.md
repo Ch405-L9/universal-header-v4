@@ -6,6 +6,34 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-02] — Live funnel polish and production hygiene
+
+### Changed
+- `src/pages/Home.tsx`: Replaced the Google Forms triage handoff with an on-site form that submits directly to `/api/lighthouse-scan-request`.
+- `src/pages/Home.tsx`: Added contact name, phone, business type, and consent fields so the homepage triage flow captures enough information without requesting PHI or confidential details.
+- `src/pages/Home.tsx`: Changed the hero proof CTA to anchor to the proof section and changed sample-report CTAs to normal browser navigations to reduce post-deploy cached chunk errors.
+- `api/lighthouse-scan-request.ts`: Added optional business type to email notifications and returns a clear 503 when no email provider is configured instead of returning a false success.
+- `api/stripe/create-checkout-session.ts`: Validates that `STRIPE_SECRET_KEY` is a real secret key shape before initializing Stripe and returns a customer-safe fallback message when checkout is unavailable.
+- `src/hooks/useStripeCheckout.ts`: Replaced raw checkout failure copy with a safer customer-facing unavailable message.
+- `.env.example` and `README.md`: Documented Resend production sender requirements, Stripe secret-key shape, local secret hygiene, and the current verification commands.
+- `eslint.config.mjs`: Ignores `NON-ESSENTIALS_DO_NOT_DEPLOY/` so archived local-only files do not block source linting.
+
+### Removed
+- `mmm.json`: Removed tracked scratch copy of Vercel config with invalid leading text.
+- `package.json.tmp`: Removed tracked stale dependency-override scratch file.
+
+### Local cleanup
+- Moved ignored local-only test and public-artifact folders out of deployable paths into `NON-ESSENTIALS_DO_NOT_DEPLOY/` so local builds stay smaller without deleting the files.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `pnpm lint` passes with existing import-order warnings only.
+- `git diff --check`
+
+---
+
 ## [2026-05-21] — Free Lighthouse scan page phase 1
 
 ### Added
