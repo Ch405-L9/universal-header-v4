@@ -5,16 +5,16 @@ import { getService } from "../../src/lib/payment.js";
 // Initialize Stripe once at module load. If the secret is missing, leave the
 // client null so the handler can return a clean 503 — never throw at module
 // level (Vercel functions can't recover from module-level throws).
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripe: Stripe | null = stripeSecretKey
-  ? new Stripe(stripeSecretKey, { apiVersion: "2026-04-22.dahlia" })
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY?.trim();
+const stripe: Stripe | null = stripeSecretKey?.startsWith("sk_")
+  ? new Stripe(stripeSecretKey)
   : null;
 
 if (!stripe) {
   // Surface a single, non-sensitive warning in server logs at cold start.
   // No secret is logged; this only signals misconfiguration.
   console.warn(
-    "[stripe] STRIPE_SECRET_KEY is not set — checkout endpoint will return 503."
+    "[stripe] STRIPE_SECRET_KEY is missing or not a secret key — checkout endpoint will return 503."
   );
 }
 
@@ -24,7 +24,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (!stripe) {
-    return res.status(503).json({ error: "Stripe not configured" });
+    return res.status(503).json({
+      error: "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+    });
   }
 
   try {
@@ -60,7 +62,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err) {
     // Log full detail server-side; return only a short, non-sensitive message
     // to the client so secrets, stack traces, and Stripe internals never leak.
-    console.error("[stripe] checkout session creation failed:", err);
-    return res.status(500).json({ error: "Failed to create checkout session" });
+    const stripeError =
+      err && typeof err === "object"
+        ? {
+            type: "type" in err ? err.type : undefined,
+            code: "code" in err ? err.code : undefined,
+            message: "message" in err ? err.message : undefined,
+          }
+        : err;
+    console.error("[stripe] checkout session creation failed:", stripeError);
+    return res.status(500).json({
+      error: "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+    });
   }
 }

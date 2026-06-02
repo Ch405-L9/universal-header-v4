@@ -33,6 +33,13 @@ const scanRequestSchema = z.object({
     "Chiropractic / PT",
     "Other",
   ]),
+  businessType: z
+    .string()
+    .trim()
+    .min(2, "Business type must be at least 2 characters")
+    .max(80, "Business type must be 80 characters or less")
+    .regex(/^[a-zA-Z0-9\s,&'./-]+$/, "Business type contains unsupported characters")
+    .optional(),
   websiteUrl: z
     .string()
     .trim()
@@ -52,6 +59,7 @@ type ScanRequest = {
   email: string;
   phone: string;
   practiceType: string;
+  businessType?: string;
   websiteUrl: string;
   consent: boolean;
   submittedAt: string;
@@ -123,13 +131,14 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     `Email Address: ${request.email}`,
     `Phone Number: ${request.phone}`,
     `Practice Type: ${request.practiceType}`,
+    request.businessType ? `Business Type: ${request.businessType}` : null,
     `Website URL: ${request.websiteUrl}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
     `IP Address: ${ip}`,
     "",
     "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 
   const html = `
     <h2>New Lead Leak Audit Request</h2>
@@ -138,6 +147,7 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
     <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
+    ${request.businessType ? `<p><strong>Business Type:</strong> ${escapeHtml(request.businessType)}</p>` : ""}
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
@@ -170,13 +180,14 @@ async function sendWithResend(request: ScanRequest, ip: string) {
     `Email Address: ${request.email}`,
     `Phone Number: ${request.phone}`,
     `Practice Type: ${request.practiceType}`,
+    request.businessType ? `Business Type: ${request.businessType}` : null,
     `Website URL: ${request.websiteUrl}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
     `IP Address: ${ip}`,
     "",
     "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
-  ].join("\n");
+  ].filter(Boolean).join("\n");
   const html = `
     <h2>New Lead Leak Audit Request</h2>
     <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
@@ -184,6 +195,7 @@ async function sendWithResend(request: ScanRequest, ip: string) {
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
     <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
+    ${request.businessType ? `<p><strong>Business Type:</strong> ${escapeHtml(request.businessType)}</p>` : ""}
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
@@ -277,6 +289,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     email: parsed.data.email.toLowerCase(),
     phone: parsed.data.phone,
     practiceType: parsed.data.practiceType,
+    businessType: parsed.data.businessType,
     websiteUrl: parsed.data.websiteUrl,
     consent: parsed.data.consent,
     submittedAt: new Date().toISOString(),
@@ -293,6 +306,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const emailResult = await sendScanRequestEmail(request, ip);
     console.info("[lighthouse-scan] email result", emailResult);
+    if (!emailResult.sent) {
+      return res.status(503).json({
+        message: "Email delivery is not configured yet. Please email hello@badgrtech.com or call (470) 223-6127.",
+      });
+    }
   } catch (error) {
     console.error("[lighthouse-scan] email send failed:", error);
     return res.status(500).json({
