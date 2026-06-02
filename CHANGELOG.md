@@ -6,6 +6,48 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-05-21] — Free Lighthouse scan page phase 1
+
+### Added
+- `src/pages/FreeLighthouseScan.tsx`: New `/free-lighthouse-scan` lead-generation page with BADGRTech styling, proof score grid, accessible three-field form, honeypot field, page meta, and JSON-LD.
+- `api/lighthouse-scan-request.ts`: Vercel serverless endpoint with POST-only handling, Zod validation, HTTPS URL enforcement, consent acknowledgement, honeypot handling, lightweight IP rate limiting, Resend email delivery, and SMTP fallback.
+- `public/images/lighthouse-hero-bg.{avif,webp}` and `public/images/lighthouse-scan-{desktop-100,mobile-91}.{avif,webp}`: Optimized subpage assets sized for Lighthouse/Core Web Vitals.
+- `.env.example`: Resend and local Proton Bridge SMTP template for scan-request email notifications.
+
+### Changed
+- `src/App.tsx`: Added lazy Wouter route for `/free-lighthouse-scan`.
+- `api/lighthouse-scan-request.ts`: Sends scan request details by Resend when `RESEND_API_KEY` is configured; falls back to SMTP when `SMTP_HOST` is configured.
+- `dev-api-server.ts`: Replaced the local Express shim with a native Node HTTP shim and added `.env.local` loading for local SMTP testing.
+- `public/sitemap.xml`: Added `/free-lighthouse-scan`.
+- `src/pages/FreeLighthouseScan.tsx`: Serves AVIF/WebP proof screenshots, reserves image dimensions to avoid CLS, delays the decorative hero image so hero text remains the likely LCP candidate, and adds no-PHI/limited-scope consent language.
+- `src/pages/PrivacyPolicy.tsx`, `src/pages/TermsAndConditions.tsx`: Added free-audit privacy, data-use, no-PHI, limited-scope, and no-compliance-guarantee language.
+- `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/lib/schema.ts`, `index.html`: Updated image references from removed WebP assets to available AVIF assets.
+
+---
+
+## [2026-05-16] — Phase 3: Automation suite + security report + contrast pass 2
+
+### Automation (Phase 5)
+- `.github/workflows/lighthouse-ci.yml`: Lighthouse score gates on every PR — comments scores to PR, fails on perf<85/a11y<95/bp<90/seo<85
+- `.github/workflows/dependency-audit.yml`: Weekly Monday 9 AM audit, uploads artifact, fails on high/critical CVEs
+- `.github/workflows/security-headers-test.yml`: Runs on vercel.json changes — validates required headers present, blocks x-robots noindex, validates CSP syntax
+- `.lighthouserc.json`: Threshold configuration for Lighthouse CI
+- `scripts/validate-lighthouse.sh`: Local Lighthouse runner with configurable score gates and device preset
+
+### Documentation
+- `docs/SECURITY_PLAYBOOK.md`: Full quarterly audit runbook — header reference, CSP promotion procedure, vulnerability SOP, incident response playbook, 30/90 day roadmap
+- `docs/reports/BADGRTECH_WebOps_Security_Optimization_Report_May2026.md`: Corporate-grade technical report covering full engagement scope, findings, remediation, risk analysis, and appendices
+
+### Accessibility — Phase 2 (token + component contrast)
+- `src/index.css`: `--background` darkened `oklch(0.12)` → `oklch(0.10)` — deeper base, more contrast headroom; `--card/popover` 0.16 → 0.15; `--secondary/muted/accent/input` 0.22 → 0.21; `--muted-foreground` 0.72 → 0.74; `--primary-bright` `oklch(0.72 0.16 260)` → `oklch(0.78 0.14 260)` — brighter cobalt with reduced chroma to prevent chromatic halo; applied to both `:root` and `.dark`
+- `src/components/Layout.tsx`: All `text-primary` icon/text uses → `text-primary-bright` (nav hover, "Book Triage" nav button, sticky CTA "Free Preview", footer MapPin/Phone/Mail icons)
+- `src/pages/Home.tsx`: All `text-primary` icon/text uses → `text-primary-bright` (feature icon boxes, pricing Check icons, FileSearch/ListChecks/Smartphone/TriangleAlert icons, Gauge/Shield icons, Clock container, ArrowRight icon); removed `brightness-[1.4]` CSS filter hack on ArrowRight
+
+### Git hygiene
+- `.gitignore`: Added patterns for hero source/working files (`hero-bg-*-clean.png`, `*-grade.png`, `*-tmp.png`, `*.jpg`); added `lighthouse-*.json` and `lighthouse-*.html` output patterns
+
+---
+
 ## [2026-05-16] — Phase 1: Contrast + accessibility hardening
 
 ### Accessibility

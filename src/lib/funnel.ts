@@ -20,11 +20,11 @@ export const conversionPaths: ConversionPath[] = [
   {
     entrySignal: "landed on page",
     stage: "aware",
-    nextAction: "Submit site URL for lead leak preview",
-    anchor: "#audit",
+    nextAction: "Claim a free lead leak audit",
+    anchor: "/free-lighthouse-scan#scan-form",
   },
   {
-    entrySignal: "submitted audit URL",
+    entrySignal: "submitted lead leak audit request",
     stage: "evaluating",
     nextAction: "Review diagnosis and match to a package",
     anchor: "#pricing",

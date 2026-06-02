@@ -32,6 +32,20 @@ All secrets set in Vercel project settings — never committed. Required vars:
 
 `STRIPE_WEBHOOK_SECRET` is optional. The webhook handler at `api/stripe/webhook.ts` returns 503 gracefully if the secret is absent — checkout and payment flow are unaffected without it.
 
+Optional email vars for `/free-lighthouse-scan` form notifications:
+
+| Var | Notes |
+|---|---|
+| `RESEND_API_KEY` | Preferred production sender for Vercel serverless email notifications |
+| `RESEND_FROM` | Sender identity. Use a verified domain in production; `onboarding@resend.dev` is suitable for initial testing |
+| `SCAN_REQUEST_TO` | Notification recipient, defaults to `antgrant4781@proton.me` |
+| `SMTP_HOST` | Optional local Proton Bridge fallback host, e.g. `127.0.0.1` |
+| `SMTP_PORT` | Optional local Proton Bridge fallback SMTP port, e.g. `1025` |
+| `SMTP_USER` / `SMTP_PASS` | Proton Bridge SMTP credentials. Keep `SMTP_PASS` only in `.env.local` or Vercel env vars |
+| `SCAN_REQUEST_FROM` | Sender address used by SMTP |
+
+Copy `.env.example` to `.env.local` for local testing. Proton Bridge on `127.0.0.1` works only where Bridge is running; Vercel production should use `RESEND_API_KEY` or another public email API.
+
 ---
 
 ## Project structure
@@ -58,16 +72,16 @@ dev-api-server.ts            Local dev only — Express shim for /api routes (po
 
 ## Assets
 
-All production images are self-hosted WebP in `public/images/`. No Cloudinary dependencies.
+All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudinary dependencies.
 
 | File | Use |
 |---|---|
-| `hero-bg-{640,1024,1600}.webp` | Hero section responsive background |
-| `ai-dashboard.webp` | Proof section dashboard image |
-| `badgrtech-logo.webp` | Nav + header logo |
-| `badgrtech-logo-og.webp` | Open Graph + schema.org logo |
-| `video-poster.webp` | Video section poster frame |
-| `sample-report-preview.webp` | Report preview thumbnail |
+| `hero-bg-{640,1024,1600}.avif` | Hero section responsive background |
+| `ai-dashboard.avif` | Proof section dashboard image |
+| `badgrtech-logo.avif` | Nav, header, Open Graph, and schema.org logo |
+| `video-poster-386.avif` | Video section poster frame |
+| `lighthouse-hero-bg.avif` | Decorative `/free-lighthouse-scan` hero image |
+| `lighthouse-scan-desktop-100.avif` / `lighthouse-scan-mobile-91.avif` | Optimized Lighthouse proof screenshots |
 | `badgrtech-intro.mp4 / .webm` | Intro video (self-hosted) |
 
 ---
@@ -89,9 +103,11 @@ All production images are self-hosted WebP in `public/images/`. No Cloudinary de
 | Path | Component | Description |
 |---|---|---|
 | `/` | `Home` | Main landing page with audit tool |
+| `/free-lighthouse-scan` | `FreeLighthouseScan` | Free Lighthouse audit lead-generation page |
 | `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
 | `/sample-report` | `SampleReportPage` | Interactive sample audit report |
-| `/payment-success` | `PaymentSuccess` | Post-checkout confirmation |
+| `/success` | `PaymentSuccess` | Post-checkout confirmation |
+| `/cancel` | `PaymentCancel` | Canceled checkout return page |
 | `/terms` | `TermsAndConditions` | Legal |
 | `/graph` | `GraphInspector` | JSON-LD schema inspector (dev tool) |
 
