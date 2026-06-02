@@ -57,29 +57,29 @@ export type PackageRecommendation = {
 export function recommendPackage(score: number): PackageRecommendation {
   if (score >= 68) {
     return {
-      packageName: "Diagnostic Scan",
+      packageName: "Cash-Medical Diagnostic Scan",
       tier: "Tier 1",
-      price: "From $1,500",
-      reason: "Your site has a foundation but specific friction points are costing you leads. A scan maps exactly what to fix and in what order.",
+      price: "From $750",
+      reason: "Your site has a foundation, but a few friction points can still make a high-value patient hesitate. A scan maps what to fix before you spend more on ads.",
       urgency: "Get clarity before your next marketing spend.",
       anchor: "#pricing",
     };
   }
   if (score >= 40) {
     return {
-      packageName: "14-Day Lead Leak Fix",
+      packageName: "14-Day Cash-Medical Lead Leak Fix",
       tier: "Tier 2 — Most common",
-      price: "From $3,000",
-      reason: "Your site has multiple friction points across speed, trust, and CTA flow. The 14-day engagement scans, fixes, and delivers proof.",
-      urgency: "Every week of delay costs you leads you cannot recover.",
+      price: "From $2,500",
+      reason: "Your site has multiple friction points across speed, trust, and the path to call or book. The 14-day fix removes the most expensive leaks first.",
+      urgency: "Every week of delay can mean missed consults you cannot recover.",
       anchor: "#pricing",
     };
   }
   return {
-    packageName: "Rebuild Lite",
+    packageName: "Conversion Rebuild Lite",
     tier: "Tier 3",
-    price: "From $4,500",
-    reason: "Your site's issues run deeper than patchwork fixes can solve. A conversion-first refresh is the faster path to leads.",
+    price: "From $6,500",
+    reason: "Your site's issues run deeper than patchwork fixes can solve. A conversion-first refresh is the faster path to a patient-ready website.",
     urgency: "Patching a structurally weak site delays the result and costs more long-term.",
     anchor: "#pricing",
   };

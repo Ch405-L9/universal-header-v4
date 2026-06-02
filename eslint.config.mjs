@@ -10,7 +10,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
   {
-    ignores: ["dist/**", "node_modules/**"],
+    ignores: ["dist/**", "node_modules/**", "NON-ESSENTIALS_DO_NOT_DEPLOY/**"],
   },
 
   // Base JS + recommended rules

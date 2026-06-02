@@ -18,15 +18,24 @@ export function useStripeCheckout() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.error ?? `Server error ${res.status}`);
+        throw new Error(
+          body.error ??
+            "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+        );
       }
 
       const { url } = await res.json();
-      if (!url) throw new Error("No checkout URL returned");
+      if (!url) {
+        throw new Error("Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.");
+      }
 
       window.location.href = url;
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Checkout failed");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+      );
       setLoading(null);
     }
   }

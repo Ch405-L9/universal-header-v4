@@ -31,6 +31,7 @@ loadLocalEnv();
 
 const { default: checkoutHandler } = await import("./api/stripe/create-checkout-session");
 const { default: lighthouseScanRequestHandler } = await import("./api/lighthouse-scan-request");
+const { default: pageSpeedPreviewHandler } = await import("./api/pagespeed-preview");
 const { default: webhookHandler } = await import("./api/stripe/webhook");
 
 type DevRequest = IncomingMessage & {
@@ -135,6 +136,10 @@ const server = createServer(async (req: DevRequest, res) => {
     if (req.method === "POST" && pathname === "/api/lighthouse-scan-request") {
       if (!(await attachJsonBody(req, res))) return;
       return await lighthouseScanRequestHandler(req as unknown as VercelRequest, response);
+    }
+
+    if (req.method === "GET" && pathname === "/api/pagespeed-preview") {
+      return await pageSpeedPreviewHandler(req as unknown as VercelRequest, response);
     }
 
     res.statusCode = 404;
