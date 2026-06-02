@@ -106,12 +106,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </button>
             ))}
             <Button
+              asChild
               variant="outline"
               size="sm"
               className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
-              onClick={() => scrollToSection("#audit")}
             >
-              Book Triage
+              <a href="/free-lighthouse-scan#scan-form">Free Audit</a>
             </Button>
           </div>
           <button
@@ -142,10 +142,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </button>
             ))}
             <Button
+              asChild
               className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
-              onClick={() => scrollToSection("#audit")}
             >
-              Book Triage
+              <a href="/free-lighthouse-scan#scan-form" onClick={() => setIsMenuOpen(false)}>
+                Free Audit
+              </a>
             </Button>
           </div>
         )}
@@ -160,22 +162,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
           <p className="hidden text-sm text-zinc-400 sm:block">
-            Stop losing leads to a slow, confusing site.
+            Start with a free lead leak audit.
           </p>
           <div className="flex w-full items-center gap-3 sm:w-auto">
             <a
-              href="#audit"
-              onClick={e => { e.preventDefault(); scrollToSection("#audit"); }}
+              href="/free-lighthouse-scan#lighthouse-proof"
               className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
             >
-              Free Preview
+              See Proof
             </a>
             <a
-              href="#contact"
-              onClick={e => { e.preventDefault(); scrollToSection("#contact"); }}
+              href="/free-lighthouse-scan#scan-form"
               className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
             >
-              Book Triage
+              Free Audit
             </a>
           </div>
         </div>
@@ -323,10 +323,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="#audit"
+                    href="/free-lighthouse-scan#scan-form"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Free Lead Leak Preview
+                    Start with a Free Audit
                   </a>
                 </li>
                 <li>

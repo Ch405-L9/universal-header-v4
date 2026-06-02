@@ -55,7 +55,7 @@ export const webOptimizationCluster: ContentCluster = {
       anchor: "#proof",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization", "https://badgrtech.com/#org"],
-      internalLinks: ["which-package", "book-triage"],
+      internalLinks: ["which-package", "free-lead-leak-audit"],
     },
     {
       id: "which-package",
@@ -64,13 +64,13 @@ export const webOptimizationCluster: ContentCluster = {
       anchor: "#pricing",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization"],
-      internalLinks: ["book-triage"],
+      internalLinks: ["free-lead-leak-audit"],
     },
     {
-      id: "book-triage",
-      title: "Book a 15-Minute Triage Call",
-      bluf: "A short call to confirm fit, scope, and timing before any work begins — no obligation, no pitch deck.",
-      anchor: "#audit",
+      id: "free-lead-leak-audit",
+      title: "Claim a Free Lead Leak Audit",
+      bluf: "A low-friction website audit to identify speed, mobile, trust, and lead-capture issues before any paid work begins.",
+      anchor: "/free-lighthouse-scan#scan-form",
       intent: "transactional",
       entities: ["https://badgrtech.com/#org"],
       internalLinks: [],
@@ -100,7 +100,7 @@ export const aiConsultationCluster: ContentCluster = {
       anchor: "#ai-solutions",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-ai-consultation", "https://badgrtech.com/#org"],
-      internalLinks: ["book-triage"],
+      internalLinks: ["free-lead-leak-audit"],
     },
   ],
 };
@@ -119,9 +119,9 @@ export const optimizationHowTo = {
   description: "A fixed-scope process to identify and fix the website friction blocking calls, form fills, and trust for small service businesses.",
   steps: [
     {
-      name: "Submit Your Site for Triage",
-      text: "Share your website URL and business context in a short triage call or intake form so we can confirm fit and scope before any work begins.",
-      url: "https://badgrtech.com/#audit",
+      name: "Claim a Free Lead Leak Audit",
+      text: "Share business contact details and the website URL so we can review public speed, mobile, trust, and lead-capture signals before any paid work begins.",
+      url: "https://badgrtech.com/free-lighthouse-scan#scan-form",
     },
     {
       name: "Receive Your Diagnostic Scan",

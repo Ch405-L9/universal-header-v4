@@ -191,14 +191,15 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="8. Free Lighthouse Audit Disclaimer">
+          <TermsSection title="8. Free Lead Leak Audit Disclaimer">
             <p>
-              A free Lighthouse audit or preview is an initial diagnostic review
+              A free lead leak audit or preview is an initial diagnostic review
               based on publicly accessible website information and available
-              performance tooling. It is not a full security audit, penetration
-              test, legal review, medical advice, HIPAA compliance assessment,
-              accessibility certification, or guarantee of search ranking,
-              traffic, revenue, appointment volume, or legal compliance.
+              performance, usability, and trust-signal tooling. It is not a full
+              security audit, penetration test, legal review, medical advice,
+              HIPAA compliance assessment, accessibility certification, or
+              guarantee of search ranking, traffic, revenue, appointment volume,
+              or legal compliance.
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>

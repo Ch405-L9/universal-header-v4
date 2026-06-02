@@ -268,10 +268,10 @@ export default function CaseStudy() {
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
-              href="/#audit"
+              href="/free-lighthouse-scan#scan-form"
               className="inline-flex h-11 items-center justify-center rounded-none bg-primary px-8 font-mono text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary/80"
             >
-              Get Your Free Preview
+              Get My Free Audit
             </a>
             <a
               href="/sample-report"

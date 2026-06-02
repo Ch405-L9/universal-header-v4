@@ -13,9 +13,12 @@ import { useJsonLd, usePageMeta } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type FormData = {
-  businessName: string;
-  websiteUrl: string;
+  practiceName: string;
+  contactName: string;
   email: string;
+  phone: string;
+  practiceType: string;
+  websiteUrl: string;
   consent: boolean;
   website: string;
 };
@@ -23,12 +26,23 @@ type FormData = {
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 const initialFormData: FormData = {
-  businessName: "",
-  websiteUrl: "",
+  practiceName: "",
+  contactName: "",
   email: "",
+  phone: "",
+  practiceType: "",
+  websiteUrl: "",
   consent: false,
   website: "",
 };
+
+const practiceTypes = [
+  "Med-Spa / Aesthetics",
+  "Cosmetic Dental",
+  "General Dental",
+  "Chiropractic / PT",
+  "Other",
+];
 
 const proofCards = [
   {
@@ -77,25 +91,56 @@ const proofCards = [
 
 const auditChecks: { icon: LucideIcon; text: string }[] = [
   { icon: Gauge, text: "Lighthouse performance and Core Web Vitals" },
-  { icon: Smartphone, text: "Mobile booking and contact friction" },
+  { icon: Smartphone, text: "Mobile tap-to-call and booking friction" },
   { icon: Shield, text: "Trust, policy, and HIPAA-aware form signals" },
-  { icon: Zap, text: "Fastest practical fixes before bigger rebuilds" },
+  { icon: Zap, text: "Online scheduling and local visibility gaps" },
 ];
 
 function validateForm(formData: FormData): FormErrors {
   const errors: FormErrors = {};
-  const businessName = formData.businessName.trim();
-  const websiteUrl = formData.websiteUrl.trim();
+  const practiceName = formData.practiceName.trim();
+  const contactName = formData.contactName.trim();
   const email = formData.email.trim();
+  const phone = formData.phone.trim();
+  const practiceType = formData.practiceType.trim();
+  const websiteUrl = formData.websiteUrl.trim();
 
-  if (!businessName) {
-    errors.businessName = "Business name is required.";
-  } else if (businessName.length < 2) {
-    errors.businessName = "Business name must be at least 2 characters.";
-  } else if (businessName.length > 100) {
-    errors.businessName = "Business name must be 100 characters or less.";
-  } else if (!/^[a-zA-Z0-9\s&'.-]+$/.test(businessName)) {
-    errors.businessName = "Use letters, numbers, spaces, ampersands, apostrophes, periods, or hyphens.";
+  if (!practiceName) {
+    errors.practiceName = "Practice name is required.";
+  } else if (practiceName.length < 2) {
+    errors.practiceName = "Practice name must be at least 2 characters.";
+  } else if (practiceName.length > 100) {
+    errors.practiceName = "Practice name must be 100 characters or less.";
+  } else if (!/^[a-zA-Z0-9\s&'.-]+$/.test(practiceName)) {
+    errors.practiceName = "Use letters, numbers, spaces, ampersands, apostrophes, periods, or hyphens.";
+  }
+
+  if (!contactName) {
+    errors.contactName = "Your name is required.";
+  } else if (contactName.length < 2) {
+    errors.contactName = "Your name must be at least 2 characters.";
+  } else if (contactName.length > 100) {
+    errors.contactName = "Your name must be 100 characters or less.";
+  } else if (!/^[a-zA-Z\s'.-]+$/.test(contactName)) {
+    errors.contactName = "Use letters, spaces, apostrophes, periods, or hyphens.";
+  }
+
+  if (!email) {
+    errors.email = "Email address is required.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = "Enter a valid email address.";
+  }
+
+  if (!phone) {
+    errors.phone = "Phone number is required.";
+  } else if (!/^[0-9+().\-\s]{7,20}$/.test(phone)) {
+    errors.phone = "Enter a valid phone number.";
+  }
+
+  if (!practiceType) {
+    errors.practiceType = "Practice type is required.";
+  } else if (!practiceTypes.includes(practiceType)) {
+    errors.practiceType = "Choose a listed practice type.";
   }
 
   if (!websiteUrl) {
@@ -109,12 +154,6 @@ function validateForm(formData: FormData): FormErrors {
     } catch {
       errors.websiteUrl = "Enter a valid URL, including https://.";
     }
-  }
-
-  if (!email) {
-    errors.email = "Business email is required.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Enter a valid business email address.";
   }
 
   if (!formData.consent) {
@@ -164,9 +203,9 @@ export default function FreeLighthouseScan() {
   const [submitError, setSubmitError] = useState("");
 
   usePageMeta({
-    title: "Free Lighthouse Performance Audit | BADGRTechnologies",
+    title: "Free Lead Leak Audit for Medical Practices | BADGRTechnologies",
     description:
-      "Get a free BADGRTechnologies Lighthouse performance audit for your business website within 48 hours. Built for Atlanta service and healthcare teams.",
+      "Claim a free BADGRTechnologies lead leak audit for Atlanta med-spas, dental practices, chiropractic, and PT practices.",
   });
 
   useJsonLd(
@@ -175,14 +214,14 @@ export default function FreeLighthouseScan() {
       websiteEntity,
       buildWebPageSchema({
         id: "https://badgrtech.com/free-lighthouse-scan#page",
-        name: "Free Lighthouse Performance Audit",
+        name: "Free Lead Leak Audit",
         description:
-          "Request a free Lighthouse performance audit from BADGRTechnologies.",
+          "Request a free website lead leak audit from BADGRTechnologies.",
         url: "https://badgrtech.com/free-lighthouse-scan",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
           {
-            name: "Free Lighthouse Performance Audit",
+            name: "Free Lead Leak Audit",
             url: "https://badgrtech.com/free-lighthouse-scan",
           },
         ],
@@ -279,20 +318,21 @@ export default function FreeLighthouseScan() {
               variant="outline"
               className="mb-6 rounded-none border-primary-bright/70 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary-bright"
             >
-              Free Lighthouse Audit
+              Free Lead Leak Audit
             </Badge>
             <h1 className="font-mono text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-6xl">
-              Is Your Website Losing Appointments Right Now?
+              Your Website Is Losing Patients. Let's Find The Leak.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">
-              Get a free professional Lighthouse performance audit within 48
-              hours, built for Atlanta teams that need faster pages, clearer
-              booking paths, and stronger trust signals.
+              Claim a free new-patient lead leak audit for Atlanta-area
+              med-spas, dental practices, chiropractic, and PT practices.
+              See where speed, mobile friction, and booking flow may be costing
+              you inquiries. Results vary.
             </p>
             <div className="mt-8 grid max-w-2xl gap-3 text-sm text-zinc-300 sm:grid-cols-3">
               {[
                 "No credit card required",
-                "HIPAA-aware review",
+                "HIPAA-aware fields",
                 "48-hour turnaround",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
@@ -306,7 +346,7 @@ export default function FreeLighthouseScan() {
               size="lg"
               className="mt-10 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
             >
-              <a href="#scan-form">Get My Free Audit</a>
+              <a href="#scan-form">Get My Free Lead Leak Audit</a>
             </Button>
           </div>
 
@@ -327,6 +367,61 @@ export default function FreeLighthouseScan() {
               })}
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      <section className="border-t border-primary/20 bg-black py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              {
+                title: "Most practices do not know where bookings leak",
+                text: "Slow pages, hard-to-tap buttons, and unclear booking paths can push new patients back to search before they ever call.",
+              },
+              {
+                title: "Ad spend gets wasted on friction",
+                text: "A free audit helps identify whether the website is keeping the traffic you already paid to attract. Results vary.",
+              },
+              {
+                title: "Medical trust has to show up fast",
+                text: "We look for speed, mobile usability, contact clarity, and HIPAA-aware form signals before recommending bigger work.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="border border-zinc-800 bg-zinc-950/70 p-5">
+                <h2 className="mb-3 font-sans text-lg font-bold uppercase tracking-[0.04em] text-white">
+                  {item.title}
+                </h2>
+                <p className="text-sm leading-7 text-zinc-400">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-primary/20 bg-zinc-950 py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <Badge
+            variant="outline"
+            className="mb-5 rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
+          >
+            What You Get
+          </Badge>
+          <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
+            A Free Audit That Shows Where Your Site Is Leaking New-Patient Bookings
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
+            We review public website signals and return practical notes on page
+            speed, mobile tap-to-call, HIPAA-aware booking forms, online
+            scheduling friction, and obvious local visibility gaps. Free, no
+            credit card, 48-hour target turnaround.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            className="mt-8 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
+          >
+            <a href="#scan-form">Claim My Free Audit</a>
+          </Button>
         </div>
       </section>
 
@@ -391,11 +486,11 @@ export default function FreeLighthouseScan() {
         <div className="container mx-auto max-w-2xl px-4">
           <div className="mb-10 text-center">
             <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Get Your Free Audit
+              Claim My Free Audit
             </h2>
             <p className="mt-4 text-zinc-400">
-              Send the essentials and we will return a focused Lighthouse review
-              within 48 hours.
+              Business information only. No patient data, no health questions,
+              no passwords.
             </p>
           </div>
 
@@ -406,7 +501,7 @@ export default function FreeLighthouseScan() {
                 Request Submitted
               </h3>
               <p className="mt-3 text-zinc-300">
-                Thank you. We will send your Lighthouse audit to{" "}
+                Thank you. We will send your lead leak audit to{" "}
                 <strong className="text-white">{successEmail}</strong> within 48 hours.
               </p>
             </div>
@@ -421,26 +516,132 @@ export default function FreeLighthouseScan() {
               </p>
 
               <div className="space-y-2">
-                <Label htmlFor="businessName">Business Name</Label>
+                <Label htmlFor="practiceName">Practice Name</Label>
                 <Input
-                  id="businessName"
-                  name="businessName"
+                  id="practiceName"
+                  name="practiceName"
                   autoComplete="organization"
-                  value={formData.businessName}
-                  onChange={(event) => updateField("businessName", event.target.value)}
-                  aria-invalid={Boolean(errors.businessName)}
-                  aria-describedby={errors.businessName ? "businessName-error" : undefined}
+                  value={formData.practiceName}
+                  onChange={(event) => updateField("practiceName", event.target.value)}
+                  aria-invalid={Boolean(errors.practiceName)}
+                  aria-describedby={errors.practiceName ? "practiceName-error" : undefined}
                   required
                   className={cn(
                     "h-12 border-primary/30 bg-background/60",
-                    errors.businessName && "border-red-500 focus:border-red-500",
+                    errors.practiceName && "border-red-500 focus:border-red-500",
                   )}
                 />
-                {errors.businessName ? (
-                  <p id="businessName-error" className="text-sm text-red-400" role="alert">
-                    {errors.businessName}
+                {errors.practiceName ? (
+                  <p id="practiceName-error" className="text-sm text-red-400" role="alert">
+                    {errors.practiceName}
                   </p>
                 ) : null}
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="contactName">Your Name</Label>
+                  <Input
+                    id="contactName"
+                    name="contactName"
+                    autoComplete="name"
+                    value={formData.contactName}
+                    onChange={(event) => updateField("contactName", event.target.value)}
+                    aria-invalid={Boolean(errors.contactName)}
+                    aria-describedby={errors.contactName ? "contactName-error" : undefined}
+                    required
+                    className={cn(
+                      "h-12 border-primary/30 bg-background/60",
+                      errors.contactName && "border-red-500 focus:border-red-500",
+                    )}
+                  />
+                  {errors.contactName ? (
+                    <p id="contactName-error" className="text-sm text-red-400" role="alert">
+                      {errors.contactName}
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={formData.phone}
+                    onChange={(event) => updateField("phone", event.target.value)}
+                    aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                    required
+                    className={cn(
+                      "h-12 border-primary/30 bg-background/60",
+                      errors.phone && "border-red-500 focus:border-red-500",
+                    )}
+                  />
+                  {errors.phone ? (
+                    <p id="phone-error" className="text-sm text-red-400" role="alert">
+                      {errors.phone}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    value={formData.email}
+                    onChange={(event) => updateField("email", event.target.value)}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                    required
+                    className={cn(
+                      "h-12 border-primary/30 bg-background/60",
+                      errors.email && "border-red-500 focus:border-red-500",
+                    )}
+                  />
+                  {errors.email ? (
+                    <p id="email-error" className="text-sm text-red-400" role="alert">
+                      {errors.email}
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="practiceType">Practice Type</Label>
+                  <select
+                    id="practiceType"
+                    name="practiceType"
+                    value={formData.practiceType}
+                    onChange={(event) => updateField("practiceType", event.target.value)}
+                    aria-invalid={Boolean(errors.practiceType)}
+                    aria-describedby={errors.practiceType ? "practiceType-error" : undefined}
+                    required
+                    className={cn(
+                      "h-12 w-full rounded-none border border-primary/30 bg-background/60 px-3 text-sm text-foreground outline-none transition-colors focus:border-primary",
+                      errors.practiceType && "border-red-500 focus:border-red-500",
+                    )}
+                  >
+                    <option value="">Choose one</option>
+                    {practiceTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.practiceType ? (
+                    <p id="practiceType-error" className="text-sm text-red-400" role="alert">
+                      {errors.practiceType}
+                    </p>
+                  ) : null}
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -469,31 +670,6 @@ export default function FreeLighthouseScan() {
                 ) : null}
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">Business Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  value={formData.email}
-                  onChange={(event) => updateField("email", event.target.value)}
-                  aria-invalid={Boolean(errors.email)}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  required
-                  className={cn(
-                    "h-12 border-primary/30 bg-background/60",
-                    errors.email && "border-red-500 focus:border-red-500",
-                  )}
-                />
-                {errors.email ? (
-                  <p id="email-error" className="text-sm text-red-400" role="alert">
-                    {errors.email}
-                  </p>
-                ) : null}
-              </div>
-
               <div className="hidden" aria-hidden="true">
                 <Label htmlFor="website">Website</Label>
                 <Input
@@ -518,10 +694,11 @@ export default function FreeLighthouseScan() {
                     className="mt-1 h-4 w-4 shrink-0 accent-primary"
                   />
                   <span>
-                    I understand this is a free website performance review, not
-                    legal, medical, security, or HIPAA compliance advice. I will
-                    not submit patient information, PHI, passwords, or confidential
-                    medical details through this form.
+                    I understand this is a free lead leak audit based on public
+                    website signals, not legal, medical, security, or HIPAA
+                    compliance advice. I will not submit patient information,
+                    PHI, passwords, or confidential medical details through this
+                    form.
                   </span>
                 </label>
                 {errors.consent ? (
@@ -534,7 +711,9 @@ export default function FreeLighthouseScan() {
               <p id="audit-notice" className="flex items-start gap-2 text-xs leading-5 text-zinc-400">
                 <Lock className="mt-0.5 h-4 w-4 shrink-0 text-primary-bright" />
                 <span>
-                  By submitting, you agree to the{" "}
+                  By submitting, you agree to be contacted by BADGRTechnologies
+                  LLC regarding your free audit. We do not sell your information.
+                  See the{" "}
                   <Link href="/privacy" className="text-primary-bright underline underline-offset-4">
                     Privacy Policy
                   </Link>
@@ -564,7 +743,7 @@ export default function FreeLighthouseScan() {
                     Submitting
                   </span>
                 ) : (
-                  "Request Free Audit"
+                  "Claim My Free Audit"
                 )}
               </Button>
             </form>
@@ -580,9 +759,9 @@ export default function FreeLighthouseScan() {
                 Privacy First
               </h2>
               <p>
-                The form asks only for business name, website URL, and business
-                email. Do not submit PHI, patient records, passwords, or private
-                medical details.
+                The form asks only for business contact details, practice type,
+                and the website URL being audited. Do not submit PHI, patient
+                records, passwords, or private medical details.
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">
@@ -590,9 +769,10 @@ export default function FreeLighthouseScan() {
                 Audit Scope
               </h2>
               <p>
-                A free audit is an initial website performance and usability
-                review. It is not a full security audit, legal review, medical
-                advice, or compliance certification.
+                A free lead leak audit is an initial website performance,
+                usability, and public trust-signal review. It is not a full
+                security audit, legal review, medical advice, or compliance
+                certification. Results vary.
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">

@@ -7,12 +7,32 @@ const RATE_LIMIT_MAX = 3;
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
 const scanRequestSchema = z.object({
-  businessName: z
+  practiceName: z
     .string()
     .trim()
-    .min(2, "Business name must be at least 2 characters")
-    .max(100, "Business name must be 100 characters or less")
-    .regex(/^[a-zA-Z0-9\s&'.-]+$/, "Business name contains unsupported characters"),
+    .min(2, "Practice name must be at least 2 characters")
+    .max(100, "Practice name must be 100 characters or less")
+    .regex(/^[a-zA-Z0-9\s&'.-]+$/, "Practice name contains unsupported characters"),
+  contactName: z
+    .string()
+    .trim()
+    .min(2, "Your name must be at least 2 characters")
+    .max(100, "Your name must be 100 characters or less")
+    .regex(/^[a-zA-Z\s'.-]+$/, "Your name contains unsupported characters"),
+  email: z.string().trim().email("Email address must be valid").max(254),
+  phone: z
+    .string()
+    .trim()
+    .min(7, "Phone number must be valid")
+    .max(20, "Phone number must be 20 characters or less")
+    .regex(/^[0-9+().\-\s]+$/, "Phone number contains unsupported characters"),
+  practiceType: z.enum([
+    "Med-Spa / Aesthetics",
+    "Cosmetic Dental",
+    "General Dental",
+    "Chiropractic / PT",
+    "Other",
+  ]),
   websiteUrl: z
     .string()
     .trim()
@@ -20,7 +40,6 @@ const scanRequestSchema = z.object({
     .refine((value) => value.startsWith("https://"), {
       message: "Website URL must start with https://",
     }),
-  email: z.string().trim().email("Business email must be valid").max(254),
   consent: z.literal(true, {
     errorMap: () => ({ message: "You must confirm the audit request terms before submitting." }),
   }),
@@ -28,9 +47,12 @@ const scanRequestSchema = z.object({
 });
 
 type ScanRequest = {
-  businessName: string;
-  websiteUrl: string;
+  practiceName: string;
+  contactName: string;
   email: string;
+  phone: string;
+  practiceType: string;
+  websiteUrl: string;
   consent: boolean;
   submittedAt: string;
 };
@@ -92,26 +114,36 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     },
   });
 
-  const subject = `New Lighthouse audit request: ${request.businessName}`;
+  const subject = `New lead leak audit request: ${request.practiceName}`;
   const text = [
-    "New Lighthouse Audit Request",
+    "New Lead Leak Audit Request",
     "",
-    `Business Name: ${request.businessName}`,
+    `Practice Name: ${request.practiceName}`,
+    `Contact Name: ${request.contactName}`,
+    `Email Address: ${request.email}`,
+    `Phone Number: ${request.phone}`,
+    `Practice Type: ${request.practiceType}`,
     `Website URL: ${request.websiteUrl}`,
-    `Business Email: ${request.email}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
     `IP Address: ${ip}`,
+    "",
+    "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
   ].join("\n");
 
   const html = `
-    <h2>New Lighthouse Audit Request</h2>
-    <p><strong>Business Name:</strong> ${escapeHtml(request.businessName)}</p>
+    <h2>New Lead Leak Audit Request</h2>
+    <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
+    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
+    <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
+    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
+    <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
-    <p><strong>Business Email:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
     <p><strong>IP Address:</strong> ${escapeHtml(ip)}</p>
+    <hr />
+    <p><strong>Visitor notice shown:</strong> Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.</p>
   `;
 
   await transporter.sendMail({
@@ -129,29 +161,35 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
 async function sendWithResend(request: ScanRequest, ip: string) {
   const to = process.env.SCAN_REQUEST_TO ?? process.env.OWNER_EMAIL ?? "antgrant4781@proton.me";
   const from = process.env.RESEND_FROM ?? "BADGRTechnologies <onboarding@resend.dev>";
-  const subject = `New Lighthouse audit request: ${request.businessName}`;
+  const subject = `New lead leak audit request: ${request.practiceName}`;
   const text = [
-    "New Lighthouse Audit Request",
+    "New Lead Leak Audit Request",
     "",
-    `Business Name: ${request.businessName}`,
+    `Practice Name: ${request.practiceName}`,
+    `Contact Name: ${request.contactName}`,
+    `Email Address: ${request.email}`,
+    `Phone Number: ${request.phone}`,
+    `Practice Type: ${request.practiceType}`,
     `Website URL: ${request.websiteUrl}`,
-    `Business Email: ${request.email}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
     `IP Address: ${ip}`,
     "",
-    "Visitor notice shown: Do not submit PHI, patient records, passwords, or confidential medical details.",
+    "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
   ].join("\n");
   const html = `
-    <h2>New Lighthouse Audit Request</h2>
-    <p><strong>Business Name:</strong> ${escapeHtml(request.businessName)}</p>
+    <h2>New Lead Leak Audit Request</h2>
+    <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
+    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
+    <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
+    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
+    <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
-    <p><strong>Business Email:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
     <p><strong>IP Address:</strong> ${escapeHtml(ip)}</p>
     <hr />
-    <p><strong>Visitor notice shown:</strong> Do not submit PHI, patient records, passwords, or confidential medical details.</p>
+    <p><strong>Visitor notice shown:</strong> Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.</p>
   `;
 
   const response = await fetch("https://api.resend.com/emails", {
@@ -234,17 +272,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const request: ScanRequest = {
-    businessName: parsed.data.businessName,
-    websiteUrl: parsed.data.websiteUrl,
+    practiceName: parsed.data.practiceName,
+    contactName: parsed.data.contactName,
     email: parsed.data.email.toLowerCase(),
+    phone: parsed.data.phone,
+    practiceType: parsed.data.practiceType,
+    websiteUrl: parsed.data.websiteUrl,
     consent: parsed.data.consent,
     submittedAt: new Date().toISOString(),
   };
 
   console.info("[lighthouse-scan] new request", {
-    businessName: request.businessName,
     websiteHost: new URL(request.websiteUrl).host,
     emailDomain: request.email.split("@")[1] ?? "unknown",
+    practiceType: request.practiceType,
     consent: request.consent,
     ip,
   });
@@ -260,6 +301,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   return res.status(200).json({
-    message: `Thank you. We'll send your Lighthouse audit to ${request.email} within 48 hours.`,
+    message: `Thank you. We'll send your lead leak audit to ${request.email} within 48 hours.`,
   });
 }

@@ -299,12 +299,13 @@ export default function Home() {
             <div className="flex flex-col gap-6 pt-2 sm:flex-row">
               <Button
                 size="lg"
-                type="button"
-                onClick={() => scrollToSection("#audit")}
+                asChild
                 className="group h-16 rounded-none border border-primary bg-black/80 px-10 text-lg font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
               >
-                Book 15-Minute Triage
-                <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
+                <Link href="/free-lighthouse-scan#scan-form">
+                  Get My Free Lead Leak Audit
+                  <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
+                </Link>
               </Button>
               <Button
                 variant="outline"
@@ -432,10 +433,12 @@ export default function Home() {
                       <div className="flex flex-col gap-2 pt-1">
                         <Button
                           type="button"
-                          onClick={() => scrollToSection("#contact")}
+                          onClick={() => {
+                            window.location.href = "/free-lighthouse-scan#scan-form";
+                          }}
                           className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
                         >
-                          Book Triage Call
+                          Claim Free Audit
                         </Button>
                         <Button
                           type="button"

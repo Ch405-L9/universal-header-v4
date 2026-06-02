@@ -124,12 +124,13 @@ export default function PrivacyPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection title="3. Free Lighthouse Audit Requests">
+          <PolicySection title="3. Free Lead Leak Audit Requests">
             <p>
-              If you submit a free Lighthouse audit request, we collect the
-              business name, website URL, business email address, submission
-              timestamp, technical request details, and confirmation that you
-              accepted the audit request notice.
+              If you submit a free lead leak audit request, we collect the
+              practice name, contact name, email address, phone number, practice
+              type, website URL, submission timestamp, technical request
+              details, and confirmation that you accepted the audit request
+              notice.
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>
