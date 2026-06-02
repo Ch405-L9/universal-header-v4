@@ -161,6 +161,7 @@ prep_dev_tooling.sh
 .gitkeep
 public/videos/videos old/
 non-essentials/
+NON-ESSENTIALS_DO_NOT_DEPLOY/
 public/icons/
 .aider*
 .vercel

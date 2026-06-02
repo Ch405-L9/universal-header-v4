@@ -49,25 +49,27 @@ const ensureCanonical = () => {
 };
 
 export function useJsonLd(schema: Record<string, unknown>, id: string) {
+  const serializedSchema = JSON.stringify(schema);
+
   useEffect(() => {
     const existing = document.head.querySelector(
       `script[type="application/ld+json"][data-schema-id="${id}"]`
     );
     if (existing) {
-      existing.textContent = JSON.stringify(schema);
+      existing.textContent = serializedSchema;
       return;
     }
     const script = document.createElement("script");
     script.setAttribute("type", "application/ld+json");
     script.setAttribute("data-schema-id", id);
-    script.textContent = JSON.stringify(schema);
+    script.textContent = serializedSchema;
     document.head.appendChild(script);
     return () => {
       document.head.querySelector(
         `script[type="application/ld+json"][data-schema-id="${id}"]`
       )?.remove();
     };
-  }, [id, JSON.stringify(schema)]);
+  }, [id, serializedSchema]);
 }
 
 export function usePageMeta({ canonical, description, title }: PageMeta) {
