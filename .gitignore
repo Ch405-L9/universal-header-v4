@@ -167,3 +167,4 @@ public/icons/
 .aider*
 .vercel
 .env*.local
+.firecrawl/
