@@ -6,6 +6,27 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-06] — Launch ops readiness, SEO/AEO route, and PageSpeed diagnostics
+
+### Added
+- `src/pages/HipaaAwareWebOpsPage.tsx`: Dedicated `/hipaa-aware-web-operations` SEO/AEO service page for HIPAA-aware website operations, no-PHI public-form boundaries, Core Web Vitals discipline, and BAA-ready support language.
+- `docs/LAUNCH_OPS_CHECKLIST.md`: Internal production checklist for Vercel project selection, env vars, DNS, Resend, Stripe, smoke tests, and rollback.
+- `docs/CLIENT_READINESS_KIT.md`: Triage call script, scan scope template, BAA/SOW readiness notes, and lead tracking fields.
+- `docs/PERPLEXITY_RESEARCH_PROMPT.md`: Research prompt for BAA/SOW workflow, analytics around failed submissions, and client onboarding readiness.
+- `public/llms.txt`: Answer-engine summary with preferred service description, public route map, and no-PHI/compliance boundaries.
+
+### Changed
+- `src/App.tsx`, `src/components/Layout.tsx`, `public/sitemap.xml`: Wired the new HIPAA-aware operations route into the app, footer, and sitemap.
+- `api/pagespeed-preview.ts`: Added opt-in sanitized `debug=1` diagnostics for PageSpeed upstream failures without exposing API keys.
+- `.gitignore`: Allows the production `public/llms.txt` file while continuing to ignore local text notes and secrets.
+- `README.md`: Added brand/logo ownership notice, no-PHI and no-compliance-guarantee boundaries, route map updates, and launch-ops doc references.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `git diff --check`
+
 ## [2026-06-06] — Medical ICP CTA and SEO/AEO alignment
 
 ### Added

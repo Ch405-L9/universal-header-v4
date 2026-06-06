@@ -4,6 +4,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const querySchema = z.object({
   url: z.string().trim().min(3).max(2048),
+  debug: z.union([z.string(), z.array(z.string())]).optional(),
 });
 
 function normalizeHttpsUrl(value: string) {
@@ -15,6 +16,11 @@ function normalizeHttpsUrl(value: string) {
 
 function getDisplayValue(audits: Record<string, { displayValue?: string }> | undefined, key: string) {
   return audits?.[key]?.displayValue;
+}
+
+function getDebugFlag(value: string | string[] | undefined) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return raw === "1" || raw === "true";
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -31,6 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const websiteUrl = normalizeHttpsUrl(parsed.data.url);
+  const debug = getDebugFlag(parsed.data.debug);
 
   let url: URL;
   try {
@@ -62,21 +69,32 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       categories?: { performance?: { score?: number } };
       audits?: Record<string, { displayValue?: string }>;
     };
-    error?: { code?: number; message?: string };
+    error?: { code?: number; message?: string; status?: string };
   } | null;
 
   if (!response.ok || !body?.lighthouseResult) {
-    console.warn("[pagespeed-preview] PageSpeed unavailable", {
+    const diagnostics = {
       status: response.status,
       host: url.host,
       code: body?.error?.code,
+      upstreamStatus: body?.error?.status,
       message: body?.error?.message,
       hasApiKey: Boolean(process.env.PAGESPEED_API_KEY),
-    });
+    };
+
+    console.warn("[pagespeed-preview] PageSpeed unavailable", diagnostics);
 
     return res.status(502).json({
       message:
-        "Google could not read that public score right now. It can happen when a site blocks scanners, redirects oddly, times out, or when the public PageSpeed quota is busy. You can still request the free manual audit.",
+        "Google could not read that public score right now. It can happen when a site blocks scanners, redirects oddly, times out, or when the public PageSpeed quota is busy. You can still request a manual Risk & Trust triage review.",
+      ...(debug
+        ? {
+            debug: {
+              ...diagnostics,
+              message: diagnostics.message?.slice(0, 500),
+            },
+          }
+        : {}),
     });
   }
 

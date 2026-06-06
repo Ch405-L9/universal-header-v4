@@ -282,10 +282,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="#services"
+                    href="/hipaa-aware-web-operations"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Medical Website Operations
+                    HIPAA-Aware Web Operations
                   </a>
                 </li>
                 <li>
