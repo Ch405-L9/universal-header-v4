@@ -342,7 +342,7 @@ export default function Home() {
                 asChild
                 className="group h-16 rounded-none border border-primary bg-black/80 px-10 text-lg font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
               >
-                <Link href="/free-lighthouse-scan#scan-form">
+                <Link href="/#triage-form">
                   Request A Triage Call
                   <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
                 </Link>
@@ -425,7 +425,11 @@ export default function Home() {
                         variant="outline"
                         className="h-11 w-full rounded-none border-primary/50 text-xs font-bold uppercase tracking-widest text-primary-bright hover:bg-primary/10"
                         onClick={() => {
-                          window.location.href = `/free-lighthouse-scan?url=${encodeURIComponent(auditFallbackUrl)}#scan-form`;
+                          setTriageForm(current => ({
+                            ...current,
+                            websiteUrl: auditFallbackUrl,
+                          }));
+                          scrollToSection("#triage-form");
                         }}
                       >
                         Request Triage Call
@@ -486,7 +490,11 @@ export default function Home() {
                         <Button
                           type="button"
                           onClick={() => {
-                            window.location.href = "/free-lighthouse-scan#scan-form";
+                            setTriageForm(current => ({
+                              ...current,
+                              websiteUrl: normalizeHttpsUrl(siteUrl),
+                            }));
+                            scrollToSection("#triage-form");
                           }}
                           className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
                         >
@@ -558,7 +566,7 @@ export default function Home() {
           <div className="mb-14 flex justify-center">
             <Button
               type="button"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#triage-form")}
               className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em]"
             >
               Start Leak & Trust Fix Sprint
@@ -618,7 +626,7 @@ export default function Home() {
                 <CardFooter className="flex flex-col gap-3">
                   <Button
                     type="button"
-                    onClick={() => scrollToSection("#contact")}
+                    onClick={() => scrollToSection("#triage-form")}
                     variant={card.featured ? "default" : "outline"}
                     className={cn(
                       "w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest",
@@ -753,7 +761,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={() => scrollToSection("#contact")}
+                  onClick={() => scrollToSection("#triage-form")}
                   className="rounded-none uppercase tracking-[0.16em]"
                 >
                   Request A Triage Call
@@ -805,7 +813,7 @@ export default function Home() {
               </p>
               <Button
                 type="button"
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => scrollToSection("#triage-form")}
                 className="mt-5 rounded-none uppercase tracking-[0.16em]"
               >
                 Book Triage Call
@@ -858,7 +866,7 @@ export default function Home() {
               <Button
                 variant="link"
                 type="button"
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => scrollToSection("#triage-form")}
                 className="group h-auto p-0 text-lg font-bold text-white"
               >
                 BOOK A 15-MINUTE TRIAGE CALL
@@ -932,6 +940,7 @@ export default function Home() {
       </section>
 
       <section id="contact" className="relative bg-black py-24">
+        <div id="triage-form" className="absolute -top-24" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
         <div className="container relative z-10 mx-auto px-4">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr]">
@@ -1142,7 +1151,17 @@ export default function Home() {
                   </Button>
                   <div aria-live="polite" className="min-h-5 text-sm">
                     {triageMessage ? (
-                      <p className="text-green-400">{triageMessage}</p>
+                      <div className="space-y-4">
+                        <p className="text-green-400">{triageMessage}</p>
+                        <div className="flex flex-col gap-3 sm:flex-row">
+                          <Button asChild variant="outline" className="rounded-none">
+                            <a href="/">Back to home</a>
+                          </Button>
+                          <Button asChild variant="outline" className="rounded-none">
+                            <a href="/#pricing">View services</a>
+                          </Button>
+                        </div>
+                      </div>
                     ) : null}
                     {triageError ? (
                       <p className="text-red-400">{triageError}</p>
@@ -1174,7 +1193,7 @@ export default function Home() {
             <Button
               size="lg"
               type="button"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#triage-form")}
               className="h-16 bg-primary px-12 text-lg font-bold text-white shadow-2xl hover:bg-primary/90"
             >
               REQUEST TRIAGE CALL

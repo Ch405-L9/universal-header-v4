@@ -21,11 +21,21 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 - `.gitignore`: Allows the production `public/llms.txt` file while continuing to ignore local text notes and secrets.
 - `README.md`: Added brand/logo ownership notice, no-PHI and no-compliance-guarantee boundaries, route map updates, and launch-ops doc references.
 
+### UX Flow Fixes
+- `src/components/Layout.tsx`, `src/pages/Home.tsx`: Standardized primary triage CTAs to `/#triage-form` so hero, header, sticky CTA, pricing, FAQ, proof, and footer paths go directly to the home triage form.
+- `src/pages/Home.tsx`: The homepage score-preview fallback now preloads the reviewed website URL into the triage form instead of sending visitors through an extra intermediate page.
+- `api/lighthouse-scan-request.ts`, `src/pages/FreeLighthouseScan.tsx`: Accept bare website domains such as `exampleclinic.com` by normalizing to HTTPS before validation and submit.
+- `src/pages/Home.tsx`, `src/pages/FreeLighthouseScan.tsx`, `src/pages/CaseStudy.tsx`: Added explicit post-submit or deep-page return paths so visitors are not left at a dead end.
+- `src/pages/SampleReportPage.tsx`: Sample PDF opens in a new tab with `rel="noopener"` so the report page stays available.
+- `src/pages/CaseStudy.tsx`: Proof page now uses the internal PageSpeed preview proxy instead of calling Google directly from the browser.
+
 ### Validation
 - `pnpm check`
 - `pnpm build`
 - `pnpm audit --prod`
 - `git diff --check`
+- Local route smoke: `/`, `/free-lighthouse-scan`, `/proof`, `/sample-report`, `/hipaa-aware-web-operations`, `/privacy`, and `/terms` returned `200`.
+- Local API smoke: `/api/lighthouse-scan-request` accepted a bare `example.com` URL with honeypot enabled, returning `200` without sending email.
 
 ## [2026-06-06] — Medical ICP CTA and SEO/AEO alignment
 

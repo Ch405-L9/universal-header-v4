@@ -111,7 +111,7 @@ export default function HipaaAwareWebOpsPage() {
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="rounded-none uppercase">
-                <a href="/#contact">Request Triage Call</a>
+                <a href="/#triage-form">Request Triage Call</a>
               </Button>
               <Button
                 asChild
