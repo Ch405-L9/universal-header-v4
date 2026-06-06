@@ -228,7 +228,7 @@ export default function Home() {
       setAuditError(
         error instanceof Error
           ? error.message
-          : "Google could not read that score right now. You can still request the free manual audit.",
+          : "Google could not read that score right now. You can still request a manual Risk & Trust triage review.",
       );
     } finally {
       setAuditLoading(false);
@@ -977,6 +977,17 @@ export default function Home() {
                     (470) 223-6127
                   </a>
                   .
+                </p>
+              </div>
+              <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 p-6 text-sm leading-7 text-zinc-300">
+                <p className="font-bold uppercase tracking-[0.16em] text-primary-bright">
+                  Privacy Boundary
+                </p>
+                <p className="mt-3">
+                  Leak & Trust means public website friction, not patient data.
+                  BADGRTechnologies operates as a HIPAA business associate when
+                  applicable and signs BAAs for web operations that touch ePHI.
+                  This request is for business information only.
                 </p>
               </div>
             </div>

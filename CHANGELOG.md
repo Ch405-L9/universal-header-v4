@@ -14,6 +14,8 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 ### Changed
 - `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/pages/SampleReportPage.tsx`, `src/pages/AdditionalServicesPage.tsx`: Updated navigation, hero, pricing, proof, FAQ, triage, footer, and follow-on service copy around medical website optimization, Practice Care, Risk & Trust reporting, and the 14-day Leak & Trust Fix Sprint.
 - `src/lib/payment.ts`, `src/lib/funnel.ts`, `src/lib/schema.ts`, `src/lib/content-graph.ts`, `index.html`: Aligned checkout labels, recommendation logic, base metadata, structured data, HowTo, and FAQ content with the medical practice ICP.
+- `api/lighthouse-scan-request.ts`: Aligned email subject/body/success language with Risk & Trust triage and expanded accepted practice types to match the public form.
+- `src/pages/Home.tsx`: Added a privacy-boundary callout beside the triage form clarifying no-PHI intake and BAA posture.
 - `README.md`: Updated route and asset descriptions to match the Risk & Trust sample report positioning.
 
 ### Validation
