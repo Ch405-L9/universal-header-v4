@@ -65,6 +65,33 @@ type ScanRequest = {
   submittedAt: string;
 };
 
+class EmailDeliveryError extends Error {
+  provider: string;
+  status: number;
+  providerMessage: string;
+
+  constructor(provider: string, status: number, providerMessage: string) {
+    super(`${provider} email delivery failed (${status}): ${providerMessage}`);
+    this.name = "EmailDeliveryError";
+    this.provider = provider;
+    this.status = status;
+    this.providerMessage = providerMessage;
+  }
+}
+
+function summarizeProviderError(responseBody: unknown) {
+  if (!responseBody || typeof responseBody !== "object") {
+    return "The email provider rejected the request without a readable error body.";
+  }
+
+  const body = responseBody as Record<string, unknown>;
+  const message = typeof body.message === "string" ? body.message : undefined;
+  const name = typeof body.name === "string" ? body.name : undefined;
+  const error = typeof body.error === "string" ? body.error : undefined;
+
+  return [name, message ?? error].filter(Boolean).join(": ") || "The email provider rejected the request.";
+}
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -260,8 +287,12 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const responseBody = (await response.json().catch(() => null)) as unknown;
 
   if (!response.ok) {
-    console.error("[lighthouse-scan] Resend error", response.status, responseBody);
-    throw new Error("Resend email delivery failed.");
+    const providerMessage = summarizeProviderError(responseBody);
+    console.error("[lighthouse-scan] Resend error", {
+      status: response.status,
+      providerMessage,
+    });
+    throw new EmailDeliveryError("resend", response.status, providerMessage);
   }
 
   return { sent: true, provider: "resend" };
@@ -349,6 +380,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   } catch (error) {
     console.error("[lighthouse-scan] email send failed:", error);
+    if (error instanceof EmailDeliveryError) {
+      return res.status(500).json({
+        message: "Request received, but the email provider rejected delivery.",
+        provider: error.provider,
+        status: error.status,
+        detail: error.providerMessage,
+      });
+    }
+
     return res.status(500).json({
       message: "Request received, but email delivery failed. Please try again or email hello@badgrtech.com.",
     });
