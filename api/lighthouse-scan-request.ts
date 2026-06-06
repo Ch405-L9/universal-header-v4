@@ -47,8 +47,8 @@ const scanRequestSchema = z.object({
     .refine((value) => value.startsWith("https://"), {
       message: "Website URL must start with https://",
     }),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "You must confirm the audit request terms before submitting." }),
+  consent: z.boolean().refine((value) => value === true, {
+    message: "You must confirm the audit request terms before submitting.",
   }),
   website: z.string().optional(),
 });
