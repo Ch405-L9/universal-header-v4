@@ -6,6 +6,26 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-06] — Medical ICP CTA and SEO/AEO alignment
+
+### Added
+- `PRODUCT.md`: Product positioning register for future design and content passes, centered on small cash-pay and hybrid medical practices.
+
+### Changed
+- `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/pages/SampleReportPage.tsx`, `src/pages/AdditionalServicesPage.tsx`: Updated navigation, hero, pricing, proof, FAQ, triage, footer, and follow-on service copy around medical website optimization, Practice Care, Risk & Trust reporting, and the 14-day Leak & Trust Fix Sprint.
+- `src/lib/payment.ts`, `src/lib/funnel.ts`, `src/lib/schema.ts`, `src/lib/content-graph.ts`, `index.html`: Aligned checkout labels, recommendation logic, base metadata, structured data, HowTo, and FAQ content with the medical practice ICP.
+- `README.md`: Updated route and asset descriptions to match the Risk & Trust sample report positioning.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `pnpm lint` passes with existing import-order warnings only.
+- `git diff --check`
+- Local route smoke checks for `/`, `/free-lighthouse-scan`, `/sample-report`, `/additional-services`, `/privacy`, and `/terms` returned `200`.
+
+---
+
 ## [2026-06-06] — Resend production env hardening
 
 ### Changed

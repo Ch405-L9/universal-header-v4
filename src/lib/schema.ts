@@ -35,11 +35,12 @@ export const orgEntity = {
     { "@type": "State", name: "Georgia" },
   ],
   knowsAbout: [
-    "Web Optimization",
-    "AI Consultation",
-    "Lead Generation",
-    "Small Business Marketing",
+    "Medical Website Optimization",
+    "HIPAA-Aware Website Operations",
+    "Practice Care",
     "Website Performance",
+    "WCAG Accessibility",
+    "Local SEO for Medical Practices",
   ],
   sameAs: [
     "https://www.instagram.com/badgrtech/",
@@ -71,21 +72,21 @@ export const websiteEntity = {
 export const webOptimizationService = {
   "@type": "Service",
   "@id": `${BASE_URL}/#service-web-optimization`,
-  name: "Web Optimization",
+  name: "Medical Website Optimization and Practice Care",
   description:
-    "Fix website friction killing calls, form fills, and trust for small service businesses. Covers performance, CTA flow, mobile UX, and trust signals.",
+    "HIPAA-aware website operations for small medical practices. Covers speed, mobile booking paths, public-form risk checks, trust signals, accessibility basics, and local visibility.",
   provider: { "@id": ORG_ID },
-  category: "Web Optimization",
+  category: "Medical Website Operations",
   areaServed: { "@type": "City", name: "Atlanta" },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Web Optimization Packages",
+    name: "Medical Website Optimization Packages",
     itemListElement: [
       {
         "@type": "Offer",
-        name: "Cash-Medical Diagnostic Scan",
+        name: "Medical Risk & Trust Scan",
         description:
-          "A focused review for cash-pay medical owners who need a clear outside view before committing to implementation work. Report delivered by end of week.",
+          "A focused review for cash-pay and hybrid medical practice owners who need a clear outside view before committing to implementation work.",
         price: "750",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
@@ -94,9 +95,9 @@ export const webOptimizationService = {
       },
       {
         "@type": "Offer",
-        name: "14-Day Cash-Medical Lead Leak Fix",
+        name: "14-Day Leak & Trust Fix Sprint",
         description:
-          "Scan, fix, and prove the highest-impact issues killing calls, forms, and trust. Report by end of week — full fix window completes within 14 days.",
+          "Scan, fix, and prove the highest-impact issues blocking patient calls, appointment requests, form confidence, and trust within a 14-day work window.",
         price: "2500",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
@@ -105,9 +106,9 @@ export const webOptimizationService = {
       },
       {
         "@type": "Offer",
-        name: "Conversion Rebuild Lite",
+        name: "Medical Conversion Rebuild Lite",
         description:
-          "A conversion-first refresh for cash-medical businesses whose current site needs more than patchwork fixes but not a large agency rebuild.",
+          "A conversion-first refresh for medical practice sites that need more than patchwork fixes but not a large agency rebuild.",
         price: "6500",
         priceCurrency: "USD",
         priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },

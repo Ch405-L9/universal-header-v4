@@ -271,13 +271,13 @@ export default function CaseStudy() {
               href="/free-lighthouse-scan#scan-form"
               className="inline-flex h-11 items-center justify-center rounded-none bg-primary px-8 font-mono text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary/80"
             >
-              Get My Free Audit
+              Request Free Triage
             </a>
             <a
               href="/sample-report"
               className="inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-mono text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
             >
-              View Sample Report
+              View Sample Risk & Trust Report
             </a>
           </div>
         </div>

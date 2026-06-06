@@ -124,9 +124,9 @@ export default function PrivacyPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection title="3. Free Lead Leak Audit Requests">
+          <PolicySection title="3. Free Risk & Trust Triage Requests">
             <p>
-              If you submit a free lead leak audit request, we collect the
+              If you submit a free Risk & Trust triage request, we collect the
               practice name, contact name, email address, phone number, practice
               type, website URL, submission timestamp, technical request
               details, and confirmation that you accepted the audit request
@@ -144,8 +144,8 @@ export default function PrivacyPolicy() {
                 details through website forms.
               </li>
               <li>
-                Free audit requests are intended for business contact and public
-                website information only.
+                Triage and audit requests are intended for business contact and
+                public website information only.
               </li>
               <li>
                 Request emails and related operational logs may be retained as

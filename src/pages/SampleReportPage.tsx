@@ -31,7 +31,7 @@ const reportAreas = [
   {
     title: "Trust + Compliance-Aware Signals",
     description:
-      "Review policies, no-PHI language, service clarity, financing cues, testimonials, and proof that make a cash-pay patient feel safer.",
+      "Review policies, no-PHI language, service clarity, financing cues, testimonials, and proof that make a cash-pay or hybrid patient feel safer.",
     icon: Shield,
   },
 ];
@@ -56,7 +56,7 @@ const priorityNotes = [
     tone: "red",
     title: "Make the first screen simple enough to act on.",
     detail:
-      "The visitor should not have to decode the page. In cash medical, every extra second of confusion is like putting one more locked door between the patient and the front desk.",
+      "The visitor should not have to decode the page. In cash-pay medical, every extra second of confusion is like putting one more locked door between the patient and the front desk.",
   },
   {
     label: "Priority 2",
@@ -78,7 +78,7 @@ const plainEnglishEmail = [
   "Your website is doing some things right, but it is making new visitors work too hard before they can trust you.",
   "Think of the site like your front desk. If someone walks in and the lights are dim, the signs are confusing, and the intake clipboard is hard to find, they may leave even if your care is excellent. Online, slow loading, unclear buttons, and weak trust signals create that same feeling.",
   "The first fix is not a giant rebuild. The first fix is to clean up the path: make the main service obvious, make mobile calling easy, reduce heavy page weight, and show the trust details a cash-pay patient needs before they reach out.",
-  "For this type of site, I would start with the 14-Day Cash-Medical Lead Leak Fix. If the audit proves the foundation is too weak, I will say so plainly before you pay for patchwork that will not hold.",
+  "For this type of site, I would start with the 14-Day Leak & Trust Fix Sprint. If the audit proves the foundation is too weak, I will say so plainly before you pay for patchwork that will not hold.",
 ];
 
 const nextSteps = [
@@ -91,9 +91,9 @@ const nextSteps = [
 
 export default function SampleReportPage() {
   usePageMeta({
-    title: "Cash-Medical Sample Report | BADGRTechnologies",
+    title: "Sample Risk & Trust Report | BADGRTechnologies",
     description:
-      "Preview a sanitized cash-medical lead leak report with plain-English findings, priorities, and client email summary.",
+      "Preview a sanitized medical Risk & Trust report with speed, PHI-risk, accessibility, local visibility, and patient-flow findings.",
   });
 
   useJsonLd(
@@ -102,13 +102,13 @@ export default function SampleReportPage() {
       websiteEntity,
       buildWebPageSchema({
         id: "https://badgrtech.com/sample-report#page",
-        name: "Cash-Medical Sample Report | BADGRTechnologies",
+        name: "Sample Risk & Trust Report | BADGRTechnologies",
         description:
-          "Preview a sanitized cash-medical lead leak report with plain-English findings, priorities, and client email summary.",
+          "Preview a sanitized medical Risk & Trust report with speed, PHI-risk, accessibility, local visibility, and patient-flow findings.",
         url: "https://badgrtech.com/sample-report",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
-          { name: "Sample Report", url: "https://badgrtech.com/sample-report" },
+          { name: "Sample Risk & Trust Report", url: "https://badgrtech.com/sample-report" },
         ],
       }),
     ),
@@ -124,13 +124,13 @@ export default function SampleReportPage() {
               variant="outline"
               className="mb-6 rounded-none border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-primary-bright"
             >
-              Sanitized Sample Report
+              Sanitized Sample Risk & Trust Report
             </Badge>
             <h1 className="font-sans text-4xl font-bold uppercase tracking-[0.04em] text-white md:text-6xl">
-              Cash-Medical Lead Leak Report
+              Medical Risk & Trust Report
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-              This sample uses an anonymized Atlanta-area cash-medical specimen.
+              This sample uses an anonymized Atlanta-area medical practice specimen.
               Real names, screenshots, phone numbers, patient details, and
               identifying marks are intentionally excluded. The point is to show
               how BADGR turns technical findings into decisions a practice owner
@@ -306,7 +306,7 @@ export default function SampleReportPage() {
               <CardContent className="space-y-4 text-sm leading-7 text-zinc-300">
                 <p>
                   A site in this range usually fits the{" "}
-                  <strong className="text-white">14-Day Cash-Medical Lead Leak Fix</strong>.
+                  <strong className="text-white">14-Day Leak & Trust Fix Sprint</strong>.
                   If the first audit proves the foundation cannot support the
                   goal, the honest recommendation becomes a conversion rebuild.
                 </p>
@@ -323,11 +323,11 @@ export default function SampleReportPage() {
                 Next Step
               </p>
               <p className="mt-3 text-base leading-7 text-zinc-300">
-                Start with the free audit if you want this style of plain-English
-                review on your own site.
+                Request a triage call if you want this style of plain-English
+                Risk & Trust review on your own site.
               </p>
               <Button asChild className="mt-6 rounded-none uppercase tracking-[0.16em]">
-                <a href="/free-lighthouse-scan#scan-form">Claim Free Audit</a>
+                <a href="/free-lighthouse-scan#scan-form">Request Triage Call</a>
               </Button>
             </div>
 
