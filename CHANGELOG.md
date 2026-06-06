@@ -6,6 +6,19 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-06] — Resend production env hardening
+
+### Changed
+- `api/lighthouse-scan-request.ts`: Accepts Resend env aliases (`FROM`, `RESEND_KEY`, `RESEND_API`, `RESEND_TO`, `EMAIL_TO`) in addition to the preferred `RESEND_FROM`, `RESEND_API_KEY`, and `SCAN_REQUEST_TO` names so Vercel production configuration is less brittle.
+- `api/lighthouse-scan-request.ts`: Logs non-secret email configuration state when no email provider is visible to the serverless function.
+- `README.md`: Documented the accepted Resend aliases for production troubleshooting.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+
+---
+
 ## [2026-06-02] — CSP enforcement, prod file cleanup, and security hardening
 
 ### Changed

@@ -74,11 +74,40 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+function getEnv(name: string) {
+  const value = process.env[name]?.trim();
+  return value || undefined;
+}
+
+function getEmailTo() {
+  return (
+    getEnv("SCAN_REQUEST_TO") ??
+    getEnv("RESEND_TO") ??
+    getEnv("EMAIL_TO") ??
+    getEnv("OWNER_EMAIL") ??
+    "antgrant4781@proton.me"
+  );
+}
+
+function getResendFrom() {
+  return (
+    getEnv("RESEND_FROM") ??
+    getEnv("FROM") ??
+    getEnv("SCAN_REQUEST_FROM") ??
+    getEnv("EMAIL_FROM") ??
+    "BADGRTechnologies <onboarding@resend.dev>"
+  );
+}
+
+function getResendApiKey() {
+  return getEnv("RESEND_API_KEY") ?? getEnv("RESEND_KEY") ?? getEnv("RESEND_API");
+}
+
 function getSmtpConfig() {
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT ?? 587);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const host = getEnv("SMTP_HOST");
+  const port = Number(getEnv("SMTP_PORT") ?? 587);
+  const user = getEnv("SMTP_USER");
+  const pass = getEnv("SMTP_PASS");
 
   if (!host) return null;
 
@@ -94,16 +123,22 @@ function getSmtpConfig() {
 }
 
 async function sendScanRequestEmail(request: ScanRequest, ip: string) {
-  if (process.env.RESEND_API_KEY) {
+  if (getResendApiKey()) {
     return sendWithResend(request, ip);
   }
 
   const smtp = getSmtpConfig();
-  const to = process.env.SCAN_REQUEST_TO ?? process.env.OWNER_EMAIL ?? "antgrant4781@proton.me";
-  const from = process.env.SCAN_REQUEST_FROM ?? process.env.SMTP_FROM ?? to;
+  const to = getEmailTo();
+  const from = getEnv("SCAN_REQUEST_FROM") ?? getEnv("SMTP_FROM") ?? getEnv("FROM") ?? to;
 
   if (!smtp) {
-    console.warn("[lighthouse-scan] SMTP_HOST is not set; request logged but email not sent.");
+    console.warn("[lighthouse-scan] email delivery is not configured", {
+      hasResendApiKey: Boolean(getResendApiKey()),
+      hasResendFrom: Boolean(getResendFrom()),
+      hasSmtpHost: Boolean(getEnv("SMTP_HOST")),
+      acceptedApiKeyNames: ["RESEND_API_KEY", "RESEND_KEY", "RESEND_API"],
+      acceptedFromNames: ["RESEND_FROM", "FROM", "SCAN_REQUEST_FROM", "EMAIL_FROM"],
+    });
     return { sent: false, reason: "smtp_not_configured" };
   }
 
@@ -169,8 +204,9 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
 }
 
 async function sendWithResend(request: ScanRequest, ip: string) {
-  const to = process.env.SCAN_REQUEST_TO ?? process.env.OWNER_EMAIL ?? "antgrant4781@proton.me";
-  const from = process.env.RESEND_FROM ?? "BADGRTechnologies <onboarding@resend.dev>";
+  const apiKey = getResendApiKey();
+  const to = getEmailTo();
+  const from = getResendFrom();
   const subject = `New lead leak audit request: ${request.practiceName}`;
   const text = [
     "New Lead Leak Audit Request",
@@ -207,7 +243,7 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       "User-Agent": "BADGRTechnologies website form",
     },
