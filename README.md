@@ -37,9 +37,9 @@ Optional email vars for `/free-lighthouse-scan` form notifications:
 
 | Var | Notes |
 |---|---|
-| `RESEND_API_KEY` | Preferred production sender for Vercel serverless email notifications |
-| `RESEND_FROM` | Sender identity. Use a verified Resend sender/domain in production |
-| `SCAN_REQUEST_TO` | Notification recipient, defaults to `antgrant4781@proton.me` |
+| `RESEND_API_KEY` | Preferred production sender for Vercel serverless email notifications. Aliases accepted by the API: `RESEND_KEY`, `RESEND_API` |
+| `RESEND_FROM` | Sender identity. Use a verified Resend sender/domain in production. Alias accepted by the API: `FROM` |
+| `SCAN_REQUEST_TO` | Notification recipient, defaults to `antgrant4781@proton.me`. Aliases accepted by the API: `RESEND_TO`, `EMAIL_TO`, `OWNER_EMAIL` |
 | `SMTP_HOST` | Optional local Proton Bridge fallback host, e.g. `127.0.0.1` |
 | `SMTP_PORT` | Optional local Proton Bridge fallback SMTP port, e.g. `1025` |
 | `SMTP_USER` / `SMTP_PASS` | Proton Bridge SMTP credentials. Keep `SMTP_PASS` only in `.env.local` or Vercel env vars |

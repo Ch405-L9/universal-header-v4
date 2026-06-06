@@ -47,8 +47,8 @@ const scanRequestSchema = z.object({
     .refine((value) => value.startsWith("https://"), {
       message: "Website URL must start with https://",
     }),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "You must confirm the audit request terms before submitting." }),
+  consent: z.boolean().refine((value) => value === true, {
+    message: "You must confirm the audit request terms before submitting.",
   }),
   website: z.string().optional(),
 });
@@ -65,6 +65,33 @@ type ScanRequest = {
   submittedAt: string;
 };
 
+class EmailDeliveryError extends Error {
+  provider: string;
+  status: number;
+  providerMessage: string;
+
+  constructor(provider: string, status: number, providerMessage: string) {
+    super(`${provider} email delivery failed (${status}): ${providerMessage}`);
+    this.name = "EmailDeliveryError";
+    this.provider = provider;
+    this.status = status;
+    this.providerMessage = providerMessage;
+  }
+}
+
+function summarizeProviderError(responseBody: unknown) {
+  if (!responseBody || typeof responseBody !== "object") {
+    return "The email provider rejected the request without a readable error body.";
+  }
+
+  const body = responseBody as Record<string, unknown>;
+  const message = typeof body.message === "string" ? body.message : undefined;
+  const name = typeof body.name === "string" ? body.name : undefined;
+  const error = typeof body.error === "string" ? body.error : undefined;
+
+  return [name, message ?? error].filter(Boolean).join(": ") || "The email provider rejected the request.";
+}
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -74,11 +101,40 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+function getEnv(name: string) {
+  const value = process.env[name]?.trim();
+  return value || undefined;
+}
+
+function getEmailTo() {
+  return (
+    getEnv("SCAN_REQUEST_TO") ??
+    getEnv("RESEND_TO") ??
+    getEnv("EMAIL_TO") ??
+    getEnv("OWNER_EMAIL") ??
+    "antgrant4781@proton.me"
+  );
+}
+
+function getResendFrom() {
+  return (
+    getEnv("RESEND_FROM") ??
+    getEnv("FROM") ??
+    getEnv("SCAN_REQUEST_FROM") ??
+    getEnv("EMAIL_FROM") ??
+    "BADGRTechnologies <onboarding@resend.dev>"
+  );
+}
+
+function getResendApiKey() {
+  return getEnv("RESEND_API_KEY") ?? getEnv("RESEND_KEY") ?? getEnv("RESEND_API");
+}
+
 function getSmtpConfig() {
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT ?? 587);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const host = getEnv("SMTP_HOST");
+  const port = Number(getEnv("SMTP_PORT") ?? 587);
+  const user = getEnv("SMTP_USER");
+  const pass = getEnv("SMTP_PASS");
 
   if (!host) return null;
 
@@ -94,16 +150,22 @@ function getSmtpConfig() {
 }
 
 async function sendScanRequestEmail(request: ScanRequest, ip: string) {
-  if (process.env.RESEND_API_KEY) {
+  if (getResendApiKey()) {
     return sendWithResend(request, ip);
   }
 
   const smtp = getSmtpConfig();
-  const to = process.env.SCAN_REQUEST_TO ?? process.env.OWNER_EMAIL ?? "antgrant4781@proton.me";
-  const from = process.env.SCAN_REQUEST_FROM ?? process.env.SMTP_FROM ?? to;
+  const to = getEmailTo();
+  const from = getEnv("SCAN_REQUEST_FROM") ?? getEnv("SMTP_FROM") ?? getEnv("FROM") ?? to;
 
   if (!smtp) {
-    console.warn("[lighthouse-scan] SMTP_HOST is not set; request logged but email not sent.");
+    console.warn("[lighthouse-scan] email delivery is not configured", {
+      hasResendApiKey: Boolean(getResendApiKey()),
+      hasResendFrom: Boolean(getResendFrom()),
+      hasSmtpHost: Boolean(getEnv("SMTP_HOST")),
+      acceptedApiKeyNames: ["RESEND_API_KEY", "RESEND_KEY", "RESEND_API"],
+      acceptedFromNames: ["RESEND_FROM", "FROM", "SCAN_REQUEST_FROM", "EMAIL_FROM"],
+    });
     return { sent: false, reason: "smtp_not_configured" };
   }
 
@@ -169,8 +231,9 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
 }
 
 async function sendWithResend(request: ScanRequest, ip: string) {
-  const to = process.env.SCAN_REQUEST_TO ?? process.env.OWNER_EMAIL ?? "antgrant4781@proton.me";
-  const from = process.env.RESEND_FROM ?? "BADGRTechnologies <onboarding@resend.dev>";
+  const apiKey = getResendApiKey();
+  const to = getEmailTo();
+  const from = getResendFrom();
   const subject = `New lead leak audit request: ${request.practiceName}`;
   const text = [
     "New Lead Leak Audit Request",
@@ -207,7 +270,7 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       "User-Agent": "BADGRTechnologies website form",
     },
@@ -224,8 +287,12 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const responseBody = (await response.json().catch(() => null)) as unknown;
 
   if (!response.ok) {
-    console.error("[lighthouse-scan] Resend error", response.status, responseBody);
-    throw new Error("Resend email delivery failed.");
+    const providerMessage = summarizeProviderError(responseBody);
+    console.error("[lighthouse-scan] Resend error", {
+      status: response.status,
+      providerMessage,
+    });
+    throw new EmailDeliveryError("resend", response.status, providerMessage);
   }
 
   return { sent: true, provider: "resend" };
@@ -313,6 +380,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   } catch (error) {
     console.error("[lighthouse-scan] email send failed:", error);
+    if (error instanceof EmailDeliveryError) {
+      return res.status(500).json({
+        message: "Request received, but the email provider rejected delivery.",
+        provider: error.provider,
+        status: error.status,
+        detail: error.providerMessage,
+      });
+    }
+
     return res.status(500).json({
       message: "Request received, but email delivery failed. Please try again or email hello@badgrtech.com.",
     });

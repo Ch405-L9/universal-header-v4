@@ -6,6 +6,33 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-06] — Resend production env hardening
+
+### Changed
+- `api/lighthouse-scan-request.ts`: Accepts Resend env aliases (`FROM`, `RESEND_KEY`, `RESEND_API`, `RESEND_TO`, `EMAIL_TO`) in addition to the preferred `RESEND_FROM`, `RESEND_API_KEY`, and `SCAN_REQUEST_TO` names so Vercel production configuration is less brittle.
+- `api/lighthouse-scan-request.ts`: Logs non-secret email configuration state when no email provider is visible to the serverless function.
+- `README.md`: Documented the accepted Resend aliases for production troubleshooting.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+
+---
+
+## [2026-06-02] — CSP enforcement, prod file cleanup, and security hardening
+
+### Changed
+- `vercel.json`: Promoted `Content-Security-Policy-Report-Only` to enforced `Content-Security-Policy` after two-week clean observation window.
+- `vercel.json`: Removed `require-trusted-types-for 'script'` — incompatible with React's internal `innerHTML` usage; causes app crash when enforced.
+- `vercel.json`: Added `script-src-attr 'unsafe-inline'` to unblock Vite's CSS preload `onload` pattern (`this.onload=null;this.rel='stylesheet'`), fixing skeleton layout in private/incognito windows.
+- `vercel.json`: Expanded `font-src` to include `data: https:` to resolve 15 third-party font errors from Vercel toolbar and injected sources.
+- `.gitignore`: Added `.firecrawl/` to ignore list.
+
+### Removed (archived to `NON-ESSENTIALS_DO_NOT_DEPLOY/`)
+- `email-check.txt`, `workflow.sh`, `sample-report-preview.html`, `README_security.hardening.json`, `README_universal_header_v4_security.md` — moved from root; not part of production build.
+
+---
+
 ## [2026-06-02] — Live funnel polish and production hygiene
 
 ### Added
