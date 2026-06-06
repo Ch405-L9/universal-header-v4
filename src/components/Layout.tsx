@@ -49,9 +49,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: "Services", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Sample Report", href: "#proof" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Practice Care Pricing", href: "#pricing" },
+    { name: "Sample Risk & Trust Report", href: "#proof" },
+    { name: "Questions", href: "#faq" },
   ];
 
   const scrollToSection = (id: string) => {
@@ -111,7 +111,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               size="sm"
               className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
             >
-              <a href="/free-lighthouse-scan#scan-form">Free Audit</a>
+              <a href="#contact">Request Triage Call</a>
             </Button>
           </div>
           <button
@@ -146,7 +146,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
             >
               <a href="/free-lighthouse-scan#scan-form" onClick={() => setIsMenuOpen(false)}>
-                Free Audit
+                Request Triage Call
               </a>
             </Button>
           </div>
@@ -162,20 +162,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
           <p className="hidden text-sm text-zinc-400 sm:block">
-            Start with a free lead leak audit.
+            Start with a medical site triage call.
           </p>
           <div className="flex w-full items-center gap-3 sm:w-auto">
             <a
               href="/free-lighthouse-scan#lighthouse-proof"
               className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
             >
-              See Proof
+              Proof Scores
             </a>
             <a
               href="/free-lighthouse-scan#scan-form"
               className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
             >
-              Free Audit
+              Triage Call
             </a>
           </div>
         </div>
@@ -205,9 +205,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
               <p className="max-w-xs text-sm text-muted-foreground">
-                Atlanta-based web optimization for small businesses that need a
-                clearer, faster, more trustworthy path from website visit to
-                booked conversation.
+                Atlanta-based medical website operations for small practices that need
+                faster pages, clearer booking paths, and safer public-facing forms.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
@@ -286,7 +285,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="#services"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Website Optimization
+                    Medical Website Operations
                   </a>
                 </li>
                 <li>
@@ -294,7 +293,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="#pricing"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    One-Time Packages
+                    Practice Care Pricing
                   </a>
                 </li>
                 <li>
@@ -302,7 +301,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="#proof"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Sample Report
+                    Sample Risk & Trust Report
                   </a>
                 </li>
                 <li>
@@ -310,7 +309,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/additional-services"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Follow-On Services
+                    Practice Care Services
                   </a>
                 </li>
               </ul>
@@ -326,7 +325,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/free-lighthouse-scan#scan-form"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Start with a Free Audit
+                    Request Triage Call
                   </a>
                 </li>
                 <li>
@@ -350,7 +349,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/sample-report"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Open Sample Report
+                    Open Sample Risk & Trust Report
                   </Link>
                 </li>
                 <li>
@@ -418,10 +417,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               rights reserved.
             </p>
             <div className="flex gap-6">
-              <span>Transparent Scopes</span>
-              <span>Trust-First Messaging</span>
-              <span>Web Performance Focused</span>
+              <span>HIPAA-Aware Scopes</span>
+              <span>Risk & Trust Reporting</span>
+              <span>Medical Web Performance</span>
             </div>
+            <p className="max-w-xl text-center leading-5 md:text-right">
+              BADGRTechnologies operates as a HIPAA business associate when applicable
+              and signs BAAs for web operations that touch ePHI. We support your
+              compliance program; we do not replace your legal counsel.
+            </p>
           </div>
         </div>
       </footer>

@@ -28,12 +28,12 @@ export interface ContentCluster {
 
 export const webOptimizationCluster: ContentCluster = {
   id: "web-optimization",
-  pillar: "Website Optimization for Small Service Businesses",
+  pillar: "Medical Website Optimization for Small Practices",
   nodes: [
     {
-      id: "why-websites-lose-leads",
-      title: "Why Small Business Websites Lose Leads Silently",
-      bluf: "Most small business websites lose calls and form fills not from bad design but from slow load times, weak CTAs, and broken mobile flow — problems visitors feel but never explain.",
+      id: "why-medical-sites-lose-trust",
+      title: "Why Medical Practice Websites Lose Patient Trust Silently",
+      bluf: "Most practice websites lose calls and appointment requests through slow mobile pages, unclear booking paths, weak trust signals, and public-form risk that patients feel but never explain.",
       anchor: "#services",
       intent: "informational",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -41,8 +41,8 @@ export const webOptimizationCluster: ContentCluster = {
     },
     {
       id: "what-web-optimization-means",
-      title: "What Web Optimization Actually Means",
-      bluf: "Web optimization is not a redesign — it is fixing the specific friction points that stop visitors from calling, booking, or submitting a form.",
+      title: "What Medical Website Optimization Actually Means",
+      bluf: "Medical website optimization is not just a redesign — it is fixing the specific friction points that stop patients from calling, booking, trusting, or submitting safe business-only information.",
       anchor: "#services",
       intent: "informational",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -50,26 +50,26 @@ export const webOptimizationCluster: ContentCluster = {
     },
     {
       id: "how-badgr-fixes-it",
-      title: "How BADGRTech Fixes Website Friction",
-      bluf: "We scan, prioritize, and fix the highest-impact issues in a fixed scope — speed, mobile UX, CTA flow, trust signals — then deliver a before-and-after report.",
+      title: "How BADGRTech Fixes Medical Website Risk and Friction",
+      bluf: "We scan, prioritize, and fix the highest-impact issues in a fixed scope — speed, mobile UX, booking flow, trust signals, accessibility, and no-PHI form safety — then deliver a Risk & Trust report.",
       anchor: "#proof",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization", "https://badgrtech.com/#org"],
-      internalLinks: ["which-package", "free-lead-leak-audit"],
+      internalLinks: ["which-package", "medical-site-triage"],
     },
     {
       id: "which-package",
       title: "Which Web Optimization Package Is Right for You",
-      bluf: "Cash-Medical Diagnostic Scan for owners who need clarity first. 14-Day Cash-Medical Lead Leak Fix for owners ready to act. Conversion Rebuild Lite for sites too broken to patch.",
+      bluf: "Medical Risk & Trust Scan for owners who need clarity first. 14-Day Leak & Trust Fix Sprint for owners ready to act. Medical Conversion Rebuild Lite for sites too broken to patch.",
       anchor: "#pricing",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization"],
-      internalLinks: ["free-lead-leak-audit"],
+      internalLinks: ["medical-site-triage"],
     },
     {
-      id: "free-lead-leak-audit",
-      title: "Claim a Free Lead Leak Audit",
-      bluf: "A low-friction website audit to identify speed, mobile, trust, and lead-capture issues before any paid work begins.",
+      id: "medical-site-triage",
+      title: "Request a Medical Site Triage Call",
+      bluf: "A low-friction triage request to identify speed, mobile, trust, no-PHI form, and patient-flow issues before any paid work begins.",
       anchor: "/free-lighthouse-scan#scan-form",
       intent: "transactional",
       entities: ["https://badgrtech.com/#org"],
@@ -100,7 +100,7 @@ export const aiConsultationCluster: ContentCluster = {
       anchor: "#ai-solutions",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-ai-consultation", "https://badgrtech.com/#org"],
-      internalLinks: ["free-lead-leak-audit"],
+      internalLinks: ["medical-site-triage"],
     },
   ],
 };
@@ -115,27 +115,27 @@ export const contentGraph: ContentCluster[] = [
 // ─── HowTo steps for the optimization process ────────────────────────────────
 
 export const optimizationHowTo = {
-  name: "How BADGRTechnologies Optimizes a Small Business Website",
-  description: "A fixed-scope process to identify and fix the website friction blocking calls, form fills, and trust for small service businesses.",
+  name: "How BADGRTechnologies Optimizes a Medical Practice Website",
+  description: "A fixed-scope process to identify and fix the website friction blocking patient calls, appointment requests, form confidence, and trust for small medical practices.",
   steps: [
     {
-      name: "Claim a Free Lead Leak Audit",
-      text: "Share business contact details and the website URL so we can review public speed, mobile, trust, and lead-capture signals before any paid work begins.",
+      name: "Request a Medical Site Triage Call",
+      text: "Share business contact details and the website URL so we can review public speed, mobile, trust, no-PHI form, and patient-flow signals before any paid work begins.",
       url: "https://badgrtech.com/free-lighthouse-scan#scan-form",
     },
     {
-      name: "Receive Your Cash-Medical Diagnostic Scan",
-      text: "We scan your site for the friction points most likely to block calls and conversions: load speed, mobile flow, CTA clarity, trust signals, and form health.",
+      name: "Receive Your Medical Risk & Trust Scan",
+      text: "We scan your site for the friction points most likely to block patient calls and appointment requests: load speed, mobile flow, booking clarity, trust signals, accessibility basics, and form safety.",
       url: "https://badgrtech.com/#proof",
     },
     {
       name: "Review the Before-and-After Report",
-      text: "Every fix is documented with a clear before-and-after view so you can see exactly what changed and why it matters to your leads.",
+      text: "Every fix is documented with a clear before-and-after view so you can see exactly what changed and why it matters to patient trust.",
       url: "https://badgrtech.com/sample-report",
     },
     {
       name: "Implement Fixes Within the Agreed Scope",
-      text: "For the 14-Day Cash-Medical Lead Leak Fix and Conversion Rebuild Lite packages, we implement the prioritized fixes within the agreed timeline — not an open-ended retainer.",
+      text: "For the 14-Day Leak & Trust Fix Sprint and Medical Conversion Rebuild Lite packages, we implement the prioritized fixes within the agreed timeline — not an open-ended retainer.",
       url: "https://badgrtech.com/#pricing",
     },
   ],
@@ -149,26 +149,26 @@ export const fullFaqs: { question: string; answer: string; intent: IntentStage }
     intent: "informational",
     question: "Why is my website not generating calls or form fills?",
     answer:
-      "Most small business websites lose leads not from bad design but from hidden friction: pages that load slowly on mobile, calls to action that are buried or vague, forms with too many fields, and trust signals that are missing or unconvincing. Visitors feel the friction and leave without explaining why.",
+      "Most medical practice websites lose patients not from bad design but from hidden friction: pages that load slowly on mobile, calls to action that are buried or vague, forms that feel unsafe or confusing, and trust signals that are missing or unconvincing. Visitors feel the friction and leave without explaining why.",
   },
   {
     intent: "informational",
     question: "What is web optimization and how is it different from a redesign?",
     answer:
-      "Web optimization is the targeted fix of the specific issues blocking conversions — speed, CTA flow, mobile experience, trust signals — without rebuilding the site from scratch. A redesign changes how the site looks. Optimization changes how well it converts.",
+      "Web optimization is the targeted fix of the specific issues blocking patient action — speed, booking flow, mobile experience, trust signals, accessibility basics, and form clarity — without rebuilding the site from scratch. A redesign changes how the site looks. Optimization changes how well it supports patient decisions.",
   },
   {
     intent: "informational",
-    question: "How do I know if my website has a lead leak problem?",
+    question: "How do I know if my medical website has a trust or booking problem?",
     answer:
-      "Signs include: traffic that does not convert to calls, high bounce rates on mobile, a contact form that rarely gets submissions, and pages that take more than three seconds to load. Any one of these costs you leads every day.",
+      "Signs include traffic that does not convert to calls, high bounce rates on mobile, a contact form that rarely gets submissions, buried privacy or NPP links, and pages that take more than three seconds to load. Any one of these can cost patient inquiries every day.",
   },
   // Commercial
   {
     intent: "commercial",
     question: "What do you usually fix first?",
     answer:
-      "We start with the issues most likely to block calls, form submissions, and trust: speed, mobile friction, weak calls to action, broken form flow, and missing clarity on the most important pages.",
+      "We start with the issues most likely to block patient calls, appointment requests, form confidence, and trust: speed, mobile friction, weak calls to action, broken form flow, missing NPP/privacy links, and missing clarity on the most important pages.",
   },
   {
     intent: "commercial",
@@ -186,13 +186,13 @@ export const fullFaqs: { question: string; answer: string; intent: IntentStage }
     intent: "commercial",
     question: "Do you also handle SEO or social media?",
     answer:
-      "Yes, but only as follow-on support after the website itself is in a stronger place. The core offer here is web optimization first. A site that does not convert is not ready to receive more traffic from SEO or paid ads.",
+      "Yes, but only as follow-on support after the website itself is in a stronger place. The core offer here is medical website optimization first. A site that does not support patient trust is not ready to receive more traffic from SEO or paid ads.",
   },
   {
     intent: "commercial",
-    question: "Do you work only with law firms and medical practices?",
+    question: "Do you work only with medical practices?",
     answer:
-      "Those are strong fits because they rely heavily on inbound trust signals, but the offer is designed for any small service business that depends on calls, bookings, or form submissions from their website.",
+      "Medical practices are the primary fit because they rely heavily on inbound trust signals, careful public-form handling, booking clarity, and local visibility. We may support adjacent service businesses when the scope matches.",
   },
   {
     intent: "commercial",
@@ -217,6 +217,6 @@ export const fullFaqs: { question: string; answer: string; intent: IntentStage }
     intent: "transactional",
     question: "How do I get started?",
     answer:
-      "Submit your site URL in the audit form above or book a 15-minute triage call directly. We will follow up within one business day to confirm next steps.",
+      "Submit your site URL in the triage form above or book a 15-minute triage call directly. We will follow up within one business day to confirm next steps.",
   },
 ];

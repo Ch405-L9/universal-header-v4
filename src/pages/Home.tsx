@@ -47,21 +47,21 @@ import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
   {
-    title: "Speed + Performance Fixes",
+    title: "Speed + Patient Flow Fixes",
     description:
-      "Clean up slow-loading pages, heavy assets, and technical friction that pushes good leads away before they ever call or submit.",
+      "Clean up heavy pages, mobile lag, and unclear patient journeys that make people bounce before they call, request an appointment, or reach your portal.",
     icon: Gauge,
   },
   {
-    title: "CTA + Form Flow Improvements",
+    title: "HIPAA-Aware Form Checks",
     description:
-      "Tighten the path from page view to booked call with clearer calls to action, less confusion, and fewer broken lead-capture moments.",
+      "Review public forms, consent language, booking paths, and no-PHI warnings so the site asks for business-safe information without creating new risk.",
     icon: Zap,
   },
   {
     title: "Trust + Policy Cleanup",
     description:
-      "Surface the pages, signals, and on-site clarity that help service businesses look more legitimate and easier to trust.",
+      "Surface NPP, privacy, accessibility, service, and local trust signals so a legitimate practice feels credible and safer to book from.",
     icon: Shield,
   },
 ];
@@ -70,32 +70,32 @@ const projectPackages = [
   {
     serviceId: "diagnostic-scan" as ServiceId,
     tier: "Entry Scan",
-    title: "CASH-MEDICAL DIAGNOSTIC SCAN",
+    title: "MEDICAL RISK & TRUST SCAN",
     price: "From $750",
     suffix: "/one-time",
     description:
-      "A focused review for med-spas, dental, chiropractic, PT, and other cash-pay practices that need clear priorities before spending more on ads or a rebuild.",
+      "A focused review for med spas, dental, primary care, mental health, chiropractic, PT, and other cash-pay or hybrid practices that need clear priorities before spending more on ads or a rebuild.",
     features: [
-      "Mobile speed and lead-path review",
-      "CTA, call, and booking friction notes",
-      "Trust, policy, and no-PHI form gap check",
+      "Mobile speed and patient-path review",
+      "CTA, call, booking, and portal friction notes",
+      "NPP, privacy, trust, and no-PHI form gap check",
       "Plain-English owner summary and fix order",
     ],
-    cta: "REQUEST SCAN",
+    cta: "REQUEST TRIAGE CALL",
     featured: false,
   },
   {
     serviceId: "lead-leak-fix" as ServiceId,
     tier: "Most Popular",
-    title: "14-DAY CASH-MEDICAL LEAD LEAK FIX",
+    title: "14-DAY LEAK & TRUST FIX SPRINT",
     price: "From $2,500",
     suffix: "/one-time",
     description:
-      "Scan, fix, and prove the highest-impact issues that make high-value patients hesitate before calling, booking, or submitting a consult request.",
+      "Scan, fix, and prove the highest-impact issues that make patients hesitate before calling, booking, or submitting a consult request.",
     features: [
-      "Priority fixes across your highest-intent pages",
+      "Priority fixes across your highest-intent patient pages",
       "Performance, CTA, mobile, and form-flow improvements",
-      "Before/after observations and owner-ready report",
+      "Before/after Risk & Trust observations",
       "Retainer recommendation only if it clearly helps",
     ],
     cta: "BOOK TRIAGE CALL",
@@ -104,7 +104,7 @@ const projectPackages = [
   {
     serviceId: "rebuild-lite" as ServiceId,
     tier: "Expansion",
-    title: "CONVERSION REBUILD LITE",
+    title: "MEDICAL CONVERSION REBUILD LITE",
     price: "From $6,500",
     suffix: "/project",
     description:
@@ -112,7 +112,7 @@ const projectPackages = [
     features: [
       "Best for compact sites and core service pages",
       "Updated page structure and conversion flow",
-      "Cash-medical messaging and trust hierarchy",
+      "Medical service messaging and trust hierarchy",
       "Built from audit findings, not guesswork",
     ],
     cta: "ASK ABOUT REBUILD",
@@ -122,19 +122,19 @@ const projectPackages = [
 
 const supportPlans = [
   {
-    name: "Local Presence Guard",
+    name: "Practice Care",
     description:
-      "Starting at $300/month for quarterly technical checks and lightweight visibility support after the core optimization work is complete.",
+      "Starting at $550/month for ongoing updates, uptime monitoring, PHI-aware form checks, accessibility basics, and local profile hygiene once the 14-day sprint is complete.",
   },
   {
-    name: "Content + Visibility Support",
+    name: "Practice Growth Care",
     description:
-      "Starting at $750/month for ongoing website, local SEO, and content help for teams that want momentum after the initial fixes.",
+      "Starting at $950/month for continuous site care plus provider/service page optimization, review workflows, and booking-path improvements.",
   },
   {
-    name: "Growth Support",
+    name: "Optional Campaign Support",
     description:
-      "Starting at $1,500/month for practices ready to layer content, visibility, and light campaign support onto a stronger site.",
+      "Custom project pricing for practices layering in paid campaigns or deeper analytics on top of a hardened site.",
   },
 ];
 
@@ -169,9 +169,9 @@ export default function Home() {
   const [triageError, setTriageError] = useState<string | null>(null);
 
   usePageMeta({
-    title: "BADGRTechnologies | Web Optimization That Fixes Lead Leaks",
+    title: "BADGRTechnologies | Medical Website Optimization & Practice Care",
     description:
-      "BADGRTechnologies helps small businesses fix website friction that quietly kills calls, form fills, and trust.",
+      "Atlanta HIPAA-aware medical website optimization, Practice Care, Risk & Trust reports, and 14-day Leak & Trust Fix Sprints for cash-pay and hybrid practices.",
   });
 
   useJsonLd(
@@ -182,9 +182,9 @@ export default function Home() {
       aiConsultationService,
       buildWebPageSchema({
         id: "https://badgrtech.com/#homepage",
-        name: "BADGRTechnologies | Web Optimization That Fixes Lead Leaks",
+        name: "BADGRTechnologies | Medical Website Optimization & Practice Care",
         description:
-          "BADGRTechnologies helps small businesses fix website friction that quietly kills calls, form fills, and trust.",
+          "BADGRTechnologies provides HIPAA-aware website operations, speed, accessibility, local visibility, and Risk & Trust reporting for small cash-pay and hybrid medical practices.",
         url: "https://badgrtech.com/",
       }),
       buildFAQSchema(faqs),
@@ -228,7 +228,7 @@ export default function Home() {
       setAuditError(
         error instanceof Error
           ? error.message
-          : "Google could not read that score right now. You can still request the free manual audit.",
+          : "Google could not read that score right now. You can still request a manual Risk & Trust triage review.",
       );
     } finally {
       setAuditLoading(false);
@@ -317,23 +317,23 @@ export default function Home() {
               variant="outline"
               className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-blue-300 backdrop-blur-sm"
             >
-              Web Optimization For Lead-Driven Small Businesses
+              Cash-Pay & Hybrid Medical Practice Web Operations
             </Badge>
 
             <h1 className="font-mono text-5xl font-bold leading-[0.9] tracking-tight text-white drop-shadow-2xl md:text-7xl lg:text-8xl">
-              Stop Losing
+              Keep Practice
               <br />
-              Leads To A
+              Websites Fast,
               <br />
               <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-sky-300 bg-clip-text text-transparent drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                Slow, Confusing Site
+                Safer To Book
               </span>
             </h1>
 
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-zinc-300 md:text-2xl">
-              BADGRTechnologies helps cash-pay medical and service businesses tighten the parts of
-              their website that quietly kill calls, form fills, and trust, then
-              shows exactly what changed in a clear before-and-after report.
+              BADGRTechnologies operates and hardens your public-facing site so
+              cash-pay and hybrid patients can find you, trust you, and book
+              without creating new HIPAA headaches.
             </p>
 
             <div className="flex flex-col gap-6 pt-2 sm:flex-row">
@@ -343,7 +343,7 @@ export default function Home() {
                 className="group h-16 rounded-none border border-primary bg-black/80 px-10 text-lg font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
               >
                 <Link href="/free-lighthouse-scan#scan-form">
-                  Get My Free Lead Leak Audit
+                  Request A Triage Call
                   <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
                 </Link>
               </Button>
@@ -353,15 +353,15 @@ export default function Home() {
                 asChild
                 className="h-16 rounded-none border-white/10 px-8 text-lg uppercase tracking-[0.18em] text-zinc-400 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white"
               >
-                <a href="#proof">See Proof</a>
+                <a href="/sample-report">View Sample Risk & Trust Report</a>
               </Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 border-t border-white/5 pt-4 pr-12 text-sm text-zinc-400">
               {[
-                "Cash-medical lead path focus",
-                "Transparent pricing ranges",
-                "Plain-English proof, not tech fog",
+                "Cash-pay & hybrid medical practice web operations",
+                "HIPAA-aware scopes and pricing",
+                "Plain-English Risk & Trust reports",
               ].map(item => (
                 <span
                   key={item}
@@ -381,11 +381,11 @@ export default function Home() {
             <Card className="relative border-primary/50 bg-card/80 shadow-2xl backdrop-blur-xl">
               <CardHeader>
                 <CardTitle className="font-mono text-2xl">
-                  FREE LEAD LEAK PREVIEW
+                  LEAK & TRUST PREVIEW
                 </CardTitle>
                 <CardDescription>
                   Drop in your website and preview the kind of issues we would
-                  review together on a triage call.
+                  review before a medical practice triage call.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -416,7 +416,7 @@ export default function Home() {
                           ANALYZING...
                         </span>
                       ) : (
-                        "PREVIEW MY LEAD LEAKS"
+                        "PREVIEW MY RISK & TRUST GAPS"
                       )}
                     </Button>
                     {auditError && auditFallbackUrl ? (
@@ -428,7 +428,7 @@ export default function Home() {
                           window.location.href = `/free-lighthouse-scan?url=${encodeURIComponent(auditFallbackUrl)}#scan-form`;
                         }}
                       >
-                        Request Manual Free Audit
+                        Request Triage Call
                       </Button>
                     ) : null}
                   </form>
@@ -465,12 +465,12 @@ export default function Home() {
                       <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4">
                         <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
                           <Shield className="h-4 w-4" />
-                          Priority Areas To Review
+                          Patient-Flow Areas To Review
                         </h4>
                         <ul className="space-y-1 text-sm text-muted-foreground">
-                          <li>• Mobile page speed and homepage load friction</li>
-                          <li>• CTA clarity and contact-form conversion gaps</li>
-                          <li>• Missing trust, policy, and service-page signals</li>
+                          <li>• Mobile page speed and booking-path friction</li>
+                          <li>• CTA clarity and public-form risk gaps</li>
+                          <li>• Missing NPP, privacy, trust, and service-page signals</li>
                         </ul>
                       </div>
 
@@ -490,7 +490,7 @@ export default function Home() {
                           }}
                           className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
                         >
-                          Claim Free Audit
+                          Request Triage Call
                         </Button>
                         <Button
                           type="button"
@@ -515,16 +515,16 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="mb-6 font-sans text-3xl font-bold uppercase tracking-[0.08em] md:text-5xl">
-              Web Optimization That Fixes What Prospects Actually Feel
+              Web Operations That Fix What Patients Actually Feel On Your Site
             </h2>
             <p className="text-lg text-muted-foreground">
-              Clear scopes for businesses that need a faster, cleaner, more
-              trustworthy website before they pile on more marketing.
+              Clear scopes for small medical practices that need a faster,
+              cleaner, more trustworthy website before they pour more budget
+              into ads and referrals.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-300">
-              The core offer is one-time optimization work first. Ongoing
-              support comes later, only if it is useful after the site is in a
-              stronger place.
+              The core offer is a short Leak & Trust Fix Sprint first. Ongoing
+              Practice Care comes after the site is in a safer, stronger place.
             </p>
           </div>
 
@@ -553,6 +553,16 @@ export default function Home() {
                 </ScrollReveal>
               );
             })}
+          </div>
+
+          <div className="mb-14 flex justify-center">
+            <Button
+              type="button"
+              onClick={() => scrollToSection("#contact")}
+              className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em]"
+            >
+              Start Leak & Trust Fix Sprint
+            </Button>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -645,11 +655,11 @@ export default function Home() {
               See It In Action
             </Badge>
             <h2 className="mb-4 font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Web Optimization Built For Contractors &amp; Service Businesses
+              Web Operations Built For Medical Practice Sites
             </h2>
             <p className="mb-10 text-base text-zinc-400">
-              A quick look at what the process delivers — and why it matters
-              more than a site refresh.
+              A quick look at how a clearer, faster, risk-aware site supports
+              patient trust before paid campaigns or referrals enter the picture.
             </p>
             <div className="relative overflow-hidden rounded-xl border border-zinc-800 shadow-2xl">
               <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/30 to-cyan-500/20 blur opacity-40"></div>
@@ -705,34 +715,40 @@ export default function Home() {
               </h2>
               <p className="max-w-xl text-xl text-muted-foreground">
                 Instead of placeholder case studies, the funnel points to a
-                sample report that shows what gets checked, what gets fixed, and
-                how decisions are made.
+                sample Risk & Trust report that shows what gets checked, what
+                gets fixed, and how decisions are made.
               </p>
 
               <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
                 <h3 className="mb-4 flex items-center gap-2 font-bold">
                   <FileSearch className="text-primary-bright" />
-                  What The Sample Report Shows
+                  What The Sample Risk & Trust Report Shows
                 </h3>
                 <div className="space-y-4 text-sm leading-7 text-zinc-300">
                   <div className="flex gap-3">
                     <ListChecks className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>Which pages lose attention, trust, or action first.</p>
+                    <p>Which pages lose patient attention, trust, or action first.</p>
                   </div>
                   <div className="flex gap-3">
                     <Smartphone className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>How mobile friction affects calls and form completion.</p>
+                    <p>How mobile friction affects calls, booking, and form completion.</p>
                   </div>
                   <div className="flex gap-3">
                     <TriangleAlert className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>Which issues should be fixed immediately versus later.</p>
+                    <p>Which speed, PHI-risk, accessibility, and local visibility issues should be fixed first.</p>
                   </div>
                 </div>
               </div>
 
+              <p className="max-w-xl text-sm leading-7 text-zinc-300">
+                See exactly how we audit a medical practice website for speed,
+                PHI-risk, accessibility, and local visibility, then decide what
+                to fix first.
+              </p>
+
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Button asChild className="rounded-none uppercase tracking-[0.16em]">
-                  <a href="/sample-report">Open Sample Report</a>
+                  <a href="/sample-report">Open Sample Risk & Trust Report</a>
                 </Button>
                 <Button
                   variant="outline"
@@ -762,8 +778,8 @@ export default function Home() {
                 QUESTIONS BEFORE YOU COMMIT
               </h2>
               <p className="mt-4 text-lg leading-8 text-zinc-400">
-                The most common questions before a scan, 14-day fix, or rebuild
-                recommendation starts.
+                The most common questions before a scan, 14-day fix, Practice
+                Care, or rebuild recommendation starts.
               </p>
             </div>
 
@@ -781,6 +797,20 @@ export default function Home() {
                 </ScrollReveal>
               ))}
             </div>
+
+            <div className="mt-10 rounded-xl border border-primary/30 bg-primary/5 p-6">
+              <p className="text-base leading-7 text-zinc-300">
+                Still not sure? We will walk your current site and show you
+                where patients and ePHI might be slipping through.
+              </p>
+              <Button
+                type="button"
+                onClick={() => scrollToSection("#contact")}
+                className="mt-5 rounded-none uppercase tracking-[0.16em]"
+              >
+                Book Triage Call
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -791,7 +821,7 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             <div className="space-y-8 lg:max-w-xl">
               <h2 className="font-sans text-4xl font-bold uppercase tracking-[0.05em] md:text-5xl">
-                WHAT WE FIX IN 14 DAYS
+                What We Fix In 14 Days For Small Medical Practices
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -803,8 +833,9 @@ export default function Home() {
                       Speed And Friction Problems
                     </h3>
                     <p className="text-muted-foreground">
-                      Heavy pages, unclear hierarchy, and mobile lag that make
-                      people bounce before they act.
+                      Heavy pages, unclear patient journeys, and mobile lag
+                      that make people bounce before they call, request an
+                      appointment, or reach your portal.
                     </p>
                   </div>
                 </div>
@@ -817,9 +848,9 @@ export default function Home() {
                       Trust And Conversion Gaps
                     </h3>
                     <p className="text-muted-foreground">
-                      Missing policy pages, weak calls to action, and confusing
-                      lead paths that make a real business feel less credible
-                      than it is.
+                      Missing or buried NPP/privacy links, weak calls to book,
+                      and confusing lead paths that make a legitimate practice
+                      feel less credible and less safe than it is.
                     </p>
                   </div>
                 </div>
@@ -849,7 +880,8 @@ export default function Home() {
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
                       Audit your highest-value pages, review mobile behavior,
-                      test form flow, and document the biggest trust leaks.
+                      test form flow, and document the biggest Risk & Trust
+                      leaks.
                     </p>
                   </div>
                   <div>
@@ -858,7 +890,7 @@ export default function Home() {
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
                       Implement the fixes that matter most first, then recheck
-                      the pages after each major improvement.
+                      the patient paths after each major improvement.
                     </p>
                   </div>
                   <div>
@@ -866,8 +898,9 @@ export default function Home() {
                       Days 11-14
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
-                      Package the work into a straightforward report with
-                      before/after observations and the next best moves.
+                      Package the work into a straightforward Risk & Trust
+                      report with before/after observations and the next best
+                      moves.
                     </p>
                   </div>
                 </div>
@@ -910,12 +943,13 @@ export default function Home() {
                 Contact / Triage
               </Badge>
               <h2 className="font-sans text-4xl font-bold uppercase tracking-[0.05em] text-white md:text-5xl">
-                BOOK THE TRIAGE STEP
+                Request A Triage Call
               </h2>
               <p className="text-lg leading-8 text-zinc-400">
-                Share the basics and we can start with a short review of the
-                site, the biggest friction points, and whether the right next
-                step is a scan, a 14-day fix, or a rebuild.
+                Share a few basics and we will review your current site, point
+                out the biggest patient-flow and PHI-risk issues, and tell you
+                plainly whether the right next move is a scan, a 14-day fix, or
+                a rebuild.
               </p>
 
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 text-sm leading-7 text-zinc-300">
@@ -923,8 +957,9 @@ export default function Home() {
                   What To Send
                 </p>
                 <p className="mt-3">
-                  Your website, business type, and the one thing the site is not
-                  doing well enough right now.
+                  Your website URL, practice type (for example: med spa, dental,
+                  primary care, mental health), and the one thing your site is
+                  not doing well enough right now.
                 </p>
                 <p className="mt-4 text-zinc-400">
                   If you prefer, you can also email{" "}
@@ -942,6 +977,17 @@ export default function Home() {
                     (470) 223-6127
                   </a>
                   .
+                </p>
+              </div>
+              <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 p-6 text-sm leading-7 text-zinc-300">
+                <p className="font-bold uppercase tracking-[0.16em] text-primary-bright">
+                  Privacy Boundary
+                </p>
+                <p className="mt-3">
+                  Leak & Trust means public website friction, not patient data.
+                  BADGRTechnologies operates as a HIPAA business associate when
+                  applicable and signs BAAs for web operations that touch ePHI.
+                  This request is for business information only.
                 </p>
               </div>
             </div>
@@ -1047,7 +1093,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="business-type">Business Type</Label>
+                      <Label htmlFor="business-type">Practice Type</Label>
                       <Input
                         id="business-type"
                         value={triageForm.businessType}
@@ -1057,7 +1103,7 @@ export default function Home() {
                             businessType: e.target.value,
                           }))
                         }
-                        placeholder="Medical, home services, law, etc."
+                        placeholder="Med spa, dental, primary care, mental health"
                         required
                       />
                     </div>
@@ -1075,7 +1121,7 @@ export default function Home() {
                       }
                       className="mt-1"
                     />
-                    <Label
+                  <Label
                       htmlFor="triage-consent"
                       className="text-sm leading-6 text-zinc-300"
                     >
@@ -1120,9 +1166,9 @@ export default function Home() {
             </span>
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl text-zinc-400">
-            Start with a short triage call. We will look at the site, call out
-            the most likely blockers, and tell you plainly whether the next move
-            is a scan, a 14-day fix, or a rebuild.
+            We will look at your current medical practice site, call out the
+            most likely patient-flow and risk blockers, and tell you whether the
+            next move is a Leak & Trust Fix Sprint, Practice Care, or a rebuild.
           </p>
           <div className="flex flex-col justify-center gap-6 sm:flex-row">
             <Button
@@ -1139,7 +1185,7 @@ export default function Home() {
               asChild
               className="h-16 border-white/20 px-12 text-lg hover:bg-white/10"
             >
-              <a href="/sample-report">SEE SAMPLE REPORT</a>
+              <a href="/sample-report">SEE SAMPLE RISK & TRUST REPORT</a>
             </Button>
           </div>
         </div>

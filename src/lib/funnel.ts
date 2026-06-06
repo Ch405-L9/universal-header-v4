@@ -20,11 +20,11 @@ export const conversionPaths: ConversionPath[] = [
   {
     entrySignal: "landed on page",
     stage: "aware",
-    nextAction: "Claim a free lead leak audit",
+    nextAction: "Request a medical site triage call",
     anchor: "/free-lighthouse-scan#scan-form",
   },
   {
-    entrySignal: "submitted lead leak audit request",
+    entrySignal: "submitted medical site triage request",
     stage: "evaluating",
     nextAction: "Review diagnosis and match to a package",
     anchor: "#pricing",
@@ -57,29 +57,29 @@ export type PackageRecommendation = {
 export function recommendPackage(score: number): PackageRecommendation {
   if (score >= 68) {
     return {
-      packageName: "Cash-Medical Diagnostic Scan",
+      packageName: "Medical Risk & Trust Scan",
       tier: "Tier 1",
       price: "From $750",
-      reason: "Your site has a foundation, but a few friction points can still make a high-value patient hesitate. A scan maps what to fix before you spend more on ads.",
+      reason: "Your practice site has a foundation, but a few patient-flow and trust gaps can still make a high-value patient hesitate. A scan maps what to fix before you spend more on ads.",
       urgency: "Get clarity before your next marketing spend.",
       anchor: "#pricing",
     };
   }
   if (score >= 40) {
     return {
-      packageName: "14-Day Cash-Medical Lead Leak Fix",
+      packageName: "14-Day Leak & Trust Fix Sprint",
       tier: "Tier 2 — Most common",
       price: "From $2,500",
-      reason: "Your site has multiple friction points across speed, trust, and the path to call or book. The 14-day fix removes the most expensive leaks first.",
+      reason: "Your practice site has multiple friction points across speed, trust, and the path to call or book. The 14-day sprint removes the most expensive blockers first.",
       urgency: "Every week of delay can mean missed consults you cannot recover.",
       anchor: "#pricing",
     };
   }
   return {
-    packageName: "Conversion Rebuild Lite",
+    packageName: "Medical Conversion Rebuild Lite",
     tier: "Tier 3",
     price: "From $6,500",
-    reason: "Your site's issues run deeper than patchwork fixes can solve. A conversion-first refresh is the faster path to a patient-ready website.",
+    reason: "Your site's issues run deeper than patchwork fixes can solve. A conversion-first refresh is the faster path to a patient-ready medical website.",
     urgency: "Patching a structurally weak site delays the result and costs more long-term.",
     anchor: "#pricing",
   };

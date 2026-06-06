@@ -1,6 +1,6 @@
 # BADGRTechnologies — badgrtech.com
 
-Production site for BADGRTechnologies LLC. Built with React + Vite + Tailwind. Deployed via Vercel.
+Production site for BADGRTechnologies LLC, focused on HIPAA-aware medical website optimization, Practice Care, Risk & Trust reports, and fixed-scope website operations for small cash-pay and hybrid practices. Built with React + Vite + Tailwind. Deployed via Vercel.
 
 **Branch:** `Web-Ops` (production branch — auto-deploys to Vercel on push)
 **Repo:** https://github.com/Ch405-L9/universal-header-v4
@@ -93,7 +93,7 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 | `lighthouse-hero-bg.avif` | Decorative `/free-lighthouse-scan` hero image |
 | `lighthouse-scan-desktop-100.avif` / `lighthouse-scan-mobile-91.avif` | Optimized Lighthouse proof screenshots |
 | `badgrtech-intro.mp4 / .webm` | Intro video (self-hosted) |
-| `reports/cash-medical-lead-leak-sample.pdf` | Downloadable anonymized cash-medical sample report |
+| `reports/cash-medical-lead-leak-sample.pdf` | Downloadable anonymized medical Risk & Trust sample report |
 
 ---
 
@@ -116,7 +116,7 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 | `/` | `Home` | Main landing page with audit tool |
 | `/free-lighthouse-scan` | `FreeLighthouseScan` | Free Lighthouse audit lead-generation page |
 | `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
-| `/sample-report` | `SampleReportPage` | Cash-medical sample audit report with plain-English email draft |
+| `/sample-report` | `SampleReportPage` | Medical Risk & Trust sample report with plain-English email draft |
 | `/success` | `PaymentSuccess` | Post-checkout confirmation |
 | `/cancel` | `PaymentCancel` | Canceled checkout return page |
 | `/terms` | `TermsAndConditions` | Legal |

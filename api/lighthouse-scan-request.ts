@@ -31,6 +31,8 @@ const scanRequestSchema = z.object({
     "Cosmetic Dental",
     "General Dental",
     "Chiropractic / PT",
+    "Primary Care",
+    "Mental Health",
     "Other",
   ]),
   businessType: z
@@ -184,9 +186,9 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     },
   });
 
-  const subject = `New lead leak audit request: ${request.practiceName}`;
+  const subject = `New Risk & Trust triage request: ${request.practiceName}`;
   const text = [
-    "New Lead Leak Audit Request",
+    "New Risk & Trust Triage Request",
     "",
     `Practice Name: ${request.practiceName}`,
     `Contact Name: ${request.contactName}`,
@@ -203,7 +205,7 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
   ].filter(Boolean).join("\n");
 
   const html = `
-    <h2>New Lead Leak Audit Request</h2>
+    <h2>New Risk &amp; Trust Triage Request</h2>
     <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
     <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
@@ -234,9 +236,9 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const apiKey = getResendApiKey();
   const to = getEmailTo();
   const from = getResendFrom();
-  const subject = `New lead leak audit request: ${request.practiceName}`;
+  const subject = `New Risk & Trust triage request: ${request.practiceName}`;
   const text = [
-    "New Lead Leak Audit Request",
+    "New Risk & Trust Triage Request",
     "",
     `Practice Name: ${request.practiceName}`,
     `Contact Name: ${request.contactName}`,
@@ -252,7 +254,7 @@ async function sendWithResend(request: ScanRequest, ip: string) {
     "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
   ].filter(Boolean).join("\n");
   const html = `
-    <h2>New Lead Leak Audit Request</h2>
+    <h2>New Risk &amp; Trust Triage Request</h2>
     <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
     <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
@@ -395,6 +397,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   return res.status(200).json({
-    message: `Thank you. We'll send your lead leak audit to ${request.email} within 48 hours.`,
+    message: `Thank you. We'll send your Risk & Trust triage notes to ${request.email} within 48 hours.`,
   });
 }

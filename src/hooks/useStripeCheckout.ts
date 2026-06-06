@@ -20,13 +20,13 @@ export function useStripeCheckout() {
         const body = await res.json().catch(() => ({}));
         throw new Error(
           body.error ??
-            "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+            "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the triage form.",
         );
       }
 
       const { url } = await res.json();
       if (!url) {
-        throw new Error("Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.");
+        throw new Error("Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the triage form.");
       }
 
       window.location.href = url;
@@ -34,7 +34,7 @@ export function useStripeCheckout() {
       setError(
         err instanceof Error
           ? err.message
-          : "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+          : "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the triage form.",
       );
       setLoading(null);
     }

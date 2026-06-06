@@ -41,6 +41,8 @@ const practiceTypes = [
   "Cosmetic Dental",
   "General Dental",
   "Chiropractic / PT",
+  "Primary Care",
+  "Mental Health",
   "Other",
 ];
 
@@ -203,9 +205,9 @@ export default function FreeLighthouseScan() {
   const [submitError, setSubmitError] = useState("");
 
   usePageMeta({
-    title: "Free Lead Leak Audit for Medical Practices | BADGRTechnologies",
+    title: "Medical Website Risk & Trust Triage | BADGRTechnologies",
     description:
-      "Claim a free BADGRTechnologies lead leak audit for Atlanta med-spas, dental practices, chiropractic, and PT practices.",
+      "Request a free BADGRTechnologies medical website triage review for speed, patient flow, no-PHI form clarity, trust signals, accessibility, and local visibility.",
   });
 
   useJsonLd(
@@ -214,14 +216,14 @@ export default function FreeLighthouseScan() {
       websiteEntity,
       buildWebPageSchema({
         id: "https://badgrtech.com/free-lighthouse-scan#page",
-        name: "Free Lead Leak Audit",
+        name: "Medical Website Risk & Trust Triage",
         description:
-          "Request a free website lead leak audit from BADGRTechnologies.",
+          "Request a free medical website triage review from BADGRTechnologies.",
         url: "https://badgrtech.com/free-lighthouse-scan",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
           {
-            name: "Free Lead Leak Audit",
+            name: "Medical Website Risk & Trust Triage",
             url: "https://badgrtech.com/free-lighthouse-scan",
           },
         ],
@@ -328,16 +330,16 @@ export default function FreeLighthouseScan() {
               variant="outline"
               className="mb-6 rounded-none border-primary-bright/70 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary-bright"
             >
-              Free Lead Leak Audit
+              Medical Website Triage
             </Badge>
             <h1 className="font-mono text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-6xl">
-              Your Website Is Losing Patients. Let's Find The Leak.
+              Find The Site Friction Patients Feel First.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">
-              Claim a free new-patient lead leak audit for Atlanta-area
-              med-spas, dental practices, chiropractic, and PT practices.
-              See where speed, mobile friction, and booking flow may be costing
-              you inquiries. Results vary.
+              Request a free Risk & Trust triage review for Atlanta-area
+              med spas, dental, primary care, mental health, chiropractic, and
+              PT practices. See where speed, mobile friction, booking flow, and
+              no-PHI form clarity may be costing you inquiries. Results vary.
             </p>
             <div className="mt-8 grid max-w-2xl gap-3 text-sm text-zinc-300 sm:grid-cols-3">
               {[
@@ -356,7 +358,7 @@ export default function FreeLighthouseScan() {
               size="lg"
               className="mt-10 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
             >
-              <a href="#scan-form">Get My Free Lead Leak Audit</a>
+              <a href="#scan-form">Request Free Triage Review</a>
             </Button>
           </div>
 
@@ -385,12 +387,12 @@ export default function FreeLighthouseScan() {
           <div className="grid gap-5 md:grid-cols-3">
             {[
               {
-                title: "Most practices do not know where bookings leak",
+                title: "Most practices do not know where bookings stall",
                 text: "Slow pages, hard-to-tap buttons, and unclear booking paths can push new patients back to search before they ever call.",
               },
               {
                 title: "Ad spend gets wasted on friction",
-                text: "A free audit helps identify whether the website is keeping the traffic you already paid to attract. Results vary.",
+                text: "A free triage review helps identify whether the website is keeping the traffic you already paid to attract. Results vary.",
               },
               {
                 title: "Medical trust has to show up fast",
@@ -417,7 +419,7 @@ export default function FreeLighthouseScan() {
             What You Get
           </Badge>
           <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-            A Free Audit That Shows Where Your Site Is Leaking New-Patient Bookings
+            A Free Triage Review That Shows Where Patient Trust Breaks Down
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
             We review public website signals and return practical notes on page
@@ -430,7 +432,7 @@ export default function FreeLighthouseScan() {
             size="lg"
             className="mt-8 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
           >
-            <a href="#scan-form">Claim My Free Audit</a>
+            <a href="#scan-form">Request Free Triage Review</a>
           </Button>
         </div>
       </section>
@@ -496,7 +498,7 @@ export default function FreeLighthouseScan() {
         <div className="container mx-auto max-w-2xl px-4">
           <div className="mb-10 text-center">
             <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Claim My Free Audit
+              Request Free Triage Review
             </h2>
             <p className="mt-4 text-zinc-400">
               Business information only. No patient data, no health questions,
@@ -511,7 +513,7 @@ export default function FreeLighthouseScan() {
                 Request Submitted
               </h3>
               <p className="mt-3 text-zinc-300">
-                Thank you. We will send your lead leak audit to{" "}
+                Thank you. We will send your Risk & Trust triage notes to{" "}
                 <strong className="text-white">{successEmail}</strong> within 48 hours.
               </p>
             </div>
@@ -704,11 +706,11 @@ export default function FreeLighthouseScan() {
                     className="mt-1 h-4 w-4 shrink-0 accent-primary"
                   />
                   <span>
-                    I understand this is a free lead leak audit based on public
-                    website signals, not legal, medical, security, or HIPAA
-                    compliance advice. I will not submit patient information,
-                    PHI, passwords, or confidential medical details through this
-                    form.
+                    I understand this is a free Risk & Trust triage review based
+                    on public website signals, not legal, medical, security, or
+                    HIPAA compliance advice. I will not submit patient
+                    information, PHI, passwords, or confidential medical details
+                    through this form.
                   </span>
                 </label>
                 {errors.consent ? (
@@ -722,7 +724,7 @@ export default function FreeLighthouseScan() {
                 <Lock className="mt-0.5 h-4 w-4 shrink-0 text-primary-bright" />
                 <span>
                   By submitting, you agree to be contacted by BADGRTechnologies
-                  LLC regarding your free audit. We do not sell your information.
+                  LLC regarding your free triage review. We do not sell your information.
                   See the{" "}
                   <Link href="/privacy" className="text-primary-bright underline underline-offset-4">
                     Privacy Policy
@@ -731,7 +733,7 @@ export default function FreeLighthouseScan() {
                   <Link href="/terms" className="text-primary-bright underline underline-offset-4">
                     Terms
                   </Link>
-                  . Your details are used only to prepare and follow up on this audit.
+                  . Your details are used only to prepare and follow up on this review.
                 </span>
               </p>
 
@@ -753,7 +755,7 @@ export default function FreeLighthouseScan() {
                     Submitting
                   </span>
                 ) : (
-                  "Claim My Free Audit"
+                  "Send Triage Request"
                 )}
               </Button>
             </form>
@@ -779,10 +781,10 @@ export default function FreeLighthouseScan() {
                 Audit Scope
               </h2>
               <p>
-                A free lead leak audit is an initial website performance,
-                usability, and public trust-signal review. It is not a full
-                security audit, legal review, medical advice, or compliance
-                certification. Results vary.
+                A free Risk & Trust triage review is an initial website
+                performance, usability, no-PHI form, and public trust-signal
+                review. It is not a full security audit, legal review, medical
+                advice, or compliance certification. Results vary.
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">

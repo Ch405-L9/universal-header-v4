@@ -9,37 +9,37 @@ import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/
 
 const primaryItems = [
   "Performance tuning and page-speed cleanup",
-  "Mobile UX and CTA flow improvements",
-  "Service-page clarity and funnel tightening",
-  "Form testing, trust signals, and conversion friction reduction",
+  "Mobile UX and booking-path improvements",
+  "Provider/service-page clarity and patient journey tightening",
+  "PHI-aware form checks, trust signals, and conversion friction reduction",
 ];
 
 const followOnGroups = [
   {
-    title: "Local SEO Support",
+    title: "Practice Care",
     description:
-      "Keep the stronger site visible with practical local search improvements after the optimization foundation is in place.",
+      "Starting at $550/month for ongoing updates, uptime monitoring, PHI-aware form checks, accessibility basics, and local profile hygiene once the 14-day sprint is complete.",
     icon: Search,
   },
   {
-    title: "Content Support",
+    title: "Practice Growth Care",
     description:
-      "Add or refine service pages, supporting content, and clearer messaging once the primary funnel is working better.",
+      "Starting at $950/month for continuous site care plus provider/service page optimization, review workflows, and booking-path improvements.",
     icon: LineChart,
   },
   {
-    title: "Light Social Support",
+    title: "Optional Campaign Support",
     description:
-      "Use basic social content and distribution only when it helps reinforce the business and feed the improved website experience.",
+      "Custom project pricing for practices layering in paid campaigns or deeper analytics on top of a hardened site.",
     icon: Share2,
   },
 ];
 
 export default function AdditionalServicesPage() {
   usePageMeta({
-    title: "Additional Services | BADGRTechnologies",
+    title: "Practice Care Services | BADGRTechnologies",
     description:
-      "See BADGR's follow-on services for local SEO, content, and light social support after core web optimization work is complete.",
+      "See BADGRTechnologies Practice Care, Practice Growth Care, and campaign support for small medical practice websites after the 14-day sprint.",
   });
 
   useJsonLd(
@@ -48,13 +48,13 @@ export default function AdditionalServicesPage() {
       websiteEntity,
       buildWebPageSchema({
         id: "https://badgrtech.com/additional-services#page",
-        name: "Additional Services | BADGRTechnologies",
+        name: "Practice Care Services | BADGRTechnologies",
         description:
-          "See BADGR's follow-on services for local SEO, content, and light social support after core web optimization work is complete.",
+          "See BADGRTechnologies Practice Care, Practice Growth Care, and campaign support for small medical practice websites after the 14-day sprint.",
         url: "https://badgrtech.com/additional-services",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
-          { name: "Additional Services", url: "https://badgrtech.com/additional-services" },
+          { name: "Practice Care Services", url: "https://badgrtech.com/additional-services" },
         ],
       }),
     ),
@@ -70,15 +70,16 @@ export default function AdditionalServicesPage() {
               variant="outline"
               className="mb-6 rounded-none border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-primary"
             >
-              Follow-On Services
+              Practice Care Services
             </Badge>
             <h1 className="font-sans text-4xl font-bold uppercase tracking-[0.04em] text-white md:text-6xl">
-              Additional Services After The Site Is Stronger
+              Practice Care After The Site Is Stronger
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
               This page exists to support the core offer, not distract from it.
-              BADGR leads with web optimization first. These services are only
-              useful after the site is clearer, faster, and easier to trust.
+              BADGR leads with the Leak & Trust Fix Sprint first. These services
+              are only useful after the medical practice site is clearer, faster,
+              and safer to trust.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="rounded-none uppercase tracking-[0.16em]">
@@ -102,14 +103,14 @@ export default function AdditionalServicesPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-2xl font-bold uppercase tracking-[0.06em] text-white">
                 <Wrench className="h-5 w-5 text-primary" />
-                Core Offer First
+                Sprint First
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-7 text-zinc-300">
               <p>
-                The core engagement remains web optimization. We start by
-                fixing the site issues that reduce trust, calls, form fills, and
-                clarity.
+                The core engagement remains the Leak & Trust Fix Sprint. We
+                start by fixing the site issues that reduce patient trust, calls,
+                form fills, booking clarity, and no-PHI safety.
               </p>
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-5">
                 {primaryItems.map(item => (
@@ -147,7 +148,7 @@ export default function AdditionalServicesPage() {
               </p>
               <p className="mt-3 text-base leading-7 text-zinc-300">
                 None of these follow-on services should outrank or overpower the
-                primary web optimization offer in the main funnel.
+                primary Leak & Trust Fix Sprint in the main funnel.
               </p>
             </div>
 
