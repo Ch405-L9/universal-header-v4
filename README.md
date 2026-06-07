@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/images/badgrtech-logo-sm.avif" alt="BADGRTechnologies b logo" width="96" height="96" />
+</p>
+
 # BADGRTechnologies — badgrtech.com
 
 Production site for BADGRTechnologies LLC, focused on HIPAA-aware medical website optimization, Practice Care, Risk & Trust reports, and fixed-scope website operations for small cash-pay and hybrid practices. Built with React + Vite + Tailwind. Deployed via Vercel.
@@ -5,6 +9,10 @@ Production site for BADGRTechnologies LLC, focused on HIPAA-aware medical websit
 **Branch:** `Web-Ops` (production branch — auto-deploys to Vercel on push)
 **Repo:** https://github.com/Ch405-L9/universal-header-v4
 **Live:** https://badgrtech.com
+
+The BADGRTechnologies name, BADGRTechnologies LLC name, BADGR wordmark, and BADGR "b" logo are company brand assets. Do not reuse or redistribute them outside this project without written permission from BADGRTechnologies LLC.
+
+This site describes HIPAA-aware website operations and BAA-ready support. It is not legal advice, does not certify HIPAA compliance, and public forms must not be used to submit PHI, patient records, passwords, or confidential medical details.
 
 ---
 
@@ -76,6 +84,10 @@ public/
   grid-pattern.svg
 sample-report-preview.html   Standalone audit report preview
 dev-api-server.ts            Local dev only — Express shim for /api routes (port 3002)
+docs/
+  LAUNCH_OPS_CHECKLIST.md    Env, Vercel, DNS, Resend, Stripe, smoke-test, and rollback runbook
+  CLIENT_READINESS_KIT.md    Triage call script, scan scope, BAA/SOW notes, and lead tracking fields
+  PERPLEXITY_RESEARCH_PROMPT.md  Research prompt for BAA/SOW, analytics, and onboarding readiness
 ```
 
 ---
@@ -115,6 +127,7 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 |---|---|---|
 | `/` | `Home` | Main landing page with audit tool |
 | `/free-lighthouse-scan` | `FreeLighthouseScan` | Free Lighthouse audit lead-generation page |
+| `/hipaa-aware-web-operations` | `HipaaAwareWebOpsPage` | HIPAA-aware website operations SEO/AEO service page |
 | `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
 | `/sample-report` | `SampleReportPage` | Medical Risk & Trust sample report with plain-English email draft |
 | `/success` | `PaymentSuccess` | Post-checkout confirmation |
@@ -156,6 +169,20 @@ git diff --check
 | Desktop | 96 | 90 | 100 | 100 |
 
 Live current score visible at [badgrtech.com/proof](https://badgrtech.com/proof) — pulled from Google PageSpeed Insights on page load.
+
+If the public score preview fails after setting `PAGESPEED_API_KEY`, call `/api/pagespeed-preview?url=https%3A%2F%2Fwww.badgrtech.com%2F&debug=1` and check only the sanitized `debug` fields. The endpoint never returns the key.
+
+---
+
+## Launch Operations
+
+Use these internal docs before production pushes, client onboarding, or vendor changes:
+
+| Doc | Purpose |
+|---|---|
+| [Launch Ops Checklist](docs/LAUNCH_OPS_CHECKLIST.md) | Prevents Vercel/env/DNS/Stripe/Resend confusion and gives rollback steps |
+| [Client Readiness Kit](docs/CLIENT_READINESS_KIT.md) | Keeps sales calls, scope boundaries, BAA/SOW needs, and lead tracking consistent |
+| [Perplexity Research Prompt](docs/PERPLEXITY_RESEARCH_PROMPT.md) | Research input for counsel-ready BAA/SOW, analytics, and onboarding improvements |
 
 ---
 

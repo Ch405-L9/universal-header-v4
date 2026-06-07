@@ -90,20 +90,19 @@ export default function CaseStudy() {
 
   useEffect(() => {
     fetch(
-      "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Fbadgrtech.com&strategy=mobile&category=performance",
+      "/api/pagespeed-preview?url=https%3A%2F%2Fwww.badgrtech.com%2F",
     )
       .then((r) => {
         if (!r.ok) throw new Error();
         return r.json();
       })
       .then((data) => {
-        const lhr = data.lighthouseResult;
         setLive({
-          score: Math.round((lhr?.categories?.performance?.score ?? 0) * 100),
-          lcp: lhr?.audits?.["largest-contentful-paint"]?.displayValue,
-          fcp: lhr?.audits?.["first-contentful-paint"]?.displayValue,
-          cls: lhr?.audits?.["cumulative-layout-shift"]?.displayValue,
-          tbt: lhr?.audits?.["total-blocking-time"]?.displayValue,
+          score: data.score,
+          lcp: data.metrics?.lcp,
+          fcp: data.metrics?.fcp,
+          cls: data.metrics?.cls,
+          tbt: data.metrics?.tbt,
         });
       })
       .catch(() => setLiveError(true))
@@ -140,6 +139,12 @@ export default function CaseStudy() {
             We don't use hypothetical clients. Every optimization technique we sell was applied to
             this site first. Real scores. Real changes. Live data pulled on page load.
           </p>
+          <a
+            href="/"
+            className="mt-8 inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-mono text-sm font-bold uppercase text-primary transition-colors hover:bg-primary/10"
+          >
+            Back to home
+          </a>
         </div>
       </section>
 
@@ -268,7 +273,7 @@ export default function CaseStudy() {
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
-              href="/free-lighthouse-scan#scan-form"
+              href="/#triage-form"
               className="inline-flex h-11 items-center justify-center rounded-none bg-primary px-8 font-mono text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary/80"
             >
               Request Free Triage

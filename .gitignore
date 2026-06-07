@@ -147,6 +147,7 @@ sample-report-preview.pdf
 
 # Non-app files — research, scripts, media
 *.txt
+!public/llms.txt
 *.py
 pyttsx3
 pyttsx3/

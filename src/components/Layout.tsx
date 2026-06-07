@@ -111,7 +111,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               size="sm"
               className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
             >
-              <a href="#contact">Request Triage Call</a>
+              <a href="/#triage-form">Request Triage Call</a>
             </Button>
           </div>
           <button
@@ -145,7 +145,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               asChild
               className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
             >
-              <a href="/free-lighthouse-scan#scan-form" onClick={() => setIsMenuOpen(false)}>
+              <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
                 Request Triage Call
               </a>
             </Button>
@@ -172,7 +172,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Proof Scores
             </a>
             <a
-              href="/free-lighthouse-scan#scan-form"
+              href="/#triage-form"
               className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
             >
               Triage Call
@@ -282,15 +282,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="#services"
+                    href="/hipaa-aware-web-operations"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Medical Website Operations
+                    HIPAA-Aware Web Operations
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#pricing"
+                    href="/#pricing"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Practice Care Pricing
@@ -298,7 +298,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="#proof"
+                    href="/#proof"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Sample Risk & Trust Report
@@ -322,7 +322,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="/free-lighthouse-scan#scan-form"
+                    href="/#triage-form"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Request Triage Call
@@ -330,7 +330,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="#results"
+                    href="/#results"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     What We Fix
@@ -338,7 +338,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="#contact"
+                    href="/#triage-form"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Contact

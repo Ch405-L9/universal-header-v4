@@ -6,6 +6,14 @@ const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const RATE_LIMIT_MAX = 3;
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
+function normalizeHttpsUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+  if (trimmed.startsWith("http://")) return `https://${trimmed.slice(7)}`;
+  if (!trimmed.startsWith("https://")) return `https://${trimmed}`;
+  return trimmed;
+}
+
 const scanRequestSchema = z.object({
   practiceName: z
     .string()
@@ -42,13 +50,12 @@ const scanRequestSchema = z.object({
     .max(80, "Business type must be 80 characters or less")
     .regex(/^[a-zA-Z0-9\s,&'./-]+$/, "Business type contains unsupported characters")
     .optional(),
-  websiteUrl: z
-    .string()
-    .trim()
-    .url("Website URL must be valid")
-    .refine((value) => value.startsWith("https://"), {
+  websiteUrl: z.preprocess(
+    (value) => (typeof value === "string" ? normalizeHttpsUrl(value) : value),
+    z.string().url("Website URL must be valid").refine((value) => value.startsWith("https://"), {
       message: "Website URL must start with https://",
     }),
+  ),
   consent: z.boolean().refine((value) => value === true, {
     message: "You must confirm the audit request terms before submitting.",
   }),

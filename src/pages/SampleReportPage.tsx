@@ -145,14 +145,18 @@ export default function SampleReportPage() {
                 variant="outline"
                 className="rounded-none uppercase tracking-[0.16em]"
               >
-                <a href="/#contact">Request A Triage Call</a>
+                <a href="/#triage-form">Request A Triage Call</a>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 className="rounded-none uppercase tracking-[0.16em]"
               >
-                <a href="/reports/cash-medical-lead-leak-sample.pdf">
+                <a
+                  href="/reports/cash-medical-lead-leak-sample.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
                   Download Sample PDF
                 </a>
               </Button>
@@ -327,7 +331,7 @@ export default function SampleReportPage() {
                 Risk & Trust review on your own site.
               </p>
               <Button asChild className="mt-6 rounded-none uppercase tracking-[0.16em]">
-                <a href="/free-lighthouse-scan#scan-form">Request Triage Call</a>
+                <a href="/#triage-form">Request Triage Call</a>
               </Button>
             </div>
 

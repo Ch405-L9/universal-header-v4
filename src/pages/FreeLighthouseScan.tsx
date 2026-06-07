@@ -98,6 +98,14 @@ const auditChecks: { icon: LucideIcon; text: string }[] = [
   { icon: Zap, text: "Online scheduling and local visibility gaps" },
 ];
 
+function normalizeHttpsUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+  if (trimmed.startsWith("http://")) return `https://${trimmed.slice(7)}`;
+  if (!trimmed.startsWith("https://")) return `https://${trimmed}`;
+  return trimmed;
+}
+
 function validateForm(formData: FormData): FormErrors {
   const errors: FormErrors = {};
   const practiceName = formData.practiceName.trim();
@@ -105,7 +113,7 @@ function validateForm(formData: FormData): FormErrors {
   const email = formData.email.trim();
   const phone = formData.phone.trim();
   const practiceType = formData.practiceType.trim();
-  const websiteUrl = formData.websiteUrl.trim();
+  const websiteUrl = normalizeHttpsUrl(formData.websiteUrl);
 
   if (!practiceName) {
     errors.practiceName = "Practice name is required.";
@@ -151,10 +159,10 @@ function validateForm(formData: FormData): FormErrors {
     try {
       const parsedUrl = new URL(websiteUrl);
       if (parsedUrl.protocol !== "https:") {
-        errors.websiteUrl = "Please include https:// at the beginning.";
+        errors.websiteUrl = "Enter a secure website URL.";
       }
     } catch {
-      errors.websiteUrl = "Enter a valid URL, including https://.";
+      errors.websiteUrl = "Enter a valid website domain or URL.";
     }
   }
 
@@ -268,7 +276,11 @@ export default function FreeLighthouseScan() {
       return;
     }
 
-    const nextErrors = validateForm(formData);
+    const normalizedFormData = {
+      ...formData,
+      websiteUrl: normalizeHttpsUrl(formData.websiteUrl),
+    };
+    const nextErrors = validateForm(normalizedFormData);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
@@ -282,7 +294,7 @@ export default function FreeLighthouseScan() {
       const response = await fetch("/api/lighthouse-scan-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(normalizedFormData),
       });
       const data = (await response.json()) as { message?: string };
 
@@ -290,7 +302,7 @@ export default function FreeLighthouseScan() {
         throw new Error(data.message || "Request failed.");
       }
 
-      setSuccessEmail(formData.email.trim().toLowerCase());
+      setSuccessEmail(normalizedFormData.email.trim().toLowerCase());
       setFormData(initialFormData);
     } catch (error) {
       setSubmitError(
@@ -359,6 +371,14 @@ export default function FreeLighthouseScan() {
               className="mt-10 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
             >
               <a href="#scan-form">Request Free Triage Review</a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="mt-4 rounded-none px-8 font-bold uppercase"
+            >
+              <Link href="/">Back to home</Link>
             </Button>
           </div>
 
@@ -491,6 +511,11 @@ export default function FreeLighthouseScan() {
               </Card>
             ))}
           </div>
+          <div className="mt-8 flex justify-center">
+            <Button asChild variant="outline" className="rounded-none uppercase">
+              <Link href="/">Back to home</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -516,6 +541,14 @@ export default function FreeLighthouseScan() {
                 Thank you. We will send your Risk & Trust triage notes to{" "}
                 <strong className="text-white">{successEmail}</strong> within 48 hours.
               </p>
+              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+                <Button asChild variant="outline" className="rounded-none">
+                  <Link href="/">Back to home</Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-none">
+                  <Link href="/#pricing">View services</Link>
+                </Button>
+              </div>
             </div>
           ) : (
             <form

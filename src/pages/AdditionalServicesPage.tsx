@@ -83,7 +83,7 @@ export default function AdditionalServicesPage() {
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="rounded-none uppercase tracking-[0.16em]">
-                <a href="/#contact">Talk Through Fit</a>
+                <a href="/#triage-form">Talk Through Fit</a>
               </Button>
               <Button
                 asChild
