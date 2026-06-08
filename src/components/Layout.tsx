@@ -1,5 +1,6 @@
 import {
   Facebook,
+  Instagram,
   Linkedin,
   Mail,
   MapPin,
@@ -207,6 +208,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 faster pages, clearer booking paths, and safer public-facing forms.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
+                <a
+                  href="https://www.instagram.com/badgrtech/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
                 <a
                   href="https://www.linkedin.com/company/109228065/"
                   target="_blank"
