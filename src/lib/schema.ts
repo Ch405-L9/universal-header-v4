@@ -43,13 +43,11 @@ export const orgEntity = {
     "Local SEO for Medical Practices",
   ],
   sameAs: [
-    "https://www.instagram.com/badgrtech/",
     "https://www.linkedin.com/company/109228065/",
     "https://www.youtube.com/channel/UCAbCRiyUh3JTUIrj8l9ADow",
-    "https://www.tiktok.com/@badgrtech2.5",
+    "https://www.tiktok.com/@badgr.25?lang=en",
     "https://x.com/40n33Ba6R",
     "https://www.facebook.com/profile.php?id=61581099610296",
-    "https://github.com/Ch405-L9",
   ],
 };
 

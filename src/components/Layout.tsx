@@ -1,7 +1,5 @@
 import {
   Facebook,
-  Github,
-  Instagram,
   Linkedin,
   Mail,
   MapPin,
@@ -210,15 +208,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
-                  href="https://www.instagram.com/badgrtech/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-primary"
-                  aria-label="BADGRTechnologies on Instagram"
-                >
-                  <Instagram size={20} />
-                </a>
-                <a
                   href="https://www.linkedin.com/company/109228065/"
                   target="_blank"
                   rel="noreferrer"
@@ -237,7 +226,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Youtube size={20} />
                 </a>
                 <a
-                  href="https://www.tiktok.com/@badgrtech2.5"
+                  href="https://www.tiktok.com/@badgr.25?lang=en"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
@@ -262,15 +251,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   aria-label="BADGRTechnologies on Facebook"
                 >
                   <Facebook size={20} />
-                </a>
-                <a
-                  href="https://github.com/Ch405-L9"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-primary"
-                  aria-label="BADGRTechnologies on GitHub"
-                >
-                  <Github size={20} />
                 </a>
               </div>
             </div>
