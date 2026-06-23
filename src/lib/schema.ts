@@ -127,7 +127,7 @@ export const aiConsultationService = {
   provider: { "@id": ORG_ID },
   category: "AI Consulting",
   areaServed: { "@type": "Country", name: "United States" },
-  url: `${BASE_URL}/#ai-solutions`,
+  url: `${BASE_URL}/ai-consulting`,
 };
 
 // ─── Page-level schema builders ──────────────────────────────────────────────

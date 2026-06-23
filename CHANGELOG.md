@@ -6,6 +6,18 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-06-23] — BADGR Bolt privacy policy page
+
+### Added
+- `src/pages/BadgrBoltPrivacy.tsx`: Full privacy policy page for the BADGR Bolt Android speed-reading app at `/privacy/badgr-bolt`. Covers Firebase Auth/Firestore, Google Gemini AI, Firebase ML, Google Play Billing, Render hosting transit, GDPR legal bases, CCPA rights, COPPA, data retention schedule, account deletion instructions, and privacy contact (`privacy@badgrtech.com`).
+
+### Changed
+- `src/App.tsx`: Lazy-loaded route `/privacy/badgr-bolt` → `BadgrBoltPrivacy` component (line 15, 34). Enables `badgrtech.com/privacy/badgr-bolt` as the Play Store policy URL.
+- `public/sitemap.xml`: Added `/privacy/badgr-bolt` URL entry.
+- `src/lib/schema.ts`: Schema updates to support new page graph.
+
+---
+
 ## [2026-06-06] — Launch ops readiness, SEO/AEO route, and PageSpeed diagnostics
 
 ### Added
@@ -17,7 +29,7 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ### Changed
 - `src/App.tsx`, `src/components/Layout.tsx`, `public/sitemap.xml`: Wired the new HIPAA-aware operations route into the app, footer, and sitemap.
-- `api/pagespeed-preview.ts`: Added opt-in sanitized `debug=1` diagnostics for PageSpeed upstream failures without exposing API keys.
+- `api/pagespeed-preview.ts`: Added opt-in sanitized `debug=2` diagnostics for PageSpeed upstream failures without exposing API keys.
 - `.gitignore`: Allows the production `public/llms.txt` file while continuing to ignore local text notes and secrets.
 - `README.md`: Added brand/logo ownership notice, no-PHI and no-compliance-guarantee boundaries, route map updates, and launch-ops doc references.
 

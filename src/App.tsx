@@ -12,12 +12,14 @@ const Toaster = lazy(() =>
 const Home = lazy(() => import("./pages/Home"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("@/pages/TermsAndConditions"));
+const BadgrBoltPrivacy = lazy(() => import("@/pages/BadgrBoltPrivacy"));
 const FutureRoutePage = lazy(() => import("@/pages/FutureRoutePage"));
 const AdditionalServicesPage = lazy(() => import("@/pages/AdditionalServicesPage"));
 const SampleReportPage = lazy(() => import("@/pages/SampleReportPage"));
 const CaseStudy = lazy(() => import("@/pages/CaseStudy"));
 const FreeLighthouseScan = lazy(() => import("@/pages/FreeLighthouseScan"));
 const HipaaAwareWebOpsPage = lazy(() => import("@/pages/HipaaAwareWebOpsPage"));
+const AiConsultingPage = lazy(() => import("@/pages/AiConsultingPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const GraphInspector = lazy(() => import("@/pages/GraphInspector"));
 const PaymentSuccess = lazy(() => import("@/pages/PaymentSuccess"));
@@ -29,6 +31,7 @@ function Router() {
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/privacy"} component={PrivacyPolicy} />
+        <Route path={"/privacy/badgr-bolt"} component={BadgrBoltPrivacy} />
         <Route path={"/terms"} component={TermsAndConditions} />
         <Route path={"/sample-report"} component={SampleReportPage} />
         <Route path={"/proof"} component={CaseStudy} />
@@ -37,6 +40,7 @@ function Router() {
           path={"/hipaa-aware-web-operations"}
           component={HipaaAwareWebOpsPage}
         />
+        <Route path={"/ai-consulting"} component={AiConsultingPage} />
         <Route path={"/partners"}>
           {() => <FutureRoutePage title="Partners" routePath="/partners" />}
         </Route>
