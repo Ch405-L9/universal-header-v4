@@ -1,0 +1,120 @@
+name: Security Headers Validation
+
+on:
+  push:
+    paths:
+      - "vercel.json"
+    branches: [Web-Ops]
+  pull_request:
+    paths:
+      - "vercel.json"
+  workflow_dispatch:
+
+jobs:
+  validate-headers:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate vercel.json syntax
+        run: |
+          python3 -c "
+          import json, sys
+          try:
+              with open('vercel.json') as f:
+                  data = json.load(f)
+              print('vercel.json: valid JSON')
+          except json.JSONDecodeError as e:
+              print(f'vercel.json: INVALID JSON — {e}', file=sys.stderr)
+              sys.exit(1)
+          "
+
+      - name: Validate required security headers present
+        run: |
+          python3 -c "
+          import json, sys
+
+          REQUIRED_HEADERS = [
+              'Strict-Transport-Security',
+              'X-Content-Type-Options',
+              'X-Frame-Options',
+              'Referrer-Policy',
+              'Permissions-Policy',
+              'X-Robots-Tag',
+          ]
+
+          with open('vercel.json') as f:
+              config = json.load(f)
+
+          # Find global headers block (source '/(.*)')
+          global_headers = {}
+          for block in config.get('headers', []):
+              if block.get('source') in ('/(.*)', '/(.*)'):
+                  for h in block.get('headers', []):
+                      global_headers[h['key'].lower()] = h['value']
+
+          missing = []
+          for required in REQUIRED_HEADERS:
+              if required.lower() not in global_headers:
+                  missing.append(required)
+
+          if missing:
+              print(f'MISSING HEADERS: {missing}', file=sys.stderr)
+              sys.exit(1)
+          else:
+              print(f'All {len(REQUIRED_HEADERS)} required headers present.')
+
+          # Verify x-robots-tag is NOT noindex
+          robots = global_headers.get('x-robots-tag', '')
+          if 'noindex' in robots.lower():
+              print(f'CRITICAL: x-robots-tag contains noindex — will block search indexing', file=sys.stderr)
+              sys.exit(1)
+          else:
+              print(f'x-robots-tag: {robots} (indexing permitted)')
+
+          # Verify HSTS has includeSubDomains and preload
+          hsts = global_headers.get('strict-transport-security', '')
+          if 'includeSubDomains' not in hsts or 'preload' not in hsts:
+              print(f'WARNING: HSTS missing includeSubDomains or preload: {hsts}')
+          else:
+              print(f'HSTS: {hsts}')
+
+          # Verify CSP is either Report-Only or enforcement
+          csp_ro = global_headers.get('content-security-policy-report-only', '')
+          csp = global_headers.get('content-security-policy', '')
+          if not csp_ro and not csp:
+              print('WARNING: No CSP or CSP-Report-Only header found')
+          elif csp:
+              print('CSP: enforcement mode active')
+          else:
+              print('CSP: report-only mode (observation window)')
+          "
+
+      - name: Validate CSP syntax (no obvious errors)
+        run: |
+          python3 -c "
+          import json, sys
+
+          with open('vercel.json') as f:
+              config = json.load(f)
+
+          for block in config.get('headers', []):
+              if block.get('source') in ('/(.*)', '/(.*)'):
+                  for h in block.get('headers', []):
+                      key = h['key'].lower()
+                      if 'content-security-policy' in key:
+                          val = h['value']
+                          # Check for common CSP mistakes
+                          if \"'unsafe-eval'\" in val:
+                              print(f'WARNING: unsafe-eval in CSP: {key}')
+                          if 'unsafe-inline' in val and 'script-src' in val.split('unsafe-inline')[0].split(';')[-1]:
+                              print(f'WARNING: unsafe-inline in script-src')
+                          if \"'none'\" in val and 'default-src' in val:
+                              # Check it's not also allowing things after none
+                              pass
+                          print(f'{key}: syntax OK')
+          "

@@ -48,6 +48,30 @@ const ensureCanonical = () => {
   return link;
 };
 
+export function useJsonLd(schema: Record<string, unknown>, id: string) {
+  const serializedSchema = JSON.stringify(schema);
+
+  useEffect(() => {
+    const existing = document.head.querySelector(
+      `script[type="application/ld+json"][data-schema-id="${id}"]`
+    );
+    if (existing) {
+      existing.textContent = serializedSchema;
+      return;
+    }
+    const script = document.createElement("script");
+    script.setAttribute("type", "application/ld+json");
+    script.setAttribute("data-schema-id", id);
+    script.textContent = serializedSchema;
+    document.head.appendChild(script);
+    return () => {
+      document.head.querySelector(
+        `script[type="application/ld+json"][data-schema-id="${id}"]`
+      )?.remove();
+    };
+  }, [id, serializedSchema]);
+}
+
 export function usePageMeta({ canonical, description, title }: PageMeta) {
   useEffect(() => {
     document.title = title;
@@ -62,6 +86,8 @@ export function usePageMeta({ canonical, description, title }: PageMeta) {
     ensureMeta("twitter:title").setAttribute("content", title);
 
     const path = canonical ?? window.location.pathname;
-    ensureCanonical().setAttribute("href", `${BASE_URL}${path}`);
+    const canonicalHref = `${BASE_URL}${path}`;
+    ensureCanonical().setAttribute("href", canonicalHref);
+    ensurePropertyMeta("og:url").setAttribute("content", canonicalHref);
   }, [canonical, description, title]);
 }

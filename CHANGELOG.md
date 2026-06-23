@@ -1,0 +1,392 @@
+# CHANGELOG
+
+All changes to this repo are logged here with timestamps.
+Branch: `Web-Ops` (production branch)
+Repo: https://github.com/Ch405-L9/universal-header-v4
+
+---
+
+## [2026-06-23] — BADGR Bolt privacy policy page
+
+### Added
+- `src/pages/BadgrBoltPrivacy.tsx`: Full privacy policy page for the BADGR Bolt Android speed-reading app at `/privacy/badgr-bolt`. Covers Firebase Auth/Firestore, Google Gemini AI, Firebase ML, Google Play Billing, Render hosting transit, GDPR legal bases, CCPA rights, COPPA, data retention schedule, account deletion instructions, and privacy contact (`privacy@badgrtech.com`).
+
+### Changed
+- `src/App.tsx`: Lazy-loaded route `/privacy/badgr-bolt` → `BadgrBoltPrivacy` component (line 15, 34). Enables `badgrtech.com/privacy/badgr-bolt` as the Play Store policy URL.
+- `public/sitemap.xml`: Added `/privacy/badgr-bolt` URL entry.
+- `src/lib/schema.ts`: Schema updates to support new page graph.
+
+---
+
+## [2026-06-06] — Launch ops readiness, SEO/AEO route, and PageSpeed diagnostics
+
+### Added
+- `src/pages/HipaaAwareWebOpsPage.tsx`: Dedicated `/hipaa-aware-web-operations` SEO/AEO service page for HIPAA-aware website operations, no-PHI public-form boundaries, Core Web Vitals discipline, and BAA-ready support language.
+- `docs/LAUNCH_OPS_CHECKLIST.md`: Internal production checklist for Vercel project selection, env vars, DNS, Resend, Stripe, smoke tests, and rollback.
+- `docs/CLIENT_READINESS_KIT.md`: Triage call script, scan scope template, BAA/SOW readiness notes, and lead tracking fields.
+- `docs/PERPLEXITY_RESEARCH_PROMPT.md`: Research prompt for BAA/SOW workflow, analytics around failed submissions, and client onboarding readiness.
+- `public/llms.txt`: Answer-engine summary with preferred service description, public route map, and no-PHI/compliance boundaries.
+
+### Changed
+- `src/App.tsx`, `src/components/Layout.tsx`, `public/sitemap.xml`: Wired the new HIPAA-aware operations route into the app, footer, and sitemap.
+- `api/pagespeed-preview.ts`: Added opt-in sanitized `debug=2` diagnostics for PageSpeed upstream failures without exposing API keys.
+- `.gitignore`: Allows the production `public/llms.txt` file while continuing to ignore local text notes and secrets.
+- `README.md`: Added brand/logo ownership notice, no-PHI and no-compliance-guarantee boundaries, route map updates, and launch-ops doc references.
+
+### UX Flow Fixes
+- `src/components/Layout.tsx`, `src/pages/Home.tsx`: Standardized primary triage CTAs to `/#triage-form` so hero, header, sticky CTA, pricing, FAQ, proof, and footer paths go directly to the home triage form.
+- `src/pages/Home.tsx`: The homepage score-preview fallback now preloads the reviewed website URL into the triage form instead of sending visitors through an extra intermediate page.
+- `api/lighthouse-scan-request.ts`, `src/pages/FreeLighthouseScan.tsx`: Accept bare website domains such as `exampleclinic.com` by normalizing to HTTPS before validation and submit.
+- `src/pages/Home.tsx`, `src/pages/FreeLighthouseScan.tsx`, `src/pages/CaseStudy.tsx`: Added explicit post-submit or deep-page return paths so visitors are not left at a dead end.
+- `src/pages/SampleReportPage.tsx`: Sample PDF opens in a new tab with `rel="noopener"` so the report page stays available.
+- `src/pages/CaseStudy.tsx`: Proof page now uses the internal PageSpeed preview proxy instead of calling Google directly from the browser.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `git diff --check`
+- Local route smoke: `/`, `/free-lighthouse-scan`, `/proof`, `/sample-report`, `/hipaa-aware-web-operations`, `/privacy`, and `/terms` returned `200`.
+- Local API smoke: `/api/lighthouse-scan-request` accepted a bare `example.com` URL with honeypot enabled, returning `200` without sending email.
+
+## [2026-06-06] — Medical ICP CTA and SEO/AEO alignment
+
+### Added
+- `PRODUCT.md`: Product positioning register for future design and content passes, centered on small cash-pay and hybrid medical practices.
+
+### Changed
+- `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/pages/SampleReportPage.tsx`, `src/pages/AdditionalServicesPage.tsx`: Updated navigation, hero, pricing, proof, FAQ, triage, footer, and follow-on service copy around medical website optimization, Practice Care, Risk & Trust reporting, and the 14-day Leak & Trust Fix Sprint.
+- `src/lib/payment.ts`, `src/lib/funnel.ts`, `src/lib/schema.ts`, `src/lib/content-graph.ts`, `index.html`: Aligned checkout labels, recommendation logic, base metadata, structured data, HowTo, and FAQ content with the medical practice ICP.
+- `api/lighthouse-scan-request.ts`: Aligned email subject/body/success language with Risk & Trust triage and expanded accepted practice types to match the public form.
+- `src/pages/Home.tsx`: Added a privacy-boundary callout beside the triage form clarifying no-PHI intake and BAA posture.
+- `README.md`: Updated route and asset descriptions to match the Risk & Trust sample report positioning.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `pnpm lint` passes with existing import-order warnings only.
+- `git diff --check`
+- Local route smoke checks for `/`, `/free-lighthouse-scan`, `/sample-report`, `/additional-services`, `/privacy`, and `/terms` returned `200`.
+
+---
+
+## [2026-06-06] — Resend production env hardening
+
+### Changed
+- `api/lighthouse-scan-request.ts`: Accepts Resend env aliases (`FROM`, `RESEND_KEY`, `RESEND_API`, `RESEND_TO`, `EMAIL_TO`) in addition to the preferred `RESEND_FROM`, `RESEND_API_KEY`, and `SCAN_REQUEST_TO` names so Vercel production configuration is less brittle.
+- `api/lighthouse-scan-request.ts`: Logs non-secret email configuration state when no email provider is visible to the serverless function.
+- `README.md`: Documented the accepted Resend aliases for production troubleshooting.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+
+---
+
+## [2026-06-02] — CSP enforcement, prod file cleanup, and security hardening
+
+### Changed
+- `vercel.json`: Promoted `Content-Security-Policy-Report-Only` to enforced `Content-Security-Policy` after two-week clean observation window.
+- `vercel.json`: Removed `require-trusted-types-for 'script'` — incompatible with React's internal `innerHTML` usage; causes app crash when enforced.
+- `vercel.json`: Added `script-src-attr 'unsafe-inline'` to unblock Vite's CSS preload `onload` pattern (`this.onload=null;this.rel='stylesheet'`), fixing skeleton layout in private/incognito windows.
+- `vercel.json`: Expanded `font-src` to include `data: https:` to resolve 15 third-party font errors from Vercel toolbar and injected sources.
+- `.gitignore`: Added `.firecrawl/` to ignore list.
+
+### Removed (archived to `NON-ESSENTIALS_DO_NOT_DEPLOY/`)
+- `email-check.txt`, `workflow.sh`, `sample-report-preview.html`, `README_security.hardening.json`, `README_universal_header_v4_security.md` — moved from root; not part of production build.
+
+---
+
+## [2026-06-02] — Live funnel polish and production hygiene
+
+### Added
+- `api/pagespeed-preview.ts`: Serverless Google PageSpeed preview proxy for the homepage URL analyzer, with optional `PAGESPEED_API_KEY` support and customer-safe fallback messaging when Google public scoring is rate-limited or blocked.
+- `public/reports/cash-medical-lead-leak-sample.pdf`: Downloadable anonymized cash-medical sample report generated from the updated sample report route.
+
+### Changed
+- `src/pages/Home.tsx`: Replaced the Google Forms triage handoff with an on-site form that submits directly to `/api/lighthouse-scan-request`.
+- `src/pages/Home.tsx`: Hero URL analyzer now calls `/api/pagespeed-preview` instead of Google's public endpoint directly and routes failed public scores to the manual free-audit flow.
+- `src/pages/Home.tsx`, `src/lib/payment.ts`, `src/lib/funnel.ts`, `src/lib/schema.ts`, `src/lib/content-graph.ts`: Repositioned packages and schema around a cash-medical pricing ladder: Diagnostic Scan from $750, 14-Day Cash-Medical Lead Leak Fix from $2,500, and Conversion Rebuild Lite from $6,500.
+- `src/pages/Home.tsx`: Added contact name, phone, business type, and consent fields so the homepage triage flow captures enough information without requesting PHI or confidential details.
+- `src/pages/Home.tsx`: Changed the hero proof CTA to anchor to the proof section and changed sample-report CTAs to normal browser navigations to reduce post-deploy cached chunk errors.
+- `src/pages/FreeLighthouseScan.tsx`: Prefills the website URL when the hero analyzer routes a visitor into the manual free-audit flow.
+- `src/pages/SampleReportPage.tsx`: Rebuilt the sample report as an anonymized cash-medical specimen with score snapshot, priority notes, owner-facing plain-English email draft, and download CTA.
+- `api/lighthouse-scan-request.ts`: Added optional business type to email notifications and returns a clear 503 when no email provider is configured instead of returning a false success.
+- `api/stripe/create-checkout-session.ts`: Validates that `STRIPE_SECRET_KEY` is a real secret key shape before initializing Stripe and returns a customer-safe fallback message when checkout is unavailable.
+- `src/hooks/useStripeCheckout.ts`: Replaced raw checkout failure copy with a safer customer-facing unavailable message.
+- `.env.example` and `README.md`: Documented PageSpeed preview key support, Resend production sender requirements, Stripe secret-key shape, local secret hygiene, and the current verification commands.
+- `eslint.config.mjs`: Ignores `NON-ESSENTIALS_DO_NOT_DEPLOY/` so archived local-only files do not block source linting.
+
+### Removed
+- `mmm.json`: Removed tracked scratch copy of Vercel config with invalid leading text.
+- `package.json.tmp`: Removed tracked stale dependency-override scratch file.
+
+### Local cleanup
+- Moved ignored local-only test and public-artifact folders out of deployable paths into `NON-ESSENTIALS_DO_NOT_DEPLOY/` so local builds stay smaller without deleting the files.
+
+### Validation
+- `pnpm check`
+- `pnpm build`
+- `pnpm audit --prod`
+- `pnpm lint` passes with existing import-order warnings only.
+- `git diff --check`
+
+---
+
+## [2026-05-21] — Free Lighthouse scan page phase 1
+
+### Added
+- `src/pages/FreeLighthouseScan.tsx`: New `/free-lighthouse-scan` lead-generation page with BADGRTech styling, proof score grid, accessible three-field form, honeypot field, page meta, and JSON-LD.
+- `api/lighthouse-scan-request.ts`: Vercel serverless endpoint with POST-only handling, Zod validation, HTTPS URL enforcement, consent acknowledgement, honeypot handling, lightweight IP rate limiting, Resend email delivery, and SMTP fallback.
+- `public/images/lighthouse-hero-bg.{avif,webp}` and `public/images/lighthouse-scan-{desktop-100,mobile-91}.{avif,webp}`: Optimized subpage assets sized for Lighthouse/Core Web Vitals.
+- `.env.example`: Resend and local Proton Bridge SMTP template for scan-request email notifications.
+
+### Changed
+- `src/App.tsx`: Added lazy Wouter route for `/free-lighthouse-scan`.
+- `api/lighthouse-scan-request.ts`: Sends scan request details by Resend when `RESEND_API_KEY` is configured; falls back to SMTP when `SMTP_HOST` is configured.
+- `dev-api-server.ts`: Replaced the local Express shim with a native Node HTTP shim and added `.env.local` loading for local SMTP testing.
+- `public/sitemap.xml`: Added `/free-lighthouse-scan`.
+- `src/pages/FreeLighthouseScan.tsx`: Serves AVIF/WebP proof screenshots, reserves image dimensions to avoid CLS, delays the decorative hero image so hero text remains the likely LCP candidate, and adds no-PHI/limited-scope consent language.
+- `src/pages/PrivacyPolicy.tsx`, `src/pages/TermsAndConditions.tsx`: Added free-audit privacy, data-use, no-PHI, limited-scope, and no-compliance-guarantee language.
+- `src/pages/Home.tsx`, `src/components/Layout.tsx`, `src/lib/schema.ts`, `index.html`: Updated image references from removed WebP assets to available AVIF assets.
+
+---
+
+## [2026-05-16] — Phase 3: Automation suite + security report + contrast pass 2
+
+### Automation (Phase 5)
+- `.github/workflows/lighthouse-ci.yml`: Lighthouse score gates on every PR — comments scores to PR, fails on perf<85/a11y<95/bp<90/seo<85
+- `.github/workflows/dependency-audit.yml`: Weekly Monday 9 AM audit, uploads artifact, fails on high/critical CVEs
+- `.github/workflows/security-headers-test.yml`: Runs on vercel.json changes — validates required headers present, blocks x-robots noindex, validates CSP syntax
+- `.lighthouserc.json`: Threshold configuration for Lighthouse CI
+- `scripts/validate-lighthouse.sh`: Local Lighthouse runner with configurable score gates and device preset
+
+### Documentation
+- `docs/SECURITY_PLAYBOOK.md`: Full quarterly audit runbook — header reference, CSP promotion procedure, vulnerability SOP, incident response playbook, 30/90 day roadmap
+- `docs/reports/BADGRTECH_WebOps_Security_Optimization_Report_May2026.md`: Corporate-grade technical report covering full engagement scope, findings, remediation, risk analysis, and appendices
+
+### Accessibility — Phase 2 (token + component contrast)
+- `src/index.css`: `--background` darkened `oklch(0.12)` → `oklch(0.10)` — deeper base, more contrast headroom; `--card/popover` 0.16 → 0.15; `--secondary/muted/accent/input` 0.22 → 0.21; `--muted-foreground` 0.72 → 0.74; `--primary-bright` `oklch(0.72 0.16 260)` → `oklch(0.78 0.14 260)` — brighter cobalt with reduced chroma to prevent chromatic halo; applied to both `:root` and `.dark`
+- `src/components/Layout.tsx`: All `text-primary` icon/text uses → `text-primary-bright` (nav hover, "Book Triage" nav button, sticky CTA "Free Preview", footer MapPin/Phone/Mail icons)
+- `src/pages/Home.tsx`: All `text-primary` icon/text uses → `text-primary-bright` (feature icon boxes, pricing Check icons, FileSearch/ListChecks/Smartphone/TriangleAlert icons, Gauge/Shield icons, Clock container, ArrowRight icon); removed `brightness-[1.4]` CSS filter hack on ArrowRight
+
+### Git hygiene
+- `.gitignore`: Added patterns for hero source/working files (`hero-bg-*-clean.png`, `*-grade.png`, `*-tmp.png`, `*.jpg`); added `lighthouse-*.json` and `lighthouse-*.html` output patterns
+
+---
+
+## [2026-05-16] — Phase 1: Contrast + accessibility hardening
+
+### Accessibility
+- `src/index.css`: Darkened `--background` from `oklch(0.15)` → `oklch(0.12)` — deeper base, increases contrast headroom for all text layers
+- `src/index.css`: Brightened all foreground tokens from `oklch(0.92)` → `oklch(0.97)` — near-white body text across cards, popovers, sidebars
+- `src/index.css`: Raised `--muted-foreground` from `oklch(0.6)` → `oklch(0.72)` — fixes WCAG AA (≥4.5:1) for muted/description text on dark bg; previously borderline
+- `src/index.css`: Proportionally adjusted `--card`, `--secondary`, `--muted`, `--accent`, `--input` tokens to maintain visual depth ratios relative to darkened background
+- `src/pages/Home.tsx`: Badge label `text-primary` → `text-blue-300` — primary oklch(0.4 0.22 260) was dark navy on near-black (~1.2:1 contrast); blue-300 (#93c5fd) passes WCAG AA
+- `src/pages/Home.tsx`: h1 gradient span `from-primary via-blue-400 to-primary` → `from-blue-300 via-cyan-200 to-sky-300` — brighter gradient, no dark primary anchor; added `drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]` for legibility on image backgrounds
+- `src/pages/Home.tsx`: Audit card metric labels `text-zinc-500` → `text-zinc-400` — zinc-500 on dark bg was below threshold on small 10px text
+
+### No performance regression
+- All changes are CSS token and class-level only — zero JS bundle size impact, no layout reflow, no new compositing layers
+
+---
+
+## [2026-05-16] — Dependency vulnerability triage and remediation
+
+### Security
+- `package.json`: Removed `streamdown` (unused — eliminated ~17 advisories: mermaid, dompurify×8, lodash-es×3, uuid, mdast-util-to-hast chain)
+- `package.json`: Removed `axios` (unused — eliminated follow-redirects advisory)
+- `package.json`: Updated `pnpm` to `10.33.4` (patched command injection CVE GHSA-2phv-j68v-wwqx, lockfile integrity bypass, lifecycle scripts bypass; patched threshold was >=10.27.0)
+- `package.json`: Added `pnpm.overrides` for `rollup@^4.60.4`, `lodash@^4.18.1`, `lodash-es@^4.18.1`
+- `.github/workflows/security.yml`: Pinned pnpm to `10.33.4` (matches packageManager field)
+- `pnpm-lock.yaml`: Regenerated — dead deps purged, overrides applied
+
+### Audit result: 77 vulnerabilities → 31
+Remaining 31 are all in one of two non-actionable categories:
+- `@vercel/node` transitive chain (`tar`, `undici`) — Vercel-managed, no override path; monitor for `@vercel/node` releases
+- Dev tooling false positives (`vite`, `picomatch`, `esbuild`) — dev server vulns, no production exposure
+
+### Verdict: No production-exploitable risks remain under current threat model
+
+---
+
+## [2026-05-16] — Security hardening baseline
+
+### Security
+- `vercel.json`: Added `Strict-Transport-Security` header (`max-age=63072000; includeSubDomains; preload`) — enforces HTTPS at edge, enables HSTS preload list eligibility.
+- `vercel.json`: Added `Content-Security-Policy-Report-Only` header — observe-only CSP enforcing `default-src 'self'` with explicit allowlist for Stripe JS (`https://js.stripe.com`), Stripe API (`https://api.stripe.com`), self-hosted fonts, and CDN images. Report-Only mode means zero production breakage risk during observation window. After 1 week of zero console violations, promote to enforced `Content-Security-Policy`.
+- `.github/workflows/security.yml`: New CI security pipeline runs on every push and PR. Steps: `pnpm install --frozen-lockfile` (blocks installs if lockfile is out of sync), `pnpm audit --audit-level=high` (blocks merge on high/critical CVEs), `pnpm run build` (build gate). Triggers first CodeQL baseline scan on push.
+- `.github/dependabot.yml`: Automated weekly dependency updates for npm packages and GitHub Actions. Max 5 open PRs at a time. Auto-PRs run through the security pipeline before merge.
+
+### Architecture confirmed (no additional action required)
+- Stripe integration uses Hosted Checkout redirect — no custom server-side payment API. Rate limiting not required at this stage.
+- GitHub Advanced Security already active: branch protection, required PR reviews, push protection, secret scanning, Dependabot alerts, CodeQL (pending first scan run).
+
+### Next step
+Promote `Content-Security-Policy-Report-Only` → `Content-Security-Policy` in `vercel.json` after confirming zero violations in browser console on live site.
+
+---
+
+## [2026-05-03] — Production Stripe checkout: full debug and verification
+
+### Fixed
+- `api/stripe/create-checkout-session.ts`: Updated Stripe `apiVersion` from `"2025-09-30.clover"` to `"2026-04-22.dahlia"`. The installed `stripe@22.1.0` SDK requires the newer API date — the mismatch caused a TypeScript build error (`TS2322`) that blocked the Vercel function from compiling.
+- `api/stripe/create-checkout-session.ts`: Added `.js` file extension to the `payment` import (`../../src/lib/payment.js`). The project uses `"type": "module"` in `package.json`, which puts Node.js in strict ESM mode. ESM resolution requires explicit file extensions at runtime. Vercel transpiles TypeScript function files but does not bundle them — the Node.js ESM resolver runs live and cannot resolve extensionless imports across directory boundaries.
+
+### Diagnosed (Vercel infrastructure)
+- Vercel project `.vercel/project.json` was pointing to project `webops` (preview-only, `webops-pi.vercel.app`), not `badgrtech-live` (production, `badgrtech.com`). Relinked locally via `vercel link --project badgrtech-live`. `.vercel/` is gitignored and does not affect the repo — Vercel's dashboard project settings control which GitHub repo and branch trigger production deploys.
+- Confirmed `badgrtech-live` production branch is `Web-Ops`. All pushes to `Web-Ops` auto-deploy to `badgrtech.com`.
+
+### Diagnosed (Stripe configuration)
+- Stripe secret key had an IP restriction set to `8.8.8.8` (Google DNS — not a real server address). Vercel Functions run from dynamic AWS/Vercel infrastructure IPs. The restriction caused Stripe to return `StripeAuthenticationError: The API key provided does not allow requests from your IP address` (HTTP 401) on every checkout attempt. Resolved by removing the IP restriction in the Stripe dashboard (Developers → API keys → edit secret key → remove IP restriction). No code change required.
+- Verified live checkout session creation returns HTTP 200 with a valid `cs_live_...` Stripe checkout URL. Payments are operational in live mode.
+
+### Why
+Three separate layers caused the checkout failure: a TypeScript type mismatch blocking the build, an ESM module resolution error at runtime, and a Stripe IP allowlist blocking all requests from serverless infrastructure. Each required independent diagnosis from Vercel function logs.
+
+---
+
+## [2026-05-03] — Proof of Work page ("eat your own food")
+
+### Added
+- `src/pages/CaseStudy.tsx`: Live before/after Lighthouse case study page at `/proof`. Pulls current Google PageSpeed Insights score on load via public API (no key required). Displays mobile performance score, LCP, FCP, CLS, TBT with red/green threshold coloring. Baseline hardcoded: 41/100, LCP 7.8s, FCP 3.4s, CLS 0.22, TBT 1,180ms (pre-optimization audit). Shows full optimization timeline with dated entries.
+- `src/App.tsx`: Added `CaseStudy` lazy route at `/proof`.
+- `src/components/Layout.tsx`: Added "Proof of Work" nav link pointing to `/proof`.
+
+### Why
+badgrtech.com is its own specimen. Every optimization we sell was applied here first. The /proof page surfaces live PSI data as a real-time credibility signal — no screenshots, no static numbers, no fake clients.
+
+---
+
+## [2026-05-03] — Phase 6: Dev scripts overhaul
+
+### Changed
+- `package.json`: Rewrote scripts block. `pnpm dev` now runs Vite + Express API concurrently via `concurrently` (`-n vite,api -c cyan,magenta`). Added `dev:client` (Vite only) and `dev:api` (tsx Express only) split scripts. Removed old `dev:server`, `dev:all`, `start` scripts (were Express-centric, not Vercel-compatible). Added `vercel:dev` script.
+- `devDependencies`: Added `concurrently@^9.2.1`, `@vercel/node@^3.0.0`.
+
+### Added
+- `dev-api-server.ts`: Thin Express shim that adapts `VercelRequest/VercelResponse` to standard `express.Request/Response`. Mounts both `/api/stripe/create-checkout-session` and `/api/stripe/webhook` on port 3002. Enables local dev without `vercel dev` overhead. Run via `pnpm dev:api`.
+
+---
+
+## [2026-05-03] — Stripe full wiring
+
+### Added
+- `api/stripe/webhook.ts`: Vercel serverless webhook handler. Verifies `stripe-signature` header via `stripe.webhooks.constructEvent`. Raw body buffered manually (bodyParser disabled). Handles `checkout.session.completed` — logs customer email and metadata. Returns 503 if env vars missing, 400 on signature failure, 200 on success.
+
+### Changed
+- `api/stripe/create-checkout-session.ts`: Stripe client initialized once at module load (not per-request). Missing `STRIPE_SECRET_KEY` logs a non-sensitive warning at cold start and returns 503. `serviceId` validation moved inside try/catch. `appUrl` scoped inside try block. URL query param extension fixed (`.js` → no extension). Response uses `res.status(200).json(...)` explicitly.
+- `server/index.ts`: Stripped production static-file serving and SPA fallback (Express was never the production server — Vercel handles that). Marked clearly as dev-only. Port changed to 3001 to avoid conflict with Vite on 3000.
+
+### Removed
+- Root-level `create-checkout-session.ts`, `webhook.ts`: Were reference/example files, not used by the app. Replaced by `api/stripe/` equivalents.
+
+---
+
+## [2026-05-03] — Home.tsx audit handler: async + URL normalization
+
+### Changed
+- `src/pages/Home.tsx`: `handleAudit` converted to `async`. Added URL normalization — prepends `https://` if protocol missing. Added `auditData` and `auditError` state. Prevents form submission with empty URL.
+
+---
+
+## [2026-05-03] — Repo hygiene / non-essentials cleanup
+
+### Moved to `non-essentials/`
+- `lighthouse_mobile.json`, `lighthouse_pc.json`, `mobile_lighthouse.pdf` — raw audit data, not app code
+- `Fix Errors and Update Readme According to Provided File - Manus.pdf` / `Manus2.pdf` — external doc
+- `README1.md` (empty), `pnpm-workspace.yaml.yml` (duplicate workspace file)
+- `(REVIEWME_Stripe_Example_Build)universal-header-v4-master/` — Stripe reference example dir
+
+---
+
+## [2026-05-02] — Fix non-composited hero animations
+
+### Fixed
+- `src/pages/Home.tsx`: Replaced `animate-in slide-in-from-left-10 will-change-transform` and `animate-in slide-in-from-right-10 will-change-transform` on hero section divs with GPU-composited equivalents (`fadeSlideLeft` / `fadeSlideRight` keyframes via `motion-safe:animate-[...]`). Lighthouse flagged `slide-in-from-*` (tw-animate-css) as non-composited — it animates a CSS custom property (`--tw-enter-translate-x`) that some browsers treat as a paint-affecting filter, causing CLS risk and jank.
+- `src/index.css`: Added `@keyframes fadeSlideLeft` and `@keyframes fadeSlideRight` — animate only `opacity` and `transform: translateX()`, both GPU-composited properties. No layout reflow. No CLS.
+
+---
+
+## [2026-05-02] — Asset overhaul: local WebP/video, Cloudinary removed
+
+### Added
+- `public/images/hero-bg-640.webp`, `hero-bg-1024.webp`, `hero-bg-1600.webp` — responsive hero background, replaces Cloudinary PNG
+- `public/images/ai-dashboard.webp` — proof section dashboard image
+- `public/images/badgrtech-logo.webp` — nav/header logo (13 KB)
+- `public/images/badgrtech-logo-og.webp` — OG/schema logo (90 KB)
+- `public/images/video-poster.webp` — video section poster frame
+- `public/images/sample-report-preview.webp` — sample report thumbnail
+- `public/videos/badgrtech-intro.mp4` + `badgrtech-intro.webm` — intro video, self-hosted
+- `sample-report-preview.html` — standalone audit report preview page
+
+### Changed
+- `src/pages/Home.tsx`: All Cloudinary `img` srcs + `srcSet` replaced with local `/images/` paths; video `src` + `poster` replaced with local `/videos/` paths; `.webm` source added before `.mp4` for browser preference
+- `src/components/Layout.tsx`: Header + footer logo replaced with `/images/badgrtech-logo.webp` (both instances)
+- `src/lib/schema.ts`: `LOGO_URL` + `IMAGE_URL` now point to `https://badgrtech.com/images/badgrtech-logo-og.webp`
+- `.gitignore`: `public/videos/` blanket ignore narrowed to `public/videos/videos old/` so production video files are tracked
+
+### Removed
+- All legacy Cloudinary-hosted PNG/video references from source code
+- Old `public/images/` PNGs (Cloudinary slug filenames) — replaced by optimized WebP equivalents
+
+---
+
+## [2026-05-01T00:03:00] — Funnel engine layer
+
+### Added
+- `src/lib/funnel.ts`: Conversion path definitions, `recommendPackage()` (score → specific tier + reason + urgency), flywheel loop map, scroll milestones
+- `src/hooks/useScrollDepth.ts`: IntersectionObserver hook — fires once per milestone, analytics-ready
+- `Layout.tsx`: Sticky bottom CTA bar — slides in after 480px scroll, two actions (Free Preview → #audit, Book Triage → #contact)
+- `Home.tsx`: Audit post-score now routes to specific package recommendation with reason, urgency, and dual CTA (triage call + package details)
+
+### Conversion architecture
+- Aware → Evaluating: Hero CTA + audit URL submission
+- Evaluating → Deciding: Score + recommended package card
+- Deciding → Converting: Sticky CTA + triage form
+- Retention loop: before-and-after report → client shares with peers
+
+---
+
+## [2026-05-01T00:02:00] — Content graph layer
+
+### Added
+- `src/lib/content-graph.ts`: Full knowledge graph — 2 pillars, 7 cluster nodes, each with BLUF copy, intent stage, entity refs, internal link map
+- `fullFaqs`: 12 FAQs covering informational → commercial → transactional intent (up from 5)
+- `optimizationHowTo`: 4-step HowTo entity with per-step URLs
+- `HowTo` schema injected into home-graph — readable by Google and AI answer engines (Perplexity, SGE, ChatGPT browsing)
+
+### Changed
+- `Home.tsx`: FAQ array now sourced from `content-graph.ts` instead of inline. Single source of truth.
+
+---
+
+## [2026-05-01T00:01:00] — Code splitting (Web Vitals foundation gap)
+
+### Changed
+- `src/App.tsx`: All page imports converted to `React.lazy()`. Wrapped `Router` in `Suspense fallback={null}`. Each route is now its own JS chunk — Home.tsx (40.6K) no longer blocks initial parse.
+
+### Why
+- Foundation layer audit found eager imports on all routes. Home.tsx is the largest file; loading it synchronously on every route hurt LCP/FID scores.
+
+---
+
+## [2026-05-01T00:00:00] — Phase 2 schema fix + git init
+
+### Fixed
+- `src/lib/schema.ts`: Replaced `serviceType` with `category` on `webOptimizationService` and `aiConsultationService` entities. `serviceType` is not recognized by schema.org validator for general `Service` objects; `category` is the correct property.
+
+### Verified complete
+- Footer social icons: YouTube, Instagram, TikTok, X (Twitter), Facebook, LinkedIn, GitHub — all wired with correct live URLs in `src/components/Layout.tsx`
+- `sameAs` array in `src/lib/schema.ts` and `index.html` base graph — all 7 social profiles present
+- Foundation layer: HTML meta, OG/Twitter cards, sitemap link, canonical via `usePageMeta`, preconnects — complete
+- Entity layer: `@graph` with Organization+LocalBusiness, WebSite, Service entities, FAQPage, WebPage — complete
+- SEO/AEO layer: `useJsonLd` injection on Home page, dynamic schema per route — complete
+
+### Git setup
+- Repo initialized at `/home/t0n34781/universal-header-v4-Web-Ops`
+- Branch: `webops` (main working branch)
+- Remote: `https://github.com/Ch405-L9/universal-header-v4.git`
+
+---

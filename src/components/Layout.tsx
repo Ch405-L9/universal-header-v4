@@ -1,12 +1,14 @@
 import {
-  Github,
+  Facebook,
   Instagram,
   Linkedin,
   Mail,
   MapPin,
   Menu,
   Phone,
-  X,
+  Twitter,
+  X as XClose,
+  Youtube,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
@@ -14,13 +16,30 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+function TikTokIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z" />
+    </svg>
+  );
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showStickyCta, setShowStickyCta] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      setShowStickyCta(y > 480);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -29,9 +48,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: "Services", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Sample Report", href: "#proof" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Practice Care Pricing", href: "#pricing" },
+    { name: "Sample Risk & Trust Report", href: "#proof" },
+    { name: "Questions", href: "#faq" },
   ];
 
   const scrollToSection = (id: string) => {
@@ -39,7 +58,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      return;
     }
+    window.location.href = `/${id}`;
   };
 
   return (
@@ -56,16 +77,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="group flex min-w-0 items-center gap-2">
             <div className="relative h-6 w-6 shrink-0 overflow-hidden border border-primary/50 transition-colors group-hover:border-primary">
               <img
-                src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_200,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png"
+                src="/images/badgrtech-logo-sm.avif"
                 alt="BADGRTechnologies LLC logo"
+                width="400"
+                height="400"
                 className="h-full w-full object-contain"
               />
             </div>
             <div className="min-w-0 leading-none">
               <span className="block truncate font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-white">
-                BADGR<span className="text-primary">TECH</span>
+                BADGR<span className="text-indigo-400">TECH</span>
               </span>
-              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-500 lg:block">
+              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-300 lg:block">
                 BADGRTechnologies LLC
               </span>
             </div>
@@ -76,28 +99,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary"
+                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
               >
                 {item.name}
               </button>
             ))}
             <Button
+              asChild
               variant="outline"
               size="sm"
-              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary hover:bg-primary/10 hover:text-primary"
-              onClick={() => scrollToSection("#audit")}
+              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
             >
-              Book Triage
+              <a href="/#triage-form">Request Triage Call</a>
             </Button>
           </div>
           <button
             className="p-2 text-foreground md:hidden"
             type="button"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <XClose /> : <Menu />}
           </button>
         </div>
 
@@ -111,20 +135,50 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={item.name}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary"
+                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
               >
                 {item.name}
               </button>
             ))}
             <Button
+              asChild
               className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
-              onClick={() => scrollToSection("#audit")}
             >
-              Book Triage
+              <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
+                Request Triage Call
+              </a>
             </Button>
           </div>
         )}
       </nav>
+
+      {/* Sticky CTA — visible after hero scroll */}
+      <div
+        className={cn(
+          "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
+          showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+          <p className="hidden text-sm text-zinc-400 sm:block">
+            Start with a medical site triage call.
+          </p>
+          <div className="flex w-full items-center gap-3 sm:w-auto">
+            <a
+              href="/free-lighthouse-scan#lighthouse-proof"
+              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
+            >
+              Proof Scores
+            </a>
+            <a
+              href="/#triage-form"
+              className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
+            >
+              Triage Call
+            </a>
+          </div>
+        </div>
+      </div>
 
       <main className="pt-20">{children}</main>
 
@@ -135,28 +189,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 border border-primary/50 p-1">
                   <img
-                    src="https://res.cloudinary.com/dsxpcwjwb/image/upload/w_200,f_auto,q_80/v1776452124/official_badgr-logo_mfsyri.png"
+                    src="/images/badgrtech-logo-sm.avif"
                     alt="BADGRTechnologies LLC logo"
                     className="h-full w-full object-contain"
                   />
                 </div>
                 <div className="leading-none">
                   <span className="block font-mono text-lg font-bold">
-                    BADGR<span className="text-primary">TECH</span>
+                    BADGR<span className="text-indigo-400">TECH</span>
                   </span>
-                  <span className="block text-[10px] uppercase tracking-[0.16em] text-zinc-500">
+                  <span className="block text-[10px] uppercase tracking-[0.16em] text-zinc-300">
                     BADGRTechnologies LLC
                   </span>
                 </div>
               </div>
               <p className="max-w-xs text-sm text-muted-foreground">
-                Atlanta-based web optimization for small businesses that need a
-                clearer, faster, more trustworthy path from website visit to
-                booked conversation.
+                Atlanta-based medical website operations for small practices that need
+                faster pages, clearer booking paths, and safer public-facing forms.
               </p>
-              <div className="flex gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-2">
                 <a
-                  href="https://instagram.com/Badgr1stOne"
+                  href="https://www.instagram.com/badgrtech/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
@@ -165,7 +218,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Instagram size={20} />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/anthony-g-5b2b1a273"
+                  href="https://www.linkedin.com/company/109228065/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
@@ -174,82 +227,109 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Linkedin size={20} />
                 </a>
                 <a
-                  href="https://github.com/Ch405-L9"
+                  href="https://www.youtube.com/channel/UCAbCRiyUh3JTUIrj8l9ADow"
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground transition-colors hover:text-primary"
-                  aria-label="BADGRTechnologies on GitHub"
+                  aria-label="BADGRTechnologies on YouTube"
                 >
-                  <Github size={20} />
+                  <Youtube size={20} />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@badgr.25?lang=en"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on TikTok"
+                >
+                  <TikTokIcon size={20} />
+                </a>
+                <a
+                  href="https://x.com/40n33Ba6R"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on X"
+                >
+                  <Twitter size={20} />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61581099610296"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  aria-label="BADGRTechnologies on Facebook"
+                >
+                  <Facebook size={20} />
                 </a>
               </div>
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Focus
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="#services"
-                    className="transition-colors hover:text-foreground"
+                    href="/hipaa-aware-web-operations"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Website Optimization
+                    HIPAA-Aware Web Operations
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#pricing"
-                    className="transition-colors hover:text-foreground"
+                    href="/#pricing"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    One-Time Packages
+                    Practice Care Pricing
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#proof"
-                    className="transition-colors hover:text-foreground"
+                    href="/#proof"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Sample Report
+                    Sample Risk & Trust Report
                   </a>
                 </li>
                 <li>
                   <a
                     href="/additional-services"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Follow-On Services
+                    Practice Care Services
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Navigation
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="#audit"
-                    className="transition-colors hover:text-foreground"
+                    href="/#triage-form"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Free Lead Leak Preview
+                    Request Triage Call
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#results"
-                    className="transition-colors hover:text-foreground"
+                    href="/#results"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     What We Fix
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#contact"
-                    className="transition-colors hover:text-foreground"
+                    href="/#triage-form"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Contact
                   </a>
@@ -257,23 +337,31 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <Link
                     href="/sample-report"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Open Sample Report
+                    Open Sample Risk & Trust Report
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/proof"
+                    className="block py-2 transition-colors hover:text-foreground"
+                  >
+                    Proof of Work
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-primary">
+              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 More
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
                     href="/privacy"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Privacy Policy
                   </a>
@@ -281,7 +369,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <a
                     href="/terms"
-                    className="transition-colors hover:text-foreground"
+                    className="block py-2 transition-colors hover:text-foreground"
                   >
                     Terms & Conditions
                   </a>
@@ -292,7 +380,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="mt-10 grid grid-cols-1 gap-3 border-t border-primary/10 pt-8 text-sm text-muted-foreground md:grid-cols-3">
             <div className="flex items-start gap-3">
-              <MapPin size={16} className="mt-1 text-primary" />
+              <MapPin size={16} className="mt-1 text-primary-bright" />
               <span>
                 8735 Dunwoody Place, Suite N
                 <br />
@@ -300,13 +388,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <Phone size={16} className="text-primary" />
+              <Phone size={16} className="text-primary-bright" />
               <a href="tel:+14702236127" className="hover:text-foreground">
                 (470) 223-6127
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <Mail size={16} className="text-primary" />
+              <Mail size={16} className="text-primary-bright" />
               <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">
                 hello@badgrtech.com
               </a>
@@ -319,10 +407,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               rights reserved.
             </p>
             <div className="flex gap-6">
-              <span>Transparent Scopes</span>
-              <span>Trust-First Messaging</span>
-              <span>Web Performance Focused</span>
+              <span>HIPAA-Aware Scopes</span>
+              <span>Risk & Trust Reporting</span>
+              <span>Medical Web Performance</span>
             </div>
+            <p className="max-w-xl text-center leading-5 md:text-right">
+              BADGRTechnologies operates as a HIPAA business associate when applicable
+              and signs BAAs for web operations that touch ePHI. We support your
+              compliance program; we do not replace your legal counsel.
+            </p>
           </div>
         </div>
       </footer>

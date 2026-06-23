@@ -1,4 +1,37 @@
 User-agent: *
 Allow: /
+Disallow: /404
+
+# AI search/answer engines — allow for AEO indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Training scrapers — disallow
+User-agent: CCBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
 
 Sitemap: https://badgrtech.com/sitemap.xml

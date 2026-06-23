@@ -1,6 +1,7 @@
 import { ArrowLeft, LockKeyhole } from "lucide-react";
 import { Link } from "wouter";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 function PolicySection({
   title,
@@ -25,6 +26,25 @@ export default function PrivacyPolicy() {
     description:
       "Read the BADGRTechnologies privacy policy covering website inquiries, project information, and service-related data handling.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/privacy#page",
+        name: "Privacy Policy | BADGRTechnologies",
+        description:
+          "Read the BADGRTechnologies privacy policy covering website inquiries, project information, and service-related data handling.",
+        url: "https://badgrtech.com/privacy",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Privacy Policy", url: "https://badgrtech.com/privacy" },
+        ],
+      }),
+    ),
+    "privacy-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">
@@ -104,7 +124,38 @@ export default function PrivacyPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection title="3. Optional Third-Party Tool Use and Data Handling">
+          <PolicySection title="3. Free Risk & Trust Triage Requests">
+            <p>
+              If you submit a free Risk & Trust triage request, we collect the
+              practice name, contact name, email address, phone number, practice
+              type, website URL, submission timestamp, technical request
+              details, and confirmation that you accepted the audit request
+              notice.
+            </p>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>
+                We use this information to review the submitted website, send
+                the audit response, prevent abuse, and conduct limited follow-up
+                related to the request.
+              </li>
+              <li>
+                Do not submit patient information, protected health information
+                (PHI), passwords, medical records, or confidential medical
+                details through website forms.
+              </li>
+              <li>
+                Triage and audit requests are intended for business contact and
+                public website information only.
+              </li>
+              <li>
+                Request emails and related operational logs may be retained as
+                needed for business records, security, troubleshooting, and
+                compliance purposes.
+              </li>
+            </ul>
+          </PolicySection>
+
+          <PolicySection title="4. Optional Third-Party Tool Use and Data Handling">
             <p>
               When third-party tools are proposed or used as part of a project,
               we aim to be explicit about what they do, what type of data they
@@ -126,7 +177,7 @@ export default function PrivacyPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection title="4. Sharing of Information">
+          <PolicySection title="5. Sharing of Information">
             <p>
               We do not sell personal information. We may share limited data
               with trusted service providers when reasonably necessary to run our
@@ -140,7 +191,7 @@ export default function PrivacyPolicy() {
             </p>
           </PolicySection>
 
-          <PolicySection title="5. Data Security and Retention">
+          <PolicySection title="6. Data Security and Retention">
             <p>
               We use commercially reasonable safeguards to protect information,
               including access controls, secure tools, and operational security
@@ -153,7 +204,7 @@ export default function PrivacyPolicy() {
             </p>
           </PolicySection>
 
-          <PolicySection title="6. Your Rights and Choices">
+          <PolicySection title="7. Your Rights and Choices">
             <p>Depending on your location and applicable law, you may be able to:</p>
             <ul className="list-disc space-y-2 pl-6">
               <li>Request access to or correction of your information.</li>
@@ -166,16 +217,16 @@ export default function PrivacyPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection title="7. Third-Party Services">
+          <PolicySection title="8. Third-Party Services">
             <p>
               Our website and services may involve third-party tools such as
-              payment processors, analytics platforms, hosting providers, and
-              software vendors. Those third parties operate under their own
-              terms and privacy practices.
+              payment processors, analytics platforms, hosting providers, email
+              delivery providers, and software vendors. Those third parties
+              operate under their own terms and privacy practices.
             </p>
           </PolicySection>
 
-          <PolicySection title="8. Policy Updates">
+          <PolicySection title="9. Policy Updates">
             <p>
               We may update this policy from time to time. When we do, we will
               update the effective date and publish the revised version on this
@@ -183,7 +234,7 @@ export default function PrivacyPolicy() {
             </p>
           </PolicySection>
 
-          <PolicySection title="9. Contact">
+          <PolicySection title="10. Contact">
             <p>
               BADGRTechnologies LLC
               <br />

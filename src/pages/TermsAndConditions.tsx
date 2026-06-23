@@ -1,6 +1,7 @@
 import { ArrowLeft, Scale } from "lucide-react";
 import { Link } from "wouter";
-import { usePageMeta } from "@/lib/seo";
+import { useJsonLd, usePageMeta } from "@/lib/seo";
+import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
 
 function TermsSection({
   title,
@@ -25,6 +26,25 @@ export default function TermsAndConditions() {
     description:
       "Review the BADGRTechnologies terms covering website use, service scope, project agreements, and liability boundaries.",
   });
+
+  useJsonLd(
+    buildGraph(
+      orgEntity,
+      websiteEntity,
+      buildWebPageSchema({
+        id: "https://badgrtech.com/terms#page",
+        name: "Terms & Conditions | BADGRTechnologies",
+        description:
+          "Review the BADGRTechnologies terms covering website use, service scope, project agreements, and liability boundaries.",
+        url: "https://badgrtech.com/terms",
+        breadcrumb: [
+          { name: "Home", url: "https://badgrtech.com/" },
+          { name: "Terms & Conditions", url: "https://badgrtech.com/terms" },
+        ],
+      }),
+    ),
+    "terms-graph",
+  );
 
   return (
     <div className="min-h-screen bg-[#05070d] text-white">
@@ -171,7 +191,34 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="8. Confidentiality">
+          <TermsSection title="8. Free Risk & Trust Triage Disclaimer">
+            <p>
+              A free Risk & Trust triage review, audit, or preview is an
+              initial diagnostic review based on publicly accessible website
+              information and available performance, usability, no-PHI form, and
+              trust-signal tooling. It is not a full security audit, penetration
+              test, legal review, medical advice, HIPAA compliance assessment,
+              accessibility certification, or guarantee of search ranking,
+              traffic, revenue, appointment volume, or legal compliance.
+            </p>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>
+                Visitors should not submit patient information, protected health
+                information (PHI), passwords, medical records, or confidential
+                medical details through website forms.
+              </li>
+              <li>
+                Recommendations are informational and require business judgment,
+                technical review, and project-specific scope before implementation.
+              </li>
+              <li>
+                No client relationship or obligation to perform paid services is
+                created until BADGRTechnologies LLC accepts a project in writing.
+              </li>
+            </ul>
+          </TermsSection>
+
+          <TermsSection title="9. Confidentiality">
             <p>
               Each party should protect confidential information shared during
               the relationship using reasonable care. This does not apply to
@@ -180,7 +227,7 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="9. Limitation of Liability">
+          <TermsSection title="10. Limitation of Liability">
             <p>
               To the maximum extent permitted by law, BADGRTechnologies LLC is
               not liable for indirect, incidental, special, punitive, or
@@ -195,7 +242,7 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="10. Third-Party Tools and Services">
+          <TermsSection title="11. Third-Party Tools and Services">
             <p>
               Work may involve third-party vendors such as hosting providers,
               analytics services, payment processors, content tools, or
@@ -204,7 +251,7 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="11. Termination">
+          <TermsSection title="12. Termination">
             <p>
               Either party may terminate a service relationship in accordance
               with the applicable project agreement. Termination does not erase
@@ -214,7 +261,7 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="12. Governing Law">
+          <TermsSection title="13. Governing Law">
             <p>
               These terms are governed by the laws of the State of Georgia,
               without regard to conflict-of-law principles, unless another
@@ -222,7 +269,7 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="13. Contact">
+          <TermsSection title="14. Contact">
             <p>
               BADGRTechnologies LLC
               <br />
