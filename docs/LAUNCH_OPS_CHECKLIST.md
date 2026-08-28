@@ -85,6 +85,12 @@ for url in \
   https://www.badgrtech.com/hipaa-aware-web-operations \
   https://www.badgrtech.com/additional-services \
   https://www.badgrtech.com/privacy \
+  https://www.badgrtech.com/portfolio \
+  https://www.badgrtech.com/portfolio/cwalts \
+  https://www.badgrtech.com/portfolio/badgr-bolt \
+  https://www.badgrtech.com/portfolio/badgr-harness \
+  https://www.badgrtech.com/portfolio/badgr-ai-ops \
+  https://www.badgrtech.com/portfolio/web-ops \
   https://www.badgrtech.com/terms; do
   curl -sS -L -o /dev/null -w "$url -> %{http_code}\n" "$url"
 done
@@ -100,6 +106,14 @@ curl -sS -I https://www.badgrtech.com/ | rg -i \
 ```
 
 Expected: CSP, HSTS, X-Frame-Options, nosniff, Permissions-Policy, and X-Robots-Tag are present.
+
+## Portfolio Release Path
+
+1. Verify the PR preview for `/portfolio` and all five `/portfolio/*` routes, including desktop and mobile navigation.
+2. Confirm the business homepage still uses its business navigation, triage CTA, and section anchors.
+3. Merge the approved PR into `Web-Ops`; `badgrtech-live` automatically builds the production branch.
+4. Confirm the production deployment commit matches `Web-Ops`, then run the live technical smoke test above.
+5. If a release must be promoted from a preview deployment, record the deployment URL and commit SHA, then merge the same commit into `Web-Ops` immediately so repository lineage remains aligned with production.
 
 ## Rollback Plan
 

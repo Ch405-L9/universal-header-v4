@@ -68,8 +68,9 @@ Local secret hygiene:
 
 ```
 src/
-  components/    Layout, nav, footer, UI primitives
-  pages/         Home, FreeLighthouseScan, CaseStudy (/proof), SampleReportPage — all lazy-loaded
+  components/    Layout, nav, footer, portfolio, UI primitives
+  data/          Portfolio case-study data
+  pages/         Home, FreeLighthouseScan, CaseStudy (/proof), PortfolioPage, SampleReportPage — all lazy-loaded
   hooks/         useScrollDepth, usePageMeta
   lib/           schema.ts, content-graph.ts, funnel.ts, payment.ts
 api/
@@ -80,6 +81,7 @@ api/
     webhook.ts                   Vercel serverless — Stripe webhook handler
 public/
   images/        All production WebP assets (self-hosted)
+  portfolio/     Approved public case-study images and silent video derivatives
   videos/        badgrtech-intro.mp4 / .webm
   grid-pattern.svg
 sample-report-preview.html   Standalone audit report preview
@@ -130,6 +132,12 @@ All production images are self-hosted AVIF/WebP in `public/images/`. No Cloudina
 | `/hipaa-aware-web-operations` | `HipaaAwareWebOpsPage` | HIPAA-aware website operations SEO/AEO service page |
 | `/proof` | `CaseStudy` | Live before/after Lighthouse case study — badgrtech.com as the specimen |
 | `/sample-report` | `SampleReportPage` | Medical Risk & Trust sample report with plain-English email draft |
+| `/portfolio` | `PortfolioPage` | Selected engineering portfolio landing page |
+| `/portfolio/cwalts` | `PortfolioCaseStudyPage` | C.Walts case study |
+| `/portfolio/badgr-bolt` | `PortfolioCaseStudyPage` | BADGR Bolt case study |
+| `/portfolio/badgr-harness` | `PortfolioCaseStudyPage` | BADGR Harness case study |
+| `/portfolio/badgr-ai-ops` | `PortfolioCaseStudyPage` | BADGR AI Ops case study |
+| `/portfolio/web-ops` | `PortfolioCaseStudyPage` | Universal Header / Web-Ops case study |
 | `/success` | `PaymentSuccess` | Post-checkout confirmation |
 | `/cancel` | `PaymentCancel` | Canceled checkout return page |
 | `/terms` | `TermsAndConditions` | Legal |

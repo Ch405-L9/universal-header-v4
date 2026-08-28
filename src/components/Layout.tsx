@@ -11,7 +11,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
+  const [location] = useLocation();
+  const isPortfolioRoute =
+    location === "/portfolio" || location.startsWith("/portfolio/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,15 +49,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
+  const businessNavItems = [
     { name: "Services", href: "#services" },
     { name: "Practice Care Pricing", href: "#pricing" },
     { name: "Sample Risk & Trust Report", href: "#proof" },
+    { name: "Portfolio", href: "/portfolio" },
     { name: "Questions", href: "#faq" },
   ];
 
+  const portfolioNavItems = [
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "C.Walts", href: "/portfolio/cwalts" },
+    { name: "Bolt", href: "/portfolio/badgr-bolt" },
+    { name: "Harness", href: "/portfolio/badgr-harness" },
+    { name: "AI Ops", href: "/portfolio/badgr-ai-ops" },
+    { name: "Web-Ops", href: "/portfolio/web-ops" },
+    { name: "Contact", href: "mailto:hello@badgrtech.com" },
+  ];
+  const navItems = isPortfolioRoute ? portfolioNavItems : businessNavItems;
+
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
+
+    if (id.startsWith("/")) {
+      return;
+    }
+
+    if (location !== "/") {
+      window.location.href = `/${id}`;
+      return;
+    }
+
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -94,24 +119,47 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </Link>
           <div className="hidden items-center gap-6 md:flex">
-            {navItems.map(item => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+            {navItems.map(item =>
+              item.href.startsWith("#") ? (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </button>
+              ) : item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-current={
+                    isPortfolioRoute && location === item.href ? "page" : undefined
+                  }
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </a>
+              )
+            )}
+            {!isPortfolioRoute ? (
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               >
-                {item.name}
-              </button>
-            ))}
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
-            >
-              <a href="/#triage-form">Request Triage Call</a>
-            </Button>
+                <a href="/#triage-form">Request Triage Call</a>
+              </Button>
+            ) : null}
           </div>
           <button
             className="p-2 text-foreground md:hidden"
@@ -130,55 +178,81 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id="mobile-nav"
             className="animate-in slide-in-from-top-5 absolute top-full left-0 right-0 flex flex-col gap-4 border-b border-primary bg-background p-4 md:hidden"
           >
-            {navItems.map(item => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => scrollToSection(item.href)}
-                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+            {navItems.map(item =>
+              item.href.startsWith("#") ? (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => scrollToSection(item.href)}
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </button>
+              ) : item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClickCapture={() => setIsMenuOpen(false)}
+                  aria-current={
+                    isPortfolioRoute && location === item.href ? "page" : undefined
+                  }
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClickCapture={() => setIsMenuOpen(false)}
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </a>
+              )
+            )}
+            {!isPortfolioRoute ? (
+              <Button
+                asChild
+                className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
               >
-                {item.name}
-              </button>
-            ))}
-            <Button
-              asChild
-              className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
-            >
-              <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
-                Request Triage Call
-              </a>
-            </Button>
+                <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
+                  Request Triage Call
+                </a>
+              </Button>
+            ) : null}
           </div>
         )}
       </nav>
 
-      {/* Sticky CTA — visible after hero scroll */}
-      <div
-        className={cn(
-          "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
-          showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
-        )}
-      >
-        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
-          <p className="hidden text-sm text-zinc-400 sm:block">
-            Start with a medical site triage call.
-          </p>
-          <div className="flex w-full items-center gap-3 sm:w-auto">
-            <a
-              href="/free-lighthouse-scan#lighthouse-proof"
-              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
-            >
-              Proof Scores
-            </a>
-            <a
-              href="/#triage-form"
-              className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
-            >
-              Triage Call
-            </a>
+      {!isPortfolioRoute ? (
+        <div
+          className={cn(
+            "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
+            showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+          )}
+        >
+          <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+            <p className="hidden text-sm text-zinc-400 sm:block">
+              Start with a medical site triage call.
+            </p>
+            <div className="flex w-full items-center gap-3 sm:w-auto">
+              <a
+                href="/free-lighthouse-scan#lighthouse-proof"
+                className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
+              >
+                Proof Scores
+              </a>
+              <a
+                href="/#triage-form"
+                className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
+              >
+                Triage Call
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       <main className="pt-20">{children}</main>
 
@@ -348,6 +422,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Proof of Work
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/portfolio"
+                    className="block py-2 transition-colors hover:text-foreground"
+                  >
+                    Engineering Portfolio
                   </Link>
                 </li>
               </ul>
