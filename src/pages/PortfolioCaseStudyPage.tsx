@@ -217,7 +217,7 @@ export default function PortfolioCaseStudyPage({
                 Verified Evidence
               </h2>
               <p className="mt-4 text-base leading-7 text-zinc-400">
-                Each public evidence row stays compact and tied to a named
+                Each material claim is tied to a named evidence source and
                 checkpoint.
               </p>
             </div>

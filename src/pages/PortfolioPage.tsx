@@ -129,10 +129,10 @@ export default function PortfolioPage() {
         aria-label="Portfolio proof boundaries"
       >
         {[
-          { value: "5", label: "Public case studies only" },
-          { value: "0", label: "Reserve projects in public nav" },
-          { value: "1", label: "Lead case with verified metrics" },
-          { value: "V1", label: "React implementation gate" },
+          { value: "5", label: "Selected case studies" },
+          { value: "AI / Android / RAG", label: "Tooling / WebOps" },
+          { value: "Evidence", label: "Checkpointed claims" },
+          { value: "Failure -> Correction", label: "Verification" },
         ].map(item => (
           <div key={item.label} className="border-primary/10 p-5 md:border-r">
             <strong className="block font-mono text-2xl text-white">
@@ -152,9 +152,9 @@ export default function PortfolioPage() {
               Selected Work
             </h2>
             <p className="mt-4 text-lg leading-8 text-zinc-400">
-              C.Walts carries the largest visual footprint. The other cases stay
-              focused on engineering decisions, failure handling, and
-              verification evidence.
+              Five selected cases showing architecture decisions, failure
+              recovery, verification, and shipping discipline across AI and
+              software systems.
             </p>
           </div>
 
@@ -272,10 +272,9 @@ export default function PortfolioPage() {
             </h2>
           </div>
           <div className="border border-primary/20 bg-black/50 p-6 text-base leading-8 text-zinc-400">
-            Public claims use direct evidence or bounded derived values.
-            Untimestamped marketplace status, live Lighthouse/PageSpeed scores,
-            raw AI usage-volume claims, broad productivity multipliers, private
-            file paths, and reserve project families are not promoted.
+            Material claims are tied to named evidence sources and dated
+            checkpoints. Historical, live-state, and recorded claims are
+            labeled accordingly.
           </div>
         </div>
       </section>

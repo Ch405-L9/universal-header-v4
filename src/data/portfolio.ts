@@ -61,7 +61,7 @@ export const portfolioCases: PortfolioCase[] = [
     category: "AI / RAG Reliability",
     description: "Hybrid RAG made measurable, recoverable, and fail-closed.",
     heroMeta: [
-      { label: "Role", value: "Lead case" },
+      { label: "Case Type", value: "Lead case" },
       { label: "Stack", value: "Chroma, BM25, MCP, pytest" },
       { label: "Status", value: "Private engineering system" },
       { label: "Proof Mode", value: "Checkpointed evaluation" },
@@ -197,7 +197,7 @@ export const portfolioCases: PortfolioCase[] = [
     category: "Android / Product Engineering",
     description: "Android reading product engineering with narration integration and release controls.",
     heroMeta: [
-      { label: "Role", value: "Shipped-product case" },
+      { label: "Case Type", value: "Shipped-product case" },
       { label: "Stack", value: "Kotlin, Android, Compose, Play Integrity" },
       { label: "Status", value: "Android product evidence" },
       { label: "Marketplace", value: "Verified live Aug. 28, 2026" },
@@ -325,7 +325,7 @@ export const portfolioCases: PortfolioCase[] = [
     category: "Agentic Orchestration / MCP / RAG",
     description: "Routing, schema hardening, and failure correction for an agentic harness.",
     heroMeta: [
-      { label: "Role", value: "Agent orchestration case" },
+      { label: "Case Type", value: "Agent orchestration case" },
       { label: "Stack", value: "Python, Ollama, MCP, Pydantic" },
       { label: "Status", value: "Private harness evidence" },
       { label: "Proof Mode", value: "Failure plus correction" },
@@ -457,7 +457,7 @@ export const portfolioCases: PortfolioCase[] = [
     category: "Developer Tooling / Provenance",
     description: "Reducing engineering-workspace noise with provenance-aware tooling.",
     heroMeta: [
-      { label: "Role", value: "Developer-tooling case" },
+      { label: "Case Type", value: "Developer-tooling case" },
       { label: "Stack", value: "Python, MCP, Ollama, OpenHands" },
       { label: "Status", value: "Internal tooling" },
       { label: "Guardrail", value: "Not every utility is a product" },
@@ -593,7 +593,7 @@ export const portfolioCases: PortfolioCase[] = [
     category: "Production Web Engineering",
     description: "Hardening a production web stack without losing conversion flow.",
     heroMeta: [
-      { label: "Role", value: "Production case" },
+      { label: "Case Type", value: "Production case" },
       { label: "Stack", value: "React, Vite, Tailwind, Vercel" },
       { label: "Status", value: "Production system" },
       { label: "Proof Mode", value: "Dated report + workflows" },

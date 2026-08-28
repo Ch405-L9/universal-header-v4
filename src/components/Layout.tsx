@@ -35,6 +35,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
   const [location] = useLocation();
+  const isPortfolioRoute =
+    location === "/portfolio" || location.startsWith("/portfolio/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -185,33 +187,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         )}
       </nav>
 
-      {/* Sticky CTA — visible after hero scroll */}
-      <div
-        className={cn(
-          "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
-          showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
-        )}
-      >
-        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
-          <p className="hidden text-sm text-zinc-400 sm:block">
-            Start with a medical site triage call.
-          </p>
-          <div className="flex w-full items-center gap-3 sm:w-auto">
-            <a
-              href="/free-lighthouse-scan#lighthouse-proof"
-              className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
-            >
-              Proof Scores
-            </a>
-            <a
-              href="/#triage-form"
-              className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
-            >
-              Triage Call
-            </a>
+      {!isPortfolioRoute ? (
+        <div
+          className={cn(
+            "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
+            showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+          )}
+        >
+          <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+            <p className="hidden text-sm text-zinc-400 sm:block">
+              Start with a medical site triage call.
+            </p>
+            <div className="flex w-full items-center gap-3 sm:w-auto">
+              <a
+                href="/free-lighthouse-scan#lighthouse-proof"
+                className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
+              >
+                Proof Scores
+              </a>
+              <a
+                href="/#triage-form"
+                className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
+              >
+                Triage Call
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       <main className="pt-20">{children}</main>
 
