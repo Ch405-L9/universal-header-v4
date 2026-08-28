@@ -284,7 +284,7 @@ export const portfolioCases: PortfolioCase[] = [
       },
       {
         title: "Remaining Limitation",
-        text: "The final report contains planned Phase 2 and monetization features. The public case must separate implemented behavior from roadmap material.",
+        text: "Planning artifacts include Phase 2 and monetization items that are not presented here as shipped behavior.",
       },
     ],
     evidence: [
@@ -541,7 +541,7 @@ export const portfolioCases: PortfolioCase[] = [
       },
       {
         title: "Correction",
-        text: "The public story narrows AI Ops to provenance, dedupe, tool boundaries, handoff recoverability, and rollback. It does not promote generic scanned files as product evidence.",
+        text: "Evidence is bounded to provenance, dedupe, tool boundaries, handoff recoverability, and rollback; unrelated scanned artifacts are excluded.",
       },
       {
         title: "Verification",
@@ -553,7 +553,7 @@ export const portfolioCases: PortfolioCase[] = [
       },
       {
         title: "Remaining Limitation",
-        text: "The AISnap statistics artifact included in the public evidence set is sparse in this handoff. Stronger publication should add a clearer sanitized screenshot or summary visual.",
+        text: "The available AISnap publication artifact is sparse, so this case limits claims to the stronger state, MCP, test, and rollback artifacts.",
       },
     ],
     evidence: [
@@ -623,7 +623,7 @@ export const portfolioCases: PortfolioCase[] = [
       },
       {
         label: "Current State",
-        text: "Current live scores must be fetched in React phase or labeled with a fresh timestamp before publication.",
+        text: "Production source shows enforced CSP, global security headers, route lazy-loading, and documented operational checks. No untimestamped live performance score is claimed here.",
       },
     ],
     title: "Universal Header / Web-Ops",
@@ -680,7 +680,7 @@ export const portfolioCases: PortfolioCase[] = [
       },
       {
         title: "Current State",
-        text: "The current local production source shows enforced CSP, global security headers, route lazy-loading, and documented operational checks. Live scores should be fetched before final publication.",
+        text: "Production source shows enforced CSP, global security headers, route lazy-loading, and documented operational checks. Performance metrics are treated as dated snapshots unless freshly revalidated.",
       },
       {
         title: "Remaining Limitation",
