@@ -49,13 +49,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
+  const businessNavItems = [
     { name: "Services", href: "#services" },
     { name: "Practice Care Pricing", href: "#pricing" },
     { name: "Sample Risk & Trust Report", href: "#proof" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Questions", href: "#faq" },
   ];
+
+  const portfolioNavItems = [
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "C.Walts", href: "/portfolio/cwalts" },
+    { name: "Bolt", href: "/portfolio/badgr-bolt" },
+    { name: "Harness", href: "/portfolio/badgr-harness" },
+    { name: "AI Ops", href: "/portfolio/badgr-ai-ops" },
+    { name: "Web-Ops", href: "/portfolio/web-ops" },
+    { name: "Contact", href: "mailto:hello@badgrtech.com" },
+  ];
+  const navItems = isPortfolioRoute ? portfolioNavItems : businessNavItems;
 
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
@@ -109,15 +120,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Link>
           <div className="hidden items-center gap-6 md:flex">
             {navItems.map(item =>
-              item.href.startsWith("/") ? (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
-                >
-                  {item.name}
-                </Link>
-              ) : (
+              item.href.startsWith("#") ? (
                 <button
                   key={item.name}
                   type="button"
@@ -126,16 +129,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 >
                   {item.name}
                 </button>
+              ) : item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-current={
+                    isPortfolioRoute && location === item.href ? "page" : undefined
+                  }
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </a>
               )
             )}
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
-            >
-              <a href="/#triage-form">Request Triage Call</a>
-            </Button>
+            {!isPortfolioRoute ? (
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
+              >
+                <a href="/#triage-form">Request Triage Call</a>
+              </Button>
+            ) : null}
           </div>
           <button
             className="p-2 text-foreground md:hidden"
@@ -155,16 +179,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="animate-in slide-in-from-top-5 absolute top-full left-0 right-0 flex flex-col gap-4 border-b border-primary bg-background p-4 md:hidden"
           >
             {navItems.map(item =>
-              item.href.startsWith("/") ? (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
-                >
-                  {item.name}
-                </Link>
-              ) : (
+              item.href.startsWith("#") ? (
                 <button
                   key={item.name}
                   type="button"
@@ -173,16 +188,39 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 >
                   {item.name}
                 </button>
+              ) : item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClickCapture={() => setIsMenuOpen(false)}
+                  aria-current={
+                    isPortfolioRoute && location === item.href ? "page" : undefined
+                  }
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClickCapture={() => setIsMenuOpen(false)}
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </a>
               )
             )}
-            <Button
-              asChild
-              className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
-            >
-              <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
-                Request Triage Call
-              </a>
-            </Button>
+            {!isPortfolioRoute ? (
+              <Button
+                asChild
+                className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
+              >
+                <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
+                  Request Triage Call
+                </a>
+              </Button>
+            ) : null}
           </div>
         )}
       </nav>
