@@ -37,6 +37,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const isPortfolioRoute =
     location === "/portfolio" || location.startsWith("/portfolio/");
+  const contactEmail = isPortfolioRoute
+    ? "adgrant1@badgrtech.com"
+    : "hello@badgrtech.com";
+  const contactPhone = isPortfolioRoute ? "+1 (470) 791-7361" : "(470) 223-6127";
+  const contactPhoneHref = isPortfolioRoute ? "tel:+14707917361" : "tel:+14702236127";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: "Harness", href: "/portfolio/badgr-harness" },
     { name: "AI Ops", href: "/portfolio/badgr-ai-ops" },
     { name: "Web-Ops", href: "/portfolio/web-ops" },
-    { name: "Contact", href: "mailto:hello@badgrtech.com" },
+    { name: "Contact", href: `mailto:${contactEmail}` },
   ];
   const navItems = isPortfolioRoute ? portfolioNavItems : businessNavItems;
 
@@ -384,14 +389,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Navigation
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="/#triage-form"
-                    className="block py-2 transition-colors hover:text-foreground"
-                  >
-                    Request Triage Call
-                  </a>
-                </li>
+                {!isPortfolioRoute ? (
+                  <li>
+                    <a
+                      href="/#triage-form"
+                      className="block py-2 transition-colors hover:text-foreground"
+                    >
+                      Request Triage Call
+                    </a>
+                  </li>
+                ) : null}
                 <li>
                   <a
                     href="/#results"
@@ -402,7 +409,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="/#triage-form"
+                    href={isPortfolioRoute ? `mailto:${contactEmail}` : "/#triage-form"}
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Contact
@@ -471,14 +478,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div className="flex items-center gap-3">
               <Phone size={16} className="text-primary-bright" />
-              <a href="tel:+14702236127" className="hover:text-foreground">
-                (470) 223-6127
+              <a href={contactPhoneHref} className="hover:text-foreground">
+                {contactPhone}
               </a>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={16} className="text-primary-bright" />
-              <a href="mailto:hello@badgrtech.com" className="hover:text-foreground">
-                hello@badgrtech.com
+              <a href={`mailto:${contactEmail}`} className="hover:text-foreground">
+                {contactEmail}
               </a>
             </div>
           </div>
