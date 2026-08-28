@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 
 import Layout from "@/components/Layout";
+import SelectedEngineeringWork from "@/components/portfolio/SelectedEngineeringWork";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -771,6 +772,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SelectedEngineeringWork />
 
       <section id="faq" className="bg-[#05070d] py-24">
         <div className="container mx-auto px-4">

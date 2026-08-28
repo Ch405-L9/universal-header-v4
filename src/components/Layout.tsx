@@ -11,7 +11,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,11 +51,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: "Services", href: "#services" },
     { name: "Practice Care Pricing", href: "#pricing" },
     { name: "Sample Risk & Trust Report", href: "#proof" },
+    { name: "Portfolio", href: "/portfolio" },
     { name: "Questions", href: "#faq" },
   ];
 
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
+
+    if (id.startsWith("/")) {
+      return;
+    }
+
+    if (location !== "/") {
+      window.location.href = `/${id}`;
+      return;
+    }
+
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -94,16 +106,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </Link>
           <div className="hidden items-center gap-6 md:flex">
-            {navItems.map(item => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => scrollToSection(item.href)}
-                className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
-              >
-                {item.name}
-              </button>
-            ))}
+            {navItems.map(item =>
+              item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 transition-colors hover:text-primary-bright"
+                >
+                  {item.name}
+                </button>
+              )
+            )}
             <Button
               asChild
               variant="outline"
@@ -130,16 +152,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id="mobile-nav"
             className="animate-in slide-in-from-top-5 absolute top-full left-0 right-0 flex flex-col gap-4 border-b border-primary bg-background p-4 md:hidden"
           >
-            {navItems.map(item => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => scrollToSection(item.href)}
-                className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
-              >
-                {item.name}
-              </button>
-            ))}
+            {navItems.map(item =>
+              item.href.startsWith("/") ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => scrollToSection(item.href)}
+                  className="border-l-2 border-transparent py-2 pl-4 text-left text-lg font-medium transition-all hover:border-primary hover:text-primary-bright"
+                >
+                  {item.name}
+                </button>
+              )
+            )}
             <Button
               asChild
               className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
@@ -348,6 +381,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Proof of Work
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/portfolio"
+                    className="block py-2 transition-colors hover:text-foreground"
+                  >
+                    Engineering Portfolio
                   </Link>
                 </li>
               </ul>

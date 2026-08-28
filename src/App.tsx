@@ -23,6 +23,10 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 const GraphInspector = lazy(() => import("@/pages/GraphInspector"));
 const PaymentSuccess = lazy(() => import("@/pages/PaymentSuccess"));
 const PaymentCancel = lazy(() => import("@/pages/PaymentCancel"));
+const PortfolioPage = lazy(() => import("@/pages/PortfolioPage"));
+const PortfolioCaseStudyPage = lazy(
+  () => import("@/pages/PortfolioCaseStudyPage")
+);
 
 function Router() {
   return (
@@ -33,6 +37,22 @@ function Router() {
         <Route path={"/privacy/badgr-bolt"} component={BadgrBoltPrivacy} />
         <Route path={"/terms"} component={TermsAndConditions} />
         <Route path={"/sample-report"} component={SampleReportPage} />
+        <Route path={"/portfolio"} component={PortfolioPage} />
+        <Route path={"/portfolio/cwalts"}>
+          {() => <PortfolioCaseStudyPage slug="cwalts" />}
+        </Route>
+        <Route path={"/portfolio/badgr-bolt"}>
+          {() => <PortfolioCaseStudyPage slug="badgr-bolt" />}
+        </Route>
+        <Route path={"/portfolio/badgr-harness"}>
+          {() => <PortfolioCaseStudyPage slug="badgr-harness" />}
+        </Route>
+        <Route path={"/portfolio/badgr-ai-ops"}>
+          {() => <PortfolioCaseStudyPage slug="badgr-ai-ops" />}
+        </Route>
+        <Route path={"/portfolio/web-ops"}>
+          {() => <PortfolioCaseStudyPage slug="web-ops" />}
+        </Route>
         <Route path={"/proof"} component={CaseStudy} />
         <Route path={"/free-lighthouse-scan"} component={FreeLighthouseScan} />
         <Route
