@@ -6,6 +6,29 @@ Repo: https://github.com/Ch405-L9/universal-header-v4
 
 ---
 
+## [2026-08-28] — Engineering portfolio release candidate
+
+### Added
+- `/portfolio` and five selected case-study routes: `/portfolio/cwalts`, `/portfolio/badgr-bolt`, `/portfolio/badgr-harness`, `/portfolio/badgr-ai-ops`, and `/portfolio/web-ops`.
+- A compact Selected Engineering Work section on the business homepage, preserving the existing medical-practice funnel.
+- Data-driven portfolio case content, reviewer summaries, compact evidence tables, and approved public media derivatives.
+
+### Changed
+- `src/components/Layout.tsx`: Portfolio routes now use engineering navigation while non-portfolio routes retain the existing business navigation, triage CTA, and anchor behavior.
+- `public/sitemap.xml`: Added portfolio landing and case-study URLs; removed the stale `/ai-consulting` entry.
+- `vercel.json`: Removed the portfolio SPA-route immutable-cache header so case URLs continue to resolve through the application rewrite.
+- `package.json`, `pnpm-lock.yaml`: Updated `nanoid` to `5.1.16` and `nodemailer` to `9.0.6` to remediate production dependency advisories.
+
+### Fixed
+- `src/App.tsx`: Removed the imported and registered `/ai-consulting` route because its referenced page did not exist in repository history.
+
+### Validation
+- `pnpm check`, `pnpm lint` (110 existing warnings, 0 errors), `pnpm build`, `pnpm audit --prod` (0 high, 0 moderate, 1 low), and `git diff --check` passed.
+- Local route, responsive, keyboard/focus, reduced-motion, media, and business-funnel regression checks passed.
+- PR #38 preview deployments passed. Production remains tied to `Web-Ops` and requires the normal approved-PR promotion path.
+
+---
+
 ## [2026-06-23] — BADGR Bolt privacy policy page
 
 ### Added
