@@ -1,4 +1,5 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
 import { Link } from "wouter";
 
 import Layout from "@/components/Layout";
@@ -38,6 +39,20 @@ const methodItems = [
 ];
 
 export default function PortfolioPage() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyPortfolioEmail = async () => {
+    if (!navigator.clipboard?.writeText) return;
+
+    try {
+      await navigator.clipboard.writeText("adgrant1@badgrtech.com");
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      setEmailCopied(false);
+    }
+  };
+
   usePageMeta({
     canonical: "/portfolio",
     title: "Engineering Portfolio | BADGRTechnologies",
@@ -331,14 +346,35 @@ export default function PortfolioPage() {
                 </a>
                 <a
                   href="mailto:adgrant1@badgrtech.com"
-                  target="_blank"
-                  rel="noreferrer"
                   className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   Contact
                 </a>
+                <button
+                  type="button"
+                  onClick={copyPortfolioEmail}
+                  aria-label="Copy engineering contact email"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Mail className="h-4 w-4" aria-hidden="true" />
+                  Copy Email
+                </button>
+                <span className="sr-only" aria-live="polite">
+                  {emailCopied ? "Email copied" : ""}
+                </span>
               </div>
+              <p className="mt-4 text-sm text-zinc-400">
+                <span className="mr-2 uppercase tracking-[0.14em] text-zinc-500">
+                  Engineering contact
+                </span>
+                <a
+                  href="mailto:adgrant1@badgrtech.com"
+                  className="text-primary-bright underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  adgrant1@badgrtech.com
+                </a>
+              </p>
             </div>
           </div>
         </div>
