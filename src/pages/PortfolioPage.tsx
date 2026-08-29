@@ -243,14 +243,14 @@ export default function PortfolioPage() {
               id="founder-engineer"
               className="mt-5 font-sans text-3xl font-bold uppercase tracking-[0.05em] text-white md:text-5xl"
             >
-              Brandon Grant
+              Anthony (A.D.) Grant
             </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-8 border border-primary/20 bg-[#05070d] p-4 md:p-6 lg:grid-cols-[0.3fr_0.7fr] lg:items-start">
             <img
               src="/portfolio/founder_headshot.jpg"
-              alt="Brandon Grant, founder and engineer at BADGRTechnologies LLC"
+              alt="Anthony (A.D.) Grant, founder and engineer at BADGRTechnologies LLC"
               width={463}
               height={581}
               loading="lazy"
@@ -262,7 +262,7 @@ export default function PortfolioPage() {
                 Founder / Engineer — BADGRTechnologies LLC
               </p>
               <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300 md:text-lg">
-                Brandon Grant is the founder of BADGRTechnologies LLC and an
+                Anthony (A.D.) Grant is the founder of BADGRTechnologies LLC and an
                 applied AI/product engineer focused on reliable AI systems,
                 developer tooling, Android product engineering, and production
                 web operations. His work emphasizes evidence over appearance:
