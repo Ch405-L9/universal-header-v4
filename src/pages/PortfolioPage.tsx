@@ -1,4 +1,4 @@
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "wouter";
 
 import Layout from "@/components/Layout";
@@ -226,6 +226,118 @@ export default function PortfolioPage() {
                 </article>
               </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black py-20" aria-labelledby="founder-engineer">
+        <div className="container mx-auto px-4">
+          <div className="mb-10">
+            <Badge
+              variant="outline"
+              className="rounded-none border-primary/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary"
+            >
+              Founder / Engineer
+            </Badge>
+            <h2
+              id="founder-engineer"
+              className="mt-5 font-sans text-3xl font-bold uppercase tracking-[0.05em] text-white md:text-5xl"
+            >
+              Brandon Grant
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 border border-primary/20 bg-[#05070d] p-4 md:p-6 lg:grid-cols-[0.3fr_0.7fr] lg:items-start">
+            <img
+              src="/portfolio/founder_headshot.jpg"
+              alt="Brandon Grant, founder and engineer at BADGRTechnologies LLC"
+              width={463}
+              height={581}
+              loading="lazy"
+              decoding="async"
+              className="mx-auto aspect-[463/581] w-full max-w-sm border border-primary/30 object-cover object-top lg:mx-0 lg:max-w-none"
+            />
+            <div>
+              <p className="font-mono text-sm uppercase tracking-[0.14em] text-primary-bright">
+                Founder / Engineer — BADGRTechnologies LLC
+              </p>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300 md:text-lg">
+                Brandon Grant is the founder of BADGRTechnologies LLC and an
+                applied AI/product engineer focused on reliable AI systems,
+                developer tooling, Android product engineering, and production
+                web operations. His work emphasizes evidence over appearance:
+                define the requirement, preserve failures, correct root causes,
+                and verify behavior with tests, parity checks, rollback
+                controls, and release gates. His background also includes
+                Mobile SW/Application Development (Android), Tier II/III systems
+                support, networking, deployments, and implementation work,
+                bringing operational troubleshooting discipline into AI-assisted
+                engineering.
+              </p>
+
+              <dl className="mt-8 grid gap-px border border-primary/20 bg-primary/20 sm:grid-cols-2">
+                <div className="bg-black p-4">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    Company
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-200">
+                    BADGRTechnologies LLC
+                  </dd>
+                </div>
+                <div className="bg-black p-4">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    Georgia formation document
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-200">
+                    January 27, 2025
+                  </dd>
+                </div>
+                <div className="bg-black p-4">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    Base
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-200">
+                    Lawrenceville, Georgia
+                  </dd>
+                </div>
+                <div className="bg-black p-4">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    Focus
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-200">
+                    AI systems · developer tooling · Android · production web operations
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://github.com/Ch405-L9"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Github className="h-4 w-4" aria-hidden="true" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/anthonyg-5b2b1a273"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Linkedin className="h-4 w-4" aria-hidden="true" />
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:antgrant4781@proton.me"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Mail className="h-4 w-4" aria-hidden="true" />
+                  Contact
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
