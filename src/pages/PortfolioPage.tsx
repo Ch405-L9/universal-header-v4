@@ -331,6 +331,8 @@ export default function PortfolioPage() {
                 </a>
                 <a
                   href="mailto:adgrant1@badgrtech.com"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
