@@ -330,7 +330,7 @@ export default function PortfolioPage() {
                   LinkedIn
                 </a>
                 <a
-                  href="mailto:antgrant4781@proton.me"
+                  href="mailto:adgrant1@badgrtech.com"
                   className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
