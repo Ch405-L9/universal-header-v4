@@ -28,6 +28,7 @@ const PortfolioCaseStudyPage = lazy(
   () => import("@/pages/PortfolioCaseStudyPage")
 );
 
+const BadgrTestPage = lazy(() => import("@/pages/BadgrTestPage"));
 function Router() {
   return (
     <Suspense fallback={null}>
@@ -72,6 +73,7 @@ function Router() {
         <Route path={"/graph"} component={GraphInspector} />
         <Route path={"/success"} component={PaymentSuccess} />
         <Route path={"/cancel"} component={PaymentCancel} />
+        <Route path={"/badgr_test"} component={BadgrTestPage} />
         <Route path={"/404"} component={NotFound} />
         {/* Future route pattern guide:
             <Route path={"/partners"} component={PartnersPage} />
