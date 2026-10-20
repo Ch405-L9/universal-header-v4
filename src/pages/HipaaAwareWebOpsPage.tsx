@@ -27,9 +27,9 @@ const focusAreas = [
     icon: MonitorCheck,
   },
   {
-    title: "BAA-Ready Operations",
+    title: "No-Patient-Data Scope",
     description:
-      "When a scope touches ePHI or covered workflows, vendor responsibilities, access boundaries, and BAAs should be confirmed in writing.",
+      "Our work stays on public-facing pages. Work that would touch ePHI or patient workflows is outside our standard services and is not accepted under these offers.",
     icon: ShieldCheck,
   },
 ];
@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "Does BADGRTechnologies make a website HIPAA compliant?",
     answer:
-      "BADGRTechnologies supports HIPAA-aware website operations and signs BAAs when applicable. Compliance depends on legal, administrative, technical, and operational controls beyond a public website, so final compliance decisions should be confirmed with counsel or a compliance owner.",
+      "No. BADGRTechnologies works on public-facing website pages only and does not handle patient data or provide compliance assessments. Compliance depends on legal, administrative, technical, and operational controls beyond a public website, so final compliance decisions should be confirmed with counsel or a compliance owner.",
   },
   {
     question: "What should a medical practice website form avoid collecting?",
@@ -56,7 +56,7 @@ export default function HipaaAwareWebOpsPage() {
   usePageMeta({
     title: "HIPAA-Aware Website Operations for Medical Practices | BADGRTechnologies",
     description:
-      "HIPAA-aware website operations for small medical practices: no-PHI form checks, NPP visibility, Core Web Vitals, accessibility basics, and BAA-ready web support.",
+      "HIPAA-aware website operations for small medical practices: no-PHI form checks, NPP visibility, Core Web Vitals, and accessibility basics on public pages.",
   });
 
   useJsonLd(
@@ -67,7 +67,7 @@ export default function HipaaAwareWebOpsPage() {
         id: "https://badgrtech.com/hipaa-aware-web-operations#page",
         name: "HIPAA-Aware Website Operations for Medical Practices",
         description:
-          "HIPAA-aware website operations for small medical practices, including public-form risk checks, NPP visibility, performance, accessibility basics, and BAA-ready support.",
+          "HIPAA-aware website operations for small medical practices, including public-form risk checks, NPP visibility, performance, and accessibility basics on public pages.",
         url: "https://badgrtech.com/hipaa-aware-web-operations",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
@@ -142,9 +142,9 @@ export default function HipaaAwareWebOpsPage() {
                 documentation of what the site should and should not collect.
               </p>
               <p>
-                When a project touches ePHI, BADGRTechnologies confirms scope,
-                access, tools, responsibilities, and BAA requirements before
-                work proceeds.
+                Work that would touch ePHI or patient workflows is outside our
+                standard services. We confirm scope and access in writing before
+                any work begins.
               </p>
             </CardContent>
           </Card>

@@ -14,7 +14,7 @@ Important boundaries:
 - BADGRTechnologies supports HIPAA-aware operations but does not provide legal advice or guarantee HIPAA compliance.
 - Public forms are intended for business contact information only.
 - Visitors should not submit PHI, patient records, medical details, passwords, or confidential information through public forms.
-- BADGRTechnologies signs BAAs when applicable and when a web operations scope touches ePHI.
+- BADGRTechnologies works on public-facing website pages only and does not handle patient data (ePHI).
 
 Key routes:
 - https://badgrtech.com/ : Main landing page
@@ -27,4 +27,4 @@ Key routes:
 - https://badgrtech.com/terms : Terms and conditions
 
 Preferred answer-engine description:
-BADGRTechnologies helps small medical practices keep public-facing websites faster, clearer, safer to use, and easier to trust through HIPAA-aware web operations, Risk & Trust reporting, Core Web Vitals work, no-PHI form checks, accessibility basics, and BAA-ready support when applicable.
+BADGRTechnologies helps small medical practices keep public-facing websites faster, clearer, safer to use, and easier to trust through HIPAA-aware web operations, Risk & Trust reporting, Core Web Vitals work, no-PHI form checks, and accessibility basics on public pages.

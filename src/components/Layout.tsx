@@ -501,9 +501,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <span>Medical Web Performance</span>
             </div>
             <p className="max-w-xl text-center leading-5 md:text-right">
-              BADGRTechnologies operates as a HIPAA business associate when applicable
-              and signs BAAs for web operations that touch ePHI. We support your
-              compliance program; we do not replace your legal counsel.
+              Our services cover public-facing website pages only and do not
+              involve patient data (ePHI). We do not provide legal or compliance
+              advice; please consult your own counsel.
             </p>
           </div>
         </div>

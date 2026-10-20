@@ -997,9 +997,9 @@ export default function Home() {
                 </p>
                 <p className="mt-3">
                   Leak & Trust means public website friction, not patient data.
-                  BADGRTechnologies operates as a HIPAA business associate when
-                  applicable and signs BAAs for web operations that touch ePHI.
-                  This request is for business information only.
+                  Our services cover public-facing pages only and do not involve
+                  patient data (ePHI). This request is for business information
+                  only.
                 </p>
               </div>
             </div>
