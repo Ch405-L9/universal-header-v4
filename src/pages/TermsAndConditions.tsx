@@ -129,7 +129,7 @@ export default function TermsAndConditions() {
               service agreement. Unless otherwise stated:
             </p>
             <ul className="list-disc space-y-2 pl-6">
-              <li>Deposits or milestone payments may be required.</li>
+              <li>Full payment is due after scope approval, before work begins. Deposits may be arranged on request.</li>
               <li>
                 Late payments may result in paused work, delayed delivery, or
                 additional fees where permitted.

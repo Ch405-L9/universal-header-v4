@@ -1,11 +1,14 @@
 // DEV ONLY — not used in production. Production API is handled by Vercel Serverless Functions in /api/.
 // Run with: pnpm dev:server (alongside `vercel dev` or `pnpm dev`)
-import compression from "compression";
-import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import compression from "compression";
+import express from "express";
 import Stripe from "stripe";
+
+import { buildCheckoutSessionParams } from "../src/lib/checkout-session.js";
 import { getService } from "../src/lib/payment.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -67,25 +70,9 @@ async function startServer() {
     }
     const appUrl = process.env.VITE_APP_URL ?? "http://localhost:3000";
     try {
-      const session = await stripe.checkout.sessions.create({
-        mode: "payment",
-        line_items: [
-          {
-            price_data: {
-              currency: service.currency,
-              unit_amount: service.depositAmount,
-              product_data: {
-                name: `${service.name} — Deposit`,
-                description: service.depositLabel,
-              },
-            },
-            quantity: 1,
-          },
-        ],
-        metadata: { serviceId: service.id, tier: service.tier },
-        success_url: `${appUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${appUrl}/cancel`,
-      });
+      const session = await stripe.checkout.sessions.create(
+        buildCheckoutSessionParams(service, appUrl),
+      );
       res.json({ url: session.url });
     } catch (err) {
       console.error("Stripe session error:", err);

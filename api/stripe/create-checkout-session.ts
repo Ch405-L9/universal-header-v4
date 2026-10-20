@@ -1,6 +1,9 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Stripe from "stripe";
+
+import { buildCheckoutSessionParams } from "../../src/lib/checkout-session.js";
 import { getService } from "../../src/lib/payment.js";
+
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 // Initialize Stripe once at module load. If the secret is missing, leave the
 // client null so the handler can return a clean 503 — never throw at module
@@ -25,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!stripe) {
     return res.status(503).json({
-      error: "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+      error: "Checkout is temporarily unavailable. Please email adgrant1@badgrtech.com or use the free audit form.",
     });
   }
 
@@ -38,25 +41,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const appUrl = process.env.VITE_APP_URL ?? "https://badgrtech.com";
 
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
-      line_items: [
-        {
-          price_data: {
-            currency: service.currency,
-            unit_amount: service.depositAmount,
-            product_data: {
-              name: `${service.name} — Deposit`,
-              description: service.depositLabel,
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      metadata: { serviceId: service.id, tier: service.tier },
-      success_url: `${appUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${appUrl}/cancel`,
-    });
+    const session = await stripe.checkout.sessions.create(
+      buildCheckoutSessionParams(service, appUrl),
+    );
 
     return res.status(200).json({ url: session.url });
   } catch (err) {
@@ -72,7 +59,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         : err;
     console.error("[stripe] checkout session creation failed:", stripeError);
     return res.status(500).json({
-      error: "Checkout is temporarily unavailable. Please email hello@badgrtech.com or use the free audit form.",
+      error: "Checkout is temporarily unavailable. Please email adgrant1@badgrtech.com or use the free audit form.",
     });
   }
 }

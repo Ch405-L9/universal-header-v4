@@ -18,13 +18,13 @@ const followOnGroups = [
   {
     title: "Practice Care",
     description:
-      "Starting at $550/month for ongoing updates, uptime monitoring, PHI-aware form checks, accessibility basics, and local profile hygiene once the 14-day sprint is complete.",
+      "Care Essential ($79/month): uptime checks, routine maintenance, backup or recovery check, a monthly report, and 30 minutes of service time.",
     icon: Search,
   },
   {
     title: "Practice Growth Care",
     description:
-      "Starting at $950/month for continuous site care plus provider/service page optimization, review workflows, and booking-path improvements.",
+      "Care Plus ($149/month) and Care Priority ($299/month): more monthly service time and priority scheduling during business hours. No 24/7 service.",
     icon: LineChart,
   },
   {

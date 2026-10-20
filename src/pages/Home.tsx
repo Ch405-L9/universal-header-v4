@@ -69,73 +69,80 @@ const serviceHighlights = [
 
 const projectPackages = [
   {
-    serviceId: "diagnostic-scan" as ServiceId,
-    tier: "Entry Scan",
-    title: "MEDICAL RISK & TRUST SCAN",
-    price: "From $750",
-    suffix: "/one-time",
+    serviceId: null as ServiceId | null,
+    tier: "Start Here",
+    title: "FREE WEBSITE CHECK",
+    price: "$0",
+    priceLabel: "Free",
+    suffix: "",
     description:
-      "A focused review for med spas, dental, primary care, mental health, chiropractic, PT, and other cash-pay or hybrid practices that need clear priorities before spending more on ads or a rebuild.",
+      "A quick review of one public page, with up to three issues we observed, sent by email. Written to read in about two minutes. Not a full audit.",
     features: [
-      "Mobile speed and patient-path review",
-      "CTA, call, booking, and portal friction notes",
-      "NPP, privacy, trust, and no-PHI form gap check",
-      "Plain-English owner summary and fix order",
+      "No account access needed",
+      "Up to three observed issues",
+      "Plain-English findings by email",
     ],
-    cta: "REQUEST TRIAGE CALL",
+    cta: "REQUEST MY FREE CHECK",
+    checkoutLabel: "",
     featured: false,
   },
   {
-    serviceId: "lead-leak-fix" as ServiceId,
+    serviceId: "website-tune-up" as ServiceId | null,
     tier: "Most Popular",
-    title: "14-DAY LEAK & TRUST FIX SPRINT",
-    price: "From $2,500",
+    title: "WEBSITE TUNE-UP",
+    price: "$349",
+    priceLabel: "Fixed price",
     suffix: "/one-time",
     description:
-      "Scan, fix, and prove the highest-impact issues that make patients hesitate before calling, booking, or submitting a consult request.",
+      "Agreed improvements on one existing website, up to three public pages, delivered in five business days after scope approval, payment, and access.",
     features: [
-      "Priority fixes across your highest-intent patient pages",
-      "Performance, CTA, mobile, and form-flow improvements",
-      "Before/after Risk & Trust observations",
-      "Retainer recommendation only if it clearly helps",
+      "Mobile speed and layout fixes",
+      "Page titles and descriptions",
+      "Broken-link check and one contact-form test",
+      "Google Business Profile hours and link check",
+      "Brief before/after report",
     ],
-    cta: "BOOK TRIAGE CALL",
+    cta: "START WITH A FREE CHECK",
+    checkoutLabel: "Scope approved? Pay $349",
     featured: true,
   },
   {
-    serviceId: "rebuild-lite" as ServiceId,
-    tier: "Expansion",
-    title: "MEDICAL CONVERSION REBUILD LITE",
-    price: "From $6,500",
-    suffix: "/project",
+    serviceId: "care-essential" as ServiceId | null,
+    tier: "Ongoing",
+    title: "CARE ESSENTIAL",
+    price: "$79",
+    priceLabel: "Monthly",
+    suffix: "/month",
     description:
-      "A conversion-first refresh for practices whose current site needs more than patchwork fixes but not a full custom agency build.",
+      "Routine care for your site, with platform details confirmed before you enroll. Cancel before renewal to stop the next charge.",
     features: [
-      "Best for compact sites and core service pages",
-      "Updated page structure and conversion flow",
-      "Medical service messaging and trust hierarchy",
-      "Built from audit findings, not guesswork",
+      "Scheduled uptime checks",
+      "Routine maintenance your platform supports",
+      "Backup verification or recovery check",
+      "Brief monthly report",
+      "30 minutes of service time each month",
     ],
-    cta: "ASK ABOUT REBUILD",
+    cta: "ASK ABOUT CARE",
+    checkoutLabel: "Approved for Care? Start $79/month",
     featured: false,
   },
 ];
 
 const supportPlans = [
   {
-    name: "Practice Care",
+    name: "Tune-Up Plus and Optimization Sprint",
     description:
-      "Starting at $550/month for ongoing updates, uptime monitoring, PHI-aware form checks, accessibility basics, and local profile hygiene once the 14-day sprint is complete.",
+      "Tune-Up Plus ($699, up to five pages) and the Optimization Sprint ($1,199, up to ten pages) are quoted after a free check.",
   },
   {
-    name: "Practice Growth Care",
+    name: "Care Plus and Care Priority",
     description:
-      "Starting at $950/month for continuous site care plus provider/service page optimization, review workflows, and booking-path improvements.",
+      "Care Plus ($149/month) and Care Priority ($299/month) add more monthly service time. Additional approved work is $125/hour, quoted in writing first.",
   },
   {
-    name: "Optional Campaign Support",
+    name: "Payment",
     description:
-      "Custom project pricing for practices layering in paid campaigns or deeper analytics on top of a hardened site.",
+      "Full payment is due after scope approval, before work begins. Deposits are available on request.",
   },
 ];
 
@@ -603,9 +610,9 @@ export default function Home() {
                   </CardTitle>
                   <div className="mt-4">
                     <p className="mb-1 text-[10px] uppercase tracking-[0.18em] text-zinc-300">
-                      Starting at
+                      {card.priceLabel}
                     </p>
-                    <span className="text-4xl font-bold">{card.price.replace("From ", "")}</span>
+                    <span className="text-4xl font-bold">{card.price}</span>
                     <span className="ml-2 text-muted-foreground">
                       {card.suffix}
                     </span>
@@ -641,7 +648,7 @@ export default function Home() {
                   {card.serviceId ? (
                     <CheckoutButton
                       serviceId={card.serviceId}
-                      label={`Reserve with ${card.serviceId === "diagnostic-scan" ? "$250" : card.serviceId === "lead-leak-fix" ? "$750" : "$2,000"} deposit`}
+                      label={card.checkoutLabel}
                       variant="outline"
                       className="w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest"
                     />

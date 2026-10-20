@@ -57,30 +57,30 @@ export type PackageRecommendation = {
 export function recommendPackage(score: number): PackageRecommendation {
   if (score >= 68) {
     return {
-      packageName: "Medical Risk & Trust Scan",
-      tier: "Tier 1",
-      price: "From $750",
-      reason: "Your practice site has a foundation, but a few patient-flow and trust gaps can still make a high-value patient hesitate. A scan maps what to fix before you spend more on ads.",
-      urgency: "Get clarity before your next marketing spend.",
+      packageName: "Website Tune-Up",
+      tier: "One-time",
+      price: "$349",
+      reason: "Your site has a solid foundation with a few fixable issues. A Tune-Up covers up to three public pages with an agreed fix list.",
+      urgency: "Start with a free website check to confirm the scope.",
       anchor: "#pricing",
     };
   }
   if (score >= 40) {
     return {
-      packageName: "14-Day Leak & Trust Fix Sprint",
-      tier: "Tier 2 — Most common",
-      price: "From $2,500",
-      reason: "Your practice site has multiple friction points across speed, trust, and the path to call or book. The 14-day sprint removes the most expensive blockers first.",
-      urgency: "Every week of delay can mean missed consults you cannot recover.",
+      packageName: "Tune-Up Plus",
+      tier: "Quoted after a free check",
+      price: "$699",
+      reason: "Your site has several issues across speed, layout, and inquiry paths. Tune-Up Plus covers up to five pages with deeper performance and on-page work.",
+      urgency: "A free check confirms whether Plus is the right fit.",
       anchor: "#pricing",
     };
   }
   return {
-    packageName: "Medical Conversion Rebuild Lite",
-    tier: "Tier 3",
-    price: "From $6,500",
-    reason: "Your site's issues run deeper than patchwork fixes can solve. A conversion-first refresh is the faster path to a patient-ready medical website.",
-    urgency: "Patching a structurally weak site delays the result and costs more long-term.",
+    packageName: "Website Optimization Sprint",
+    tier: "Quoted after a free check",
+    price: "$1,199",
+    reason: "Your site needs broader work. The Optimization Sprint covers up to ten pages with prioritized deeper fixes. Complete rebuilds are quoted separately.",
+    urgency: "A free check confirms scope and technical fit first.",
     anchor: "#pricing",
   };
 }

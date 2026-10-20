@@ -8,10 +8,10 @@ export default function PaymentSuccess() {
       <CheckCircle size={48} className="text-primary" />
       <div className="space-y-2">
         <h1 className="font-mono text-2xl font-bold uppercase tracking-wider">
-          Deposit Received
+          Payment Received
         </h1>
         <p className="max-w-md text-muted-foreground">
-          You'll hear from us within one business day to schedule your kickoff.
+          You'll hear from us within one business day to confirm next steps.
           Check your email for a receipt.
         </p>
       </div>
