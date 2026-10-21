@@ -305,6 +305,8 @@ export default function TermsAndConditions() {
             <p>
               General and legal: <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a>
               <br />
+              Existing Care clients (service requests): <a className="text-primary hover:text-white" href="mailto:support@badgrtech.com">support@badgrtech.com</a>
+              <br />
               Phone: <a className="text-primary hover:text-white" href="tel:+14707917361">(470) 791-7361</a>
             </p>
           </TermsSection>
