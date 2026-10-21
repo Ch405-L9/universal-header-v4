@@ -21,7 +21,7 @@ export const conversionPaths: ConversionPath[] = [
     entrySignal: "landed on page",
     stage: "aware",
     nextAction: "Request a free website check",
-    anchor: "/free-lighthouse-scan#scan-form",
+    anchor: "/website-check#scan-form",
   },
   {
     entrySignal: "submitted free website check request",

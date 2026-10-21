@@ -182,7 +182,7 @@ export default function PrivacyPolicy() {
             <p>
               Depending on where you live, you may have the right to request access to, correction of, or deletion of
               your personal information, and to opt out of marketing. To make a request, email 
-              <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a>. We may need to verify your
+              <a className="text-primary hover:text-white" href="mailto:privacy@badgrtech.com">privacy@badgrtech.com</a>. We may need to verify your
               identity, and we respond within the time the law requires. We will not discriminate against you for
               exercising your rights.
             </p>

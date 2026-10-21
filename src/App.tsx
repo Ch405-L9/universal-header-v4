@@ -52,7 +52,7 @@ function Router() {
           {() => <PortfolioCaseStudyPage slug="web-ops" />}
         </Route>
         <Route path={"/proof"} component={CaseStudy} />
-        <Route path={"/free-lighthouse-scan"} component={FreeLighthouseScan} />
+        <Route path={"/website-check"} component={FreeLighthouseScan} />
         <Route path={"/partners"}>
           {() => <FutureRoutePage title="Partners" routePath="/partners" />}
         </Route>

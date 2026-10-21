@@ -16,8 +16,8 @@ Important boundaries:
 
 Key routes:
 - https://badgrtech.com/ : Main landing page
-- https://badgrtech.com/free-lighthouse-scan : Free website check request page
-- https://badgrtech.com/sample-report : Sample medical Risk & Trust report
+- https://badgrtech.com/website-check : Free website check request page
+- https://badgrtech.com/sample-report : Sample website report (medical practice example)
 - https://badgrtech.com/proof : Live proof of work and Lighthouse case study
 - https://badgrtech.com/additional-services : Website care plans
 - https://badgrtech.com/privacy : Privacy policy

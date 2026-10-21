@@ -362,7 +362,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/additional-services"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Practice Care Services
+                    Care and follow-on services
                   </a>
                 </li>
               </ul>

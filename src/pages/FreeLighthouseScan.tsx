@@ -36,56 +36,11 @@ const initialFormData: FormData = {
   website: "",
 };
 
-const proofCards = [
-  {
-    label: "Desktop",
-    imageAvif: "/images/lighthouse-scan-desktop-100.avif",
-    imageWebp: "/images/lighthouse-scan-desktop-100.webp",
-    imageAlt:
-      "Lighthouse desktop report showing 100 Performance, 96 Accessibility, 96 Best Practices, and 100 SEO.",
-    width: 1200,
-    height: 628,
-    scores: [
-      ["Performance", "100"],
-      ["Accessibility", "96"],
-      ["Best Practices", "96"],
-      ["SEO", "100"],
-    ],
-    vitals: [
-      ["FCP", "0.5s"],
-      ["LCP", "0.8s"],
-      ["CLS", "0"],
-      ["TBT", "0ms"],
-    ],
-  },
-  {
-    label: "Mobile",
-    imageAvif: "/images/lighthouse-scan-mobile-91.avif",
-    imageWebp: "/images/lighthouse-scan-mobile-91.webp",
-    imageAlt:
-      "Lighthouse mobile report showing 91 Performance, 96 Accessibility, 96 Best Practices, and 69 SEO.",
-    width: 1200,
-    height: 630,
-    scores: [
-      ["Performance", "91"],
-      ["Accessibility", "96"],
-      ["Best Practices", "96"],
-      ["SEO", "69"],
-    ],
-    vitals: [
-      ["FCP", "1.7s"],
-      ["LCP", "3.6s"],
-      ["CLS", "0"],
-      ["TBT", "0ms"],
-    ],
-  },
-];
-
 const auditChecks: { icon: LucideIcon; text: string }[] = [
-  { icon: Gauge, text: "Lighthouse performance and Core Web Vitals" },
-  { icon: Smartphone, text: "Mobile tap-to-call and booking friction" },
-  { icon: Shield, text: "Trust, policy, and contact-form signals" },
-  { icon: Zap, text: "Online scheduling and local visibility gaps" },
+  { icon: Gauge, text: "Page speed on phones and computers" },
+  { icon: Smartphone, text: "Mobile layout, call buttons, and booking links" },
+  { icon: Shield, text: "Contact forms and broken links" },
+  { icon: Zap, text: "Page titles, descriptions, and Google Business Profile basics" },
 ];
 
 function normalizeHttpsUrl(value: string) {
@@ -160,49 +115,17 @@ function validateForm(formData: FormData): FormErrors {
   return errors;
 }
 
-function MetricGrid({
-  items,
-  variant = "score",
-}: {
-  items: string[][];
-  variant?: "score" | "vital";
-}) {
-  return (
-    <div className="grid grid-cols-2 gap-3">
-      {items.map(([label, value]) => (
-        <div
-          key={label}
-          className="border border-zinc-800 bg-black/35 p-3 text-center"
-        >
-          <div
-            className={cn(
-              "font-sans font-bold",
-              variant === "score" ? "text-3xl text-green-400" : "text-lg text-white",
-            )}
-          >
-            {value}
-          </div>
-          <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-zinc-400">
-            {label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function FreeLighthouseScan() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showHeroImage, setShowHeroImage] = useState(false);
   const [successEmail, setSuccessEmail] = useState("");
   const [submitError, setSubmitError] = useState("");
 
   usePageMeta({
-    title: "Medical Website Risk & Trust Triage | BADGRTechnologies",
+    title: "Free Website Check | BADGRTechnologies",
     description:
-      "Request a free BADGRTechnologies medical website triage review for speed, patient flow, no-PHI form clarity, trust signals, accessibility, and local visibility.",
+      "Request a free website check from BADGRTechnologies: one public page reviewed and up to three issues sent by email. No credit card, no account access.",
   });
 
   useJsonLd(
@@ -210,32 +133,27 @@ export default function FreeLighthouseScan() {
       orgEntity,
       websiteEntity,
       buildWebPageSchema({
-        id: "https://badgrtech.com/free-lighthouse-scan#page",
-        name: "Medical Website Risk & Trust Triage",
+        id: "https://badgrtech.com/website-check#page",
+        name: "Free Website Check",
         description:
-          "Request a free medical website triage review from BADGRTechnologies.",
-        url: "https://badgrtech.com/free-lighthouse-scan",
+          "Request a free website check from BADGRTechnologies.",
+        url: "https://badgrtech.com/website-check",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
           {
-            name: "Medical Website Risk & Trust Triage",
-            url: "https://badgrtech.com/free-lighthouse-scan",
+            name: "Free Website Check",
+            url: "https://badgrtech.com/website-check",
           },
         ],
       }),
     ),
-    "free-lighthouse-scan-graph",
+    "website-check-graph",
   );
 
   const errorSummary = useMemo(
     () => Object.values(errors).filter(Boolean).join(" "),
     [errors],
   );
-
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => setShowHeroImage(true), 250);
-    return () => window.clearTimeout(timeoutId);
-  }, []);
 
   useEffect(() => {
     const requestedUrl = new URLSearchParams(window.location.search).get("url");
@@ -305,46 +223,29 @@ export default function FreeLighthouseScan() {
   return (
     <Layout>
       <section className="relative isolate overflow-hidden border-b border-primary/20 bg-zinc-950 py-20 md:py-28">
-        {showHeroImage ? (
-          <picture>
-            <source srcSet="/images/lighthouse-hero-bg.avif" type="image/avif" />
-            <source srcSet="/images/lighthouse-hero-bg.webp" type="image/webp" />
-            <img
-              src="/images/lighthouse-hero-bg.webp"
-              alt=""
-              width="640"
-              height="640"
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-              className="absolute right-0 top-0 -z-10 h-full w-full object-cover opacity-30 blur-sm"
-            />
-          </picture>
-        ) : null}
         <div className="absolute inset-0 -z-10 bg-[url('/grid-pattern.svg')] opacity-[0.06]" />
         <div className="absolute left-1/2 top-0 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
         <div className="container mx-auto grid items-center gap-12 px-4 lg:grid-cols-12">
           <div className="max-w-4xl lg:col-span-7">
             <Badge
               variant="outline"
-              className="mb-6 rounded-none border-primary-bright/70 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-primary-bright"
+              className="mb-6 rounded-none border-primary-bright/70 bg-black/40 px-4 py-1 text-xs uppercase tracking-[0.18em] text-primary-bright"
             >
-              Medical Website Triage
+              Free website check
             </Badge>
-            <h1 className="font-mono text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-6xl">
-              Find The Site Friction Patients Feel First.
+            <h1 className="font-mono text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              Fix the website problems getting in your customers' way.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">
-              Request a free Risk & Trust triage review for Atlanta-area
-              med spas, dental, primary care, mental health, chiropractic, and
-              PT practices. See where speed, mobile friction, booking flow, and
-              no-PHI form clarity may be costing you inquiries. Results vary.
+              Send your website address. We review one public page and email
+              you up to three issues we found, in plain English. If you want
+              them fixed, the Tune-Up is $349 for up to three pages.
             </p>
             <div className="mt-8 grid max-w-2xl gap-3 text-sm text-zinc-300 sm:grid-cols-3">
               {[
-                "No credit card required",
-                "No patient data collected",
-                "48-hour turnaround",
+                "No credit card",
+                "No account access needed",
+                "Up to 3 issues by email",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-green-400" />
@@ -355,24 +256,16 @@ export default function FreeLighthouseScan() {
             <Button
               asChild
               size="lg"
-              className="mt-10 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
+              className="mt-10 rounded-none px-8 font-bold"
             >
-              <a href="#scan-form">Request Free Triage Review</a>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="mt-4 rounded-none px-8 font-bold uppercase"
-            >
-              <Link href="/">Back to home</Link>
+              <a href="#scan-form">Request my free website check</a>
             </Button>
           </div>
 
           <Card className="border-primary/40 bg-card/80 shadow-2xl backdrop-blur-xl lg:col-span-5">
             <CardHeader>
-              <CardTitle className="font-mono text-xl uppercase">
-                What We Check First
+              <CardTitle className="font-mono text-xl">
+                What we look at
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -389,132 +282,15 @@ export default function FreeLighthouseScan() {
         </div>
       </section>
 
-      <section className="border-t border-primary/20 bg-black py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              {
-                title: "Most practices do not know where bookings stall",
-                text: "Slow pages, hard-to-tap buttons, and unclear booking paths can push new patients back to search before they ever call.",
-              },
-              {
-                title: "Ad spend gets wasted on friction",
-                text: "A free triage review helps identify whether the website is keeping the traffic you already paid to attract. Results vary.",
-              },
-              {
-                title: "Medical trust has to show up fast",
-                text: "We look for speed, mobile usability, contact clarity, and contact-form signals before recommending bigger work.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="border border-zinc-800 bg-zinc-950/70 p-5">
-                <h2 className="mb-3 font-sans text-lg font-bold uppercase tracking-[0.04em] text-white">
-                  {item.title}
-                </h2>
-                <p className="text-sm leading-7 text-zinc-400">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-primary/20 bg-zinc-950 py-16">
-        <div className="container mx-auto max-w-4xl px-4 text-center">
-          <Badge
-            variant="outline"
-            className="mb-5 rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
-          >
-            What You Get
-          </Badge>
-          <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-            A Free Triage Review That Shows Where Patient Trust Breaks Down
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
-            We review public website signals and return practical notes on page
-            speed, mobile tap-to-call, booking and contact forms, online
-            scheduling friction, and obvious local visibility gaps. Free, no
-            credit card, 48-hour target turnaround.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="mt-8 rounded-none px-8 font-bold uppercase tracking-[0.16em]"
-          >
-            <a href="#scan-form">Request Free Triage Review</a>
-          </Button>
-        </div>
-      </section>
-
-      <section id="lighthouse-proof" className="bg-black py-20">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge
-              variant="outline"
-              className="mb-5 rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
-            >
-              Real Site Proof
-            </Badge>
-            <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Scores From Our Own Production Site
-            </h2>
-            <p className="mt-4 text-zinc-400">
-              The audit process starts with the same performance lens used to
-              harden badgrtech.com.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {proofCards.map((card) => (
-              <Card key={card.label} className="border-zinc-800 bg-zinc-950/80">
-                <CardHeader>
-                  <CardTitle className="font-mono text-2xl uppercase text-white">
-                    {card.label} Performance
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <picture>
-                    <source srcSet={card.imageAvif} type="image/avif" />
-                    <source srcSet={card.imageWebp} type="image/webp" />
-                    <img
-                      src={card.imageWebp}
-                      alt={card.imageAlt}
-                      width={card.width}
-                      height={card.height}
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      style={{ aspectRatio: `${card.width}/${card.height}` }}
-                      className="w-full border border-zinc-800 object-cover"
-                    />
-                  </picture>
-                  <MetricGrid items={card.scores} />
-                  <div className="border-t border-zinc-800 pt-5">
-                    <h3 className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-                      Core Web Vitals
-                    </h3>
-                    <MetricGrid items={card.vitals} variant="vital" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="outline" className="rounded-none uppercase">
-              <Link href="/">Back to home</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       <section id="scan-form" className="border-t border-primary/20 bg-zinc-950 py-20">
         <div className="container mx-auto max-w-2xl px-4">
           <div className="mb-10 text-center">
             <h2 className="font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Request Free Triage Review
+              Request my free website check
             </h2>
             <p className="mt-4 text-zinc-400">
-              Business information only. No patient data, no health questions,
-              no passwords.
+              Business information only. No passwords, payment details, or
+              customer or patient records.
             </p>
           </div>
 
@@ -548,7 +324,7 @@ export default function FreeLighthouseScan() {
               </p>
 
               <div className="space-y-2">
-                <Label htmlFor="practiceName">Business Name <span className="text-zinc-500">(optional)</span></Label>
+                <Label htmlFor="practiceName">Business Name <span className="text-zinc-400">(optional)</span></Label>
                 <Input
                   id="practiceName"
                   name="practiceName"
@@ -571,7 +347,7 @@ export default function FreeLighthouseScan() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="contactName">Your Name <span className="text-zinc-500">(optional)</span></Label>
+                  <Label htmlFor="contactName">Your Name <span className="text-zinc-400">(optional)</span></Label>
                   <Input
                     id="contactName"
                     name="contactName"
@@ -593,7 +369,7 @@ export default function FreeLighthouseScan() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number <span className="text-zinc-500">(optional)</span></Label>
+                  <Label htmlFor="phone">Phone Number <span className="text-zinc-400">(optional)</span></Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -644,7 +420,7 @@ export default function FreeLighthouseScan() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="concern">Main Concern <span className="text-zinc-500">(optional)</span></Label>
+                  <Label htmlFor="concern">Main Concern <span className="text-zinc-400">(optional)</span></Label>
                   <Input
                     id="concern"
                     name="concern"

@@ -3,6 +3,7 @@
   "devCommand": "vite --host --port 5173",
   "outputDirectory": "dist/public",
   "redirects": [
+    { "source": "/free-lighthouse-scan", "destination": "/website-check", "permanent": true },
     { "source": "/hipaa-aware-web-operations", "destination": "/", "permanent": true },
     { "source": "/graph", "destination": "/", "permanent": true }
   ],

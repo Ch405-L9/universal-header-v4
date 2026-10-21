@@ -46,21 +46,21 @@ import { cn } from "@/lib/utils";
 
 const serviceHighlights = [
   {
-    title: "Speed + Patient Flow Fixes",
+    title: "Speed and mobile layout",
     description:
-      "Clean up heavy pages, mobile lag, and unclear patient journeys that make people bounce before they call, request an appointment, or reach your portal.",
+      "Lighter pages and cleaner phone layouts, so customers can read your services and reach your phone number without waiting or pinching.",
     icon: Gauge,
   },
   {
-    title: "Contact-Form Checks",
+    title: "Contact path checks",
     description:
-      "Review public forms, consent language, booking paths, and no-PHI warnings so the site asks for business-safe information without creating new risk.",
+      "Contact forms, call buttons, booking links, and broken links tested the way a customer would use them, so inquiries actually reach you.",
     icon: Zap,
   },
   {
-    title: "Trust + Policy Cleanup",
+    title: "Search basics",
     description:
-      "Surface NPP, privacy, accessibility, service, and local trust signals so a legitimate practice feels credible and safer to book from.",
+      "Clear page titles and descriptions, plus a Google Business Profile hours and link check, so the right people find the right page.",
     icon: Shield,
   },
 ];
@@ -298,19 +298,8 @@ export default function Home() {
     <Layout>
       <section className="relative flex min-h-screen items-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/hero-bg-1600.avif"
-            srcSet="/images/hero-bg-640.avif 640w, /images/hero-bg-1024.avif 1024w, /images/hero-bg-1600.avif 1600w"
-            sizes="100vw"
-            width="1600"
-            height="900"
-            fetchPriority="high"
-            alt="Atlanta skyline hero background"
-            className="h-full w-full object-cover opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/52 to-background/18"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-background/18 via-transparent to-background/78"></div>
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.07]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(37,99,235,0.28),transparent_60%),linear-gradient(to_bottom,#020816,#05070d)]"></div>
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.12]"></div>
           <div className="absolute top-[18%] left-[58%] h-48 w-48 rounded-full bg-amber-200/18 blur-[100px]"></div>
           <div className="absolute bottom-[16%] right-[12%] h-40 w-40 rounded-full bg-primary/18 blur-[110px]"></div>
         </div>
@@ -470,12 +459,12 @@ export default function Home() {
                       <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4">
                         <h4 className="mb-2 flex items-center gap-2 font-bold text-red-400">
                           <Shield className="h-4 w-4" />
-                          Patient-Flow Areas To Review
+                          Areas a free check looks at
                         </h4>
                         <ul className="space-y-1 text-sm text-muted-foreground">
-                          <li>• Mobile page speed and booking-path friction</li>
-                          <li>• CTA clarity and public-form risk gaps</li>
-                          <li>• Missing NPP, privacy, trust, and service-page signals</li>
+                          <li>• Mobile speed and layout</li>
+                          <li>• Contact forms, call buttons, and booking links</li>
+                          <li>• Page titles, descriptions, and broken links</li>
                         </ul>
                       </div>
 
@@ -524,12 +513,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="mb-6 font-sans text-3xl font-bold uppercase tracking-[0.08em] md:text-5xl">
-              Web Operations That Fix What Patients Actually Feel On Your Site
+              Fixes your customers notice
             </h2>
             <p className="text-lg text-muted-foreground">
-              Clear scopes for small medical practices that need a faster,
-              cleaner, more trustworthy website before they pour more budget
-              into ads and referrals.
+              Clear scopes for local businesses that need a faster, cleaner
+              website before spending more on ads or referrals.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-300">
               Start with a free website check. A Tune-Up fixes what we find,
@@ -562,16 +550,6 @@ export default function Home() {
                 </ScrollReveal>
               );
             })}
-          </div>
-
-          <div className="mb-14 flex justify-center">
-            <Button
-              type="button"
-              onClick={() => scrollToSection("#triage-form")}
-              className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
-            >
-              Request My Free Website Check
-            </Button>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -651,121 +629,51 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative bg-zinc-950 py-20">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl text-center">
-            <Badge
-              variant="outline"
-              className="mb-6 rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
-            >
-              See It In Action
-            </Badge>
-            <h2 className="mb-4 font-sans text-3xl font-bold uppercase tracking-[0.06em] text-white md:text-4xl">
-              Web Operations Built For Medical Practice Sites
-            </h2>
-            <p className="mb-10 text-base text-zinc-400">
-              A quick look at how a clearer, faster, risk-aware site supports
-              patient trust before paid campaigns or referrals enter the picture.
-            </p>
-            <div className="relative overflow-hidden rounded-xl border border-zinc-800 shadow-2xl">
-              <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/30 to-cyan-500/20 blur opacity-40"></div>
-              <video
-                className="relative w-full rounded-xl"
-                controls
-                preload="none"
-                poster="/images/video-poster-386.avif"
-              >
-                <source src="/videos/badgrtech-intro.webm" type="video/webm" />
-                <source src="/videos/badgrtech-intro.mp4" type="video/mp4" />
-                <track kind="captions" src="" srcLang="en" label="No captions available" default />
-              </video>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section
         id="proof"
         className="relative overflow-hidden bg-black py-28"
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
         <div className="container relative z-10 mx-auto px-4">
-          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            <div className="order-2 lg:order-1">
-              <div className="relative rounded-[1.15rem] border border-zinc-800 bg-zinc-950/50 p-3">
-                <div className="absolute -inset-4 rounded-full bg-primary/20 blur-3xl"></div>
-                <img
-                  src="/images/ai-dashboard-sm.avif"
-                  srcSet="/images/ai-dashboard-sm.avif 560w, /images/ai-dashboard.avif 900w"
-                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
-                  alt="Preview of a sample optimization report"
-                  width="900"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  className="relative w-full rounded-xl border border-zinc-800 shadow-2xl"
-                />
-              </div>
-            </div>
-            <div className="order-1 space-y-8 lg:order-2">
-              <Badge
-                variant="outline"
-                className="rounded-none border-primary-bright/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary-bright"
-              >
-                Proof Asset
-              </Badge>
-              <h2 className="font-sans text-4xl font-bold uppercase leading-tight tracking-[0.05em] md:text-6xl">
-                SHOW THE WORK.
-                <br />
-                <span className="text-indigo-400">DO NOT FAKE THE RESULTS.</span>
-              </h2>
-              <p className="max-w-xl text-xl text-muted-foreground">
-                Instead of placeholder case studies, the funnel points to a
-                sample Risk & Trust report that shows what gets checked, what
-                gets fixed, and how decisions are made.
-              </p>
+          <div className="mx-auto max-w-3xl space-y-8">
+            <Badge
+              variant="outline"
+              className="rounded-none border-primary-bright/70 px-3 py-1 text-xs uppercase tracking-[0.18em] text-primary-bright"
+            >
+              Sample report
+            </Badge>
+            <h2 className="font-mono text-3xl font-bold leading-tight md:text-5xl">
+              See the work before you pay.
+            </h2>
+            <p className="max-w-xl text-lg text-muted-foreground">
+              No invented case studies. The sample report shows what gets
+              checked, what gets fixed first, and why.
+            </p>
 
-              <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-                <h3 className="mb-4 flex items-center gap-2 font-bold">
-                  <FileSearch className="text-primary-bright" />
-                  What The Sample Risk & Trust Report Shows
-                </h3>
-                <div className="space-y-4 text-sm leading-7 text-zinc-300">
-                  <div className="flex gap-3">
-                    <ListChecks className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>Which pages lose patient attention, trust, or action first.</p>
-                  </div>
-                  <div className="flex gap-3">
-                    <Smartphone className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>How mobile friction affects calls, booking, and form completion.</p>
-                  </div>
-                  <div className="flex gap-3">
-                    <TriangleAlert className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
-                    <p>Which speed, PHI-risk, accessibility, and local visibility issues should be fixed first.</p>
-                  </div>
+            <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+              <h3 className="mb-4 flex items-center gap-2 font-bold">
+                <FileSearch className="text-primary-bright" />
+                What the sample report shows
+              </h3>
+              <div className="space-y-4 text-sm leading-7 text-zinc-300">
+                <div className="flex gap-3">
+                  <ListChecks className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
+                  <p>Which pages lose visitors first, and where.</p>
+                </div>
+                <div className="flex gap-3">
+                  <Smartphone className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
+                  <p>How phone layout and speed affect calls and form requests.</p>
+                </div>
+                <div className="flex gap-3">
+                  <TriangleAlert className="mt-1 h-4 w-4 shrink-0 text-primary-bright" />
+                  <p>Which speed, accessibility, and local search issues to fix first.</p>
                 </div>
               </div>
-
-              <p className="max-w-xl text-sm leading-7 text-zinc-300">
-                See exactly how we audit a medical practice website for speed,
-                PHI-risk, accessibility, and local visibility, then decide what
-                to fix first.
-              </p>
-
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Button asChild className="rounded-none uppercase tracking-[0.16em]">
-                  <a href="/sample-report">Open Sample Risk & Trust Report</a>
-                </Button>
-                <Button
-                  variant="outline"
-                  type="button"
-                  onClick={() => scrollToSection("#triage-form")}
-                  className="rounded-none uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
-                >
-                  Request My Free Website Check
-                </Button>
-              </div>
             </div>
+
+            <Button asChild variant="outline" className="rounded-none">
+              <a href="/sample-report">Open the sample report (medical practice example)</a>
+            </Button>
           </div>
         </div>
       </section>
@@ -805,19 +713,6 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-10 rounded-xl border border-primary/30 bg-primary/5 p-6">
-              <p className="text-base leading-7 text-zinc-300">
-                Still not sure? Request a free website check and we will send
-                up to three issues we observed, by email.
-              </p>
-              <Button
-                type="button"
-                onClick={() => scrollToSection("#triage-form")}
-                className="mt-5 rounded-none uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
-              >
-                Request My Free Website Check
-              </Button>
-            </div>
           </div>
         </div>
       </section>
@@ -1007,7 +902,7 @@ export default function Home() {
                 <CardContent className="space-y-5">
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="contact-name">Your Name <span className="text-zinc-500">(optional)</span></Label>
+                      <Label htmlFor="contact-name">Your Name <span className="text-zinc-400">(optional)</span></Label>
                       <Input
                         id="contact-name"
                         value={triageForm.contactName}
@@ -1042,7 +937,7 @@ export default function Home() {
 
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="business-name">Business Name <span className="text-zinc-500">(optional)</span></Label>
+                      <Label htmlFor="business-name">Business Name <span className="text-zinc-400">(optional)</span></Label>
                       <Input
                         id="business-name"
                         value={triageForm.businessName}
@@ -1057,7 +952,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="contact-phone">Phone <span className="text-zinc-500">(optional)</span></Label>
+                      <Label htmlFor="contact-phone">Phone <span className="text-zinc-400">(optional)</span></Label>
                       <Input
                         id="contact-phone"
                         type="tel"
@@ -1092,7 +987,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="business-type">Main Concern <span className="text-zinc-500">(optional)</span></Label>
+                      <Label htmlFor="business-type">Main Concern <span className="text-zinc-400">(optional)</span></Label>
                       <Input
                         id="business-type"
                         value={triageForm.businessType}
@@ -1164,41 +1059,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#020816] py-32">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <h2 className="mb-8 font-sans text-4xl font-bold uppercase tracking-[0.04em] md:text-7xl">
-            READY TO
-            <span className="bg-gradient-to-r from-primary to-white bg-clip-text text-transparent">
-              {" "}
-              FIX THE LEAKS?
-            </span>
-          </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-xl text-zinc-400">
-            Request a free website check. We review one public page and email
-            up to three issues we observed, written to read in about two
-            minutes.
-          </p>
-          <div className="flex flex-col justify-center gap-6 sm:flex-row">
-            <Button
-              size="lg"
-              type="button"
-              onClick={() => scrollToSection("#triage-form")}
-              className="min-h-16 bg-primary px-12 text-lg font-bold text-white shadow-2xl hover:bg-primary/90 h-auto max-w-full whitespace-normal text-center"
-            >
-              REQUEST MY FREE WEBSITE CHECK
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              asChild
-              className="h-16 border-white/20 px-12 text-lg hover:bg-white/10"
-            >
-              <a href="/sample-report">SEE SAMPLE RISK & TRUST REPORT</a>
-            </Button>
-          </div>
-        </div>
-      </section>
     </Layout>
   );
 }

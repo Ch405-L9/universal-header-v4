@@ -9,20 +9,20 @@ import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/
 
 const primaryItems = [
   "Performance tuning and page-speed cleanup",
-  "Mobile UX and booking-path improvements",
-  "Provider/service-page clarity and patient journey tightening",
-  "PHI-aware form checks, trust signals, and conversion friction reduction",
+  "Mobile layout, call buttons, and booking-link fixes",
+  "Clearer service pages and contact paths",
+  "Contact-form checks and broken-link cleanup",
 ];
 
 const followOnGroups = [
   {
-    title: "Practice Care",
+    title: "Care Essential",
     description:
       "Care Essential ($79/month): uptime checks, routine maintenance, backup or recovery check, a monthly report, and 30 minutes of service time.",
     icon: Search,
   },
   {
-    title: "Practice Growth Care",
+    title: "Care Plus and Care Priority",
     description:
       "Care Plus ($149/month) and Care Priority ($299/month): more monthly service time and priority scheduling during business hours. No 24/7 service.",
     icon: LineChart,
@@ -30,14 +30,14 @@ const followOnGroups = [
   {
     title: "Optional Campaign Support",
     description:
-      "Custom project pricing for practices layering in paid campaigns or deeper analytics on top of a hardened site.",
+      "Quoted separately for businesses adding paid campaigns or deeper analytics after the site is in good shape.",
     icon: Share2,
   },
 ];
 
 export default function AdditionalServicesPage() {
   usePageMeta({
-    title: "Practice Care Services | BADGRTechnologies",
+    title: "Website Care Plans | BADGRTechnologies",
     description:
       "Care Essential ($79/month), Care Plus ($149/month), and Care Priority ($299/month) website care plans from BADGRTechnologies.",
   });
@@ -48,13 +48,13 @@ export default function AdditionalServicesPage() {
       websiteEntity,
       buildWebPageSchema({
         id: "https://badgrtech.com/additional-services#page",
-        name: "Practice Care Services | BADGRTechnologies",
+        name: "Website Care Plans | BADGRTechnologies",
         description:
           "Care Essential ($79/month), Care Plus ($149/month), and Care Priority ($299/month) website care plans from BADGRTechnologies.",
         url: "https://badgrtech.com/additional-services",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
-          { name: "Practice Care Services", url: "https://badgrtech.com/additional-services" },
+          { name: "Website Care Plans", url: "https://badgrtech.com/additional-services" },
         ],
       }),
     ),
@@ -70,10 +70,10 @@ export default function AdditionalServicesPage() {
               variant="outline"
               className="mb-6 rounded-none border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-primary"
             >
-              Practice Care Services
+              Website care plans
             </Badge>
             <h1 className="font-sans text-3xl font-bold uppercase tracking-[0.04em] [overflow-wrap:anywhere] sm:text-4xl text-white md:text-6xl">
-              Practice Care After The Site Is Stronger
+              Keep the site in good shape after the fixes
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
               This page exists to support the core offer, not distract from it.
@@ -82,7 +82,7 @@ export default function AdditionalServicesPage() {
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="rounded-none uppercase tracking-[0.16em]">
-                <a href="/#triage-form">Talk Through Fit</a>
+                <a href="/#triage-form">Request my free website check</a>
               </Button>
               <Button
                 asChild

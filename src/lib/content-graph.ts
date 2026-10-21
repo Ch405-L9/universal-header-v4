@@ -28,12 +28,12 @@ export interface ContentCluster {
 
 export const webOptimizationCluster: ContentCluster = {
   id: "web-optimization",
-  pillar: "Medical Website Optimization for Small Practices",
+  pillar: "Website Optimization for Local Businesses",
   nodes: [
     {
       id: "why-medical-sites-lose-trust",
-      title: "Why Medical Practice Websites Lose Patient Trust Silently",
-      bluf: "Most practice websites lose calls and appointment requests through slow mobile pages, unclear booking paths, weak trust signals, and public-form risk that patients feel but never explain.",
+      title: "Why Local Business Websites Lose Customers Quietly",
+      bluf: "Most local business websites lose calls and inquiries through slow mobile pages, unclear contact paths, broken links, and forms that fail without anyone noticing.",
       anchor: "#services",
       intent: "informational",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -41,8 +41,8 @@ export const webOptimizationCluster: ContentCluster = {
     },
     {
       id: "what-web-optimization-means",
-      title: "What Medical Website Optimization Actually Means",
-      bluf: "Medical website optimization is not just a redesign — it is fixing the specific friction points that stop patients from calling, booking, trusting, or submitting safe business-only information.",
+      title: "What Website Optimization Actually Means",
+      bluf: "Website optimization is not a redesign. It means fixing the specific friction points that stop customers from reading, calling, or sending a request.",
       anchor: "#services",
       intent: "informational",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -50,8 +50,8 @@ export const webOptimizationCluster: ContentCluster = {
     },
     {
       id: "how-badgr-fixes-it",
-      title: "How BADGRTech Fixes Medical Website Risk and Friction",
-      bluf: "We scan, prioritize, and fix the highest-impact issues in a fixed scope — speed, mobile UX, booking flow, trust signals, accessibility, and no-PHI form safety — then deliver a Risk & Trust report.",
+      title: "How BADGRTech Fixes Website Friction",
+      bluf: "We check, prioritize, and fix the highest-impact issues in a fixed, written scope: speed, mobile layout, contact paths, page titles and descriptions, and broken links.",
       anchor: "#proof",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization", "https://badgrtech.com/#org"],
@@ -70,7 +70,7 @@ export const webOptimizationCluster: ContentCluster = {
       id: "medical-site-triage",
       title: "Request a Free Website Check",
       bluf: "A quick review of one public page, with up to three observed issues sent by email, before any paid work begins.",
-      anchor: "/free-lighthouse-scan#scan-form",
+      anchor: "/website-check#scan-form",
       intent: "transactional",
       entities: ["https://badgrtech.com/#org"],
       internalLinks: [],
