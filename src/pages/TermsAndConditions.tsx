@@ -64,7 +64,7 @@ export default function TermsAndConditions() {
               provide.
             </p>
             <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-500">
-              Effective Date: January 1, 2025
+              Effective Date: October 20, 2026
             </p>
           </div>
         </div>
@@ -88,22 +88,38 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="2. Service Scope and Agreements">
+          <TermsSection title="2. Services, Scope, and Timing">
             <p>
-              BADGRTechnologies LLC may provide services including website
-              reviews, web optimization, content and visibility support,
-              rebuild recommendations, analytics support, and related technical
-              advisory work.
+              Prices and inclusions shown on this website describe our standard services. The approved written scope
+              for your project controls what is included.
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>
-                Final project scope, deliverables, timelines, and pricing are
-                defined in proposals, statements of work, or invoices.
+                <strong>Free Website Check ($0):</strong> a quick review of one public page, with up to three
+                observed issues sent by email. It is not a full technical audit.
               </li>
               <li>
-                Any estimate or timeline is best-effort and may change when
-                scope, approvals, dependencies, or client-provided inputs
-                change.
+                <strong>Website Tune-Up ($349, one-time):</strong> agreed improvements on one existing website, up to
+                three public pages, with a brief before/after report. Delivery is five business days after the
+                written scope is approved, payment is received, and any needed access and materials are in place.
+              </li>
+              <li>
+                <strong>Care Essential ($79/month):</strong> scheduled uptime checks, routine maintenance your
+                platform supports, backup verification or a recovery check as agreed for your platform, a brief
+                monthly report, and 30 minutes of service time each month, including reporting and messages.
+              </li>
+              <li>
+                Larger scopes (Tune-Up Plus, Optimization Sprint, Care Plus, Care Priority) and additional work at
+                $125/hour are quoted and approved in writing before work begins.
+              </li>
+              <li>
+                Delivery windows include time for testing and unexpected technical issues. If the scope changes, or a
+                delay comes from you or a third party, we confirm a revised date with you.
+              </li>
+              <li>
+                Unless separately agreed, services exclude hosting fees, paid tools, major repairs, rebuilds, extensive
+                content writing, checkout or payment-system changes, patient-data workflows, and legal or compliance
+                assessments. Care does not include 24/7 response or unlimited repairs.
               </li>
             </ul>
           </TermsSection>
@@ -123,21 +139,28 @@ export default function TermsAndConditions() {
             </ul>
           </TermsSection>
 
-          <TermsSection title="4. Payments and Refunds">
-            <p>
-              Payment terms are governed by the applicable quote, invoice, or
-              service agreement. Unless otherwise stated:
-            </p>
+          <TermsSection title="4. Payments, Renewals, Cancellation, and Refunds">
             <ul className="list-disc space-y-2 pl-6">
-              <li>Full payment is due after scope approval, before work begins. Deposits may be arranged on request.</li>
               <li>
-                Late payments may result in paused work, delayed delivery, or
-                additional fees where permitted.
+                Full payment is due after the written scope is approved, before work begins. Deposits may be arranged
+                on request. Payments are processed by Stripe.
               </li>
               <li>
-                Refunds, if any, are governed by the signed scope and the work
+                Third-party costs, such as hosting, plugins, or paid tools, are disclosed and approved separately
+                before they are incurred.
+              </li>
+              <li>
+                <strong>Care plans renew automatically.</strong> Care is billed monthly in advance, starting on the day
+                you enroll, until you cancel. To cancel, email 
+                <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a> before your next renewal date.
+                Cancellation stops the next charge; service continues through the paid month. There are no prorated
+                refunds, and unused service time does not roll over.
+              </li>
+              <li>
+                Refunds for one-time services, if any, are governed by the approved written scope and the work
                 completed to date.
               </li>
+              <li>Late or failed payments may pause work or care services until resolved.</li>
             </ul>
           </TermsSection>
 
@@ -191,29 +214,28 @@ export default function TermsAndConditions() {
             </p>
           </TermsSection>
 
-          <TermsSection title="8. Free Risk & Trust Triage Disclaimer">
+          <TermsSection title="8. Free Website Check and No-Guarantee Notice">
             <p>
-              A free Risk & Trust triage review, audit, or preview is an
-              initial diagnostic review based on publicly accessible website
-              information and available performance, usability, no-PHI form, and
-              trust-signal tooling. It is not a full security audit, penetration
-              test, legal review, medical advice, HIPAA compliance assessment,
-              accessibility certification, or guarantee of search ranking,
-              traffic, revenue, appointment volume, or legal compliance.
+              A free website check, speed preview, or report is a limited review based on publicly accessible website
+              information. It is not a full security audit, penetration test, legal review, compliance assessment, or
+              accessibility certification.
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>
-                Visitors should not submit patient information, protected health
-                information (PHI), passwords, medical records, or confidential
-                medical details through website forms.
+                We do not promise search rankings, specific scores, traffic, revenue, or AI recommendations.
               </li>
               <li>
-                Recommendations are informational and require business judgment,
-                technical review, and project-specific scope before implementation.
+                Our services cover public-facing website pages only and do not involve patient data (ePHI). Do not
+                submit patient information, passwords, medical records, or other confidential details through website
+                forms or email.
               </li>
               <li>
-                No client relationship or obligation to perform paid services is
-                created until BADGRTechnologies LLC accepts a project in writing.
+                Before we change a live site, we confirm access and a recovery path. You remain responsible for keeping
+                your own account credentials and any backups your platform or host provides.
+              </li>
+              <li>
+                No client relationship or obligation to perform paid services is created until BADGRTechnologies LLC
+                accepts a project in writing.
               </li>
             </ul>
           </TermsSection>
@@ -278,9 +300,9 @@ export default function TermsAndConditions() {
               Atlanta, GA 30350
             </p>
             <p>
-              General: <a className="text-primary hover:text-white" href="mailto:hello@badgrtech.com">hello@badgrtech.com</a>
+              General and legal: <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a>
               <br />
-              Legal: <a className="text-primary hover:text-white" href="mailto:hello@badgrtech.com">hello@badgrtech.com</a>
+              Phone: <a className="text-primary hover:text-white" href="tel:+14707917361">(470) 791-7361</a>
             </p>
           </TermsSection>
 
