@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CARE_PORTAL_URL } from "@/lib/payment";
 
 export default function PaymentSuccess() {
   return (
@@ -13,6 +14,13 @@ export default function PaymentSuccess() {
         <p className="max-w-md text-muted-foreground">
           You'll hear from us within one business day to confirm next steps.
           Check your email for a receipt.
+        </p>
+        <p className="max-w-md text-sm text-muted-foreground">
+          Care plan clients can update billing or cancel anytime in the{" "}
+          <a className="text-primary underline-offset-4 hover:underline" href={CARE_PORTAL_URL} rel="noopener noreferrer" target="_blank">
+            billing portal
+          </a>
+          .
         </p>
       </div>
       <Button asChild variant="outline" className="rounded-none border-primary/50 font-mono text-xs uppercase tracking-wider text-primary hover:bg-primary/10">

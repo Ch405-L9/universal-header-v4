@@ -173,7 +173,7 @@ export const fullFaqs: { question: string; answer: string; intent: IntentStage }
     intent: "transactional",
     question: "Can I cancel Care Essential?",
     answer:
-      "Yes. Email adgrant1@badgrtech.com before your next renewal date to stop the next charge. Care is billed monthly in advance, and service continues through the paid month. There are no prorated refunds, and unused time does not roll over.",
+      "Yes. Cancel online at https://billing.stripe.com/p/login/dRmfZggxI4JV4C75By6c000 or email adgrant1@badgrtech.com before your next renewal date to stop the next charge. Care is billed monthly in advance, and service continues through the paid month. There are no prorated refunds, and unused time does not roll over.",
   },
   {
     intent: "transactional",

@@ -2,6 +2,10 @@
   "buildCommand": "npx vite build",
   "devCommand": "vite --host --port 5173",
   "outputDirectory": "dist/public",
+  "redirects": [
+    { "source": "/hipaa-aware-web-operations", "destination": "/", "permanent": true },
+    { "source": "/graph", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/).*)",

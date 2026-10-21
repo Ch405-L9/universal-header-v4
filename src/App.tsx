@@ -18,9 +18,7 @@ const AdditionalServicesPage = lazy(() => import("@/pages/AdditionalServicesPage
 const SampleReportPage = lazy(() => import("@/pages/SampleReportPage"));
 const CaseStudy = lazy(() => import("@/pages/CaseStudy"));
 const FreeLighthouseScan = lazy(() => import("@/pages/FreeLighthouseScan"));
-const HipaaAwareWebOpsPage = lazy(() => import("@/pages/HipaaAwareWebOpsPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
-const GraphInspector = lazy(() => import("@/pages/GraphInspector"));
 const PaymentSuccess = lazy(() => import("@/pages/PaymentSuccess"));
 const PaymentCancel = lazy(() => import("@/pages/PaymentCancel"));
 const PortfolioPage = lazy(() => import("@/pages/PortfolioPage"));
@@ -55,10 +53,6 @@ function Router() {
         </Route>
         <Route path={"/proof"} component={CaseStudy} />
         <Route path={"/free-lighthouse-scan"} component={FreeLighthouseScan} />
-        <Route
-          path={"/hipaa-aware-web-operations"}
-          component={HipaaAwareWebOpsPage}
-        />
         <Route path={"/partners"}>
           {() => <FutureRoutePage title="Partners" routePath="/partners" />}
         </Route>
@@ -69,7 +63,6 @@ function Router() {
           path={"/additional-services"}
           component={AdditionalServicesPage}
         />
-        <Route path={"/graph"} component={GraphInspector} />
         <Route path={"/success"} component={PaymentSuccess} />
         <Route path={"/cancel"} component={PaymentCancel} />
         <Route path={"/404"} component={NotFound} />

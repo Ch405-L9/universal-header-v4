@@ -42,3 +42,6 @@ export const services: Record<ServiceId, ServiceConfig> = {
 export function getService(id: string): ServiceConfig | null {
   return services[id as ServiceId] ?? null;
 }
+
+/** Stripe-hosted customer portal login: Care clients cancel or update billing here. */
+export const CARE_PORTAL_URL = "https://billing.stripe.com/p/login/dRmfZggxI4JV4C75By6c000";

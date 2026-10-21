@@ -52,7 +52,7 @@ const serviceHighlights = [
     icon: Gauge,
   },
   {
-    title: "HIPAA-Aware Form Checks",
+    title: "Contact-Form Checks",
     description:
       "Review public forms, consent language, booking paths, and no-PHI warnings so the site asks for business-safe information without creating new risk.",
     icon: Zap,
@@ -112,7 +112,7 @@ const projectPackages = [
     priceLabel: "Monthly",
     suffix: "/month",
     description:
-      "Routine care for your site, with platform details confirmed before you enroll. Cancel before renewal to stop the next charge.",
+      "Routine care for your site, with platform details confirmed before you enroll. Cancel online or by email before renewal to stop the next charge.",
     features: [
       "Scheduled uptime checks",
       "Routine maintenance your platform supports",
@@ -337,8 +337,7 @@ export default function Home() {
 
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-zinc-300 md:text-2xl">
               BADGRTechnologies operates and hardens your public-facing site so
-              cash-pay and hybrid patients can find you, trust you, and book
-              without creating new HIPAA headaches.
+              cash-pay and hybrid patients can find you, trust you, and book.
             </p>
 
             <div className="flex flex-col gap-6 pt-2 sm:flex-row">
@@ -365,7 +364,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-3 border-t border-white/5 pt-4 pr-12 text-sm text-zinc-400">
               {[
                 "Cash-pay & hybrid medical practice web operations",
-                "HIPAA-aware scopes and pricing",
+                "Clear scopes and pricing",
                 "Plain-English Risk & Trust reports",
               ].map(item => (
                 <span

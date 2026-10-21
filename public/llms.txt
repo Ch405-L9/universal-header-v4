@@ -1,6 +1,6 @@
 # BADGRTechnologies
 
-BADGRTechnologies LLC is a Georgia LLC based in Lawrenceville, Gwinnett County. It improves existing websites for local small businesses, locally and remotely across the U.S. Medical, dental, therapy, home-service, and other local businesses are welcome.
+BADGRTechnologies LLC is a Georgia LLC based in Atlanta (8735 Dunwoody Place, Suite N, Atlanta, GA 30350), serving Gwinnett County and metro Atlanta. It improves existing websites for local small businesses, locally and remotely across the U.S. Medical, dental, therapy, home-service, and other local businesses are welcome.
 
 Primary services:
 - Free Website Check ($0): one public page, up to three observed issues by email
@@ -16,7 +16,6 @@ Important boundaries:
 
 Key routes:
 - https://badgrtech.com/ : Main landing page
-- https://badgrtech.com/hipaa-aware-web-operations : HIPAA-aware website operations page
 - https://badgrtech.com/free-lighthouse-scan : Free website check request page
 - https://badgrtech.com/sample-report : Sample medical Risk & Trust report
 - https://badgrtech.com/proof : Live proof of work and Lighthouse case study

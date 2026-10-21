@@ -94,7 +94,7 @@ const proofCards = [
 const auditChecks: { icon: LucideIcon; text: string }[] = [
   { icon: Gauge, text: "Lighthouse performance and Core Web Vitals" },
   { icon: Smartphone, text: "Mobile tap-to-call and booking friction" },
-  { icon: Shield, text: "Trust, policy, and HIPAA-aware form signals" },
+  { icon: Shield, text: "Trust, policy, and contact-form signals" },
   { icon: Zap, text: "Online scheduling and local visibility gaps" },
 ];
 
@@ -356,7 +356,7 @@ export default function FreeLighthouseScan() {
             <div className="mt-8 grid max-w-2xl gap-3 text-sm text-zinc-300 sm:grid-cols-3">
               {[
                 "No credit card required",
-                "HIPAA-aware fields",
+                "No patient data collected",
                 "48-hour turnaround",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
@@ -416,7 +416,7 @@ export default function FreeLighthouseScan() {
               },
               {
                 title: "Medical trust has to show up fast",
-                text: "We look for speed, mobile usability, contact clarity, and HIPAA-aware form signals before recommending bigger work.",
+                text: "We look for speed, mobile usability, contact clarity, and contact-form signals before recommending bigger work.",
               },
             ].map((item) => (
               <div key={item.title} className="border border-zinc-800 bg-zinc-950/70 p-5">
@@ -443,7 +443,7 @@ export default function FreeLighthouseScan() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
             We review public website signals and return practical notes on page
-            speed, mobile tap-to-call, HIPAA-aware booking forms, online
+            speed, mobile tap-to-call, booking and contact forms, online
             scheduling friction, and obvious local visibility gaps. Free, no
             credit card, 48-hour target turnaround.
           </p>

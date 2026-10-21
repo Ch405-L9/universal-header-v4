@@ -2,6 +2,7 @@ import { ArrowLeft, Scale } from "lucide-react";
 import { Link } from "wouter";
 import { useJsonLd, usePageMeta } from "@/lib/seo";
 import { buildGraph, buildWebPageSchema, orgEntity, websiteEntity } from "@/lib/schema";
+import { CARE_PORTAL_URL } from "@/lib/payment";
 
 function TermsSection({
   title,
@@ -151,7 +152,9 @@ export default function TermsAndConditions() {
               </li>
               <li>
                 <strong>Care plans renew automatically.</strong> Care is billed monthly in advance, starting on the day
-                you enroll, until you cancel. To cancel, email 
+                you enroll, until you cancel. To cancel, use the{" "}
+                <a className="text-primary hover:text-white" href={CARE_PORTAL_URL} rel="noopener noreferrer" target="_blank">online billing portal</a>{" "}
+                (sign in with the email on your Care plan) or email{" "}
                 <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a> before your next renewal date.
                 Cancellation stops the next charge; service continues through the paid month. There are no prorated
                 refunds, and unused service time does not roll over.
