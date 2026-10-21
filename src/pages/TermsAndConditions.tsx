@@ -160,8 +160,17 @@ export default function TermsAndConditions() {
                 refunds, and unused service time does not roll over.
               </li>
               <li>
-                Refunds for one-time services, if any, are governed by the approved written scope and the work
-                completed to date.
+                <strong>One-time services (such as the Website Tune-Up).</strong> If you cancel before work begins,
+                you receive a full refund. Once work begins, completed items are not refundable. Any agreed item we
+                cannot deliver is refunded at its share of the approved scope.
+              </li>
+              <li>
+                If a delivered item does not work as described in the approved scope, tell us within 14 days of
+                delivery and we will correct it at no charge.
+              </li>
+              <li>
+                Refunds are not based on search rankings, scores, traffic, or leads, which we do not guarantee.
+                Approved refunds are returned to the original payment method.
               </li>
               <li>Late or failed payments may pause work or care services until resolved.</li>
             </ul>
