@@ -150,7 +150,7 @@ export default function PortfolioPage() {
           { value: "Failure -> Correction", label: "Verification" },
         ].map(item => (
           <div key={item.label} className="border-primary/10 p-5 md:border-r">
-            <strong className="block font-mono text-2xl text-white">
+            <strong className="block font-mono text-2xl text-white [overflow-wrap:anywhere]">
               {item.value}
             </strong>
             <span className="mt-2 block text-[10px] uppercase tracking-[0.18em] text-zinc-500">

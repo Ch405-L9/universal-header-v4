@@ -35,7 +35,7 @@ export default function FutureRoutePage({
               <Construction className="h-4 w-4" />
               Future Route Placeholder
             </div>
-            <h1 className="font-sans text-4xl font-bold uppercase tracking-[0.04em] text-white md:text-6xl">
+            <h1 className="font-sans text-3xl font-bold uppercase tracking-[0.04em] [overflow-wrap:anywhere] sm:text-4xl text-white md:text-6xl">
               {title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">

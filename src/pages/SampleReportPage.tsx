@@ -122,11 +122,11 @@ export default function SampleReportPage() {
           <div className="max-w-5xl">
             <Badge
               variant="outline"
-              className="mb-6 rounded-none border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-primary-bright"
+              className="mb-6 max-w-full whitespace-normal rounded-none border-primary/40 bg-primary/10 px-4 py-2 text-left text-xs uppercase tracking-[0.22em] text-primary-bright"
             >
               Sanitized Sample Risk & Trust Report
             </Badge>
-            <h1 className="font-sans text-4xl font-bold uppercase tracking-[0.04em] text-white md:text-6xl">
+            <h1 className="font-sans text-3xl font-bold uppercase tracking-[0.04em] [overflow-wrap:anywhere] sm:text-4xl text-white md:text-6xl">
               Medical Risk & Trust Report
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
@@ -136,7 +136,7 @@ export default function SampleReportPage() {
               how BADGR turns technical findings into decisions a practice owner
               can understand.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Button asChild className="rounded-none uppercase tracking-[0.16em]">
                 <Link href="/">Back To Home</Link>
               </Button>
@@ -145,7 +145,7 @@ export default function SampleReportPage() {
                 variant="outline"
                 className="rounded-none uppercase tracking-[0.16em]"
               >
-                <a href="/#triage-form">Request A Triage Call</a>
+                <a href="/#triage-form">Request my free website check</a>
               </Button>
               <Button
                 asChild
@@ -327,11 +327,11 @@ export default function SampleReportPage() {
                 Next Step
               </p>
               <p className="mt-3 text-base leading-7 text-zinc-300">
-                Request a triage call if you want this style of plain-English
-                Risk & Trust review on your own site.
+                Request a free website check to get plain-English findings
+                like these on one page of your own site.
               </p>
               <Button asChild className="mt-6 rounded-none uppercase tracking-[0.16em]">
-                <a href="/#triage-form">Request Triage Call</a>
+                <a href="/#triage-form">Request my free website check</a>
               </Button>
             </div>
 

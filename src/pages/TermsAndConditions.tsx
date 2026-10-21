@@ -56,7 +56,7 @@ export default function TermsAndConditions() {
               <Scale className="h-4 w-4" />
               Terms & Conditions
             </div>
-            <h1 className="font-sans text-4xl font-bold uppercase tracking-[0.04em] text-white md:text-6xl">
+            <h1 className="font-sans text-3xl font-bold uppercase tracking-[0.04em] [overflow-wrap:anywhere] sm:text-4xl text-white md:text-6xl">
               BADGRTechnologies LLC Terms & Conditions
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">

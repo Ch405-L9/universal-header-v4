@@ -17,7 +17,7 @@ type FormData = {
   contactName: string;
   email: string;
   phone: string;
-  practiceType: string;
+  concern: string;
   websiteUrl: string;
   consent: boolean;
   website: string;
@@ -30,21 +30,11 @@ const initialFormData: FormData = {
   contactName: "",
   email: "",
   phone: "",
-  practiceType: "",
+  concern: "",
   websiteUrl: "",
   consent: false,
   website: "",
 };
-
-const practiceTypes = [
-  "Med-Spa / Aesthetics",
-  "Cosmetic Dental",
-  "General Dental",
-  "Chiropractic / PT",
-  "Primary Care",
-  "Mental Health",
-  "Other",
-];
 
 const proofCards = [
   {
@@ -112,27 +102,28 @@ function validateForm(formData: FormData): FormErrors {
   const contactName = formData.contactName.trim();
   const email = formData.email.trim();
   const phone = formData.phone.trim();
-  const practiceType = formData.practiceType.trim();
+  const concern = formData.concern.trim();
   const websiteUrl = normalizeHttpsUrl(formData.websiteUrl);
 
-  if (!practiceName) {
-    errors.practiceName = "Practice name is required.";
-  } else if (practiceName.length < 2) {
-    errors.practiceName = "Practice name must be at least 2 characters.";
-  } else if (practiceName.length > 100) {
-    errors.practiceName = "Practice name must be 100 characters or less.";
-  } else if (!/^[a-zA-Z0-9\s&'.-]+$/.test(practiceName)) {
-    errors.practiceName = "Use letters, numbers, spaces, ampersands, apostrophes, periods, or hyphens.";
+  // Only website and email are required; optional fields are checked when filled in.
+  if (practiceName) {
+    if (practiceName.length < 2) {
+      errors.practiceName = "Business name must be at least 2 characters.";
+    } else if (practiceName.length > 100) {
+      errors.practiceName = "Business name must be 100 characters or less.";
+    } else if (!/^[\p{L}\p{N}\s&'.,()/-]+$/u.test(practiceName)) {
+      errors.practiceName = "Use letters, numbers, spaces, and basic punctuation.";
+    }
   }
 
-  if (!contactName) {
-    errors.contactName = "Your name is required.";
-  } else if (contactName.length < 2) {
-    errors.contactName = "Your name must be at least 2 characters.";
-  } else if (contactName.length > 100) {
-    errors.contactName = "Your name must be 100 characters or less.";
-  } else if (!/^[a-zA-Z\s'.-]+$/.test(contactName)) {
-    errors.contactName = "Use letters, spaces, apostrophes, periods, or hyphens.";
+  if (contactName) {
+    if (contactName.length < 2) {
+      errors.contactName = "Your name must be at least 2 characters.";
+    } else if (contactName.length > 100) {
+      errors.contactName = "Your name must be 100 characters or less.";
+    } else if (!/^[\p{L}\s'.-]+$/u.test(contactName)) {
+      errors.contactName = "Use letters, spaces, apostrophes, periods, or hyphens.";
+    }
   }
 
   if (!email) {
@@ -141,16 +132,12 @@ function validateForm(formData: FormData): FormErrors {
     errors.email = "Enter a valid email address.";
   }
 
-  if (!phone) {
-    errors.phone = "Phone number is required.";
-  } else if (!/^[0-9+().\-\s]{7,20}$/.test(phone)) {
+  if (phone && !/^[0-9+().\-\s]{7,20}$/.test(phone)) {
     errors.phone = "Enter a valid phone number.";
   }
 
-  if (!practiceType) {
-    errors.practiceType = "Practice type is required.";
-  } else if (!practiceTypes.includes(practiceType)) {
-    errors.practiceType = "Choose a listed practice type.";
+  if (concern.length > 500) {
+    errors.concern = "Main concern must be 500 characters or less.";
   }
 
   if (!websiteUrl) {
@@ -538,7 +525,7 @@ export default function FreeLighthouseScan() {
                 Request Submitted
               </h3>
               <p className="mt-3 text-zinc-300">
-                Thank you. We will send your Risk & Trust triage notes to{" "}
+                Thank you. We will send your free website check findings to{" "}
                 <strong className="text-white">{successEmail}</strong> within 48 hours.
               </p>
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -561,7 +548,7 @@ export default function FreeLighthouseScan() {
               </p>
 
               <div className="space-y-2">
-                <Label htmlFor="practiceName">Practice Name</Label>
+                <Label htmlFor="practiceName">Business Name <span className="text-zinc-500">(optional)</span></Label>
                 <Input
                   id="practiceName"
                   name="practiceName"
@@ -570,7 +557,6 @@ export default function FreeLighthouseScan() {
                   onChange={(event) => updateField("practiceName", event.target.value)}
                   aria-invalid={Boolean(errors.practiceName)}
                   aria-describedby={errors.practiceName ? "practiceName-error" : undefined}
-                  required
                   className={cn(
                     "h-12 border-primary/30 bg-background/60",
                     errors.practiceName && "border-red-500 focus:border-red-500",
@@ -585,7 +571,7 @@ export default function FreeLighthouseScan() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="contactName">Your Name</Label>
+                  <Label htmlFor="contactName">Your Name <span className="text-zinc-500">(optional)</span></Label>
                   <Input
                     id="contactName"
                     name="contactName"
@@ -594,7 +580,6 @@ export default function FreeLighthouseScan() {
                     onChange={(event) => updateField("contactName", event.target.value)}
                     aria-invalid={Boolean(errors.contactName)}
                     aria-describedby={errors.contactName ? "contactName-error" : undefined}
-                    required
                     className={cn(
                       "h-12 border-primary/30 bg-background/60",
                       errors.contactName && "border-red-500 focus:border-red-500",
@@ -608,7 +593,7 @@ export default function FreeLighthouseScan() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">Phone Number <span className="text-zinc-500">(optional)</span></Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -619,7 +604,6 @@ export default function FreeLighthouseScan() {
                     onChange={(event) => updateField("phone", event.target.value)}
                     aria-invalid={Boolean(errors.phone)}
                     aria-describedby={errors.phone ? "phone-error" : undefined}
-                    required
                     className={cn(
                       "h-12 border-primary/30 bg-background/60",
                       errors.phone && "border-red-500 focus:border-red-500",
@@ -660,30 +644,24 @@ export default function FreeLighthouseScan() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="practiceType">Practice Type</Label>
-                  <select
-                    id="practiceType"
-                    name="practiceType"
-                    value={formData.practiceType}
-                    onChange={(event) => updateField("practiceType", event.target.value)}
-                    aria-invalid={Boolean(errors.practiceType)}
-                    aria-describedby={errors.practiceType ? "practiceType-error" : undefined}
-                    required
+                  <Label htmlFor="concern">Main Concern <span className="text-zinc-500">(optional)</span></Label>
+                  <Input
+                    id="concern"
+                    name="concern"
+                    maxLength={500}
+                    placeholder="Slow on phones, form not working, outdated info"
+                    value={formData.concern}
+                    onChange={(event) => updateField("concern", event.target.value)}
+                    aria-invalid={Boolean(errors.concern)}
+                    aria-describedby={errors.concern ? "concern-error" : undefined}
                     className={cn(
-                      "h-12 w-full rounded-none border border-primary/30 bg-background/60 px-3 text-sm text-foreground outline-none transition-colors focus:border-primary",
-                      errors.practiceType && "border-red-500 focus:border-red-500",
+                      "h-12 border-primary/30 bg-background/60",
+                      errors.concern && "border-red-500 focus:border-red-500",
                     )}
-                  >
-                    <option value="">Choose one</option>
-                    {practiceTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.practiceType ? (
-                    <p id="practiceType-error" className="text-sm text-red-400" role="alert">
-                      {errors.practiceType}
+                  />
+                  {errors.concern ? (
+                    <p id="concern-error" className="text-sm text-red-400" role="alert">
+                      {errors.concern}
                     </p>
                   ) : null}
                 </div>

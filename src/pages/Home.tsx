@@ -86,7 +86,7 @@ const projectPackages = [
   },
   {
     serviceId: "website-tune-up" as ServiceId | null,
-    tier: "Most Popular",
+    tier: "One-Time Fix",
     title: "WEBSITE TUNE-UP",
     price: "$349",
     priceLabel: "Fixed price",
@@ -255,8 +255,7 @@ export default function Home() {
           contactName: triageForm.contactName,
           email: triageForm.email,
           phone: triageForm.phone,
-          practiceType: "Other",
-          businessType: triageForm.businessType,
+          concern: triageForm.businessType,
           websiteUrl: normalizeHttpsUrl(triageForm.websiteUrl),
           consent: triageForm.consent,
           website: "",
@@ -320,56 +319,54 @@ export default function Home() {
           <div className="motion-safe:animate-[fadeSlideLeft_0.7s_ease_both] space-y-8 pl-4 md:pl-12 lg:col-span-7">
             <Badge
               variant="outline"
-              className="rounded-none border-primary/50 bg-black/40 px-4 py-1 text-[10px] uppercase tracking-[0.24em] text-blue-300 backdrop-blur-sm"
+              className="max-w-full whitespace-normal rounded-none border-primary/50 bg-black/40 px-4 py-1 text-left text-[10px] uppercase tracking-[0.24em] text-blue-300 backdrop-blur-sm"
             >
-              Cash-Pay & Hybrid Medical Practice Web Operations
+              Website fixes for local businesses · Atlanta & Gwinnett
             </Badge>
 
-            <h1 className="font-mono text-5xl font-bold leading-[0.9] tracking-tight text-white drop-shadow-2xl md:text-7xl lg:text-8xl">
-              Keep Practice
+            <h1 className="font-mono text-[1.75rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-2xl min-[400px]:text-4xl sm:text-5xl lg:text-6xl">
+              Website fixes.
               <br />
-              Websites Fast,
+              Clear scope.
               <br />
               <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-sky-300 bg-clip-text text-transparent drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                Safer To Book
+                Straightforward pricing.
               </span>
             </h1>
 
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-zinc-300 md:text-2xl">
-              BADGRTechnologies operates and hardens your public-facing site so
-              cash-pay and hybrid patients can find you, trust you, and book.
+              A $349 Tune-Up fixes an agreed list on up to three pages. Start
+              with a free one-page check.
             </p>
 
-            <div className="flex flex-col gap-6 pt-2 sm:flex-row">
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:gap-6">
               <Button
                 size="lg"
                 asChild
-                className="group h-16 rounded-none border border-primary bg-black/80 px-10 text-lg font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
+                className="group h-14 rounded-none border border-primary bg-black/80 px-5 text-base font-bold sm:px-8 text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
               >
                 <Link href="/#triage-form">
-                  Request My Free Website Check
-                  <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
+                  Request my free website check
+                  <Zap className="ml-2 h-5 w-5 text-primary transition-colors group-hover:text-white" />
                 </Link>
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="h-16 rounded-none border-white/10 px-8 text-lg uppercase tracking-[0.18em] text-zinc-400 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white"
+              <a
+                href="/#pricing"
+                className="self-start text-base text-zinc-300 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-center"
               >
-                <a href="/sample-report">View Sample Risk & Trust Report</a>
-              </Button>
+                See the $349 Tune-Up
+              </a>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 border-t border-white/5 pt-4 pr-12 text-sm text-zinc-400">
               {[
-                "Cash-pay & hybrid medical practice web operations",
-                "Clear scopes and pricing",
-                "Plain-English Risk & Trust reports",
+                "Free check: up to 3 issues by email",
+                "Scope and price approved before work",
+                "Care from $79/month, cancel online",
               ].map(item => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-zinc-300"
+                  className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-zinc-300"
                 >
                   {item}
                 </span>
@@ -385,7 +382,7 @@ export default function Home() {
             <Card className="relative border-primary/50 bg-card/80 shadow-2xl backdrop-blur-xl">
               <CardHeader>
                 <CardTitle className="font-mono text-2xl">
-                  LEAK & TRUST PREVIEW
+                  QUICK SPEED PREVIEW
                 </CardTitle>
                 <CardDescription>
                   Drop in your website and preview the kind of issues we would
@@ -420,7 +417,7 @@ export default function Home() {
                           ANALYZING...
                         </span>
                       ) : (
-                        "PREVIEW MY RISK & TRUST GAPS"
+                        "PREVIEW MY PAGE SPEED"
                       )}
                     </Button>
                     {auditError && auditFallbackUrl ? (
@@ -500,7 +497,7 @@ export default function Home() {
                             }));
                             scrollToSection("#triage-form");
                           }}
-                          className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
+                          className="min-h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80 h-auto max-w-full whitespace-normal text-center"
                         >
                           Request My Free Check
                         </Button>
@@ -571,7 +568,7 @@ export default function Home() {
             <Button
               type="button"
               onClick={() => scrollToSection("#triage-form")}
-              className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em]"
+              className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
             >
               Request My Free Website Check
             </Button>
@@ -630,7 +627,7 @@ export default function Home() {
                     onClick={() => scrollToSection("#triage-form")}
                     variant={card.featured ? "default" : "outline"}
                     className={cn(
-                      "w-full rounded-none border-zinc-700 font-bold uppercase tracking-widest",
+                      "h-auto min-h-9 w-full whitespace-normal rounded-none border-zinc-700 py-2 text-center font-bold uppercase tracking-widest",
                       card.featured
                         ? "border border-primary-bright bg-black text-primary-bright shadow-[0_0_20px_rgba(0,0,255,0.2)] hover:bg-primary/20 hover:text-white"
                         : "hover:bg-zinc-800"
@@ -763,7 +760,7 @@ export default function Home() {
                   variant="outline"
                   type="button"
                   onClick={() => scrollToSection("#triage-form")}
-                  className="rounded-none uppercase tracking-[0.16em]"
+                  className="rounded-none uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
                 >
                   Request My Free Website Check
                 </Button>
@@ -816,7 +813,7 @@ export default function Home() {
               <Button
                 type="button"
                 onClick={() => scrollToSection("#triage-form")}
-                className="mt-5 rounded-none uppercase tracking-[0.16em]"
+                className="mt-5 rounded-none uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
               >
                 Request My Free Website Check
               </Button>
@@ -868,7 +865,7 @@ export default function Home() {
                 variant="link"
                 type="button"
                 onClick={() => scrollToSection("#triage-form")}
-                className="group h-auto p-0 text-lg font-bold text-white"
+                className="group h-auto max-w-full whitespace-normal p-0 text-left text-lg font-bold text-white"
               >
                 REQUEST MY FREE WEBSITE CHECK
                 <ArrowRight className="ml-2 h-5 w-5 text-primary-bright transition-transform group-hover:translate-x-1 group-hover:text-white" />
@@ -1010,7 +1007,7 @@ export default function Home() {
                 <CardContent className="space-y-5">
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="contact-name">Your Name</Label>
+                      <Label htmlFor="contact-name">Your Name <span className="text-zinc-500">(optional)</span></Label>
                       <Input
                         id="contact-name"
                         value={triageForm.contactName}
@@ -1022,7 +1019,6 @@ export default function Home() {
                         }
                         placeholder="Your name"
                         autoComplete="name"
-                        required
                       />
                     </div>
                     <div className="space-y-2">
@@ -1046,7 +1042,7 @@ export default function Home() {
 
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="business-name">Business Name</Label>
+                      <Label htmlFor="business-name">Business Name <span className="text-zinc-500">(optional)</span></Label>
                       <Input
                         id="business-name"
                         value={triageForm.businessName}
@@ -1058,11 +1054,10 @@ export default function Home() {
                         }
                         placeholder="Your company name"
                         autoComplete="organization"
-                        required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="contact-phone">Phone</Label>
+                      <Label htmlFor="contact-phone">Phone <span className="text-zinc-500">(optional)</span></Label>
                       <Input
                         id="contact-phone"
                         type="tel"
@@ -1075,7 +1070,6 @@ export default function Home() {
                         }
                         placeholder="(470) 000-0000"
                         autoComplete="tel"
-                        required
                       />
                     </div>
                   </div>
@@ -1098,7 +1092,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="business-type">Business Type</Label>
+                      <Label htmlFor="business-type">Main Concern <span className="text-zinc-500">(optional)</span></Label>
                       <Input
                         id="business-type"
                         value={triageForm.businessType}
@@ -1108,8 +1102,8 @@ export default function Home() {
                             businessType: e.target.value,
                           }))
                         }
-                        placeholder="Plumbing, salon, dental, law office"
-                        required
+                        placeholder="Slow on phones, form not working, outdated info"
+                        maxLength={500}
                       />
                     </div>
                   </div>
@@ -1141,7 +1135,7 @@ export default function Home() {
                   <Button
                     type="submit"
                     disabled={triageSubmitting}
-                    className="rounded-none uppercase tracking-[0.16em]"
+                    className="rounded-none uppercase tracking-[0.16em] h-auto max-w-full whitespace-normal text-center"
                   >
                     {triageSubmitting ? "Sending..." : "Request My Free Check"}
                   </Button>
@@ -1190,7 +1184,7 @@ export default function Home() {
               size="lg"
               type="button"
               onClick={() => scrollToSection("#triage-form")}
-              className="h-16 bg-primary px-12 text-lg font-bold text-white shadow-2xl hover:bg-primary/90"
+              className="min-h-16 bg-primary px-12 text-lg font-bold text-white shadow-2xl hover:bg-primary/90 h-auto max-w-full whitespace-normal text-center"
             >
               REQUEST MY FREE WEBSITE CHECK
             </Button>

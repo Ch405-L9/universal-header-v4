@@ -1,4 +1,4 @@
-import type { ServiceConfig } from "./payment.js";
+import { CARE_PORTAL_URL, type ServiceConfig } from "./payment.js";
 import type Stripe from "stripe";
 
 /**
@@ -32,7 +32,7 @@ export function buildCheckoutSessionParams(
     custom_text: {
       submit: {
         message: isMonthly
-          ? "Billed monthly in advance until you cancel. Cancel before your renewal date to stop the next charge; service continues through the paid month. No prorated refunds."
+          ? `Care Essential renews automatically every month and is billed in advance until you cancel. Cancel anytime before your renewal date in the [billing portal](${CARE_PORTAL_URL}) or by emailing [adgrant1@badgrtech.com](mailto:adgrant1@badgrtech.com); service continues through the paid month. No prorated refunds. Questions: (470) 791-7361. See our [Terms](https://www.badgrtech.com/terms).`
           : "Full payment for your approved scope. Delivery timing starts once payment and any needed access are in place.",
       },
     },

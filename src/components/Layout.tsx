@@ -237,20 +237,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
             <p className="hidden text-sm text-zinc-400 sm:block">
-              Start with a free website check.
+              Free website check: one page, up to 3 issues by email.
             </p>
             <div className="flex w-full items-center gap-3 sm:w-auto">
               <a
-                href="/free-lighthouse-scan#lighthouse-proof"
-                className="flex-1 rounded-none border border-primary/50 bg-transparent px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-primary-bright transition-colors hover:bg-primary/10 sm:flex-none"
-              >
-                Proof Scores
-              </a>
-              <a
                 href="/#triage-form"
-                className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
+                className="flex-1 rounded-none bg-primary px-5 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-primary/80 sm:flex-none"
               >
-                Free Check
+                Request my free check
               </a>
             </div>
           </div>

@@ -1,6 +1,8 @@
 import { useRef } from "react";
 
-type PersistFn = (...args: unknown[]) => unknown;
+// Parameters must be `any` so handlers with specific event types are assignable (function params are contravariant).
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type PersistFn = (...args: any[]) => any;
 
 /**
  * usePersistFn instead of useCallback to reduce cognitive load

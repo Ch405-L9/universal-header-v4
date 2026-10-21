@@ -21,13 +21,13 @@ export function CheckoutButton({
   const isLoading = loading === serviceId;
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex min-w-0 max-w-full flex-col gap-1">
       <Button
         variant={variant}
         disabled={isLoading}
         onClick={() => checkout(serviceId)}
         className={cn(
-          "rounded-none font-mono text-xs uppercase tracking-[0.18em]",
+          "h-auto min-h-9 max-w-full whitespace-normal rounded-none py-2 text-center font-mono text-xs uppercase tracking-[0.18em]",
           variant === "default" && "bg-primary text-white hover:bg-primary/80",
           variant === "outline" && "border-primary-bright/60 text-primary-bright hover:bg-primary/10 hover:text-white",
           className

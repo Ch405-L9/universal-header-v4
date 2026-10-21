@@ -128,7 +128,7 @@ export default function CaseStudy() {
           >
             Proof of Work
           </Badge>
-          <h1 className="mb-6 font-mono text-4xl font-bold uppercase leading-tight tracking-tight text-white md:text-6xl">
+          <h1 className="mb-6 font-mono text-3xl font-bold uppercase sm:text-4xl leading-tight tracking-tight text-white md:text-6xl">
             badgrtech.com
             <br />
             <span className="bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent">

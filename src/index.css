@@ -241,6 +241,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Long email addresses and URLs must wrap instead of widening the page on small phones. */
+  a[href^="mailto:"],
+  a[href^="tel:"] {
+    overflow-wrap: anywhere;
+  }
+  h1 {
+    overflow-wrap: anywhere;
+  }
   body {
     @apply bg-background text-foreground;
   }

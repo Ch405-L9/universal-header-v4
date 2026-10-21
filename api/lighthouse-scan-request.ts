@@ -5,6 +5,7 @@ import { z } from "zod";
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const RATE_LIMIT_MAX = 3;
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+const NOT_PROVIDED = "Not provided";
 
 function normalizeHttpsUrl(value: string) {
   const trimmed = value.trim();
@@ -14,61 +15,69 @@ function normalizeHttpsUrl(value: string) {
   return trimmed;
 }
 
+// Optional text fields: empty strings from the forms are treated as "not provided".
+const optionalText = (schema: z.ZodString) =>
+  z.preprocess(
+    (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
+    schema.optional(),
+  );
+
 const scanRequestSchema = z.object({
-  practiceName: z
-    .string()
-    .trim()
-    .min(2, "Practice name must be at least 2 characters")
-    .max(100, "Practice name must be 100 characters or less")
-    .regex(/^[a-zA-Z0-9\s&'.-]+$/, "Practice name contains unsupported characters"),
-  contactName: z
-    .string()
-    .trim()
-    .min(2, "Your name must be at least 2 characters")
-    .max(100, "Your name must be 100 characters or less")
-    .regex(/^[a-zA-Z\s'.-]+$/, "Your name contains unsupported characters"),
-  email: z.string().trim().email("Email address must be valid").max(254),
-  phone: z
-    .string()
-    .trim()
-    .min(7, "Phone number must be valid")
-    .max(20, "Phone number must be 20 characters or less")
-    .regex(/^[0-9+().\-\s]+$/, "Phone number contains unsupported characters"),
-  practiceType: z.enum([
-    "Med-Spa / Aesthetics",
-    "Cosmetic Dental",
-    "General Dental",
-    "Chiropractic / PT",
-    "Primary Care",
-    "Mental Health",
-    "Other",
-  ]),
-  businessType: z
-    .string()
-    .trim()
-    .min(2, "Business type must be at least 2 characters")
-    .max(80, "Business type must be 80 characters or less")
-    .regex(/^[a-zA-Z0-9\s,&'./-]+$/, "Business type contains unsupported characters")
-    .optional(),
+  email: z.string({ error: "Email address is required" }).trim().email("Email address must be valid").max(254),
   websiteUrl: z.preprocess(
     (value) => (typeof value === "string" ? normalizeHttpsUrl(value) : value),
-    z.string().url("Website URL must be valid").refine((value) => value.startsWith("https://"), {
+    z.string({ error: "Website URL is required" }).url("Website URL must be valid").refine((value) => value.startsWith("https://"), {
       message: "Website URL must start with https://",
     }),
   ),
-  consent: z.boolean().refine((value) => value === true, {
-    message: "You must confirm the audit request terms before submitting.",
+  consent: z.boolean({ error: "You must confirm the request terms before submitting." }).refine((value) => value === true, {
+    message: "You must confirm the request terms before submitting.",
   }),
+  practiceName: optionalText(
+    z
+      .string()
+      .trim()
+      .min(2, "Business name must be at least 2 characters")
+      .max(100, "Business name must be 100 characters or less")
+      .regex(/^[\p{L}\p{N}\s&'.,()/-]+$/u, "Business name contains unsupported characters"),
+  ),
+  contactName: optionalText(
+    z
+      .string()
+      .trim()
+      .min(2, "Your name must be at least 2 characters")
+      .max(100, "Your name must be 100 characters or less")
+      .regex(/^[\p{L}\s'.-]+$/u, "Your name contains unsupported characters"),
+  ),
+  phone: optionalText(
+    z
+      .string()
+      .trim()
+      .min(7, "Phone number must be valid")
+      .max(20, "Phone number must be 20 characters or less")
+      .regex(/^[0-9+().\-\s]+$/, "Phone number contains unsupported characters"),
+  ),
+  // Legacy field from the older medical-only form; still accepted so cached pages keep working.
+  practiceType: optionalText(z.string().trim().max(60)),
+  businessType: optionalText(
+    z
+      .string()
+      .trim()
+      .max(80, "Business type must be 80 characters or less")
+      .regex(/^[\p{L}\p{N}\s,&'./-]+$/u, "Business type contains unsupported characters"),
+  ),
+  concern: optionalText(z.string().trim().max(500, "Main concern must be 500 characters or less")),
   website: z.string().optional(),
 });
 
 type ScanRequest = {
-  practiceName: string;
-  contactName: string;
+  practiceName?: string;
+  contactName?: string;
   email: string;
-  phone: string;
-  practiceType: string;
+  phone?: string;
+  practiceType?: string;
   businessType?: string;
+  concern?: string;
   websiteUrl: string;
   consent: boolean;
   submittedAt: string;
@@ -193,16 +202,17 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     },
   });
 
-  const subject = `New free website check request: ${request.practiceName}`;
+  const subject = `New free website check request: ${request.practiceName ?? new URL(request.websiteUrl).host}`;
   const text = [
     "New Free Website Check Request",
     "",
-    `Business Name: ${request.practiceName}`,
-    `Contact Name: ${request.contactName}`,
+    `Business Name: ${request.practiceName ?? NOT_PROVIDED}`,
+    `Contact Name: ${request.contactName ?? NOT_PROVIDED}`,
     `Email Address: ${request.email}`,
-    `Phone Number: ${request.phone}`,
-    `Practice Type: ${request.practiceType}`,
+    `Phone Number: ${request.phone ?? NOT_PROVIDED}`,
+    request.practiceType ? `Practice Type: ${request.practiceType}` : null,
     request.businessType ? `Business Type: ${request.businessType}` : null,
+    `Main Concern: ${request.concern ?? NOT_PROVIDED}`,
     `Website URL: ${request.websiteUrl}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
@@ -213,12 +223,13 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
 
   const html = `
     <h2>New Free Website Check Request</h2>
-    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName)}</p>
-    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
+    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName ?? NOT_PROVIDED)}</p>
+    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName ?? NOT_PROVIDED)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
-    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
-    <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
+    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone ?? NOT_PROVIDED)}</p>
+    ${request.practiceType ? `<p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>` : ""}
     ${request.businessType ? `<p><strong>Business Type:</strong> ${escapeHtml(request.businessType)}</p>` : ""}
+    <p><strong>Main Concern:</strong> ${escapeHtml(request.concern ?? NOT_PROVIDED)}</p>
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
@@ -243,16 +254,17 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const apiKey = getResendApiKey();
   const to = getEmailTo();
   const from = getResendFrom();
-  const subject = `New free website check request: ${request.practiceName}`;
+  const subject = `New free website check request: ${request.practiceName ?? new URL(request.websiteUrl).host}`;
   const text = [
     "New Free Website Check Request",
     "",
-    `Business Name: ${request.practiceName}`,
-    `Contact Name: ${request.contactName}`,
+    `Business Name: ${request.practiceName ?? NOT_PROVIDED}`,
+    `Contact Name: ${request.contactName ?? NOT_PROVIDED}`,
     `Email Address: ${request.email}`,
-    `Phone Number: ${request.phone}`,
-    `Practice Type: ${request.practiceType}`,
+    `Phone Number: ${request.phone ?? NOT_PROVIDED}`,
+    request.practiceType ? `Practice Type: ${request.practiceType}` : null,
     request.businessType ? `Business Type: ${request.businessType}` : null,
+    `Main Concern: ${request.concern ?? NOT_PROVIDED}`,
     `Website URL: ${request.websiteUrl}`,
     `Consent Confirmed: ${request.consent ? "Yes" : "No"}`,
     `Submitted: ${request.submittedAt}`,
@@ -262,12 +274,13 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   ].filter(Boolean).join("\n");
   const html = `
     <h2>New Free Website Check Request</h2>
-    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName)}</p>
-    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
+    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName ?? NOT_PROVIDED)}</p>
+    <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName ?? NOT_PROVIDED)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
-    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
-    <p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>
+    <p><strong>Phone Number:</strong> ${escapeHtml(request.phone ?? NOT_PROVIDED)}</p>
+    ${request.practiceType ? `<p><strong>Practice Type:</strong> ${escapeHtml(request.practiceType)}</p>` : ""}
     ${request.businessType ? `<p><strong>Business Type:</strong> ${escapeHtml(request.businessType)}</p>` : ""}
+    <p><strong>Main Concern:</strong> ${escapeHtml(request.concern ?? NOT_PROVIDED)}</p>
     <p><strong>Website URL:</strong> <a href="${escapeHtml(request.websiteUrl)}">${escapeHtml(request.websiteUrl)}</a></p>
     <p><strong>Consent Confirmed:</strong> ${request.consent ? "Yes" : "No"}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(request.submittedAt)}</p>
@@ -366,6 +379,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     phone: parsed.data.phone,
     practiceType: parsed.data.practiceType,
     businessType: parsed.data.businessType,
+    concern: parsed.data.concern,
     websiteUrl: parsed.data.websiteUrl,
     consent: parsed.data.consent,
     submittedAt: new Date().toISOString(),
