@@ -20,11 +20,11 @@ export const conversionPaths: ConversionPath[] = [
   {
     entrySignal: "landed on page",
     stage: "aware",
-    nextAction: "Request a medical site triage call",
+    nextAction: "Request a free website check",
     anchor: "/free-lighthouse-scan#scan-form",
   },
   {
-    entrySignal: "submitted medical site triage request",
+    entrySignal: "submitted free website check request",
     stage: "evaluating",
     nextAction: "Review diagnosis and match to a package",
     anchor: "#pricing",
@@ -32,7 +32,7 @@ export const conversionPaths: ConversionPath[] = [
   {
     entrySignal: "viewed pricing",
     stage: "deciding",
-    nextAction: "Book 15-minute triage call",
+    nextAction: "Request a free website check",
     anchor: "#contact",
   },
   {
@@ -98,7 +98,7 @@ export const flywheelLoops = [
     id: "faq-to-pricing",
     trigger: "User reads 3+ FAQs",
     loop: "Informational trust built → commercial intent confirmed → pricing CTA surfaced",
-    retention: "FAQ answers pre-handle objections → reduces triage call length",
+    retention: "FAQ answers pre-handle objections → reduces back-and-forth before scoping",
   },
   {
     id: "proof-to-triage",

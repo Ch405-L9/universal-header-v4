@@ -37,11 +37,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const isPortfolioRoute =
     location === "/portfolio" || location.startsWith("/portfolio/");
-  const contactEmail = isPortfolioRoute
-    ? "adgrant1@badgrtech.com"
-    : "hello@badgrtech.com";
-  const contactPhone = isPortfolioRoute ? "+1 (470) 791-7361" : "(470) 223-6127";
-  const contactPhoneHref = isPortfolioRoute ? "tel:+14707917361" : "tel:+14702236127";
+  const contactEmail = "adgrant1@badgrtech.com";
+  const contactPhone = isPortfolioRoute ? "+1 (470) 791-7361" : "(470) 791-7361";
+  const contactPhoneHref = "tel:+14707917361";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,8 +54,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const businessNavItems = [
     { name: "Services", href: "#services" },
-    { name: "Practice Care Pricing", href: "#pricing" },
-    { name: "Sample Risk & Trust Report", href: "#proof" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Sample Report", href: "#proof" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Questions", href: "#faq" },
   ];
@@ -162,7 +160,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 size="sm"
                 className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               >
-                <a href="/#triage-form">Request Triage Call</a>
+                <a href="/#triage-form">Free Website Check</a>
               </Button>
             ) : null}
           </div>
@@ -222,7 +220,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
               >
                 <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
-                  Request Triage Call
+                  Free Website Check
                 </a>
               </Button>
             ) : null}
@@ -239,7 +237,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
             <p className="hidden text-sm text-zinc-400 sm:block">
-              Start with a medical site triage call.
+              Start with a free website check.
             </p>
             <div className="flex w-full items-center gap-3 sm:w-auto">
               <a
@@ -252,7 +250,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 href="/#triage-form"
                 className="flex-1 rounded-none bg-primary px-5 py-2 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary/80 sm:flex-none"
               >
-                Triage Call
+                Free Check
               </a>
             </div>
           </div>
@@ -283,8 +281,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
               <p className="max-w-xs text-sm text-muted-foreground">
-                Atlanta-based medical website operations for small practices that need
-                faster pages, clearer booking paths, and safer public-facing forms.
+                Mobile usability, search basics, and working inquiry paths for
+                local businesses. Clear scope, straightforward pricing.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
@@ -362,7 +360,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/#pricing"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Practice Care Pricing
+                    Pricing
                   </a>
                 </li>
                 <li>
@@ -370,7 +368,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/#proof"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Sample Risk & Trust Report
+                    Sample Report
                   </a>
                 </li>
                 <li>
@@ -395,7 +393,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       href="/#triage-form"
                       className="block py-2 transition-colors hover:text-foreground"
                     >
-                      Request Triage Call
+                      Free Website Check
                     </a>
                   </li>
                 ) : null}
@@ -496,9 +494,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               rights reserved.
             </p>
             <div className="flex gap-6">
-              <span>HIPAA-Aware Scopes</span>
-              <span>Risk & Trust Reporting</span>
-              <span>Medical Web Performance</span>
+              <span>Free Website Checks</span>
+              <span>Website Tune-Ups</span>
+              <span>Website Care</span>
             </div>
             <p className="max-w-xl text-center leading-5 md:text-right">
               Our services cover public-facing website pages only and do not

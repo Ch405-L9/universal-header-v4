@@ -193,11 +193,11 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
     },
   });
 
-  const subject = `New Risk & Trust triage request: ${request.practiceName}`;
+  const subject = `New free website check request: ${request.practiceName}`;
   const text = [
-    "New Risk & Trust Triage Request",
+    "New Free Website Check Request",
     "",
-    `Practice Name: ${request.practiceName}`,
+    `Business Name: ${request.practiceName}`,
     `Contact Name: ${request.contactName}`,
     `Email Address: ${request.email}`,
     `Phone Number: ${request.phone}`,
@@ -212,8 +212,8 @@ async function sendScanRequestEmail(request: ScanRequest, ip: string) {
   ].filter(Boolean).join("\n");
 
   const html = `
-    <h2>New Risk &amp; Trust Triage Request</h2>
-    <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
+    <h2>New Free Website Check Request</h2>
+    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName)}</p>
     <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
@@ -243,11 +243,11 @@ async function sendWithResend(request: ScanRequest, ip: string) {
   const apiKey = getResendApiKey();
   const to = getEmailTo();
   const from = getResendFrom();
-  const subject = `New Risk & Trust triage request: ${request.practiceName}`;
+  const subject = `New free website check request: ${request.practiceName}`;
   const text = [
-    "New Risk & Trust Triage Request",
+    "New Free Website Check Request",
     "",
-    `Practice Name: ${request.practiceName}`,
+    `Business Name: ${request.practiceName}`,
     `Contact Name: ${request.contactName}`,
     `Email Address: ${request.email}`,
     `Phone Number: ${request.phone}`,
@@ -261,8 +261,8 @@ async function sendWithResend(request: ScanRequest, ip: string) {
     "Visitor notice shown: Business information only. Do not submit PHI, patient records, passwords, or confidential medical details.",
   ].filter(Boolean).join("\n");
   const html = `
-    <h2>New Risk &amp; Trust Triage Request</h2>
-    <p><strong>Practice Name:</strong> ${escapeHtml(request.practiceName)}</p>
+    <h2>New Free Website Check Request</h2>
+    <p><strong>Business Name:</strong> ${escapeHtml(request.practiceName)}</p>
     <p><strong>Contact Name:</strong> ${escapeHtml(request.contactName)}</p>
     <p><strong>Email Address:</strong> ${escapeHtml(request.email)}</p>
     <p><strong>Phone Number:</strong> ${escapeHtml(request.phone)}</p>
@@ -384,7 +384,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.info("[lighthouse-scan] email result", emailResult);
     if (!emailResult.sent) {
       return res.status(503).json({
-        message: "Email delivery is not configured yet. Please email hello@badgrtech.com or call (470) 223-6127.",
+        message: "Email delivery is not configured yet. Please email adgrant1@badgrtech.com or call (470) 791-7361.",
       });
     }
   } catch (error) {
@@ -399,11 +399,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(500).json({
-      message: "Request received, but email delivery failed. Please try again or email hello@badgrtech.com.",
+      message: "Request received, but email delivery failed. Please try again or email adgrant1@badgrtech.com.",
     });
   }
 
   return res.status(200).json({
-    message: `Thank you. We'll send your Risk & Trust triage notes to ${request.email} within 48 hours.`,
+    message: `Thank you. We'll send your free website check findings to ${request.email} within 48 hours.`,
   });
 }

@@ -60,7 +60,7 @@ export const webOptimizationCluster: ContentCluster = {
     {
       id: "which-package",
       title: "Which Web Optimization Package Is Right for You",
-      bluf: "Medical Risk & Trust Scan for owners who need clarity first. 14-Day Leak & Trust Fix Sprint for owners ready to act. Medical Conversion Rebuild Lite for sites too broken to patch.",
+      bluf: "Start with a free website check. The $349 Website Tune-Up covers up to three public pages; Care Essential is $79/month. Larger scopes are quoted after the check.",
       anchor: "#pricing",
       intent: "commercial",
       entities: ["https://badgrtech.com/#service-web-optimization"],
@@ -68,8 +68,8 @@ export const webOptimizationCluster: ContentCluster = {
     },
     {
       id: "medical-site-triage",
-      title: "Request a Medical Site Triage Call",
-      bluf: "A low-friction triage request to identify speed, mobile, trust, no-PHI form, and patient-flow issues before any paid work begins.",
+      title: "Request a Free Website Check",
+      bluf: "A quick review of one public page, with up to three observed issues sent by email, before any paid work begins.",
       anchor: "/free-lighthouse-scan#scan-form",
       intent: "transactional",
       entities: ["https://badgrtech.com/#org"],
@@ -115,27 +115,22 @@ export const contentGraph: ContentCluster[] = [
 // ─── HowTo steps for the optimization process ────────────────────────────────
 
 export const optimizationHowTo = {
-  name: "How BADGRTechnologies Optimizes a Medical Practice Website",
-  description: "A fixed-scope process to identify and fix the website friction blocking patient calls, appointment requests, form confidence, and trust for small medical practices.",
+  name: "How a BADGRTechnologies Website Tune-Up Works",
+  description: "A fixed-scope process: a free website check, a written scope, then the agreed fixes and a brief before/after report.",
   steps: [
     {
-      name: "Request a Medical Site Triage Call",
-      text: "Share business contact details and the website URL so we can review public speed, mobile, trust, no-PHI form, and patient-flow signals before any paid work begins.",
-      url: "https://badgrtech.com/free-lighthouse-scan#scan-form",
+      name: "Request a Free Website Check",
+      text: "Share your website address and main concern. We review one public page and email up to three issues we observed.",
+      url: "https://badgrtech.com/#triage-form",
     },
     {
-      name: "Receive Your Medical Risk & Trust Scan",
-      text: "We scan your site for the friction points most likely to block patient calls and appointment requests: load speed, mobile flow, booking clarity, trust signals, accessibility basics, and form safety.",
-      url: "https://badgrtech.com/#proof",
+      name: "Approve a Written Scope and Price",
+      text: "Access, exclusions, and timing are confirmed before work starts. Full payment is due after scope approval; deposits are available on request.",
+      url: "https://badgrtech.com/#pricing",
     },
     {
-      name: "Review the Before-and-After Report",
-      text: "Every fix is documented with a clear before-and-after view so you can see exactly what changed and why it matters to patient trust.",
-      url: "https://badgrtech.com/sample-report",
-    },
-    {
-      name: "Implement Fixes Within the Agreed Scope",
-      text: "For the 14-Day Leak & Trust Fix Sprint and Medical Conversion Rebuild Lite packages, we implement the prioritized fixes within the agreed timeline — not an open-ended retainer.",
+      name: "Receive the Agreed Improvements and Report",
+      text: "We complete the agreed fixes and send a brief before/after report. Ongoing care is optional.",
       url: "https://badgrtech.com/#pricing",
     },
   ],
@@ -144,79 +139,52 @@ export const optimizationHowTo = {
 // ─── Full FAQ — informational → commercial → transactional ──────────────────
 
 export const fullFaqs: { question: string; answer: string; intent: IntentStage }[] = [
-  // Informational
   {
     intent: "informational",
-    question: "Why is my website not generating calls or form fills?",
+    question: "Who is this for?",
     answer:
-      "Most medical practice websites lose patients not from bad design but from hidden friction: pages that load slowly on mobile, calls to action that are buried or vague, forms that feel unsafe or confusing, and trust signals that are missing or unconvincing. Visitors feel the friction and leave without explaining why.",
-  },
-  {
-    intent: "informational",
-    question: "What is web optimization and how is it different from a redesign?",
-    answer:
-      "Web optimization is the targeted fix of the specific issues blocking patient action — speed, booking flow, mobile experience, trust signals, accessibility basics, and form clarity — without rebuilding the site from scratch. A redesign changes how the site looks. Optimization changes how well it supports patient decisions.",
-  },
-  {
-    intent: "informational",
-    question: "How do I know if my medical website has a trust or booking problem?",
-    answer:
-      "Signs include traffic that does not convert to calls, high bounce rates on mobile, a contact form that rarely gets submissions, buried privacy or NPP links, and pages that take more than three seconds to load. Any one of these can cost patient inquiries every day.",
-  },
-  // Commercial
-  {
-    intent: "commercial",
-    question: "What do you usually fix first?",
-    answer:
-      "We start with the issues most likely to block patient calls, appointment requests, form confidence, and trust: speed, mobile friction, weak calls to action, broken form flow, missing NPP/privacy links, and missing clarity on the most important pages.",
+      "Local businesses with slow or awkward mobile websites, unclear information, broken links, or inquiry problems. Medical, dental, therapy, home-service, and other local businesses are welcome.",
   },
   {
     intent: "commercial",
-    question: "What if the site really needs a rebuild?",
+    question: "What does the free website check include?",
     answer:
-      "We will say that directly. If the right move is a lighter rebuild instead of piecemeal fixes, the report will spell that out so you are not paying to over-patch a site that cannot carry the load.",
+      "A quick review of one public page, with up to three issues we observed, sent by email. It is written to read in about two minutes. No account access is needed, and it is not a full technical audit.",
   },
   {
     intent: "commercial",
-    question: "What is included in the before-and-after report?",
+    question: "How long does a Tune-Up take?",
     answer:
-      "The report documents every issue found, the priority ranking, what was fixed, and a side-by-side view of the before and after state for each change. It is designed to be readable by a business owner, not a developer.",
+      "Five business days. The clock starts once the written scope is approved, payment is received, and any needed access and materials are in place. Our delivery windows include time for testing and unexpected technical issues. If the scope changes or a delay comes from you or a third party, we confirm a revised date with you.",
   },
   {
     intent: "commercial",
-    question: "Do you also handle SEO or social media?",
+    question: "What do you need from me?",
     answer:
-      "Yes, but only as follow-on support after the website itself is in a stronger place. The core offer here is medical website optimization first. A site that does not support patient trust is not ready to receive more traffic from SEO or paid ads.",
+      "Your website address, your main concern, and permission to make the agreed changes. Some work needs a platform invitation or business details. Please do not email passwords or patient information; we arrange access separately. Any platform is welcome for review, and we confirm technical fit before you pay.",
   },
   {
     intent: "commercial",
-    question: "Do you work only with medical practices?",
+    question: "What is not included?",
     answer:
-      "Medical practices are the primary fit because they rely heavily on inbound trust signals, careful public-form handling, booking clarity, and local visibility. We may support adjacent service businesses when the scope matches.",
-  },
-  {
-    intent: "commercial",
-    question: "What does the AI consultation cover?",
-    answer:
-      "We identify your highest-friction business workflows, map them to AI tools your team can actually operate, and build a deployment plan. Then we stay through implementation — not just the deck.",
-  },
-  // Transactional
-  {
-    intent: "transactional",
-    question: "How quickly can a project start?",
-    answer:
-      "Most projects begin with a short triage call. From there we confirm fit, scope, and timing before the scan or 14-day engagement begins. Many clients are scoped and started within the same week.",
+      "Hosting fees, paid tools, major repairs, rebuilds, extensive content writing, checkout or payment-system changes, patient-data workflows, and legal or compliance assessments, unless separately agreed. Care does not include 24/7 response or unlimited repairs. Extra work is quoted and approved before it starts. We do not promise search rankings, specific scores, or AI recommendations.",
   },
   {
     intent: "transactional",
-    question: "What happens on the triage call?",
+    question: "Can I cancel Care Essential?",
     answer:
-      "It is a 15-minute call to understand your site, your goals, and the biggest friction points you are aware of. We use it to confirm fit and decide which package makes sense — no obligation and no sales pitch.",
+      "Yes. Email adgrant1@badgrtech.com before your next renewal date to stop the next charge. Care is billed monthly in advance, and service continues through the paid month. There are no prorated refunds, and unused time does not roll over.",
+  },
+  {
+    intent: "transactional",
+    question: "How do I pay?",
+    answer:
+      "Full payment is due after the written scope is approved, before work begins, by card or Cash App Pay through Stripe. Deposits are available on request.",
   },
   {
     intent: "transactional",
     question: "How do I get started?",
     answer:
-      "Submit your site URL in the triage form above or book a 15-minute triage call directly. We will follow up within one business day to confirm next steps.",
+      "Request a free website check with the form on this page, or email adgrant1@badgrtech.com or call (470) 791-7361. We follow up within one business day.",
   },
 ];

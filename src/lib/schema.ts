@@ -14,8 +14,8 @@ export const orgEntity = {
   url: BASE_URL,
   logo: { "@type": "ImageObject", url: LOGO_URL, width: 400, height: 400 },
   image: IMAGE_URL,
-  telephone: "+14702236127",
-  email: "hello@badgrtech.com",
+  telephone: "+14707917361",
+  email: "adgrant1@badgrtech.com",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -35,12 +35,12 @@ export const orgEntity = {
     { "@type": "State", name: "Georgia" },
   ],
   knowsAbout: [
-    "Medical Website Optimization",
-    "HIPAA-Aware Website Operations",
-    "Practice Care",
+    "Website Optimization",
+    "Website Maintenance",
     "Website Performance",
-    "WCAG Accessibility",
-    "Local SEO for Medical Practices",
+    "Core Web Vitals",
+    "On-Page SEO",
+    "Google Business Profile",
   ],
   sameAs: [
     "https://www.instagram.com/badgrtech/",
@@ -59,11 +59,6 @@ export const websiteEntity = {
   name: "BADGRTechnologies",
   publisher: { "@id": ORG_ID },
   inLanguage: "en-US",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/?q={search_term_string}` },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 // ─── Service entities ────────────────────────────────────────────────────────
@@ -71,63 +66,59 @@ export const websiteEntity = {
 export const webOptimizationService = {
   "@type": "Service",
   "@id": `${BASE_URL}/#service-web-optimization`,
-  name: "Medical Website Optimization and Practice Care",
+  name: "Website Tune-Up and Care",
   description:
-    "HIPAA-aware website operations for small medical practices. Covers speed, mobile booking paths, public-form risk checks, trust signals, accessibility basics, and local visibility.",
+    "Website fixes for local businesses: mobile speed and layout, page titles and descriptions, broken links, contact-form checks, and Google Business Profile hours and links. Public-facing pages only.",
   provider: { "@id": ORG_ID },
-  category: "Medical Website Operations",
-  areaServed: { "@type": "City", name: "Atlanta" },
+  category: "Website Optimization",
+  areaServed: [
+    { "@type": "AdministrativeArea", name: "Gwinnett County, Georgia" },
+    { "@type": "City", name: "Atlanta" },
+    { "@type": "Country", name: "United States" },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Medical Website Optimization Packages",
+    name: "Website Tune-Up and Care",
     itemListElement: [
       {
         "@type": "Offer",
-        name: "Medical Risk & Trust Scan",
+        name: "Free Website Check",
         description:
-          "A focused review for cash-pay and hybrid medical practice owners who need a clear outside view before committing to implementation work.",
-        price: "750",
+          "A quick review of one public page, with up to three observed issues sent by email. Not a full audit.",
+        price: "0",
         priceCurrency: "USD",
-        priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
-        url: `${BASE_URL}/#services`,
+        url: `${BASE_URL}/#pricing`,
         seller: { "@id": ORG_ID },
       },
       {
         "@type": "Offer",
-        name: "14-Day Leak & Trust Fix Sprint",
+        name: "Website Tune-Up",
         description:
-          "Scan, fix, and prove the highest-impact issues blocking patient calls, appointment requests, form confidence, and trust within a 14-day work window.",
-        price: "2500",
+          "Agreed improvements on one existing website, up to three public pages, with a before/after report. Delivered five business days after scope approval, payment, and access.",
+        price: "349",
         priceCurrency: "USD",
-        priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
-        url: `${BASE_URL}/#services`,
+        url: `${BASE_URL}/#pricing`,
         seller: { "@id": ORG_ID },
       },
       {
         "@type": "Offer",
-        name: "Medical Conversion Rebuild Lite",
+        name: "Care Essential",
         description:
-          "A conversion-first refresh for medical practice sites that need more than patchwork fixes but not a large agency rebuild.",
-        price: "6500",
+          "Uptime checks, routine maintenance, backup or recovery check, a monthly report, and 30 minutes of service time each month.",
+        price: "79",
         priceCurrency: "USD",
-        priceSpecification: { "@type": "UnitPriceSpecification", priceType: "https://schema.org/InvoicePrice" },
-        url: `${BASE_URL}/#services`,
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "79",
+          priceCurrency: "USD",
+          unitCode: "MON",
+          billingDuration: "P1M",
+        },
+        url: `${BASE_URL}/#pricing`,
         seller: { "@id": ORG_ID },
       },
     ],
   },
-};
-
-export const aiConsultationService = {
-  "@type": "Service",
-  "@id": `${BASE_URL}/#service-ai-consultation`,
-  name: "AI Consultation & Integration",
-  description:
-    "AI strategy, workflow automation, and integration consulting for small and mid-size businesses ready to operationalize AI tools.",
-  provider: { "@id": ORG_ID },
-  category: "AI Consulting",
-  areaServed: { "@type": "Country", name: "United States" },
-  url: `${BASE_URL}/ai-consulting`,
 };
 
 // ─── Page-level schema builders ──────────────────────────────────────────────

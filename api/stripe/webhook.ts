@@ -49,8 +49,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
 
+    // Log only non-personal fields; buyer details stay in Stripe.
     console.log('Payment successful:', {
-      customerEmail: session.customer_email,
+      sessionId: session.id,
+      mode: session.mode,
+      amountTotal: session.amount_total,
       metadata: session.metadata,
     });
   }

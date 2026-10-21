@@ -14,7 +14,6 @@ import { useState } from "react";
 import { Link } from "wouter";
 
 import Layout from "@/components/Layout";
-import SelectedEngineeringWork from "@/components/portfolio/SelectedEngineeringWork";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,7 +32,6 @@ import { useJsonLd, usePageMeta } from "@/lib/seo";
 import { CheckoutButton } from "@/components/CheckoutButton";
 import type { ServiceId } from "@/lib/payment";
 import {
-  aiConsultationService,
   buildFAQSchema,
   buildGraph,
   buildWebPageSchema,
@@ -177,9 +175,9 @@ export default function Home() {
   const [triageError, setTriageError] = useState<string | null>(null);
 
   usePageMeta({
-    title: "BADGRTechnologies | Medical Website Optimization & Practice Care",
+    title: "Website Tune-Up & Care | BADGRTECHNOLOGIES",
     description:
-      "Atlanta HIPAA-aware medical website optimization, Practice Care, Risk & Trust reports, and 14-day Leak & Trust Fix Sprints for cash-pay and hybrid practices.",
+      "Website tune-ups from $349 and care from $79/month. Mobile usability, search basics, and contact-form checks. Request a free website check.",
   });
 
   useJsonLd(
@@ -187,12 +185,11 @@ export default function Home() {
       orgEntity,
       websiteEntity,
       webOptimizationService,
-      aiConsultationService,
       buildWebPageSchema({
         id: "https://badgrtech.com/#homepage",
-        name: "BADGRTechnologies | Medical Website Optimization & Practice Care",
+        name: "Website Tune-Up & Care | BADGRTECHNOLOGIES",
         description:
-          "BADGRTechnologies provides HIPAA-aware website operations, speed, accessibility, local visibility, and Risk & Trust reporting for small cash-pay and hybrid medical practices.",
+          "Website tune-ups from $349 and care from $79/month for local businesses. Mobile usability, search basics, and contact-form checks.",
         url: "https://badgrtech.com/",
       }),
       buildFAQSchema(faqs),
@@ -236,7 +233,7 @@ export default function Home() {
       setAuditError(
         error instanceof Error
           ? error.message
-          : "Google could not read that score right now. You can still request a manual Risk & Trust triage review.",
+          : "Google could not read that score right now. You can still request a free website check.",
       );
     } finally {
       setAuditLoading(false);
@@ -269,7 +266,7 @@ export default function Home() {
       const body = await res.json().catch(() => ({} as { message?: string }));
 
       if (!res.ok) {
-        throw new Error(body.message ?? "The request could not be sent. Please email hello@badgrtech.com.");
+        throw new Error(body.message ?? "The request could not be sent. Please email adgrant1@badgrtech.com.");
       }
 
       setTriageMessage(body.message ?? "Your request was sent. We will follow up within 48 hours.");
@@ -283,7 +280,7 @@ export default function Home() {
         consent: false,
       });
     } catch (err) {
-      setTriageError(err instanceof Error ? err.message : "The request could not be sent. Please email hello@badgrtech.com.");
+      setTriageError(err instanceof Error ? err.message : "The request could not be sent. Please email adgrant1@badgrtech.com.");
     } finally {
       setTriageSubmitting(false);
     }
@@ -351,7 +348,7 @@ export default function Home() {
                 className="group h-16 rounded-none border border-primary bg-black/80 px-10 text-lg font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,0,255,0.2)] transition-all hover:bg-primary/20 hover:shadow-[0_0_50px_rgba(0,0,255,0.4)]"
               >
                 <Link href="/#triage-form">
-                  Request A Triage Call
+                  Request My Free Website Check
                   <Zap className="ml-3 h-5 w-5 text-primary transition-colors group-hover:text-white" />
                 </Link>
               </Button>
@@ -393,7 +390,7 @@ export default function Home() {
                 </CardTitle>
                 <CardDescription>
                   Drop in your website and preview the kind of issues we would
-                  review before a medical practice triage call.
+                  review in a free website check.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -440,7 +437,7 @@ export default function Home() {
                           scrollToSection("#triage-form");
                         }}
                       >
-                        Request Triage Call
+                        Request My Free Check
                       </Button>
                     ) : null}
                   </form>
@@ -506,7 +503,7 @@ export default function Home() {
                           }}
                           className="h-11 w-full rounded-none bg-primary font-bold uppercase tracking-widest text-white hover:bg-primary/80"
                         >
-                          Request Triage Call
+                          Request My Free Check
                         </Button>
                         <Button
                           type="button"
@@ -539,8 +536,8 @@ export default function Home() {
               into ads and referrals.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-300">
-              The core offer is a short Leak & Trust Fix Sprint first. Ongoing
-              Practice Care comes after the site is in a safer, stronger place.
+              Start with a free website check. A Tune-Up fixes what we find,
+              and ongoing care is optional.
             </p>
           </div>
 
@@ -577,7 +574,7 @@ export default function Home() {
               onClick={() => scrollToSection("#triage-form")}
               className="rounded-none px-8 py-6 font-bold uppercase tracking-[0.16em]"
             >
-              Start Leak & Trust Fix Sprint
+              Request My Free Website Check
             </Button>
           </div>
 
@@ -597,14 +594,11 @@ export default function Home() {
                   </div>
                 ) : null}
                 <CardHeader>
-                  <Badge
-                    className={cn(
-                      "mb-4 w-fit border-zinc-700 bg-zinc-800 text-zinc-300",
-                      card.featured && "border-primary-bright/60 bg-primary/20 text-primary-bright"
-                    )}
-                  >
-                    {card.tier}
-                  </Badge>
+                  {!card.featured ? (
+                    <Badge className="mb-4 w-fit border-zinc-700 bg-zinc-800 text-zinc-300">
+                      {card.tier}
+                    </Badge>
+                  ) : null}
                   <CardTitle className="text-2xl font-mono">
                     {card.title}
                   </CardTitle>
@@ -772,7 +766,7 @@ export default function Home() {
                   onClick={() => scrollToSection("#triage-form")}
                   className="rounded-none uppercase tracking-[0.16em]"
                 >
-                  Request A Triage Call
+                  Request My Free Website Check
                 </Button>
               </div>
             </div>
@@ -780,7 +774,6 @@ export default function Home() {
         </div>
       </section>
 
-      <SelectedEngineeringWork />
 
       <section id="faq" className="bg-[#05070d] py-24">
         <div className="container mx-auto px-4">
@@ -796,8 +789,8 @@ export default function Home() {
                 QUESTIONS BEFORE YOU COMMIT
               </h2>
               <p className="mt-4 text-lg leading-8 text-zinc-400">
-                The most common questions before a scan, 14-day fix, Practice
-                Care, or rebuild recommendation starts.
+                The most common questions before a free check, Tune-Up, or
+                Care plan starts.
               </p>
             </div>
 
@@ -818,15 +811,15 @@ export default function Home() {
 
             <div className="mt-10 rounded-xl border border-primary/30 bg-primary/5 p-6">
               <p className="text-base leading-7 text-zinc-300">
-                Still not sure? We will walk your current site and show you
-                where patients and ePHI might be slipping through.
+                Still not sure? Request a free website check and we will send
+                up to three issues we observed, by email.
               </p>
               <Button
                 type="button"
                 onClick={() => scrollToSection("#triage-form")}
                 className="mt-5 rounded-none uppercase tracking-[0.16em]"
               >
-                Book Triage Call
+                Request My Free Website Check
               </Button>
             </div>
           </div>
@@ -839,7 +832,7 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             <div className="space-y-8 lg:max-w-xl">
               <h2 className="font-sans text-4xl font-bold uppercase tracking-[0.05em] md:text-5xl">
-                What We Fix In 14 Days For Small Medical Practices
+                How It Works
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -848,12 +841,12 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="mb-1 text-xl font-bold">
-                      Speed And Friction Problems
+                      Speed And Layout Problems
                     </h3>
                     <p className="text-muted-foreground">
-                      Heavy pages, unclear patient journeys, and mobile lag
-                      that make people bounce before they call, request an
-                      appointment, or reach your portal.
+                      Slow or awkward mobile pages, unclear information, and
+                      broken links that make customers leave before they call
+                      or send a form.
                     </p>
                   </div>
                 </div>
@@ -863,12 +856,11 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="mb-1 text-xl font-bold">
-                      Trust And Conversion Gaps
+                      Inquiry Path Problems
                     </h3>
                     <p className="text-muted-foreground">
-                      Missing or buried NPP/privacy links, weak calls to book,
-                      and confusing lead paths that make a legitimate practice
-                      feel less credible and less safe than it is.
+                      Contact forms, booking links, and Google Business Profile
+                      details that do not work the way customers expect.
                     </p>
                   </div>
                 </div>
@@ -879,7 +871,7 @@ export default function Home() {
                 onClick={() => scrollToSection("#triage-form")}
                 className="group h-auto p-0 text-lg font-bold text-white"
               >
-                BOOK A 15-MINUTE TRIAGE CALL
+                REQUEST MY FREE WEBSITE CHECK
                 <ArrowRight className="ml-2 h-5 w-5 text-primary-bright transition-transform group-hover:translate-x-1 group-hover:text-white" />
               </Button>
             </div>
@@ -888,37 +880,35 @@ export default function Home() {
                 <div className="mb-6 flex items-center gap-3 text-primary-bright">
                   <Clock className="h-5 w-5" />
                   <span className="text-xs uppercase tracking-[0.18em] text-zinc-400">
-                    Scan → Fix → Proof
+                    Check → Scope → Fix
                   </span>
                 </div>
                 <div className="space-y-6">
                   <div>
                     <h3 className="font-sans text-lg font-bold uppercase text-white">
-                      Days 1-3
+                      Step 1
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
-                      Audit your highest-value pages, review mobile behavior,
-                      test form flow, and document the biggest Risk & Trust
-                      leaks.
+                      Share your website address and main concern. Anthony
+                      reviews the public site.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-sans text-lg font-bold uppercase text-white">
-                      Days 4-10
+                      Step 2
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
-                      Implement the fixes that matter most first, then recheck
-                      the patient paths after each major improvement.
+                      Approve a written scope and price. Access, exclusions,
+                      and timing are confirmed before work starts.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-sans text-lg font-bold uppercase text-white">
-                      Days 11-14
+                      Step 3
                     </h3>
                     <p className="mt-2 text-sm leading-7 text-zinc-400">
-                      Package the work into a straightforward Risk & Trust
-                      report with before/after observations and the next best
-                      moves.
+                      Receive the agreed improvements and a brief before/after
+                      report. Ongoing care is optional.
                     </p>
                   </div>
                 </div>
@@ -959,16 +949,15 @@ export default function Home() {
                 variant="outline"
                 className="rounded-none border-primary/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-primary"
               >
-                Contact / Triage
+                Contact
               </Badge>
               <h2 className="font-sans text-4xl font-bold uppercase tracking-[0.05em] text-white md:text-5xl">
-                Request A Triage Call
+                Request A Free Website Check
               </h2>
               <p className="text-lg leading-8 text-zinc-400">
-                Share a few basics and we will review your current site, point
-                out the biggest patient-flow and PHI-risk issues, and tell you
-                plainly whether the right next move is a scan, a 14-day fix, or
-                a rebuild.
+                Share a few basics and we will review one public page of your
+                site and email up to three issues we observed. No account
+                access needed.
               </p>
 
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 text-sm leading-7 text-zinc-300">
@@ -976,24 +965,23 @@ export default function Home() {
                   What To Send
                 </p>
                 <p className="mt-3">
-                  Your website URL, practice type (for example: med spa, dental,
-                  primary care, mental health), and the one thing your site is
-                  not doing well enough right now.
+                  Your website URL, your type of business, and the one thing
+                  your site is not doing well enough right now.
                 </p>
                 <p className="mt-4 text-zinc-400">
                   If you prefer, you can also email{" "}
                   <a
-                    href="mailto:hello@badgrtech.com"
+                    href="mailto:adgrant1@badgrtech.com"
                     className="text-primary hover:text-white"
                   >
-                    hello@badgrtech.com
+                    adgrant1@badgrtech.com
                   </a>{" "}
                   or call{" "}
                   <a
-                    href="tel:+14702236127"
+                    href="tel:+14707917361"
                     className="text-primary hover:text-white"
                   >
-                    (470) 223-6127
+                    (470) 791-7361
                   </a>
                   .
                 </p>
@@ -1003,7 +991,6 @@ export default function Home() {
                   Privacy Boundary
                 </p>
                 <p className="mt-3">
-                  Leak & Trust means public website friction, not patient data.
                   Our services cover public-facing pages only and do not involve
                   patient data (ePHI). This request is for business information
                   only.
@@ -1014,7 +1001,7 @@ export default function Home() {
             <Card className="border-primary/30 bg-zinc-950/80 shadow-2xl">
               <CardHeader>
                 <CardTitle className="font-mono text-2xl">
-                  TRIAGE REQUEST
+                  FREE WEBSITE CHECK
                 </CardTitle>
                 <CardDescription>
                   This form sends your request directly to BADGRTechnologies.
@@ -1112,7 +1099,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="business-type">Practice Type</Label>
+                      <Label htmlFor="business-type">Business Type</Label>
                       <Input
                         id="business-type"
                         value={triageForm.businessType}
@@ -1122,7 +1109,7 @@ export default function Home() {
                             businessType: e.target.value,
                           }))
                         }
-                        placeholder="Med spa, dental, primary care, mental health"
+                        placeholder="Plumbing, salon, dental, law office"
                         required
                       />
                     </div>
@@ -1157,7 +1144,7 @@ export default function Home() {
                     disabled={triageSubmitting}
                     className="rounded-none uppercase tracking-[0.16em]"
                   >
-                    {triageSubmitting ? "Sending..." : "Send Triage Request"}
+                    {triageSubmitting ? "Sending..." : "Request My Free Check"}
                   </Button>
                   <div aria-live="polite" className="min-h-5 text-sm">
                     {triageMessage ? (
@@ -1195,9 +1182,9 @@ export default function Home() {
             </span>
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl text-zinc-400">
-            We will look at your current medical practice site, call out the
-            most likely patient-flow and risk blockers, and tell you whether the
-            next move is a Leak & Trust Fix Sprint, Practice Care, or a rebuild.
+            Request a free website check. We review one public page and email
+            up to three issues we observed, written to read in about two
+            minutes.
           </p>
           <div className="flex flex-col justify-center gap-6 sm:flex-row">
             <Button
@@ -1206,7 +1193,7 @@ export default function Home() {
               onClick={() => scrollToSection("#triage-form")}
               className="h-16 bg-primary px-12 text-lg font-bold text-white shadow-2xl hover:bg-primary/90"
             >
-              REQUEST TRIAGE CALL
+              REQUEST MY FREE WEBSITE CHECK
             </Button>
             <Button
               variant="outline"

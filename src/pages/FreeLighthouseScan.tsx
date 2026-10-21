@@ -788,7 +788,7 @@ export default function FreeLighthouseScan() {
                     Submitting
                   </span>
                 ) : (
-                  "Send Triage Request"
+                  "Request My Free Check"
                 )}
               </Button>
             </form>

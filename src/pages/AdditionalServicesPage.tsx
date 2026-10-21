@@ -39,7 +39,7 @@ export default function AdditionalServicesPage() {
   usePageMeta({
     title: "Practice Care Services | BADGRTechnologies",
     description:
-      "See BADGRTechnologies Practice Care, Practice Growth Care, and campaign support for small medical practice websites after the 14-day sprint.",
+      "Care Essential ($79/month), Care Plus ($149/month), and Care Priority ($299/month) website care plans from BADGRTechnologies.",
   });
 
   useJsonLd(
@@ -50,7 +50,7 @@ export default function AdditionalServicesPage() {
         id: "https://badgrtech.com/additional-services#page",
         name: "Practice Care Services | BADGRTechnologies",
         description:
-          "See BADGRTechnologies Practice Care, Practice Growth Care, and campaign support for small medical practice websites after the 14-day sprint.",
+          "Care Essential ($79/month), Care Plus ($149/month), and Care Priority ($299/month) website care plans from BADGRTechnologies.",
         url: "https://badgrtech.com/additional-services",
         breadcrumb: [
           { name: "Home", url: "https://badgrtech.com/" },
@@ -77,9 +77,8 @@ export default function AdditionalServicesPage() {
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
               This page exists to support the core offer, not distract from it.
-              BADGR leads with the Leak & Trust Fix Sprint first. These services
-              are only useful after the medical practice site is clearer, faster,
-              and safer to trust.
+              BADGR leads with a free website check and a Website Tune-Up. Care
+              plans keep the site in good shape after the agreed fixes are done.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="rounded-none uppercase tracking-[0.16em]">
@@ -108,9 +107,9 @@ export default function AdditionalServicesPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-7 text-zinc-300">
               <p>
-                The core engagement remains the Leak & Trust Fix Sprint. We
-                start by fixing the site issues that reduce patient trust, calls,
-                form fills, booking clarity, and no-PHI safety.
+                The core engagement is the Website Tune-Up. We start by fixing the
+                public-page issues that cost calls and form fills: mobile speed
+                and layout, page titles, broken links, and contact paths.
               </p>
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-5">
                 {primaryItems.map(item => (
@@ -148,7 +147,7 @@ export default function AdditionalServicesPage() {
               </p>
               <p className="mt-3 text-base leading-7 text-zinc-300">
                 None of these follow-on services should outrank or overpower the
-                primary Leak & Trust Fix Sprint in the main funnel.
+                free website check and Tune-Up in the main funnel.
               </p>
             </div>
 
