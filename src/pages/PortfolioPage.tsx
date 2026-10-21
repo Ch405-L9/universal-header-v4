@@ -312,7 +312,7 @@ export default function PortfolioPage() {
                     Base
                   </dt>
                   <dd className="mt-2 text-sm text-zinc-200">
-                    Atlanta, Georgia
+                    Lawrenceville, Georgia
                   </dd>
                 </div>
                 <div className="bg-black p-4">

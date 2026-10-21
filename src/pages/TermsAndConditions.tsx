@@ -307,9 +307,7 @@ export default function TermsAndConditions() {
             <p>
               BADGRTechnologies LLC
               <br />
-              8735 Dunwoody Place, Suite N
-              <br />
-              Atlanta, GA 30350
+              Lawrenceville, GA 30044
             </p>
             <p>
               General and legal: <a className="text-primary hover:text-white" href="mailto:adgrant1@badgrtech.com">adgrant1@badgrtech.com</a>

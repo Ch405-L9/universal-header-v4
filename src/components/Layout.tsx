@@ -455,9 +455,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex items-start gap-3">
               <MapPin size={16} className="mt-1 text-primary-bright" />
               <span>
-                8735 Dunwoody Place, Suite N
+                Lawrenceville, GA 30044
                 <br />
-                Atlanta, GA 30350
+                Serving Gwinnett County, metro Atlanta, and remote clients
               </span>
             </div>
             <div className="flex items-center gap-3">

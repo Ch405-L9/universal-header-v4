@@ -211,9 +211,7 @@ export default function PrivacyPolicy() {
             <p>
               BADGRTechnologies LLC
               <br />
-              8735 Dunwoody Place, Suite N
-              <br />
-              Atlanta, GA 30350
+              Lawrenceville, GA 30044
             </p>
             <p>
               Privacy requests and questions: 
