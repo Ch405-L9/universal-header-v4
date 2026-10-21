@@ -85,7 +85,7 @@ export default function PortfolioPage() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
                 asChild
-                className="h-12 rounded-none px-8 font-mono uppercase tracking-[0.16em]"
+                className="h-12 rounded-none px-8 font-sans uppercase tracking-[0.16em]"
               >
                 <Link href="/portfolio/cwalts">
                   Start With C.Walts
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
               <Button
                 asChild
                 variant="outline"
-                className="h-12 rounded-none border-primary/40 px-8 font-mono uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
+                className="h-12 rounded-none border-primary/40 px-8 font-sans uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
               >
                 <a href="https://github.com/Ch405-L9" rel="noreferrer" target="_blank">
                   <Github className="h-4 w-4" />
@@ -231,7 +231,7 @@ export default function PortfolioPage() {
                     <Button
                       asChild
                       variant="outline"
-                      className="mt-7 w-fit rounded-none border-primary/40 font-mono uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
+                      className="mt-7 w-fit rounded-none border-primary/40 font-sans uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
                     >
                       <Link href={`/portfolio/${portfolioCase.slug}`}>
                         Open Case
@@ -273,7 +273,7 @@ export default function PortfolioPage() {
               className="mx-auto aspect-[463/581] w-full max-w-sm border border-primary/30 object-cover object-top lg:mx-0 lg:max-w-none"
             />
             <div>
-              <p className="font-mono text-sm uppercase tracking-[0.14em] text-primary-bright">
+              <p className="font-sans text-sm uppercase tracking-[0.14em] text-primary-bright">
                 Founder / Engineer — BADGRTechnologies LLC
               </p>
               <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300 md:text-lg">
@@ -330,7 +330,7 @@ export default function PortfolioPage() {
                   href="https://github.com/Ch405-L9"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-sans text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Github className="h-4 w-4" aria-hidden="true" />
                   GitHub
@@ -339,14 +339,14 @@ export default function PortfolioPage() {
                   href="https://www.linkedin.com/in/anthonyg-5b2b1a273"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-sans text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Linkedin className="h-4 w-4" aria-hidden="true" />
                   LinkedIn
                 </a>
                 <a
                   href="mailto:adgrant1@badgrtech.com"
-                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-sans text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   Contact
@@ -355,7 +355,7 @@ export default function PortfolioPage() {
                   type="button"
                   onClick={copyPortfolioEmail}
                   aria-label="Copy engineering contact email"
-                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="inline-flex min-h-11 items-center gap-2 border border-primary/40 px-4 py-2 font-sans text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   Copy Email
@@ -396,7 +396,7 @@ export default function PortfolioPage() {
           <div className="grid gap-px bg-primary/20 p-px md:grid-cols-2 xl:grid-cols-3">
             {methodItems.map(item => (
               <div key={item.title} className="bg-zinc-950 p-5">
-                <h3 className="font-mono text-sm uppercase tracking-[0.12em] text-white">
+                <h3 className="font-sans text-sm uppercase tracking-[0.12em] text-white">
                   {item.title}
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-zinc-400">

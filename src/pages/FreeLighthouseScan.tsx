@@ -176,7 +176,7 @@ function MetricGrid({
         >
           <div
             className={cn(
-              "font-mono font-bold",
+              "font-sans font-bold",
               variant === "score" ? "text-3xl text-green-400" : "text-lg text-white",
             )}
           >
@@ -778,7 +778,7 @@ export default function FreeLighthouseScan() {
         <div className="container mx-auto max-w-4xl px-4">
           <div className="grid gap-5 text-sm leading-7 text-zinc-400 md:grid-cols-3">
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">
-              <h2 className="mb-2 font-mono text-sm font-bold uppercase tracking-[0.16em] text-white">
+              <h2 className="mb-2 font-sans text-sm font-bold uppercase tracking-[0.16em] text-white">
                 Privacy First
               </h2>
               <p>
@@ -788,7 +788,7 @@ export default function FreeLighthouseScan() {
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">
-              <h2 className="mb-2 font-mono text-sm font-bold uppercase tracking-[0.16em] text-white">
+              <h2 className="mb-2 font-sans text-sm font-bold uppercase tracking-[0.16em] text-white">
                 Audit Scope
               </h2>
               <p>
@@ -799,7 +799,7 @@ export default function FreeLighthouseScan() {
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">
-              <h2 className="mb-2 font-mono text-sm font-bold uppercase tracking-[0.16em] text-white">
+              <h2 className="mb-2 font-sans text-sm font-bold uppercase tracking-[0.16em] text-white">
                 Follow-Up
               </h2>
               <p>

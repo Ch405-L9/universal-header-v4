@@ -397,7 +397,7 @@ export default function Home() {
                       <Input
                         id="url"
                         placeholder="yourbusiness.com"
-                        className={cn("h-12 border-primary/30 bg-background/50 font-mono focus:border-primary", auditError && "border-red-500 focus:border-red-500")}
+                        className={cn("h-12 border-primary/30 bg-background/50 font-sans focus:border-primary", auditError && "border-red-500 focus:border-red-500")}
                         value={siteUrl}
                         onChange={e => { setSiteUrl(e.target.value); setAuditError(null); }}
                         required
@@ -460,7 +460,7 @@ export default function Home() {
                             { label: "CLS", val: auditData.cls },
                           ].map(m => (
                             <div key={m.label} className="rounded border border-zinc-700 bg-zinc-900 p-2">
-                              <div className="font-mono text-sm font-bold text-white">{m.val ?? "—"}</div>
+                              <div className="font-sans text-sm font-bold text-white">{m.val ?? "—"}</div>
                               <div className="text-[10px] uppercase tracking-wider text-zinc-400">{m.label}</div>
                             </div>
                           ))}

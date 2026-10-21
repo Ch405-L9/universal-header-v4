@@ -23,7 +23,7 @@ export default function PaymentSuccess() {
           .
         </p>
       </div>
-      <Button asChild variant="outline" className="rounded-none border-primary/50 font-mono text-xs uppercase tracking-wider text-primary hover:bg-primary/10">
+      <Button asChild variant="outline" className="rounded-none border-primary/50 font-sans text-xs uppercase tracking-wider text-primary hover:bg-primary/10">
         <Link href="/">Back to Home</Link>
       </Button>
     </div>

@@ -90,7 +90,7 @@ export default function PortfolioCaseStudyPage({
               <dl className="mt-8 grid grid-cols-1 gap-px bg-primary/20 p-px sm:grid-cols-2">
                 {portfolioCase.heroMeta.map(item => (
                   <div key={item.label} className="bg-black/70 p-4">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
+                    <dt className="font-sans text-xs uppercase tracking-[0.18em] text-primary">
                       {item.label}
                     </dt>
                     <dd className="mt-2 text-sm text-zinc-300">{item.value}</dd>
@@ -111,7 +111,7 @@ export default function PortfolioCaseStudyPage({
         >
           <div className="container mx-auto px-4">
             <h2
-              className="mb-5 font-mono text-sm uppercase tracking-[0.2em] text-primary"
+              className="mb-5 font-sans text-sm uppercase tracking-[0.2em] text-primary"
               id={`${portfolioCase.slug}-reviewer-summary`}
             >
               Reviewer Summary
@@ -119,7 +119,7 @@ export default function PortfolioCaseStudyPage({
             <div className="grid gap-px bg-primary/20 p-px md:grid-cols-2 xl:grid-cols-3">
               {portfolioCase.summary.map(item => (
                 <div key={item.label} className="bg-zinc-950 p-5">
-                  <h3 className="font-mono text-xs uppercase tracking-[0.12em] text-white">
+                  <h3 className="font-sans text-xs uppercase tracking-[0.12em] text-white">
                     {item.label}
                   </h3>
                   <p className="mt-6 text-sm leading-6 text-zinc-400">
@@ -173,7 +173,7 @@ export default function PortfolioCaseStudyPage({
             <div className="grid gap-px bg-primary/20 p-px md:grid-cols-2">
               {portfolioCase.narrative.map(item => (
                 <div key={item.title} className="bg-zinc-950 p-5">
-                  <h3 className="font-mono text-sm uppercase tracking-[0.12em] text-white">
+                  <h3 className="font-sans text-sm uppercase tracking-[0.12em] text-white">
                     {item.title}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-zinc-400">
@@ -260,7 +260,7 @@ export default function PortfolioCaseStudyPage({
                       <td className="p-4">
                         <span
                           className={cn(
-                            "inline-flex whitespace-nowrap border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em]",
+                            "inline-flex whitespace-nowrap border px-2 py-1 font-sans text-xs uppercase tracking-[0.12em]",
                             statusClassName[item.status]
                           )}
                         >
@@ -282,7 +282,7 @@ export default function PortfolioCaseStudyPage({
               <Button
                 asChild
                 variant="outline"
-                className="rounded-none border-primary/40 font-mono uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
+                className="rounded-none border-primary/40 font-sans uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
               >
                 <Link href={`/portfolio/${previous.slug}`}>
                   <ArrowLeft className="h-4 w-4" />
@@ -293,7 +293,7 @@ export default function PortfolioCaseStudyPage({
               <Button
                 asChild
                 variant="outline"
-                className="rounded-none border-primary/40 font-mono uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
+                className="rounded-none border-primary/40 font-sans uppercase tracking-[0.16em] text-primary hover:bg-primary/10"
               >
                 <Link href="/portfolio">
                   <ArrowLeft className="h-4 w-4" />
@@ -305,7 +305,7 @@ export default function PortfolioCaseStudyPage({
             {next ? (
               <Button
                 asChild
-                className="rounded-none font-mono uppercase tracking-[0.16em]"
+                className="rounded-none font-sans uppercase tracking-[0.16em]"
               >
                 <Link href={`/portfolio/${next.slug}`}>
                   Next: {next.title}
@@ -315,7 +315,7 @@ export default function PortfolioCaseStudyPage({
             ) : (
               <Button
                 asChild
-                className="rounded-none font-mono uppercase tracking-[0.16em]"
+                className="rounded-none font-sans uppercase tracking-[0.16em]"
               >
                 <Link href="/portfolio">Back To Portfolio</Link>
               </Button>

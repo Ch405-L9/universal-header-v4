@@ -113,7 +113,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               />
             </div>
             <div className="min-w-0 leading-none">
-              <span className="block truncate font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-white">
+              <span className="block truncate font-sans text-xs font-bold uppercase tracking-[0.22em] text-white">
                 BADGR<span className="text-indigo-400">TECH</span>
               </span>
               <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-zinc-300 lg:block">
@@ -158,7 +158,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 asChild
                 variant="outline"
                 size="sm"
-                className="h-6 rounded-none border-primary/50 px-3 font-mono text-[10px] uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
+                className="h-6 rounded-none border-primary/50 px-3 font-sans text-xs uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               >
                 <a href="/#triage-form">Free Website Check</a>
               </Button>
@@ -217,7 +217,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {!isPortfolioRoute ? (
               <Button
                 asChild
-                className="mt-4 w-full bg-primary font-mono uppercase text-primary-foreground"
+                className="mt-4 w-full bg-primary font-sans uppercase text-primary-foreground"
               >
                 <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
                   Free Website Check

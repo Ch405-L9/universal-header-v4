@@ -279,7 +279,7 @@ export default function SampleReportPage() {
                 {sampleVitals.map(([label, value]) => (
                   <div key={label} className="flex items-center justify-between gap-4 border-b border-zinc-800 pb-3">
                     <p>{label}</p>
-                    <p className="font-mono text-white">{value}</p>
+                    <p className="font-sans text-white">{value}</p>
                   </div>
                 ))}
               </CardContent>

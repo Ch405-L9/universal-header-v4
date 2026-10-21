@@ -27,7 +27,7 @@ export function CheckoutButton({
         disabled={isLoading}
         onClick={() => checkout(serviceId)}
         className={cn(
-          "h-auto min-h-9 max-w-full whitespace-normal rounded-none py-2 text-center font-mono text-xs uppercase tracking-[0.18em]",
+          "h-auto min-h-9 max-w-full whitespace-normal rounded-none py-2 text-center font-sans text-xs uppercase tracking-[0.18em]",
           variant === "default" && "bg-primary text-white hover:bg-primary/80",
           variant === "outline" && "border-primary-bright/60 text-primary-bright hover:bg-primary/10 hover:text-white",
           className

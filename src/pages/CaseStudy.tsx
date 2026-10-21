@@ -71,7 +71,7 @@ function MetricBadge({ label, value }: { label: string; value?: string }) {
             : "border-zinc-700 bg-zinc-900",
       )}
     >
-      <div className="font-mono text-base font-bold text-white">{value ?? "—"}</div>
+      <div className="font-sans text-base font-bold text-white">{value ?? "—"}</div>
       <div className="mt-1 text-[10px] uppercase tracking-wider text-zinc-400">{label}</div>
     </div>
   );
@@ -141,7 +141,7 @@ export default function CaseStudy() {
           </p>
           <a
             href="/"
-            className="mt-8 inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-mono text-sm font-bold uppercase text-primary transition-colors hover:bg-primary/10"
+            className="mt-8 inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-sans text-sm font-bold uppercase text-primary transition-colors hover:bg-primary/10"
           >
             Back to home
           </a>
@@ -152,7 +152,7 @@ export default function CaseStudy() {
       <section className="border-b border-primary/20 bg-black py-10">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
+            <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
               Current Score — badgrtech.com (Mobile)
             </h2>
             {liveLoading && (
@@ -199,16 +199,16 @@ export default function CaseStudy() {
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-zinc-700">
-                  <th className="py-3 pr-6 text-left font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+                  <th className="py-3 pr-6 text-left font-sans text-xs uppercase tracking-wider text-zinc-400">
                     Metric
                   </th>
-                  <th className="py-3 pr-6 text-left font-mono text-[10px] uppercase tracking-wider text-red-400">
+                  <th className="py-3 pr-6 text-left font-sans text-xs uppercase tracking-wider text-red-400">
                     Before
                   </th>
-                  <th className="py-3 pr-6 text-left font-mono text-[10px] uppercase tracking-wider text-green-400">
+                  <th className="py-3 pr-6 text-left font-sans text-xs uppercase tracking-wider text-green-400">
                     After (Live)
                   </th>
-                  <th className="py-3 text-left font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+                  <th className="py-3 text-left font-sans text-xs uppercase tracking-wider text-zinc-400">
                     Target
                   </th>
                 </tr>
@@ -217,15 +217,15 @@ export default function CaseStudy() {
                 {TABLE_ROWS.map((row) => (
                   <tr key={row.metric}>
                     <td className="py-4 pr-6 font-medium text-zinc-200">{row.metric}</td>
-                    <td className="py-4 pr-6 font-mono text-red-400">{row.before}</td>
-                    <td className="py-4 pr-6 font-mono text-green-400">
+                    <td className="py-4 pr-6 font-sans text-red-400">{row.before}</td>
+                    <td className="py-4 pr-6 font-sans text-green-400">
                       {liveLoading ? (
                         <span className="animate-pulse text-zinc-500">loading…</span>
                       ) : (
                         row.after
                       )}
                     </td>
-                    <td className="py-4 font-mono text-zinc-400">{row.target}</td>
+                    <td className="py-4 font-sans text-zinc-400">{row.target}</td>
                   </tr>
                 ))}
               </tbody>
@@ -274,13 +274,13 @@ export default function CaseStudy() {
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
               href="/#triage-form"
-              className="inline-flex h-11 items-center justify-center rounded-none bg-primary px-8 font-mono text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary/80"
+              className="inline-flex h-11 items-center justify-center rounded-none bg-primary px-8 font-sans text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary/80"
             >
               Request Free Triage
             </a>
             <a
               href="/sample-report"
-              className="inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-mono text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
+              className="inline-flex h-11 items-center justify-center rounded-none border border-primary/50 bg-transparent px-8 font-sans text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
             >
               View Sample Risk & Trust Report
             </a>

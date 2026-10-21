@@ -57,7 +57,7 @@ export default function PortfolioVisual({
               key={item.label}
               className="min-h-32 bg-[linear-gradient(rgba(142,182,255,0.045)_1px,transparent_1px)] bg-[length:100%_8px] p-5"
             >
-              <b className="font-mono text-xs uppercase tracking-[0.14em] text-white">
+              <b className="font-sans text-xs uppercase tracking-[0.14em] text-white">
                 {item.label}
               </b>
               <span className="mt-16 block text-sm leading-6 text-zinc-400">
@@ -70,7 +70,7 @@ export default function PortfolioVisual({
 
       {visual.kind === "terminal" ? (
         <div
-          className="min-h-80 bg-[linear-gradient(rgba(142,182,255,0.045)_1px,transparent_1px)] bg-[length:100%_8px] p-6 font-mono text-sm leading-7 text-zinc-300"
+          className="min-h-80 bg-[linear-gradient(rgba(142,182,255,0.045)_1px,transparent_1px)] bg-[length:100%_8px] p-6 font-sans text-sm leading-7 text-zinc-300"
           aria-label={visual.caption}
         >
           {visual.lines.map((line, index) => (
@@ -89,7 +89,7 @@ export default function PortfolioVisual({
         </div>
       ) : null}
 
-      <div className="border-t border-primary/20 bg-black/60 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+      <div className="border-t border-primary/20 bg-black/60 px-4 py-3 font-sans text-xs uppercase tracking-[0.18em] text-zinc-500">
         {visual.caption}
       </div>
     </div>

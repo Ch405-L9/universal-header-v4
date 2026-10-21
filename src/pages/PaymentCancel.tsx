@@ -14,7 +14,7 @@ export default function PaymentCancel() {
           No charge was made. Return to the site when you're ready to move forward.
         </p>
       </div>
-      <Button asChild className="rounded-none bg-primary font-mono text-xs uppercase tracking-wider text-white hover:bg-primary/80">
+      <Button asChild className="rounded-none bg-primary font-sans text-xs uppercase tracking-wider text-white hover:bg-primary/80">
         <Link href="/#pricing">View Packages</Link>
       </Button>
     </div>
