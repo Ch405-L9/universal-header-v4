@@ -156,7 +156,7 @@ export default function CaseStudy() {
               Current Score — badgrtech.com (Mobile)
             </h2>
             {liveLoading && (
-              <span className="animate-pulse text-xs text-zinc-500">Fetching live data…</span>
+              <span className="animate-pulse text-xs text-zinc-400">Fetching live data…</span>
             )}
           </div>
           {liveError ? (
@@ -220,7 +220,7 @@ export default function CaseStudy() {
                     <td className="py-4 pr-6 font-sans text-red-400">{row.before}</td>
                     <td className="py-4 pr-6 font-sans text-green-400">
                       {liveLoading ? (
-                        <span className="animate-pulse text-zinc-500">loading…</span>
+                        <span className="animate-pulse text-zinc-400">loading…</span>
                       ) : (
                         row.after
                       )}
@@ -231,7 +231,7 @@ export default function CaseStudy() {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-xs text-zinc-500">
+          <p className="mt-4 text-xs text-zinc-400">
             Baseline from pre-optimization audit (May 2025). Live column pulled from Google
             PageSpeed Insights on page load.
           </p>

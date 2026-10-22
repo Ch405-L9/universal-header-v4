@@ -50,7 +50,7 @@ export default function NotFound() {
             size="lg"
             className="h-14 rounded-none border-white/10 px-8 uppercase tracking-[0.18em] text-zinc-400 hover:border-white/30 hover:bg-white/5 hover:text-white"
           >
-            <a href="/#triage-form">Request Triage</a>
+            <a href="/#request">Free Website Check</a>
           </Button>
         </div>
       </div>

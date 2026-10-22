@@ -76,8 +76,7 @@ export default function AdditionalServicesPage() {
               Keep the site in good shape after the fixes
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-              This page exists to support the core offer, not distract from it.
-              BADGR leads with a free website check and a Website Tune-Up. Care
+              Start with a free website check and a Website Tune-Up. Care
               plans keep the site in good shape after the agreed fixes are done.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -140,16 +139,6 @@ export default function AdditionalServicesPage() {
                 </Card>
               );
             })}
-
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
-              <p className="text-xs uppercase tracking-[0.18em] text-primary">
-                Positioning Rule
-              </p>
-              <p className="mt-3 text-base leading-7 text-zinc-300">
-                None of these follow-on services should outrank or overpower the
-                free website check and Tune-Up in the main funnel.
-              </p>
-            </div>
 
             <Link
               href="/"

@@ -64,7 +64,7 @@ export default function TermsAndConditions() {
               the web optimization and related website support services we
               provide.
             </p>
-            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-500">
+            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">
               Effective Date: October 20, 2026
             </p>
           </div>

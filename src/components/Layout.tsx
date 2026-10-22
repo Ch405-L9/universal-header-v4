@@ -52,12 +52,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // The sticky bar repeats the form's own call to action, so hide it while a form is on screen.
+  const [formInView, setFormInView] = useState(false);
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+    const visible = new Set<Element>();
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) visible.add(e.target);
+        else visible.delete(e.target);
+      }
+      setFormInView(visible.size > 0);
+    });
+    document.querySelectorAll("main form").forEach((f) => io.observe(f));
+    return () => io.disconnect();
+  }, [location]);
+
   const businessNavItems = [
-    { name: "Services", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Sample Report", href: "#proof" },
+    { name: "Prices", href: "#prices" },
+    { name: "How it works", href: "#how" },
+    { name: "Sample Report", href: "/sample-report" },
     { name: "Portfolio", href: "/portfolio" },
-    { name: "Questions", href: "#faq" },
+    { name: "Questions", href: "#questions" },
   ];
 
   const portfolioNavItems = [
@@ -93,7 +109,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary selection:text-primary-foreground">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-black"
+      >
+        Skip to content
+      </a>
       <nav
+        aria-label="Main"
         className={cn(
           "fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300",
           scrolled
@@ -160,7 +183,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 size="sm"
                 className="h-6 rounded-none border-primary/50 px-3 font-sans text-xs uppercase tracking-wider text-primary-bright hover:bg-primary/10 hover:text-primary-bright"
               >
-                <a href="/#triage-form">Free Website Check</a>
+                <a href="/#request">Free Website Check</a>
               </Button>
             ) : null}
           </div>
@@ -219,7 +242,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 asChild
                 className="mt-4 w-full bg-primary font-sans uppercase text-primary-foreground"
               >
-                <a href="/#triage-form" onClick={() => setIsMenuOpen(false)}>
+                <a href="/#request" onClick={() => setIsMenuOpen(false)}>
                   Free Website Check
                 </a>
               </Button>
@@ -229,10 +252,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </nav>
 
       {!isPortfolioRoute ? (
-        <div
+        <aside
+          aria-label="Free website check"
           className={cn(
             "fixed bottom-0 left-0 right-0 z-40 border-t border-primary/40 bg-black/95 backdrop-blur-md transition-all duration-300",
-            showStickyCta ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+            showStickyCta && !formInView ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
           )}
         >
           <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
@@ -241,17 +265,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </p>
             <div className="flex w-full items-center gap-3 sm:w-auto">
               <a
-                href="/#triage-form"
+                href="/#request"
                 className="flex-1 rounded-none bg-primary px-5 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-primary/80 sm:flex-none"
               >
                 Request my free check
               </a>
             </div>
           </div>
-        </div>
+        </aside>
       ) : null}
 
-      <main className="pt-20">{children}</main>
+      <main id="main" className="pt-20">{children}</main>
 
       <footer className="mt-20 border-t border-primary/30 bg-card py-12">
         <div className="container mx-auto px-4">
@@ -337,13 +361,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
+              <h2 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Focus
-              </h3>
+              </h2>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
-                    href="/#pricing"
+                    href="/#prices"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Pricing
@@ -351,7 +375,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="/#proof"
+                    href="/sample-report"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Sample Report
@@ -369,14 +393,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
+              <h2 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 Navigation
-              </h3>
+              </h2>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {!isPortfolioRoute ? (
                   <li>
                     <a
-                      href="/#triage-form"
+                      href="/#request"
                       className="block py-2 transition-colors hover:text-foreground"
                     >
                       Free Website Check
@@ -385,7 +409,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 ) : null}
                 <li>
                   <a
-                    href="/#results"
+                    href="/#how"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     What We Fix
@@ -393,7 +417,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href={isPortfolioRoute ? `mailto:${contactEmail}` : "/#triage-form"}
+                    href={isPortfolioRoute ? `mailto:${contactEmail}` : "/#request"}
                     className="block py-2 transition-colors hover:text-foreground"
                   >
                     Contact
@@ -404,7 +428,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href="/sample-report"
                     className="block py-2 transition-colors hover:text-foreground"
                   >
-                    Open Sample Risk & Trust Report
+                    Open the sample report
                   </Link>
                 </li>
                 <li>
@@ -427,9 +451,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-4 font-mono text-lg font-bold text-indigo-400">
+              <h2 className="mb-4 font-mono text-lg font-bold text-indigo-400">
                 More
-              </h3>
+              </h2>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a
@@ -486,7 +510,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <p className="max-w-xl text-center leading-5 md:text-right">
               Our services cover public-facing website pages only and do not
-              involve patient data (ePHI). We do not provide legal or compliance
+              involve customer or patient records. We do not provide legal or compliance
               advice; please consult your own counsel.
             </p>
           </div>

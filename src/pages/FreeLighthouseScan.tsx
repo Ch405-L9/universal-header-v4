@@ -493,11 +493,9 @@ export default function FreeLighthouseScan() {
                     className="mt-1 h-4 w-4 shrink-0 accent-primary"
                   />
                   <span>
-                    I understand this is a free Risk & Trust triage review based
-                    on public website signals, not legal, medical, security, or
-                    HIPAA compliance advice. I will not submit patient
-                    information, PHI, passwords, or confidential medical details
-                    through this form.
+                    I agree to be contacted about this request. I will only send
+                    business information: no passwords, payment details, or
+                    customer or patient records.
                   </span>
                 </label>
                 {errors.consent ? (
@@ -511,7 +509,7 @@ export default function FreeLighthouseScan() {
                 <Lock className="mt-0.5 h-4 w-4 shrink-0 text-primary-bright" />
                 <span>
                   By submitting, you agree to be contacted by BADGRTechnologies
-                  LLC regarding your free triage review. We do not sell your information.
+                  LLC regarding your free website check. We do not sell your information.
                   See the{" "}
                   <Link href="/privacy" className="text-primary-bright underline underline-offset-4">
                     Privacy Policy
@@ -558,20 +556,20 @@ export default function FreeLighthouseScan() {
                 Privacy First
               </h2>
               <p>
-                The form asks only for business contact details, practice type,
-                and the website URL being audited. Do not submit PHI, patient
-                records, passwords, or private medical details.
+                The form asks only for business contact details and the website
+                address to review. Please do not send passwords, payment
+                details, or customer or patient records.
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">
               <h2 className="mb-2 font-sans text-sm font-bold uppercase tracking-[0.16em] text-white">
-                Audit Scope
+                What the check covers
               </h2>
               <p>
-                A free Risk & Trust triage review is an initial website
-                performance, usability, no-PHI form, and public trust-signal
-                review. It is not a full security audit, legal review, medical
-                advice, or compliance certification. Results vary.
+                The free check reviews one public page for speed, phone
+                layout, contact paths, and search basics, and emails up to three
+                issues. It is not a full technical audit, a security audit, or
+                legal or compliance advice.
               </p>
             </div>
             <div className="border border-zinc-800 bg-zinc-950/70 p-5">

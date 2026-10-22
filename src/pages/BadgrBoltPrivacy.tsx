@@ -64,7 +64,7 @@ export default function BadgrBoltPrivacy() {
               used, what leaves your device, and your rights as a user. BADGR
               Bolt is published by BADGRTechnologies LLC on Google Play.
             </p>
-            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-500">
+            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">
               Effective Date: June 23, 2026 &nbsp;·&nbsp; App Version: 3.1.4
             </p>
           </div>
@@ -394,7 +394,7 @@ export default function BadgrBoltPrivacy() {
                 hello@badgrtech.com
               </a>
             </p>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-zinc-400">
               For data deletion requests, include "Data Deletion Request –
               BADGR Bolt" in the subject line along with the email address
               associated with your account (if any).
@@ -411,7 +411,7 @@ export default function BadgrBoltPrivacy() {
             </Link>
             <Link
               href="/privacy"
-              className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-zinc-500 transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-zinc-400 transition-colors hover:text-white"
             >
               BADGRTechnologies Company Privacy Policy
             </Link>

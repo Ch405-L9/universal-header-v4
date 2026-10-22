@@ -70,7 +70,7 @@ Example:
 <Route path={"/example"} component={ExamplePage} />`}</pre>
             </div>
 
-            <p className="text-sm leading-7 text-zinc-500">
+            <p className="text-sm leading-7 text-zinc-400">
               Until then, use this page as a safe published placeholder instead
               of a broken or dead link.
             </p>

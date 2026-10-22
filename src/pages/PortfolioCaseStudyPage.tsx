@@ -141,7 +141,7 @@ export default function PortfolioCaseStudyPage({
                 <strong className="block font-mono text-2xl text-white">
                   {item.value}
                 </strong>
-                <span className="mt-2 block text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                <span className="mt-2 block text-[10px] uppercase tracking-[0.18em] text-zinc-400">
                   {item.label}
                 </span>
               </div>

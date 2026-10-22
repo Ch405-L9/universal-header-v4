@@ -89,7 +89,7 @@ export default function PortfolioVisual({
         </div>
       ) : null}
 
-      <div className="border-t border-primary/20 bg-black/60 px-4 py-3 font-sans text-xs uppercase tracking-[0.18em] text-zinc-500">
+      <div className="border-t border-primary/20 bg-black/60 px-4 py-3 font-sans text-xs uppercase tracking-[0.18em] text-zinc-400">
         {visual.caption}
       </div>
     </div>

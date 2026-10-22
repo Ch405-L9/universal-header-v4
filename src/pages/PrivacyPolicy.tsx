@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
               optimization services, and any related follow-on support we may
               provide.
             </p>
-            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-500">
+            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">
               Effective Date: October 20, 2026
             </p>
           </div>

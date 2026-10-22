@@ -10,6 +10,7 @@ const Toaster = lazy(() =>
 );
 
 const Home = lazy(() => import("./pages/Home"));
+const Layout = lazy(() => import("@/components/Layout"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("@/pages/TermsAndConditions"));
 const BadgrBoltPrivacy = lazy(() => import("@/pages/BadgrBoltPrivacy"));
@@ -26,15 +27,33 @@ const PortfolioCaseStudyPage = lazy(
   () => import("@/pages/PortfolioCaseStudyPage")
 );
 
+/** Gives standalone pages the site header, footer and landmarks so no page is a dead end. */
+function withLayout<P extends object>(Page: React.ComponentType<P>) {
+  return (props: P) => (
+    <Layout>
+      <Page {...props} />
+    </Layout>
+  );
+}
+
+const PrivacyPage = withLayout(PrivacyPolicy);
+const TermsPage = withLayout(TermsAndConditions);
+const SampleReport = withLayout(SampleReportPage);
+const AdditionalServices = withLayout(AdditionalServicesPage);
+const Success = withLayout(PaymentSuccess);
+const Cancel = withLayout(PaymentCancel);
+const Missing = withLayout(NotFound);
+const FutureRoute = withLayout(FutureRoutePage);
+
 function Router() {
   return (
     <Suspense fallback={null}>
       <Switch>
         <Route path={"/"} component={Home} />
-        <Route path={"/privacy"} component={PrivacyPolicy} />
+        <Route path={"/privacy"} component={PrivacyPage} />
         <Route path={"/privacy/badgr-bolt"} component={BadgrBoltPrivacy} />
-        <Route path={"/terms"} component={TermsAndConditions} />
-        <Route path={"/sample-report"} component={SampleReportPage} />
+        <Route path={"/terms"} component={TermsPage} />
+        <Route path={"/sample-report"} component={SampleReport} />
         <Route path={"/portfolio"} component={PortfolioPage} />
         <Route path={"/portfolio/cwalts"}>
           {() => <PortfolioCaseStudyPage slug="cwalts" />}
@@ -54,25 +73,25 @@ function Router() {
         <Route path={"/proof"} component={CaseStudy} />
         <Route path={"/website-check"} component={FreeLighthouseScan} />
         <Route path={"/partners"}>
-          {() => <FutureRoutePage title="Partners" routePath="/partners" />}
+          {() => <FutureRoute title="Partners" routePath="/partners" />}
         </Route>
         <Route path={"/investors"}>
-          {() => <FutureRoutePage title="Investors" routePath="/investors" />}
+          {() => <FutureRoute title="Investors" routePath="/investors" />}
         </Route>
         <Route
           path={"/additional-services"}
-          component={AdditionalServicesPage}
+          component={AdditionalServices}
         />
-        <Route path={"/success"} component={PaymentSuccess} />
-        <Route path={"/cancel"} component={PaymentCancel} />
-        <Route path={"/404"} component={NotFound} />
+        <Route path={"/success"} component={Success} />
+        <Route path={"/cancel"} component={Cancel} />
+        <Route path={"/404"} component={Missing} />
         {/* Future route pattern guide:
             <Route path={"/partners"} component={PartnersPage} />
             <Route path={"/investors"} component={InvestorsPage} />
-            <Route path={"/additional-services"} component={AdditionalServicesPage} />
+            <Route path={"/additional-services"} component={AdditionalServices} />
             Add the page component above, then wire the footer/nav link below. */}
         {/* Final fallback route */}
-        <Route component={NotFound} />
+        <Route component={Missing} />
       </Switch>
     </Suspense>
   );

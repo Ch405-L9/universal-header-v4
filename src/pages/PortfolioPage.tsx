@@ -153,7 +153,7 @@ export default function PortfolioPage() {
             <strong className="block font-mono text-2xl text-white [overflow-wrap:anywhere]">
               {item.value}
             </strong>
-            <span className="mt-2 block text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+            <span className="mt-2 block text-[10px] uppercase tracking-[0.18em] text-zinc-400">
               {item.label}
             </span>
           </div>
@@ -292,7 +292,7 @@ export default function PortfolioPage() {
 
               <dl className="mt-8 grid gap-px border border-primary/20 bg-primary/20 sm:grid-cols-2">
                 <div className="bg-black p-4">
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">
                     Company
                   </dt>
                   <dd className="mt-2 text-sm text-zinc-200">
@@ -300,7 +300,7 @@ export default function PortfolioPage() {
                   </dd>
                 </div>
                 <div className="bg-black p-4">
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">
                     Georgia formation document
                   </dt>
                   <dd className="mt-2 text-sm text-zinc-200">
@@ -308,7 +308,7 @@ export default function PortfolioPage() {
                   </dd>
                 </div>
                 <div className="bg-black p-4">
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">
                     Base
                   </dt>
                   <dd className="mt-2 text-sm text-zinc-200">
@@ -316,7 +316,7 @@ export default function PortfolioPage() {
                   </dd>
                 </div>
                 <div className="bg-black p-4">
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">
                     Focus
                   </dt>
                   <dd className="mt-2 text-sm text-zinc-200">
@@ -365,7 +365,7 @@ export default function PortfolioPage() {
                 </span>
               </div>
               <p className="mt-4 text-sm text-zinc-400">
-                <span className="mr-2 uppercase tracking-[0.14em] text-zinc-500">
+                <span className="mr-2 uppercase tracking-[0.14em] text-zinc-400">
                   Engineering contact
                 </span>
                 <a
