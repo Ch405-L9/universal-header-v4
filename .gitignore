@@ -169,3 +169,11 @@ public/icons/
 .vercel
 .env*.local
 .firecrawl/
+
+# local design work and owner reference drops (not part of the site)
+mocks/
+.playwright-mcp/
+BG_site*.jpg
+HERO_IMPERFECT_YOU_GET_IT.png
+badgrsentient-1_720x720.jpg
+this_was _#38.pdf
