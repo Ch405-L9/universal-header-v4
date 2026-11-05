@@ -1,4 +1,5 @@
 import { Readable } from 'node:stream';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import handler from '../api/stripe/webhook';
@@ -6,19 +7,32 @@ import handler from '../api/stripe/webhook';
 const SECRET = 'whsec_test_secret';
 const stripe = new Stripe('sk_test_dummy');
 
-function makeReq(payload: string, signature?: string) {
-  const req = Readable.from([Buffer.from(payload)]) as any;
-  req.method = 'POST';
-  req.headers = signature ? { 'stripe-signature': signature } : {};
-  return req;
+function makeReq(payload: string, signature?: string): VercelRequest {
+  const req = Object.assign(Readable.from([Buffer.from(payload)]), {
+    method: 'POST',
+    headers: signature ? { 'stripe-signature': signature } : {},
+  });
+  return req as unknown as VercelRequest;
 }
 
-function makeRes() {
-  const res: any = { statusCode: 200, body: undefined };
-  res.status = (code: number) => { res.statusCode = code; return res; };
-  res.json = (body: unknown) => { res.body = body; return res; };
-  res.send = (body: unknown) => { res.body = body; return res; };
-  return res;
+// Only the parts of VercelResponse the webhook handler calls, plus what the tests read back.
+interface MockRes {
+  statusCode: number;
+  body: unknown;
+  status(code: number): MockRes;
+  json(body: unknown): MockRes;
+  send(body: unknown): MockRes;
+}
+
+function makeRes(): MockRes & VercelResponse {
+  const res: MockRes = {
+    statusCode: 200,
+    body: undefined,
+    status(code) { res.statusCode = code; return res; },
+    json(body) { res.body = body; return res; },
+    send(body) { res.body = body; return res; },
+  };
+  return res as MockRes & VercelResponse;
 }
 
 function signed(event: object) {
@@ -70,7 +84,7 @@ describe('stripe webhook', () => {
       data: { object: { id: 'sub_1', status: 'active', cancel_at_period_end: true, cancel_at: 1798761600 }, previous_attributes: { cancel_at_period_end: false } },
     });
     await handler(makeReq(sched.payload, sched.header), makeRes());
-    expect(JSON.parse((fetchMock.mock.calls[0] as any)[1].body).subject).toBe('Stripe: Care cancellation scheduled');
+    expect(JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).subject).toBe('Stripe: Care cancellation scheduled');
 
     fetchMock.mockClear();
     const other = signed({
