@@ -367,7 +367,7 @@ export default function Home() {
             </p>
             <p>
               A $349 Tune-Up fixes speed, forms and call buttons on up to three
-              pages. It starts with a free check.
+              pages. It starts with a free check and a short video walkthrough.
             </p>
             <div className="hero-actions">
               <a className="hero-btn" href="#triage-form">
@@ -460,6 +460,10 @@ export default function Home() {
                   </li>
                   <li>
                     <span>findings by email</span>
+                    <span>✓</span>
+                  </li>
+                  <li>
+                    <span>screen-recorded walkthrough</span>
                     <span>✓</span>
                   </li>
                   <li>
@@ -606,7 +610,8 @@ export default function Home() {
               </h2>
               <p>
                 We review one public page and email up to three issues we
-                observed. No account access needed. Prefer to talk? Email{" "}
+                observed, plus a short screen recording walking through them. No
+                account access needed. Prefer to talk? Email{" "}
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or call{" "}
                 <a href="tel:+14707917361">(470) 791-7361</a>.
               </p>
